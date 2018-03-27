@@ -25,6 +25,7 @@ class DevolucionDetalle extends Migration
             $table->string('lote', 100);
             $table->string('serie', 100);
             $table->string('pais', 100);
+            $table->integer('devolucion_id');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

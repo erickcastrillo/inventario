@@ -16,11 +16,41 @@ Route::get('/', 'InicioController@Index' )->name('Dashboard');
 Route::get('/home', 'InicioController@Index' )->name('Dashboard');
 
 
+Route::resource('Entrada', 'EntradaController',
+['names' => 
+    [
+        'index' => 'Todas las entradas',
+        'edit' => 'Editar entrada',
+        'show' => 'Mostrar entrada',
+        'create' => 'Crear entrada',
+        'update' => 'Actualizar entrada',
+        'destroy' => 'Borrar entrada',
+    ]
+]);
 
-// Rutas de las entradas
-Route::get('/Entradas', 'EntradaController@Index')->name('Todas las entradas');
-Route::get('/Entradas/Editar/{id}', 'EntradaController@edit')->name('Editar entrada');
-Route::get('/Entradas/Ver/{id}', 'EntradaController@show')->name('Editar entrada');
+Route::resource('Devolucion', 'DevolucionController',
+['names' => 
+    [
+        'index' => 'Todas las devoluciones',
+        'edit' => 'Editar devolucion',
+        'show' => 'Mostrar devolucion',
+        'create' => 'Crear devolucion',
+        'update' => 'Actualizar devolucion',
+        'destroy' => 'Borrar devolucion',
+    ]
+]);
+
+Route::resource('Traslado', 'TrasladoController',
+['names' => 
+    [
+        'index' => 'Todas los traslados',
+        'edit' => 'Editar traslado',
+        'show' => 'Mostrar traslado',
+        'create' => 'Crear traslado',
+        'update' => 'Actualizar traslado',
+        'destroy' => 'Borrar traslado',
+    ]
+]);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');
