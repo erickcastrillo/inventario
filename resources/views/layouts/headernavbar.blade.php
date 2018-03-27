@@ -191,26 +191,26 @@
                   <li>
                     <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                       <i class="ti-settings mR-10"></i>
-                      <span>Setting</span>
+                      <span>Ajustes</span>
                     </a>
                   </li>
                   <li>
                     <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                       <i class="ti-user mR-10"></i>
-                      <span>Profile</span>
+                      <span>Perfil</span>
                     </a>
                   </li>
                   <li>
                     <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                       <i class="ti-email mR-10"></i>
-                      <span>Messages</span>
+                      <span>Mensajes</span>
                     </a>
                   </li>
                   <li role="separator" class="divider"></li>
                   <li>
                     <a href="/auth/logout" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                       <i class="ti-power-off mR-10"></i>
-                      <span>Logout</span>
+                      <span>Salir</span>
                     </a>
                   </li>
                 </ul>

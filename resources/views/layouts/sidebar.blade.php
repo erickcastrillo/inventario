@@ -41,7 +41,7 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                  <i class="c-orange-500 ti-layout-list-thumb"></i>
+                  <i class="c-orange-500 ti-import"></i>
                 </span>
                 <span class="title">Entradas</span>
                 <span class="arrow">
@@ -63,7 +63,7 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                    <i class="c-purple-500 ti-map"></i>
+                    <i class="c-purple-500 ti-export"></i>
                   </span>
                 <span class="title">Salidas</span>
                 <span class="arrow">
@@ -93,7 +93,7 @@
             <li class="nav-item">
               <a class='sidebar-link' href="calendar.html">
                 <span class="icon-holder">
-                  <i class="c-deep-orange-500 ti-calendar"></i>
+                  <i class="c-deep-orange-500 ti-pencil-alt"></i>
                 </span>
                 <span class="title">Ajuste</span>
               </a>
@@ -101,23 +101,15 @@
             <li class="nav-item">
               <a class='sidebar-link' href="chat.html">
                 <span class="icon-holder">
-                  <i class="c-deep-purple-500 ti-comment-alt"></i>
+                  <i class="c-deep-purple-500 ti-files"></i>
                 </span>
                 <span class="title">Reportes</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class='sidebar-link' href="forms.html">
-                <span class="icon-holder">
-                  <i class="c-light-blue-500 ti-pencil"></i>
-                </span>
-                <span class="title">Administraci&oacute;n</span>
               </a>
             </li>
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                  <i class="c-orange-500 ti-layout-list-thumb"></i>
+                  <i class="c-orange-500 ti-settings"></i>
                 </span>
                 <span class="title">Administraci&oacute;n</span>
                 <span class="arrow">
