@@ -87,7 +87,6 @@
       })
       $('#continue_borrado').click(function() {
         var id_borrado = $('#ID_Borrado').text();
-        sleep(3);
         $('#ConfirmarBorrado').modal('show');
       });
     </script>
