@@ -1,7 +1,8 @@
 <?php
 
-$factory->define(Inventario\AjusteDetalle::class, function (Faker\Generator $faker) {
+$factory->define(Inventario\GastoDetalle::class, function (Faker\Generator $faker) {
     return [
+        'gasto_id' => $faker->numberBetween($min = 1000, $max = 9000),
         'id_articulo' => $faker->numberBetween($min = 1000, $max = 9000),
         'cantidad' => $faker->numberBetween($min = 10, $max = 90),
         'costo_unitario' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = NULL),

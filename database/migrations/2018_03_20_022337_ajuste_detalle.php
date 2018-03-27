@@ -17,7 +17,7 @@ class AjusteDetalle extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('id_ajuste');
+            $table->integer('ajuste_id');
             $table->integer('id_articulo');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);

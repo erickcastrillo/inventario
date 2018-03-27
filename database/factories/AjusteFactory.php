@@ -1,11 +1,13 @@
 <?php
 
-$factory->define(Inventario\Entrada::class, function (Faker\Generator $faker) {
+$factory->define(Inventario\Gasto::class, function (Faker\Generator $faker) {
     return [
-        'fecha_ajuste' => $faker->dateTime($max = 'now', $timezone = null),
-        'id_auditor' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_bodega' => $faker->numberBetween($min = 1000, $max = 9000),
-        'notas' => $faker->text($maxNbChars = 200),
+        'fecha_gasto' => $faker->dateTime($max = 'now', $timezone = null),
+        'id_enlace' => $faker->numberBetween($min = 1000, $max = 9000),
+        'id_proyecto' => $faker->numberBetween($min = 1000, $max = 9000),
+        'id_cliente' => $faker->numberBetween($min = 1000, $max = 9000),
+        'id_tarea' => $faker->numberBetween($min = 1000, $max = 9000),
+        'id_departamento' => $faker->numberBetween($min = 1000, $max = 9000),
         'pais' => $faker->country(),
 
         'estado' => $faker->boolean(),

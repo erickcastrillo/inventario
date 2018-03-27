@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EntradasSeeder::class);
         $this->call(DevolucionSeeder::class);
         $this->call(TrasladoSeeder::class);
+        $this->call(GastoSeeder::class);
 
         Model::reguard();
     }

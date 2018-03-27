@@ -23,6 +23,7 @@ class Gasto extends Migration
             $table->integer('id_cliente');
             $table->integer('id_tarea');
             $table->integer('id_departamento');
+            $table->string('pais', 50);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

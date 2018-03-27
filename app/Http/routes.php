@@ -15,7 +15,7 @@
 Route::get('/', 'InicioController@Index' )->name('Dashboard');
 Route::get('/home', 'InicioController@Index' )->name('Dashboard');
 
-
+// Rutas de las entradas como resource
 Route::resource('Entrada', 'EntradaController',
 ['names' => 
     [
@@ -28,6 +28,7 @@ Route::resource('Entrada', 'EntradaController',
     ]
 ]);
 
+// Rutas de las devoluciones como resource
 Route::resource('Devolucion', 'DevolucionController',
 ['names' => 
     [
@@ -40,6 +41,7 @@ Route::resource('Devolucion', 'DevolucionController',
     ]
 ]);
 
+// Rutas de las traslados como resource
 Route::resource('Traslado', 'TrasladoController',
 ['names' => 
     [
@@ -52,6 +54,7 @@ Route::resource('Traslado', 'TrasladoController',
     ]
 ]);
 
+// Rutas de las ajustes como resource
 Route::resource('Ajuste', 'TrasladoController',
 ['names' => 
     [
@@ -61,6 +64,19 @@ Route::resource('Ajuste', 'TrasladoController',
         'create' => 'Crear ajuste',
         'update' => 'Actualizar ajuste',
         'destroy' => 'Borrar ajuste',
+    ]
+]);
+
+// Rutas de las gastos como resource
+Route::resource('Gasto', 'GastoController',
+['names' => 
+    [
+        'index' => 'Todas los gastos',
+        'edit' => 'Editar gasto',
+        'show' => 'Mostrar gasto',
+        'create' => 'Crear gasto',
+        'update' => 'Actualizar gasto',
+        'destroy' => 'Borrar gasto',
     ]
 ]);
 
