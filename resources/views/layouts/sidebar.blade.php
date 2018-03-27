@@ -38,30 +38,22 @@
                 <span class="title">Inicio</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class='sidebar-link' href="#">
-                <span class="icon-holder">
-                  <i class="c-brown-500 ti-email"></i>
-                </span>
-                <span class="title">Email</span>
-              </a>
-            </li>
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
                   <i class="c-orange-500 ti-layout-list-thumb"></i>
                 </span>
-                <span class="title">Tables</span>
+                <span class="title">Entradas</span>
                 <span class="arrow">
                   <i class="ti-angle-right"></i>
                 </span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class='sidebar-link' href="basic-table.html">Basic Table</a>
+                  <a class='sidebar-link' href="#">Compra</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Data Table</a>
+                  <a class='sidebar-link' href="#">Devolucion</a>
                 </li>
               </ul>
             </li>
@@ -70,17 +62,20 @@
                 <span class="icon-holder">
                     <i class="c-purple-500 ti-map"></i>
                   </span>
-                <span class="title">Maps</span>
+                <span class="title">Salidas</span>
                 <span class="arrow">
                     <i class="ti-angle-right"></i>
                   </span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="google-maps.html">Google Map</a>
+                  <a href="google-maps.html">Por gastos</a>
                 </li>
                 <li>
-                  <a href="vector-maps.html">Vector Map</a>
+                  <a href="vector-maps.html">Por devolucion</a>
+                </li>
+                <li>
+                  <a href="vector-maps.html">Por desecho</a>
                 </li>
               </ul>
             </li>
