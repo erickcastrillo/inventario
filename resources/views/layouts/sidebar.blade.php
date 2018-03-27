@@ -49,8 +49,8 @@
                 </span>
               </a>
               <ul class="dropdown-menu">
-              <li>
-                  <a class='sidebar-link' href="/Entradas">Todas las entradas</a>
+                <li>
+                  <a class='sidebar-link' href="/Entrada">Todas las entradas</a>
                 </li>
                 <li>
                   <a class='sidebar-link' href="#">Compra</a>
@@ -71,6 +71,9 @@
                   </span>
               </a>
               <ul class="dropdown-menu">
+                <li>
+                  <a class='sidebar-link' href="/Salida">Todas las salidas</a>
+                </li>
                 <li>
                   <a href="#">Por gastos</a>
                 </li>

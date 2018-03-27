@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrasladoDetalle extends Model
 {
-    public function entrada()
+    public function traslado()
     {
         return $this->belongsTo('Inventario\Traslado');
     }

@@ -52,6 +52,18 @@ Route::resource('Traslado', 'TrasladoController',
     ]
 ]);
 
+Route::resource('Ajuste', 'TrasladoController',
+['names' => 
+    [
+        'index' => 'Todas los ajustes',
+        'edit' => 'Editar ajuste',
+        'show' => 'Mostrar ajuste',
+        'create' => 'Crear ajuste',
+        'update' => 'Actualizar ajuste',
+        'destroy' => 'Borrar ajuste',
+    ]
+]);
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

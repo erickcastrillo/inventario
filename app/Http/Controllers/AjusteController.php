@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
-use Inventario\Devolucion;
-use Inventario\DevolucionDetalle;
+use Inventario\Ajuste;
+use Inventario\AjusteDetalle;
 
-class DevolucionDetalleController extends Controller
+class AjusteController extends Controller
 {
     public function __construct()
     {
@@ -23,7 +23,7 @@ class DevolucionDetalleController extends Controller
      */
     public function index()
     {
-        return response()->json(DevolucionDetalle::all());
+        return response()->json(Ajuste::all());
     }
 
     /**

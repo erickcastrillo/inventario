@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DevolucionDetalle extends Model
 {
-    public function entrada()
+    public function devolucion()
     {
         return $this->belongsTo('Inventario\Devolucion');
     }

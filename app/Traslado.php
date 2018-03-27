@@ -8,7 +8,7 @@ class Traslado extends Model
 {
     public function detalles()
     {
-        return $this->hasMany('Inventario\TrasladoDetalleController');
+        return $this->hasMany('Inventario\TrasladoDetalle');
     }
 
     protected $table = 'traslados';

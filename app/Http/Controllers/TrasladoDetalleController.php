@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
+use Inventario\Traslado;
+use Inventario\TrasladoDetalle;
 
 class TrasladoDetalleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('supervisor');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class TrasladoDetalleController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(TrasladoDetalle::all());
     }
 
     /**
