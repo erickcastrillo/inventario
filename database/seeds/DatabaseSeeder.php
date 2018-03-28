@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(DevolucionSeeder::class);
         $this->call(TrasladoSeeder::class);
         $this->call(GastoSeeder::class);
+        $this->call(DesechoSeeder::class);
+        $this->call(BodegaSeeder::class);
+        $this->call(TipoCambioSeeder::class);
 
         Model::reguard();
     }

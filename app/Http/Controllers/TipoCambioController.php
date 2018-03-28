@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
-use Inventario\Desecho;
-use Inventario\DesechoDetalle;
+use Inventario\TipoCambio;
 
-class DesechoController extends Controller
+class TipoCambioController extends Controller
 {
     public function __construct()
     {
@@ -23,7 +22,7 @@ class DesechoController extends Controller
      */
     public function index()
     {
-        return response()->json(Desecho::all());
+        return response()->json(TipoCambio::all());
     }
 
     /**

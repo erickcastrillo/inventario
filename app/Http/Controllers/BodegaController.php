@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
-use Inventario\Desecho;
-use Inventario\DesechoDetalle;
+use Inventario\Bodega;
+use Inventario\BodegaDetalle;
 
-class DesechoController extends Controller
+class BodegaController extends Controller
 {
     public function __construct()
     {
@@ -23,7 +23,7 @@ class DesechoController extends Controller
      */
     public function index()
     {
-        return response()->json(Desecho::all());
+        return response()->json(Bodega::all());
     }
 
     /**

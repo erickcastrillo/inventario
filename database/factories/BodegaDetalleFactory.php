@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\DesechoDetalle::class, function (Faker\Generator $faker) {
+$factory->define(Inventario\BodegaDetalle::class, function (Faker\Generator $faker) {
     return [
         'articulo_id' => $faker->numberBetween($min = 1000, $max = 9000),
         'cantidad' => $faker->numberBetween($min = 1000, $max = 9000),

@@ -44,6 +44,6 @@ class EntradaDetalle extends Migration
      */
     public function down()
     {
-        Schema::drop('entrada_detalle');
+        Schema::drop('entradas_detalle');
     }
 }

@@ -18,7 +18,6 @@ class TipoCambio extends Migration
             
             // Table specific entries
             $table->integer('moneda_id');
-            $table->integer('articulo_id');
             $table->date('fecha');
             $table->float('cambio', 8, 3);
             $table->string('pais', 100);

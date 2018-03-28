@@ -85,11 +85,37 @@ Route::resource('Desecho', 'DesechoController',
 ['names' => 
     [
         'index' => 'Todas los desechos',
-        'edit' => 'Editar desechos',
-        'show' => 'Mostrar desechos',
-        'create' => 'Crear desechos',
-        'update' => 'Actualizar desechos',
-        'destroy' => 'Borrar desechos',
+        'edit' => 'Editar desecho',
+        'show' => 'Mostrar desecho',
+        'create' => 'Crear desecho',
+        'update' => 'Actualizar desecho',
+        'destroy' => 'Borrar desecho',
+    ]
+]);
+
+// Rutas de las bodegas como resource
+Route::resource('Bodega', 'DesechoController',
+['names' => 
+    [
+        'index' => 'Todas los bodegas',
+        'edit' => 'Editar bodega',
+        'show' => 'Mostrar bodega',
+        'create' => 'Crear bodega',
+        'update' => 'Actualizar bodega',
+        'destroy' => 'Borrar bodega',
+    ]
+]);
+
+// Rutas de las tipos cambio como resource
+Route::resource('TipoCambio', 'TipoCambioController',
+['names' => 
+    [
+        'index' => 'Todas los tipos cambio',
+        'edit' => 'Editar tipo cambio',
+        'show' => 'Mostrar tipo cambio',
+        'create' => 'Crear tipo cambio',
+        'update' => 'Actualizar tipo cambio',
+        'destroy' => 'Borrar tipo cambio',
     ]
 ]);
 
