@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(EntradasSeeder::class);
         $this->call(DevolucionSeeder::class);
@@ -23,6 +22,16 @@ class DatabaseSeeder extends Seeder
         $this->call(DesechoSeeder::class);
         $this->call(BodegaSeeder::class);
         $this->call(TipoCambioSeeder::class);
+        $this->call(ArticuloSeeder::class);
+        $this->call(ProveedorSeeder::class);
+        $this->call(CuentaContableSeeder::class);
+        $this->call(ProyectoSeeder::class);
+        $this->call(TareaSeeder::class);
+        $this->call(MonedaSeeder::class);
+        $this->call(UnidadMedidaSeeder::class);
+        $this->call(MovimientoSeeder::class);
+        $this->call(TipoConceptoSeeder::class);
+        $this->call(DepartamentoSeeder::class);
 
         Model::reguard();
     }

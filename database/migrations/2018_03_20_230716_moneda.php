@@ -19,7 +19,7 @@ class Moneda extends Migration
             // Table specific entries
             $table->string('nombre', 100);
             $table->string('sigla', 5);
-            $table->string('por_defecto', 100);
+            $table->boolean('por_defecto');
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations

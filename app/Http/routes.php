@@ -41,11 +41,11 @@ Route::resource('Devolucion', 'DevolucionController',
     ]
 ]);
 
-// Rutas de las traslados como resource
+// Rutas de los traslados como resource
 Route::resource('Traslado', 'TrasladoController',
 ['names' => 
     [
-        'index' => 'Todas los traslados',
+        'index' => 'Todos los traslados',
         'edit' => 'Editar traslado',
         'show' => 'Mostrar traslado',
         'create' => 'Crear traslado',
@@ -54,11 +54,11 @@ Route::resource('Traslado', 'TrasladoController',
     ]
 ]);
 
-// Rutas de las ajustes como resource
+// Rutas de los ajustes como resource
 Route::resource('Ajuste', 'TrasladoController',
 ['names' => 
     [
-        'index' => 'Todas los ajustes',
+        'index' => 'Todos los ajustes',
         'edit' => 'Editar ajuste',
         'show' => 'Mostrar ajuste',
         'create' => 'Crear ajuste',
@@ -67,11 +67,11 @@ Route::resource('Ajuste', 'TrasladoController',
     ]
 ]);
 
-// Rutas de las gastos como resource
+// Rutas de los gastos como resource
 Route::resource('Gasto', 'GastoController',
 ['names' => 
     [
-        'index' => 'Todas los gastos',
+        'index' => 'Todos los gastos',
         'edit' => 'Editar gasto',
         'show' => 'Mostrar gasto',
         'create' => 'Crear gasto',
@@ -80,11 +80,11 @@ Route::resource('Gasto', 'GastoController',
     ]
 ]);
 
-// Rutas de las desechos como resource
+// Rutas de los desechos como resource
 Route::resource('Desecho', 'DesechoController',
 ['names' => 
     [
-        'index' => 'Todas los desechos',
+        'index' => 'Todos los desechos',
         'edit' => 'Editar desecho',
         'show' => 'Mostrar desecho',
         'create' => 'Crear desecho',
@@ -106,16 +106,146 @@ Route::resource('Bodega', 'DesechoController',
     ]
 ]);
 
-// Rutas de las tipos cambio como resource
+// Rutas de los tipos cambio como resource
 Route::resource('TipoCambio', 'TipoCambioController',
 ['names' => 
     [
-        'index' => 'Todas los tipos cambio',
+        'index' => 'Todos los tipos cambio',
         'edit' => 'Editar tipo cambio',
         'show' => 'Mostrar tipo cambio',
         'create' => 'Crear tipo cambio',
         'update' => 'Actualizar tipo cambio',
         'destroy' => 'Borrar tipo cambio',
+    ]
+]);
+
+// Rutas de los articulos como resource
+Route::resource('Articulo', 'ArticuloController',
+['names' => 
+    [
+        'index' => 'Todos los articulos',
+        'edit' => 'Editar articulo',
+        'show' => 'Mostrar articulo',
+        'create' => 'Crear articulo',
+        'update' => 'Actualizar articulo',
+        'destroy' => 'Borrar articulo',
+    ]
+]);
+
+// Rutas de los proveedores como resource
+Route::resource('Proveedor', 'ProveedorController',
+['names' => 
+    [
+        'index' => 'Todos los proveedores',
+        'edit' => 'Editar proveedor',
+        'show' => 'Mostrar proveedor',
+        'create' => 'Crear proveedor',
+        'update' => 'Actualizar proveedor',
+        'destroy' => 'Borrar proveedor',
+    ]
+]);
+
+// Rutas de las cuentas contables como resource
+Route::resource('CuentaContable', 'CuentaContableController',
+['names' => 
+    [
+        'index' => 'Todas las cuentas contables',
+        'edit' => 'Editar cuentas contable',
+        'show' => 'Mostrar cuentas contable',
+        'create' => 'Crear cuentas contable',
+        'update' => 'Actualizar cuentas contable',
+        'destroy' => 'Borrar cuentas contable',
+    ]
+]);
+
+// Rutas de los proyectos como resource
+Route::resource('Proyecto', 'ProyectoController',
+['names' => 
+    [
+        'index' => 'Todos los proyectos',
+        'edit' => 'Editar proyecto',
+        'show' => 'Mostrar proyecto',
+        'create' => 'Crear proyecto',
+        'update' => 'Actualizar proyecto',
+        'destroy' => 'Borrar proyecto',
+    ]
+]);
+
+// Rutas de las tareas como resource
+Route::resource('Tarea', 'TareaController',
+['names' => 
+    [
+        'index' => 'Todas las tareas',
+        'edit' => 'Editar tarea',
+        'show' => 'Mostrar tarea',
+        'create' => 'Crear tarea',
+        'update' => 'Actualizar tarea',
+        'destroy' => 'Borrar tarea',
+    ]
+]);
+
+// Rutas de las unidades de medida como resource
+Route::resource('UnidadMedida', 'UnidadMedidaController',
+['names' => 
+    [
+        'index' => 'Todas las unidades de medida',
+        'edit' => 'Editar unidad de medida',
+        'show' => 'Mostrar unidad de medida',
+        'create' => 'Crear unidad de medida',
+        'update' => 'Actualizar unidad de medida',
+        'destroy' => 'Borrar unidad de medida',
+    ]
+]);
+
+// Rutas de las monedas como resource
+Route::resource('Moneda', 'MonedaController',
+['names' => 
+    [
+        'index' => 'Todas las monedas',
+        'edit' => 'Editar moneda',
+        'show' => 'Mostrar moneda',
+        'create' => 'Crear moneda',
+        'update' => 'Actualizar moneda',
+        'destroy' => 'Borrar moneda',
+    ]
+]);
+
+// Rutas de los tipos de concepto como resource
+Route::resource('TipoConcepto', 'TipoConceptoController',
+['names' => 
+    [
+        'index' => 'Todos los tipos de concepto',
+        'edit' => 'Editar tipo de concepto',
+        'show' => 'Mostrar tipo de concepto',
+        'create' => 'Crear tipo de concepto',
+        'update' => 'Actualizar tipo de concepto',
+        'destroy' => 'Borrar tipo de concepto',
+    ]
+]);
+
+// Rutas de los movimientos como resource
+Route::resource('Movimiento', 'MovimientoController',
+['names' => 
+    [
+        'index' => 'Todos los movimientos',
+        'edit' => 'Editar movimiento',
+        'show' => 'Mostrar movimiento',
+        'create' => 'Crear movimiento',
+        'update' => 'Actualizar movimiento',
+        'destroy' => 'Borrar movimiento',
+    ]
+]);
+
+// Rutas de los departamentos como resource
+Route::resource('Departamento', 'DepartamentoController',
+['names' => 
+    [
+        'index' => 'Todos los departamentos',
+        'edit' => 'Editar departamento',
+        'show' => 'Mostrar departamento',
+        'create' => 'Crear departamento',
+        'update' => 'Actualizar departamento',
+        'destroy' => 'Borrar departamento',
     ]
 ]);
 
