@@ -2,13 +2,12 @@
 
 $factory->define(Inventario\GastoDetalle::class, function (Faker\Generator $faker) {
     return [
-        'gasto_id' => $faker->numberBetween($min = 1000, $max = 9000),
         'articulo_id' => $faker->numberBetween($min = 1000, $max = 9000),
-        'cantidad' => $faker->numberBetween($min = 10, $max = 90),
-        'costo_unitario' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = NULL),
-        'moneda_id' => $faker->numberBetween($min = 10, $max = 90),
-        'lote' => $faker->isbn13(),
-        'serie' => $faker->ean8(),
+        'cantidad' => $faker->numberBetween($min = 1000, $max = 9000),
+        'costo_unitario' => $faker->numberBetween($min = 1000, $max = 9000),
+        'moneda_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'lote' => $faker->numberBetween($min = 1000, $max = 9000),
+        'serie' => $faker->numberBetween($min = 1000, $max = 9000),
         'pais' => $faker->country(),
 
         'estado' => $faker->boolean(),
