@@ -121,31 +121,31 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a class='sidebar-link' href="basic-table.html">Usuarios</a>
+                  <a class='sidebar-link' href="basic-table.html">Artículos</a>
+                </li>
+                <li>
+                  <a class='sidebar-link' href="datatable.html">Proveedores</a>
                 </li>
                 <li>
                   <a class='sidebar-link' href="datatable.html">Bodegas</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Productos</a>
+                  <a class='sidebar-link' href="datatable.html">Clientes</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
+                  <a class='sidebar-link' href="datatable.html">Cuentas Contables</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
+                  <a class='sidebar-link' href="datatable.html">Proyectos</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
+                  <a class='sidebar-link' href="datatable.html">Tareas</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
+                  <a class='sidebar-link' href="datatable.html">Monedas</a>
                 </li>
                 <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
+                  <a class='sidebar-link' href="datatable.html">Notificaciones</a>
                 </li>
               </ul>
             </li>
