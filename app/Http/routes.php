@@ -80,6 +80,19 @@ Route::resource('Gasto', 'GastoController',
     ]
 ]);
 
+// Rutas de las desechos como resource
+Route::resource('Desecho', 'DesechoController',
+['names' => 
+    [
+        'index' => 'Todas los desechos',
+        'edit' => 'Editar desechos',
+        'show' => 'Mostrar desechos',
+        'create' => 'Crear desechos',
+        'update' => 'Actualizar desechos',
+        'destroy' => 'Borrar desechos',
+    ]
+]);
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

@@ -2,7 +2,7 @@
 
 $factory->define(Inventario\Gasto::class, function (Faker\Generator $faker) {
     return [
-        'fecha_ajuste' => $faker->dateTime($max = 'now', $timezone = null),
+        'fecha_gasto' => $faker->dateTime($max = 'now', $timezone = null),
         'id_auditor' => $faker->numberBetween($min = 1000, $max = 9000),
         'id_bodega' => $faker->numberBetween($min = 1000, $max = 9000),
         'notas' => $faker->text($maxNbChars = 200),
