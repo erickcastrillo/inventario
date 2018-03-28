@@ -18,17 +18,17 @@ class Gasto extends Migration
             
             // Table specific entries
             $table->dateTime('fecha_gasto');
-            $table->integer('id_enlace');
-            $table->integer('id_proyecto');
-            $table->integer('id_cliente');
-            $table->integer('id_tarea');
-            $table->integer('id_departamento');
+            $table->integer('enlace_id');
+            $table->integer('proyecto_id');
+            $table->integer('cliente_id');
+            $table->integer('tarea_id');
+            $table->integer('departamento_id');
             $table->string('pais', 50);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

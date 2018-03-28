@@ -19,15 +19,15 @@ class Devolucion extends Migration
             
             // Table specific entries
             $table->dateTime('fecha_devolucion');
-            $table->integer('id_cliente');
-            $table->integer('id_bodega');
+            $table->integer('cliente_id');
+            $table->integer('bodega_id');
             $table->string('notas', 500);
             $table->string('pais', 50);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
             

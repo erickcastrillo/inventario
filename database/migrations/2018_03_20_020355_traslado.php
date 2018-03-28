@@ -17,19 +17,19 @@ class Traslado extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('id_bodega_entrada');
-            $table->integer('id_bodega_salida');
+            $table->integer('bodega_id_entrada');
+            $table->integer('bodega_id_salida');
             $table->date('fecha_retiro');
             $table->time('hora_retiro');
-            $table->integer('id_motivo');
-            $table->integer('id_departamento');
+            $table->integer('motivo_id');
+            $table->integer('departamento_id');
             $table->string('nombre_retira', 100);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

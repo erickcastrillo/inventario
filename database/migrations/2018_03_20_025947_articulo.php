@@ -19,16 +19,16 @@ class Articulo extends Migration
             // Table specific entries
             $table->string('codigo', 50);
             $table->string('descripcion', 500);
-            $table->integer('id_categoria');
-            $table->integer('id_medida');
+            $table->integer('categoria_id');
+            $table->integer('medida_id');
             $table->integer('cantidad_minima');
             $table->string('fotografia', 100);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

@@ -3,15 +3,15 @@
 $factory->define(Inventario\Gasto::class, function (Faker\Generator $faker) {
     return [
         'fecha_gasto' => $faker->dateTime($max = 'now', $timezone = null),
-        'id_enlace' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_proyecto' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_cliente' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_tarea' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_departamento' => $faker->numberBetween($min = 1000, $max = 9000),
+        'enlace_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'proyecto_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'cliente_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'tarea_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'departamento_id' => $faker->numberBetween($min = 1000, $max = 9000),
         'pais' => $faker->country(),
 
         'estado' => $faker->boolean(),
-        'id_creado' => $faker->numberBetween($min = 1000, $max = 9000),
-        'id_editado' => $faker->numberBetween($min = 1000, $max = 9000),
+        'creado_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'editado_id' => $faker->numberBetween($min = 1000, $max = 9000),
     ];
 });

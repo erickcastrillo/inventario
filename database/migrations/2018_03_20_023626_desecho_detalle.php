@@ -17,19 +17,19 @@ class DesechoDetalle extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('id_desecho');
-            $table->integer('id_articulo');
+            $table->integer('desecho_id');
+            $table->integer('articulo_id');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);
-            $table->integer('id_moneda');
+            $table->integer('moneda_id');
             $table->string('lote', 100);
             $table->string('serie', 100);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

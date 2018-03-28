@@ -18,13 +18,13 @@ class Bodega extends Migration
             
             // Table specific entries
             $table->string('descripcion', 500);
-            $table->integer('id_responsable');
+            $table->integer('responsable_id');
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

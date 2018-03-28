@@ -17,19 +17,19 @@ class BodegaDetalle extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('id_bodega');
-            $table->integer('id_articulo');
+            $table->integer('bodega_id');
+            $table->integer('articulo_id');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);
-            $table->integer('id_moneda');
+            $table->integer('moneda_id');
             $table->string('lote', 100);
             $table->string('serie', 100);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
         });

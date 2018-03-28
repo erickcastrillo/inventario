@@ -28,13 +28,13 @@
                                 <td role="row">{{ $entrada->id }}</td>
                                 <td role="row">{{ $entrada->fecha_factura }}</td>
                                 <td role="row">{{ $entrada->n_factura }}</td>
-                                <td role="row">{{ $entrada->id_proyecto }}</td>
-                                <td role="row">{{ $entrada->id_tarea }}</td>
-                                <td role="row">{{ $entrada->id_tipo_concepto }}</td>
+                                <td role="row">{{ $entrada->proyecto_id }}</td>
+                                <td role="row">{{ $entrada->tarea_id }}</td>
+                                <td role="row">{{ $entrada->tipo_concepto_id }}</td>
                                 <td role="row">{{ $entrada->pais }}</td>
                                 <td role="row">{{ $entrada->estado }}</td>
-                                <td role="row">{{ $entrada->id_creado }}</td>
-                                <td role="row">{{ $entrada->id_editado }}</td>
+                                <td role="row">{{ $entrada->creado_id }}</td>
+                                <td role="row">{{ $entrada->editado_id }}</td>
                                 <td role="row">{{ $entrada->created_at }}</td>
                                 <td role="row">{{ $entrada->updated_at }}</td>
                             </tr>
@@ -68,18 +68,18 @@
                             @foreach ($detalles as $detalle)
                             <tr>
                                 <td role="row">{{ $detalle->id }}</td>
-                                <td role="row">{{ $detalle->id_compra }}</td>
-                                <td role="row">{{ $detalle->id_articulo }}</td>
+                                <td role="row">{{ $detalle->compra_id }}</td>
+                                <td role="row">{{ $detalle->articulo_id }}</td>
                                 <td role="row">{{ $detalle->cantidad }}</td>
                                 <td role="row">{{ $detalle->costo_unitario }}</td>
-                                <td role="row">{{ $detalle->id_moneda }}</td>
+                                <td role="row">{{ $detalle->moneda_id }}</td>
                                 <td role="row">{{ $detalle->lote }}</td>
                                 <td role="row">{{ $detalle->serie }}</td>
                                 <td role="row">{{ $detalle->pais }}</td>
                                 <td role="row">{{ $detalle->entrada_id }}</td>
                                 <td role="row">{{ $detalle->estado }}</td>
-                                <td role="row">{{ $detalle->id_creado }}</td>
-                                <td role="row">{{ $detalle->id_editado }}</td>
+                                <td role="row">{{ $detalle->creado_id }}</td>
+                                <td role="row">{{ $detalle->editado_id }}</td>
                                 <td role="row">{{ $detalle->created_at }}</td>
                                 <td role="row">{{ $detalle->updated_at }}</td>
                             </tr>

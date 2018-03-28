@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
             'access_level' => 'Superuser',
             'country' => 'Costa Rica',
             'estado' => 1,
-            'id_creado' => 1,
-            'id_editado' => 1
+            'creado_id' => 1,
+            'editado_id' => 1
         ]);
     }
 }

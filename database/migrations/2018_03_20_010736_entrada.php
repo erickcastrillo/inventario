@@ -19,15 +19,15 @@ class Entrada extends Migration
             
             $table->dateTime('fecha_factura');
             $table->integer('n_factura');
-            $table->integer('id_proyecto');
-            $table->integer('id_tarea');
-            $table->integer('id_tipo_concepto');
+            $table->integer('proyecto_id');
+            $table->integer('tarea_id');
+            $table->integer('tipo_concepto_id');
             $table->string('pais', 50);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
-            $table->integer('id_creado');
-            $table->integer('id_editado');
+            $table->integer('creado_id');
+            $table->integer('editado_id');
 
             $table->timestamps();
             
