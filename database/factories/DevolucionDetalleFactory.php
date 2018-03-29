@@ -2,7 +2,7 @@
 
 $factory->define(Inventario\DevolucionDetalle::class, function (Faker\Generator $faker) {
     return [
-        'articulo_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'articulo_id' => $faker->numberBetween($min = 1, $max = 50),
         'cantidad' => $faker->numberBetween($min = 10, $max = 90),
         'costo_unitario' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = NULL),
         'moneda_id' => $faker->numberBetween($min = 10, $max = 90),
@@ -12,7 +12,7 @@ $factory->define(Inventario\DevolucionDetalle::class, function (Faker\Generator 
         'devolucion_id' => $faker->numberBetween($min = 10, $max = 90),
 
         'estado' => $faker->boolean(),
-        'creado_id' => $faker->numberBetween($min = 1000, $max = 9000),
-        'editado_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'creado_id' => $faker->numberBetween($min = 1, $max = 2),
+        'editado_id' => $faker->numberBetween($min = 1, $max = 2),
     ];
 });

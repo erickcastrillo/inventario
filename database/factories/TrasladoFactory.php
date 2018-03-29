@@ -2,17 +2,17 @@
 
 $factory->define(Inventario\Traslado::class, function (Faker\Generator $faker) {
     return [
-        'bodega_id_entrada' => $faker->numberBetween($min = 1000, $max = 9000),
-        'bodega_id_salida' => $faker->numberBetween($min = 1000, $max = 9000),
+        'bodega_id_entrada' => $faker->numberBetween($min = 1, $max = 50),
+        'bodega_id_salida' => $faker->numberBetween($min = 1, $max = 50),
         'fecha_retiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora_retiro' => time($format = 'H:i:s', $max = 'now'),
-        'motivo_id' => $faker->numberBetween($min = 1000, $max = 9000),
-        'departamento_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'motivo' => $faker->word(),
+        'departamento_id' => $faker->numberBetween($min = 1, $max = 50),
         'nombre_retira' => $faker->name($gender = null|'male'|'female'),
         'pais' => $faker->country(),
 
         'estado' => $faker->boolean(),
-        'creado_id' => $faker->numberBetween($min = 1000, $max = 9000),
-        'editado_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'creado_id' => $faker->numberBetween($min = 1, $max = 2),
+        'editado_id' => $faker->numberBetween($min = 1, $max = 2),
     ];
 });

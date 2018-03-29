@@ -9,7 +9,7 @@ $factory->define(Inventario\Moneda::class, function (Faker\Generator $faker) {
         'pais' => $faker->country(),
 
         'estado' => $faker->boolean(),
-        'creado_id' => $faker->numberBetween($min = 1000, $max = 9000),
-        'editado_id' => $faker->numberBetween($min = 1000, $max = 9000),
+        'creado_id' => $faker->numberBetween($min = 1, $max = 2),
+        'editado_id' => $faker->numberBetween($min = 1, $max = 2),
     ];
 });
