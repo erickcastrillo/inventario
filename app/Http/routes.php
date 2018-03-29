@@ -249,6 +249,32 @@ Route::resource('Departamento', 'DepartamentoController',
     ]
 ]);
 
+// Rutas de los clientes como resource
+Route::resource('Cliente', 'ClienteController',
+['names' => 
+    [
+        'index' => 'Todos los clientes',
+        'edit' => 'Editar cliente',
+        'show' => 'Mostrar cliente',
+        'create' => 'Crear cliente',
+        'update' => 'Actualizar cliente',
+        'destroy' => 'Borrar cliente',
+    ]
+]);
+
+// Rutas de los enlaces como resource
+Route::resource('Enlace', 'EnlaceController',
+['names' => 
+    [
+        'index' => 'Todos los enlace',
+        'edit' => 'Editar enlace',
+        'show' => 'Mostrar enlace',
+        'create' => 'Crear enlace',
+        'update' => 'Actualizar enlace',
+        'destroy' => 'Borrar enlace',
+    ]
+]);
+
 // Rutas de los notificaciones como resource
 Route::resource('Notificacion', 'NotificacionController',
 ['names' => 

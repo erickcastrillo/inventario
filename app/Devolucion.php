@@ -5,6 +5,7 @@ namespace Inventario;
 use Illuminate\Database\Eloquent\Model;
 use Inventario\User;
 use Inventario\Bodega;
+use Inventario\Cliente;
 
 class Devolucion extends Model
 {
@@ -17,6 +18,11 @@ class Devolucion extends Model
     public function get_bodega()
     {
         return Bodega::find($this->bodega_id);
+    }
+
+    public function get_cliente()
+    {
+        return Cliente::find($this->cliente_id);
     }
 
     public function get_creador_name()

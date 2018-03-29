@@ -8,6 +8,11 @@ use Inventario\User;
 class Proyecto extends Model
 {
 
+    public function enlaces()
+    {
+        return $this->hasMany('Inventario\Enlance');
+    }
+
     public function get_creador_name()
     {
         $name = User::find($this->creado_id)->name;

@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoConceptoSeeder::class);
         $this->call(DepartamentoSeeder::class);
         $this->call(NotificacionSeeder::class);
+        $this->call(ClienteSeeder::class);
+        $this->call(EnlaceSeeder::class);
 
         Model::reguard();
     }

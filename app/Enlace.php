@@ -3,37 +3,13 @@
 namespace Inventario;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\Departamento;
-use Inventario\Proyecto;
-use Inventario\Tarea;
 use Inventario\User;
-use Inventario\Cliente;
 
-class Gasto extends Model
+class Enlace extends Model
 {
-    public function detalles()
+    public function proyecto()
     {
-        return $this->hasMany('Inventario\GastoDetalle');
-    }
-
-    public function get_departamento()
-    {
-        return Departamento::find($this->departamento_id);
-    }
-
-    public function get_cliente()
-    {
-        return Cliente::find($this->cliente_id);
-    }
-
-    public function get_proyecto()
-    {
-        return Proyecto::find($this->proyecto_id);
-    }
-
-    public function get_tarea()
-    {
-        return Tarea::find($this->tarea_id);
+        return $this->belongsTo('Inventario\Proyecto');
     }
 
     public function get_creador_name()
@@ -61,6 +37,6 @@ class Gasto extends Model
     {
         return User::find($this->editado_id);
     }
-
-    protected $table = 'gastos';
+    
+    protected $table = 'enlances';
 }
