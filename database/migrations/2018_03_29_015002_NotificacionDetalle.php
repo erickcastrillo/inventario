@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Notificacion extends Migration
+class NotificacionDetalle extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class Notificacion extends Migration
      */
     public function up()
     {
-        Schema::create('notificaciones', function (Blueprint $table) {
+        Schema::create('notificaciones_detalle', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
             
             // Table specific entries
-            $table->string('departamento', 100);
-            $table->string('pais', 100);
+            $table->string('correo', 200);
+            $table->integer('notificacion_id');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
@@ -36,6 +36,6 @@ class Notificacion extends Migration
      */
     public function down()
     {
-        Schema::drop('notificaciones');
+        Schema::drop('notificaciones_detalle');
     }
 }

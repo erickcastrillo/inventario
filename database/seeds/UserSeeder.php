@@ -23,5 +23,18 @@ class UserSeeder extends Seeder
             'creado_id' => 1,
             'editado_id' => 1
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Diego',
+            'last_name' => 'Madrigal',
+            'user_name' => 'diego81db',
+            'password' => bcrypt('admin'),
+            'email' => 'diego81db@gmail.com',
+            'access_level' => 'Superuser',
+            'country' => 'Costa Rica',
+            'estado' => 1,
+            'creado_id' => 1,
+            'editado_id' => 1
+        ]);
     }
 }

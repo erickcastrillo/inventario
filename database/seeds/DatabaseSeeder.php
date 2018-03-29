@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MovimientoSeeder::class);
         $this->call(TipoConceptoSeeder::class);
         $this->call(DepartamentoSeeder::class);
+        $this->call(NotificacionSeeder::class);
 
         Model::reguard();
     }

@@ -17,7 +17,6 @@ class EntradaDetalle extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('compra_id');
             $table->integer('articulo_id');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);

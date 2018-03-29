@@ -249,6 +249,20 @@ Route::resource('Departamento', 'DepartamentoController',
     ]
 ]);
 
+// Rutas de los notificaciones como resource
+Route::resource('Notificacion', 'NotificacionController',
+['names' => 
+    [
+        'index' => 'Todos los notificaciones',
+        'edit' => 'Editar notificacion',
+        'show' => 'Mostrar notificacion',
+        'create' => 'Crear notificacion',
+        'update' => 'Actualizar notificacion',
+        'destroy' => 'Borrar notificacion',
+    ]
+]);
+
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
