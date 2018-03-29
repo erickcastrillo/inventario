@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
-use Inventario\Enlance;
+use Inventario\Enlace;
 
 class EnlaceController extends Controller
 {
@@ -22,7 +22,7 @@ class EnlaceController extends Controller
      */
     public function index()
     {
-        return response()->json(Enlance::all());
+        return response()->json(Enlace::all());
     }
 
     /**
