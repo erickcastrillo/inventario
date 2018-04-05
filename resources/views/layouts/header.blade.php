@@ -1,77 +1,37 @@
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <style>
-      #loader {
-        transition: all 0.3s ease-in-out;
-        opacity: 1;
-        visibility: visible;
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        background: #fff;
-        z-index: 90000;
-      }
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-      #loader.fadeOut {
-        opacity: 0;
-        visibility: hidden;
-      }
-
-
-
-      .spinner {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: calc(50% - 20px);
-        left: calc(50% - 20px);
-        background-color: #333;
-        border-radius: 100%;
-        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-        animation: sk-scaleout 1.0s infinite ease-in-out;
-      }
-
-      @-webkit-keyframes sk-scaleout {
-        0% { -webkit-transform: scale(0) }
-        100% {
-          -webkit-transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-
-      @keyframes sk-scaleout {
-        0% {
-          -webkit-transform: scale(0);
-          transform: scale(0);
-        } 100% {
-          -webkit-transform: scale(1.0);
-          transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-    </style>
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css" />
-    <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <title>UFINET | {{ Request::route()->getName() }}</title>
-  </head>
-  <body class="app">
-    <div id='loader'>
-      <div class="spinner"></div>
-    </div>
 
-    <script>
-      window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        setTimeout(() => {
-          loader.classList.add('fadeOut');
-        }, 300);
-      });
-    </script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport" content="width=device-width">
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="/css/paper-dashboard.css?v=1.2.1" rel="stylesheet">
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    <link href="/css/themify-icons.css" rel="stylesheet">
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/common.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/util.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/stats.js"></script>
+    <!-- Datatables css file -->
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
+
+    <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
+    <script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+</head>

@@ -1,154 +1,119 @@
-      <div class="sidebar">
-        <div class="sidebar-inner">
-            
-          <!-- ### $Sidebar Header ### -->
-          <div class="sidebar-logo">
-            <div class="peers ai-c fxw-nw">
-              <div class="peer peer-greed">
-                <a class="sidebar-link td-n" href="index.html">
-                  <div class="peers ai-c fxw-nw">
-                    <div class="peer">
-                      <div class="logo">
-                        <img src="/assets/static/images/logo.png" alt="">
-                      </div>
-                    </div>
-                    <div class="peer peer-greed">
-                      <h5 class="lh-1 mB-0 logo-text">UFINET</h5>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="peer">
-                <div class="mobile-toggle sidebar-toggle">
-                  <a href="" class="td-n">
-                    <i class="ti-arrow-circle-left"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="sidebar" data-background-color="brown" data-active-color="danger">
+  <div class="logo">
+    <a href="/" class="simple-text logo-mini">
+      UF
+    </a>
 
-          <!-- ### $Sidebar Menu ### -->
-          <ul class="sidebar-menu scrollable pos-r">
-            <li class="nav-item mT-30 active">
-              <a class="sidebar-link" href="/">
-                <span class="icon-holder">
-                  <i class="c-blue-500 ti-home"></i>
-                </span>
-                <span class="title">Inicio</span>
+    <a href="/" class="simple-text logo-normal">
+      UFINET
+    </a>
+  </div>
+  <div class="sidebar-wrapper ps-container ps-theme-default ps-active-x ps-active-y" data-ps-id="09443449-f7f7-e6cf-bafa-ff063f282ac0">
+    <div class="user">
+      <div class="photo">
+        <img src="../../assets/img/faces/face-2.jpg">
+      </div>
+      <div class="info">
+        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+	                        <span>
+								Chet Faker
+		                        <b class="caret"></b>
+							</span>
+        </a>
+        <div class="clearfix"></div>
+
+        <div class="collapse" id="collapseExample">
+          <ul class="nav">
+            <li>
+              <a href="#profile">
+                <span class="sidebar-mini">Mp</span>
+                <span class="sidebar-normal">My Profile</span>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                  <i class="c-orange-500 ti-import"></i>
-                </span>
-                <span class="title">Entradas</span>
-                <span class="arrow">
-                  <i class="ti-angle-right"></i>
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class='sidebar-link' href="/Entrada">Todas las entradas</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="#">Compra</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="#">Devolucion</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                    <i class="c-purple-500 ti-export"></i>
-                  </span>
-                <span class="title">Salidas</span>
-                <span class="arrow">
-                    <i class="ti-angle-right"></i>
-                  </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class='sidebar-link' href="/Salida">Todas las salidas</a>
-                </li>
-                <li>
-                  <a href="#">Por gastos</a>
-                </li>
-                <li>
-                  <a href="#">Por devolucion</a>
-                </li>
-                <li>
-                  <a href="#">Por desecho</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class='sidebar-link' href="#">
-                <span class="icon-holder">
-                  <i class="c-blue-500 ti-share"></i>
-                </span>
-                <span class="title">Solicitud de Traslado</span>
+            <li>
+              <a href="#edit">
+                <span class="sidebar-mini">Ep</span>
+                <span class="sidebar-normal">Edit Profile</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class='sidebar-link' href="calendar.html">
-                <span class="icon-holder">
-                  <i class="c-deep-orange-500 ti-pencil-alt"></i>
-                </span>
-                <span class="title">Ajuste</span>
+            <li>
+              <a href="#settings">
+                <span class="sidebar-mini">S</span>
+                <span class="sidebar-normal">Settings</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class='sidebar-link' href="chat.html">
-                <span class="icon-holder">
-                  <i class="c-deep-purple-500 ti-files"></i>
-                </span>
-                <span class="title">Reportes</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle" href="javascript:void(0);">
-                <span class="icon-holder">
-                  <i class="c-orange-500 ti-settings"></i>
-                </span>
-                <span class="title">Administraci&oacute;n</span>
-                <span class="arrow">
-                  <i class="ti-angle-right"></i>
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class='sidebar-link' href="basic-table.html">Artículos</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Proveedores</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Bodegas</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Clientes</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Cuentas Contables</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Proyectos</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Tareas</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Monedas</a>
-                </li>
-                <li>
-                  <a class='sidebar-link' href="datatable.html">Notificaciones</a>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>
       </div>
+    </div>
+    <ul class="nav">
+
+      <li class="{{ Request::route()->getName() == 'Dashboard' ? 'active' : '' }}">
+        <a href="/">
+          <i class="ti-home"></i>
+          <p>Inicio</p>
+        </a>
+      </li>
+      <li class="{{ Request::route()->getName() == 'Todas las entradas' ? 'active' : '' }}">
+        <a data-toggle="collapse" href="#dashboardOverview">
+          <i class="ti-import"></i>
+          <p>Entradas
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="dashboardOverview">
+          <ul class="nav">
+            <li>
+              <a href="/Entrada">
+                <span class="sidebar-mini">T</span>
+                <span class="sidebar-normal">Todas</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="sidebar-mini">C</span>
+                <span class="sidebar-normal">Compra</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="sidebar-mini">D</span>
+                <span class="sidebar-normal">Devoluci&oacute;n</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="{{ Request::route()->getName() == 'Todas las  salidas' ? 'active' : '' }}">
+        <a href="#">
+          <i class="ti-export"></i>
+          <p>Salidas</p>
+        </a>
+      </li>
+      <li class="{{ Request::route()->getName() == 'Traslado' ? 'active' : '' }}">
+        <a href="#">
+          <i class="ti-share"></i>
+          <p>Solicitud de traslado</p>
+        </a>
+      </li>
+      <li {{ Request::route()->getName() == 'Ajuste' ? 'active' : '' }}>
+        <a href="#">
+          <i class="ti-pencil-alt"></i>
+          <p>Ajuste</p>
+        </a>
+      </li>
+      <li class="{{ Request::route()->getName() == 'Reporte' ? 'active' : '' }}">
+        <a href="#">
+          <i class="ti-files"></i>
+          <p>Reportes</p>
+        </a>
+      </li>
+      <li {{ Request::route()->getName() == 'Admin' ? 'active' : '' }}>
+        <a href="#">
+          <i class="ti-settings"></i>
+          <p>Administraci&oacute;n</p>
+        </a>
+      </li>
+    </ul>
+    <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 259px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 188px;"></div></div></div>
+</div>
