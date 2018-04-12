@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2546cea-ddf3-4636-b34e-22e0fb0c4295" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entrada.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entrada.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Gasto.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Gasto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_03_20_010736_entrada.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_03_20_010736_entrada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_03_20_020355_traslado.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_03_20_020355_traslado.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,29 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntradaController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EntradaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="59" column="63" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="todas.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todas.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2312">
-              <caret line="140" column="70" selection-start-line="140" selection-start-column="70" selection-end-line="140" selection-end-column="70" />
+            <state relative-caret-position="85">
+              <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -64,18 +42,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entrada.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Entrada.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-337">
-              <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
-              <folding>
-                <element signature="e#30#69#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="2018_03_20_221617_proveedor.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_221617_proveedor.php">
           <provider selected="true" editor-type-id="text-editor" />
@@ -90,11 +56,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ver.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/entradas/ver.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="71" column="71" selection-start-line="71" selection-start-column="60" selection-end-line="71" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="2018_03_20_022528_gasto.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="479">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018_03_20_231421_movimiento.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_231421_movimiento.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -102,13 +86,18 @@
       <file leaf-file-name="Gasto.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Gasto.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+            <state relative-caret-position="-745">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding>
                 <element signature="e#30#69#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Articulo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Articulo.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -118,7 +107,15 @@
       <find>class=&quot;sorting&quot; tabindex=&quot;0&quot; aria-controls=&quot;dataTable&quot; rowspan=&quot;1&quot; colspan=&quot;1&quot; aria-sort=&quot;ascending&quot; aria-label=&quot;Position: activate to sort column ascending&quot;</find>
       <find>../../assets</find>
       <find>data</find>
+      <find>tipo_gasto</find>
+      <find>TipoGasto</find>
+      <find>class\=\&quot;sorting_asc\&quot; tabindex\=\&quot;0\&quot; aria\-controls\=\&quot;datatables\&quot;\n                                                        rowspan\=\&quot;1\&quot;\n                                                        colspan\=\&quot;1\&quot; style\=\&quot;width\: 152px\;\&quot;\n                                                        aria\-sort\=\&quot;ascending\&quot;\n                                                        aria\-label\=\&quot;Name\: activate to sort column descending\&quot;</find>
     </findStrings>
+    <replaceStrings>
+      <replace>movimiento</replace>
+      <replace>Movimiento</replace>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,15 +130,17 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_03_20_025947_articulo.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_03_20_020355_traslado.php" />
-        <option value="$PROJECT_DIR$/app/Gasto.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_03_20_010736_entrada.php" />
         <option value="$PROJECT_DIR$/app/Entrada.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2018_04_12_020251_TipoGasto.php" />
+        <option value="$PROJECT_DIR$/app/TipoGasto.php" />
+        <option value="$PROJECT_DIR$/app/Gasto.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php" />
+        <option value="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" />
       </list>
     </option>
   </component>
@@ -252,23 +251,20 @@
             <path>
               <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
               <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
               <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="entradas" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -314,12 +310,12 @@
       <workItem from="1522791492925" duration="628000" />
       <workItem from="1522880640134" duration="21627000" />
       <workItem from="1523315409668" duration="6330000" />
-      <workItem from="1523494946712" duration="2456000" />
+      <workItem from="1523494946712" duration="7031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32791000" />
+    <option name="totallyTimeSpent" value="37366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="-8" width="1456" height="876" extended-state="6" />
@@ -335,6 +331,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298292" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -344,7 +341,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3298292" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,13 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/entradas/ver.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="71" selection-start-line="71" selection-start-column="60" selection-end-line="71" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -569,49 +558,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2312">
-          <caret line="140" column="70" selection-start-line="140" selection-start-column="70" selection-end-line="140" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_012037_entrada_detalle.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Gasto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
-          <folding>
-            <element signature="e#30#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_020355_traslado.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_221617_proveedor.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_010736_entrada.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Entrada.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -620,6 +568,78 @@
           <folding>
             <element signature="e#30#69#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_010736_entrada.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_221617_proveedor.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_020355_traslado.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/TipoGasto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_04_12_020251_TipoGasto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Articulo.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Gasto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-745">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#30#69#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_022528_gasto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_231421_movimiento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/entradas/ver.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="71" column="71" selection-start-line="71" selection-start-column="60" selection-end-line="71" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
         </state>
       </provider>
     </entry>

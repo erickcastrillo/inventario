@@ -5,15 +5,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="title">DataTables.net</h4>
-                    <p class="category">A powerful jQuery plugin handcrafted by our friends from <a
-                                href="https://datatables.net/" target="_blank">dataTables.net</a>. It is a highly flexible
-                        tool, based upon the foundations of progressive enhancement and will add advanced interaction
-                        controls to any HTML table. Please check out the <a href="https://datatables.net/manual/index"
-                                                                            target="_blank">full documentation.</a></p>
-
-                    <br>
-
                     <div class="card">
                         <div class="card-content">
                             <div class="toolbar">
@@ -29,97 +20,19 @@
                                                    aria-describedby="datatables_info">
                                                 <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        ID
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Fecha de factura
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Numero de la factura
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        ID de proyecto
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        ID de tarea
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        ID tipo de concepto
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Pais
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Estado
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Creado por
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Editado por
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Creado
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Editado
-                                                    </th>
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatables"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 152px;"
-                                                        aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending">
-                                                        Opciones
-                                                    </th>
+                                                    <th>#</th>
+                                                    <th>Fecha de factura</th>
+                                                    <th>Factura</th>
+                                                    <th>Proyecto</th>
+                                                    <th>Tarea</th>
+                                                    <th>Concepto</th>
+                                                    <th>Pais</th>
+                                                    <th>Estado</th>
+                                                    <th>Creado por</th>
+                                                    <th>Editado por</th>
+                                                    <th>Creado</th>
+                                                    <th>Editado</th>
+                                                    <th>Opciones</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

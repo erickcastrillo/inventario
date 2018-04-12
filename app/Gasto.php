@@ -9,6 +9,7 @@ use Inventario\Tarea;
 use Inventario\User;
 use Inventario\Cliente;
 use Inventario\Bodega;
+use Inventario\Movimiento;
 
 class Gasto extends Model
 {
@@ -30,6 +31,10 @@ class Gasto extends Model
     public function get_proyecto()
     {
         return Proyecto::find($this->proyecto_id);
+    }
+
+    public function get_movimientos() {
+        return Movimiento::find($this->movimientos_id);
     }
 
     public function get_tarea()
