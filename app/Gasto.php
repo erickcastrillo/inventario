@@ -8,6 +8,7 @@ use Inventario\Proyecto;
 use Inventario\Tarea;
 use Inventario\User;
 use Inventario\Cliente;
+use Inventario\Bodega;
 
 class Gasto extends Model
 {
@@ -55,6 +56,10 @@ class Gasto extends Model
     public function get_creador()
     {
         return User::find($this->creado_id);
+    }
+
+    public function get_bodega() {
+        return Bodega::find($this->bodega_id);
     }
 
     public function get_editor()

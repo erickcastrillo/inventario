@@ -7,6 +7,7 @@ use Inventario\Proyecto;
 use Inventario\Tarea;
 use Inventario\TipoConcepto;
 use Inventario\User;
+use Inventario\Proveedor;
 
 class Entrada extends Model
 {
@@ -18,6 +19,10 @@ class Entrada extends Model
     public function get_proyecto()
     {
         return Proyecto::find($this->proyecto_id);
+    }
+
+    public function get_proveedor() {
+        return Proveedor::find($this->proveedor_id);
     }
 
     public function get_tarea()

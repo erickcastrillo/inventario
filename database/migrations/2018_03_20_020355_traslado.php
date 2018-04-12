@@ -24,7 +24,9 @@ class Traslado extends Migration
             $table->string('motivo', 100);
             $table->integer('departamento_id');
             $table->string('nombre_retira', 100);
-            $table->string('pais', 100);
+            $table->integer('id_personal_retira', 100);
+            $table->string('notas', 300);
+            $table->string('pais', 50);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
