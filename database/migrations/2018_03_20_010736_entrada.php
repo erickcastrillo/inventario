@@ -20,6 +20,7 @@ class Entrada extends Migration
             $table->dateTime('fecha_factura');
             $table->integer('n_factura');
             $table->integer('proveedor_id');
+            $table->integer('movimiento_id');
             $table->integer('proyecto_id');
             $table->integer('tarea_id');
             $table->integer('tipo_concepto_id');

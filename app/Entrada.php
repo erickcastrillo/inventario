@@ -21,6 +21,11 @@ class Entrada extends Model
         return Proyecto::find($this->proyecto_id);
     }
 
+    public function get_movimiento()
+    {
+        return Movimiento::find($this->movimiento_id);
+    }
+
     public function get_proveedor() {
         return Proveedor::find($this->proveedor_id);
     }

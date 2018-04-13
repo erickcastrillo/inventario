@@ -33,10 +33,6 @@ class Gasto extends Model
         return Proyecto::find($this->proyecto_id);
     }
 
-    public function get_movimientos() {
-        return Movimiento::find($this->movimientos_id);
-    }
-
     public function get_tarea()
     {
         return Tarea::find($this->tarea_id);
@@ -71,6 +67,12 @@ class Gasto extends Model
     {
         return User::find($this->editado_id);
     }
+
+    public function get_movimiento()
+    {
+        return Movimiento::find($this->movimiento_id);
+    }
+
 
     protected $table = 'gastos';
 }
