@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/Entrada/Nueva/Compra">
                                 <span class="sidebar-mini">PC</span>
                                 <span class="sidebar-normal">Por compra</span>
                             </a>

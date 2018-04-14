@@ -18,7 +18,7 @@ class Entrada extends Migration
             $table->increments('id');
             
             $table->dateTime('fecha_factura');
-            $table->integer('n_factura');
+            $table->string('n_factura', 50);
             $table->integer('proveedor_id');
             $table->integer('movimiento_id');
             $table->integer('proyecto_id');

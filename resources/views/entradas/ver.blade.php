@@ -70,7 +70,7 @@
                                 Cantidad de productos <strong>{{ count($detalles) }}</strong>
                             </p>
                         </div>
-                        <div class="card-content table-responsive table-full-width">
+                        <div class="card-content">
                             <table class="table table-striped">
                                 <thead>
                                     <tr role="row">

@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use Inventario\Http\Requests;
 use Inventario\Http\Controllers\Controller;
 use Inventario\Entrada;
-use Inventario\EntradaDetalle;
+use Inventario\Proveedor;
+use Inventario\Moneda;
+use Inventario\Proyecto;
+use Inventario\Tarea;
+use Inventario\TipoConcepto;
 
 class EntradaController extends Controller
 {
@@ -35,7 +39,11 @@ class EntradaController extends Controller
     public function nueva_entrada()
     {
         return view('entradas.nueva.compra', [
-            'proveedores' => 'erick'
+            'proveedores' => Proveedor::all(),
+            'monedas' => Moneda::all(),
+            'proyectos' => Proyecto::all(),
+            'tareas' => Tarea::all(),
+            'tiposconcepto' => TipoConcepto::all()
         ]);
     }
 
