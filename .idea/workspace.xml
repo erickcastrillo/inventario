@@ -3,43 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f2546cea-ddf3-4636-b34e-22e0fb0c4295" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AjusteDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AjusteDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AjusteFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AjusteFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ArticuloFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ArticuloFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/BodegaDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BodegaDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/BodegaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BodegaFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ClienteFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ClienteFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CuentaContableFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CuentaContableFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DepartamentoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/DepartamentoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DesechoDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/DesechoDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DesechoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/DesechoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DevolucionDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/DevolucionDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/DevolucionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/DevolucionFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/EnlanceFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/EnlanceFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/EntradaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/EntradaFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/EntradasDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/EntradasDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/GastoDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/GastoDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/GastoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/GastoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/MonedaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/MonedaFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/MovimientoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/MovimientoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/NotificacionDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/NotificacionDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/NotificacionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/NotificacionFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ProveedorFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProveedorFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ProyectoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProyectoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/TareaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TareaFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/TipoCambioFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TipoCambioFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/TipoConceptoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TipoConceptoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/TrasladoDetalleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TrasladoDetalleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/TrasladoFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TrasladoFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UnidadMedidaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UnidadMedidaFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/EntradasSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/EntradasSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/entradas/ver.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/entradas/ver.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,16 +18,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="todas.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todas.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="83" column="73" lean-forward="true" selection-start-line="83" selection-start-column="73" selection-end-line="83" selection-end-column="100" />
+            <state relative-caret-position="326">
+              <caret line="41" column="57" lean-forward="true" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
               <folding>
-                <element signature="e#233#2441#0#HTML" />
                 <element signature="e#7116#7444#0#HTML" />
                 <element signature="e#7495#8084#0#HTML" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="143" column="20" lean-forward="true" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -89,7 +61,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="309">
@@ -107,20 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018_03_20_230716_moneda.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_20_230716_moneda.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="33" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EntradaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EntradaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="21" />
+            <state relative-caret-position="289">
+              <caret line="29" column="113" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="120" />
               <folding>
                 <element signature="e#47#75#0#PHP" expanded="true" />
               </folding>
@@ -209,11 +172,11 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/Authenticate.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" />
         <option value="$PROJECT_DIR$/database/factories/ArticuloFactory.php" />
         <option value="$PROJECT_DIR$/database/seeds/EntradasSeeder.php" />
         <option value="$PROJECT_DIR$/database/factories/EntradasDetalleFactory.php" />
         <option value="$PROJECT_DIR$/resources/views/entradas/ver.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" />
       </list>
     </option>
   </component>
@@ -336,6 +299,31 @@
               <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="entradas" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Inventario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventario" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -382,12 +370,12 @@
       <workItem from="1522880640134" duration="21627000" />
       <workItem from="1523315409668" duration="6330000" />
       <workItem from="1523494946712" duration="7031000" />
-      <workItem from="1523579944330" duration="38575000" />
+      <workItem from="1523579944330" duration="40044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75941000" />
+    <option name="totallyTimeSpent" value="77410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="-8" width="1456" height="876" extended-state="6" />
@@ -655,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="68" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Moneda.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -696,16 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EntradaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="80" column="21" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="21" />
-          <folding>
-            <element signature="e#47#75#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/framework/views/0a3e2f8ba7a1d275206b7df87ee0e216">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -724,25 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="20" column="33" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/EntradasDetalleFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="83" column="73" lean-forward="true" selection-start-line="83" selection-start-column="73" selection-end-line="83" selection-end-column="100" />
-          <folding>
-            <element signature="e#233#2441#0#HTML" />
-            <element signature="e#7116#7444#0#HTML" />
-            <element signature="e#7495#8084#0#HTML" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -788,6 +740,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/EntradasDetalleFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EntradaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="29" column="113" lean-forward="true" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="120" />
+          <folding>
+            <element signature="e#47#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="143" column="20" lean-forward="true" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/entradas/todas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="41" column="57" lean-forward="true" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
+          <folding>
+            <element signature="e#7116#7444#0#HTML" />
+            <element signature="e#7495#8084#0#HTML" />
+          </folding>
         </state>
       </provider>
     </entry>

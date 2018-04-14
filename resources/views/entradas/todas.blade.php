@@ -39,6 +39,12 @@
 	                                            </span>
                                             Recargar
                                         </button>
+                                        <a href="/Entrada" role="button" class="btn btn-wd btn-default btn-fill btn-rotate">
+	                                            <span class="btn-label">
+	                                                <i class="ti-files"></i>
+	                                            </span>
+                                            Mostrar todo
+                                        </a>
                                     </div>
                                 </div>
                             </div>
