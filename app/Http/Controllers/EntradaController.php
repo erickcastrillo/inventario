@@ -32,6 +32,13 @@ class EntradaController extends Controller
         return view('entradas.todas', ['entradas' => $data ]);
     }
 
+    public function nueva_entrada()
+    {
+        return view('entradas.nueva.compra', [
+            'proveedores' => 'erick'
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

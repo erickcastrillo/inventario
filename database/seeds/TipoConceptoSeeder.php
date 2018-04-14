@@ -11,6 +11,6 @@ class TipoConceptoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\TipoConcepto::class, 50)->create();
+        factory(Inventario\TipoConcepto::class, 10)->create();
     }
 }

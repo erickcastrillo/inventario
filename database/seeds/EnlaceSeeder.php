@@ -11,6 +11,6 @@ class EnlaceSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Enlace::class, 50)->create();
+        factory(Inventario\Enlace::class, 10)->create();
     }
 }

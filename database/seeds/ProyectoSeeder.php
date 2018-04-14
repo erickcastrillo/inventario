@@ -11,6 +11,6 @@ class ProyectoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Proyecto::class, 50)->create();
+        factory(Inventario\Proyecto::class, 10)->create();
     }
 }

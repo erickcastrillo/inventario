@@ -31,6 +31,9 @@ Route::resource('Entrada', 'EntradaController',
 // Route to get entradas using specific dates
 Route::get('/Entrada/Obtener/{fecha_inicio}/{fecha_final}', 'EntradaController@get_data' )->name('Vista personalizada');
 
+// Route for new Entradas by Compra
+Route::get('/Entrada/Nueva/Compra', 'EntradaController@nueva_entrada')->name('Nueva Entrada por Compra');
+
 // Rutas de las devoluciones como resource
 Route::resource('Devolucion', 'DevolucionController',
 ['names' => 

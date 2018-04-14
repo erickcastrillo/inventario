@@ -7,7 +7,7 @@ $factory->define(Inventario\Traslado::class, function (Faker\Generator $faker) {
         'fecha_retiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora_retiro' => time($format = 'H:i:s', $max = 'now'),
         'motivo' => $faker->word(),
-        'departamento_id' => $faker->numberBetween($min = 1, $max = 50),
+        'departamento_id' => $faker->numberBetween($min = 1, $max = 10),
         'nombre_retira' => $faker->name($gender = null|'male'|'female'),
         'pais' => $faker->country(),
 

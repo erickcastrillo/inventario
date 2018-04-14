@@ -11,6 +11,6 @@ class TipoCambioSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\TipoCambio::class, 50)->create();
+        factory(Inventario\TipoCambio::class, 10)->create();
     }
 }

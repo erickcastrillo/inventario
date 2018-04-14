@@ -36,5 +36,7 @@ class UserSeeder extends Seeder
             'creado_id' => 1,
             'editado_id' => 1
         ]);
+
+        factory(Inventario\User::class, 15)->create();
     }
 }

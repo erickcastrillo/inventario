@@ -11,6 +11,6 @@ class UnidadMedidaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\UnidadMedida::class, 50)->create();
+        factory(Inventario\UnidadMedida::class, 10)->create();
     }
 }

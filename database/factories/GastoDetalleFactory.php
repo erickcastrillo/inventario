@@ -5,7 +5,7 @@ $factory->define(Inventario\GastoDetalle::class, function (Faker\Generator $fake
         'articulo_id' => $faker->numberBetween($min = 1, $max = 50),
         'cantidad' => $faker->numberBetween($min = 1, $max = 50),
         'costo_unitario' => $faker->numberBetween($min = 1, $max = 50),
-        'moneda_id' => $faker->numberBetween($min = 1, $max = 50),
+        'moneda_id' => $faker->numberBetween($min = 1, $max = 10),
         'lote' => $faker->numberBetween($min = 1, $max = 50),
         'serie' => $faker->numberBetween($min = 1, $max = 50),
         'pais' => $faker->country(),

@@ -12,7 +12,9 @@ class NotificacionSeeder extends Seeder
     public function run()
     {
         factory(Inventario\Notificacion::class, 50)->create()->each(function($u) {
-            $u->detalles()->save(factory(Inventario\NotificacionDetalle::class)->make());
+            for ($i = 1; $i <= 10; $i++) {
+                $u->detalles()->save(factory(Inventario\NotificacionDetalle::class)->make());
+            }
         });
     }
 }
