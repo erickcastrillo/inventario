@@ -73,6 +73,5 @@ class Gasto extends Model
         return Movimiento::find($this->movimiento_id);
     }
 
-
     protected $table = 'gastos';
 }

@@ -12,7 +12,7 @@
          data-ps-id="09443449-f7f7-e6cf-bafa-ff063f282ac0">
         <div class="user">
             <div class="photo">
-                <img src="../../assets/img/faces/face-2.jpg">
+                <img src="https://randomuser.me/api/portraits/thumb/men/83.jpg">
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">

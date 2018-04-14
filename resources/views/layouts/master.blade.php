@@ -65,6 +65,9 @@
 
     <!--   Sharrre Library    -->
     <script src="/js/jquery.sharrre.js"></script>
+
+    <!--   Sharrre Library    -->
+    <script src="/js/demo.js"></script>
 </body>
 
 </html>

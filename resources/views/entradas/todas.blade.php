@@ -6,6 +6,41 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h4 class="title">Mostrando las últimas 30 entradas más recientes</h4>
+                            <p class="category">
+                                Por defecto se muestran las 30 entradas más recientes. Si necesita ver entradas correspondientes a otras fechas, por favor espefique las fechas y presione recargar.
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4 class="card-title">Fecha de Inicio</h4>
+                                    <div class="form-group">
+                                        <input type="text" id="fecha-inicio" class="form-control datetimepicker" placeholder="Fecha de Inicio">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h4 class="card-title">Fecha Final</h4>
+                                    <div class="form-group">
+                                        <input type="text" id="fecha-final" class="form-control datetimepicker" placeholder="Fecha Final">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h4 class="card-title">&nbsp;</h4>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-wd btn-default btn-fill btn-rotate" onclick="reload();">
+	                                            <span class="btn-label">
+	                                                <i class="ti-settings"></i>
+	                                            </span>
+                                            Recargar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
                         <div class="card-content">
                             <div class="toolbar">
                                 <!--Here you can write extra buttons/actions for the toolbar-->
@@ -23,15 +58,12 @@
                                                     <th>#</th>
                                                     <th>Fecha de factura</th>
                                                     <th>Factura</th>
+                                                    <th>Movimiento</th>
+                                                    <th>Proveedor</th>
                                                     <th>Proyecto</th>
                                                     <th>Tarea</th>
                                                     <th>Concepto</th>
                                                     <th>Pais</th>
-                                                    <th>Estado</th>
-                                                    <th>Creado por</th>
-                                                    <th>Editado por</th>
-                                                    <th>Creado</th>
-                                                    <th>Editado</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                                 </thead>
@@ -41,15 +73,12 @@
                                                         <td tabindex="0" class="sorting_1">{{ $entrada->id }}</td>
                                                         <td>{{ $entrada->fecha_factura }}</td>
                                                         <td>{{ $entrada->n_factura }}</td>
-                                                        <td>{{ $entrada->proyecto_id }}</td>
-                                                        <td>{{ $entrada->tarea_id }}</td>
-                                                        <td>{{ $entrada->tipo_concepto_id }}</td>
+                                                        <td>{{ $entrada->get_movimiento()->nombre }}</td>
+                                                        <td>{{ $entrada->get_proveedor()->nombre }}</td>
+                                                        <td>{{ $entrada->get_proyecto()->nombre }}</td>
+                                                        <td>{{ $entrada->get_tarea()->nombre }}</td>
+                                                        <td>{{ $entrada->get_tipo_concepto()->nombre }}</td>
                                                         <td>{{ $entrada->pais }}</td>
-                                                        <td>{{ $entrada->estado }}</td>
-                                                        <td>{{ $entrada->creado_id }}</td>
-                                                        <td>{{ $entrada->editado_id }}</td>
-                                                        <td>{{ $entrada->created_at }}</td>
-                                                        <td>{{ $entrada->updated_at }}</td>
                                                         <td>
                                                             <a href="#"
                                                                class="btn btn-simple btn-info btn-icon like"><i
@@ -90,9 +119,31 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                 }
             });
+            $('.datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD H:mm:ss',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
 
         });
+        function reload() {
+            var fechaInicio = $('#fecha-inicio').val();
+            var fechaFinal = $('#fecha-final').val();
 
+            if (fechaInicio && fechaFinal) {
+
+                $(location).attr('href', '/Entrada/Obtener/'+ fechaInicio + '/' +fechaFinal)
+            }
+        }
     </script>
 
 @endsection

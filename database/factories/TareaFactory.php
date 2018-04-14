@@ -2,7 +2,7 @@
 
 $factory->define(Inventario\Tarea::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->text(),
+        'nombre' => $faker->firstName(),
 
         'pais' => $faker->country(),
 

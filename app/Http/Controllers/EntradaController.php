@@ -23,7 +23,13 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        return view('entradas.todas', ['entradas' => Entrada::all()]);
+        return view('entradas.todas', ['entradas' => Entrada::orderBy("created_at", "des")->limit(30)->get() ]);
+    }
+
+    public function get_data($fecha_inicio, $fecha_final) {
+        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->get();
+
+        return view('entradas.todas', ['entradas' => $data ]);
     }
 
     /**

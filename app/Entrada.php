@@ -16,6 +16,10 @@ class Entrada extends Model
         return $this->hasMany('Inventario\EntradaDetalle');
     }
 
+    public function movimientos() {
+        return $this->hasOne('Inventario\Movimiento');
+    }
+
     public function get_proyecto()
     {
         return Proyecto::find($this->proyecto_id);
