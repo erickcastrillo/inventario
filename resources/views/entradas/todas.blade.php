@@ -96,12 +96,6 @@
                                                                 </span>
                                                                 Ver
                                                             </a>
-                                                            <button type="button" class="btn btn-sm btn-simple">
-                                                                <span class="btn-label">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </span>
-                                                                Editar
-                                                            </button>
                                                             <button type="button" class="btn btn-sm btn-simple" onclick="deleteEntrada({{ $entrada->id }})">
                                                                 <span class="btn-label">
                                                                     <i class="fa fa-close"></i>
