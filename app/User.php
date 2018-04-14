@@ -36,4 +36,12 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function get_full_name()
+    {
+        $name = ucfirst ($this->name);
+        $last_name = ucfirst ($this->last_name);
+
+        return $name . " " . $last_name;
+    }
 }

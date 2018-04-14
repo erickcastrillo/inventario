@@ -3,7 +3,7 @@
 $factory->define(Inventario\Articulo::class, function (Faker\Generator $faker) {
     return [
         'codigo' => $faker->isbn13(),
-        'descripcion' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+        'descripcion' => $faker->word,
         'categoria_id' => $faker->numberBetween($min = 1, $max = 50),
         'medida_id' => $faker->numberBetween($min = 1, $max = 50),
         'cantidad_minima' => $faker->numberBetween($min = 1, $max = 50),
@@ -14,5 +14,6 @@ $factory->define(Inventario\Articulo::class, function (Faker\Generator $faker) {
         'estado' => $faker->boolean(),
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),
         'editado_id' => $faker->numberBetween($min = 1, $max = 2),
+        'created_at' => $faker->dateTimeBetween($startDate = '-3 years', $endDate = 'now', $timezone = null)
     ];
 });

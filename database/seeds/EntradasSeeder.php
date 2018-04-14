@@ -12,7 +12,9 @@ class EntradasSeeder extends Seeder
     public function run()
     {
         factory(Inventario\Entrada::class, 50)->create()->each(function($u) {
-            $u->detalles()->save(factory(Inventario\EntradaDetalle::class)->make());
+            for ($i = 1; $i <= 10; $i++) {
+                $u->detalles()->save(factory(Inventario\EntradaDetalle::class)->make());
+            }
         });
     }
 }

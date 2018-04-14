@@ -23,11 +23,11 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        return view('entradas.todas', ['entradas' => Entrada::orderBy("created_at", "des")->limit(30)->get() ]);
+        return view('entradas.todas', ['entradas' => Entrada::orderBy("created_at", "des")->limit(50)->get() ]);
     }
 
     public function get_data($fecha_inicio, $fecha_final) {
-        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->get();
+        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->get();
 
         return view('entradas.todas', ['entradas' => $data ]);
     }
@@ -102,8 +102,8 @@ class EntradaController extends Controller
      */
     public function destroy($id)
     {
-        $Entrada = Entrada::find($id);
-        if ($Entrada->delete()) 
+        $entrada = Entrada::find($id);
+        if ($entrada->delete())
         {
             return response()->json(['status' => 'Success', 'mensaje' => "Entrada con id '" . $id . "' ha sido borrado exitosamente"]);
         }
