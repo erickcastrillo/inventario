@@ -11,19 +11,22 @@
 |
 */
 
+// use the factory to create a Faker\Generator instance
+$faker1 = Faker\Factory::create();
+
 $factory->define(Inventario\User::class, function (Faker\Generator $faker) {
 
     $name = $faker->firstName;
     $lastName = $faker->lastName;
-    $randomIndex = $faker->numberBetween($min = 1, $max = 3);
+    $randomIndex = $faker->numberBetween($min = 0, $max = 2);
     $userRoles = array('Usuario', 'Administrador', 'Supervisor');
 
     return [
         'name' => $name,
         'last_name' => $lastName,
         'user_name' => $lastName . '.' . $lastName,
-        'password' => 'Password'.$userRoles[$randomIndex],
-        'email' => 'erick.castrillo@gmail.com',
+        'password' => bcrypt('Password-'.$userRoles[$randomIndex]),
+        'email' => lcfirst($name) . '.' . lcfirst($lastName) .'@' . $faker->domainName,
         'access_level' => $userRoles[$randomIndex],
         'country' => $faker->country,
         'estado' => 1,
