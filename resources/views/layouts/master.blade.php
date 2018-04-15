@@ -8,8 +8,6 @@
             @include('layouts.headernavbar')
                 @yield('content')
             @include('layouts.footer')
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: -97px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
-            <div class="ps-scrollbar-y-rail" style="top: 100px; height: 494px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 42px; height: 210px;"></div></div>
         </div>
     </div>
 

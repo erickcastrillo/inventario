@@ -2,6 +2,7 @@
 
 namespace Inventario\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 use Inventario\Http\Requests;
@@ -12,6 +13,7 @@ use Inventario\Moneda;
 use Inventario\Proyecto;
 use Inventario\Tarea;
 use Inventario\TipoConcepto;
+use Inventario\Articulo;
 
 class EntradaController extends Controller
 {
@@ -43,7 +45,8 @@ class EntradaController extends Controller
             'monedas' => Moneda::all(),
             'proyectos' => Proyecto::all(),
             'tareas' => Tarea::all(),
-            'tiposconcepto' => TipoConcepto::all()
+            'tiposconcepto' => TipoConcepto::all(),
+            'articulos' => Articulo::all(),
         ]);
     }
 

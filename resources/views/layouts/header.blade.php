@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS     -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="/css/select2-bootstrap.css" rel="stylesheet">
+
     <!--  Paper Dashboard core CSS    -->
     <link href="/css/paper-dashboard.css?v=1.2.1" rel="stylesheet">
 
@@ -31,7 +34,12 @@
 
     <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
     <script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+
+    <script src="https://openexchangerates.github.io/accounting.js/accounting.min.js" type="text/javascript"></script>
+    <script src="https://rubaxa.github.io/Sortable/Sortable.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js" type="text/javascript"></script>
     <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
