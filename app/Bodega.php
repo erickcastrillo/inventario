@@ -1,15 +1,15 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
+use App\User;
 
 class Bodega extends Model
 {
     public function detalles()
     {
-        return $this->hasMany('Inventario\BodegaDetalle');
+        return $this->hasMany('App\BodegaDetalle');
     }
 
     public function get_responsable()

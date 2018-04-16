@@ -1,17 +1,17 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\Articulo;
-use Inventario\Moneda;
-use Inventario\User;
+use App\Articulo;
+use App\Moneda;
+use App\User;
 
 class TrasladoDetalle extends Model
 {
     public function traslado()
     {
-        return $this->belongsTo('Inventario\Traslado');
+        return $this->belongsTo('App\Traslado');
     }
 
     public function get_moneda()

@@ -11,9 +11,9 @@ class BodegaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Bodega::class, 50)->create()->each(function($u) {
+        factory(App\Bodega::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\BodegaDetalle::class)->make());
+                $u->detalles()->save(factory(App\BodegaDetalle::class)->make());
             }
         });
     }

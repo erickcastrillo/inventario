@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Articulo::class, function (Faker\Generator $faker) {
+$factory->define(App\Articulo::class, function (Faker\Generator $faker) {
     return [
         'codigo' => $faker->isbn13(),
         'descripcion' => $faker->word,

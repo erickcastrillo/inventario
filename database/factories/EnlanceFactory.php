@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Enlace::class, function (Faker\Generator $faker) {
+$factory->define(App\Enlace::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->text(),
         'latitud' => $faker->latitude(),

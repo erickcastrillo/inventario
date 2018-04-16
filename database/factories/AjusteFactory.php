@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Ajuste::class, function (Faker\Generator $faker) {
+$factory->define(App\Ajuste::class, function (Faker\Generator $faker) {
     return [
         'fecha_gasto' => $faker->dateTime($max = 'now', $timezone = null),
         'enlace_id' => $faker->numberBetween($min = 1, $max = 10),

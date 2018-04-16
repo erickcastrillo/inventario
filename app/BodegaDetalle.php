@@ -1,15 +1,15 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
+use App\User;
 
 class BodegaDetalle extends Model
 {
     public function bodega()
     {
-        return $this->belongsTo('Inventario\Bodega');
+        return $this->belongsTo('App\Bodega');
     }
 
     public function get_creador_name()

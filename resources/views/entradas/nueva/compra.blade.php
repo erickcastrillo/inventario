@@ -3,9 +3,10 @@
     @include('layouts.flashes')
     <div class="content">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="app">
                 <div class="col-md-12">
                     <form id="nueva-entrada-form">
+                        {{ csrf_field() }}
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Nueva Entrada por Compra</h4>
@@ -13,7 +14,7 @@
                                     Por favor ingrese los datos requeridos, una vez llenos presione <strong>Guardar</strong>
                                 </p>
                             </div>
-                            <div class="card-content">
+                            <div class="card-content" >
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-horizontal">
@@ -26,9 +27,9 @@
                                                                 id="id_proveedor"
                                                                 required
                                                                 title="Debe seleccionar un Proveeddor"
-                                                                v-model="id_proveedor"
+                                                                v-model="informacion.id_proveedor"
                                                         >
-                                                            <option value="">-Seleccione-</option>
+                                                            <option disabled selected value="">-Seleccione-</option>
                                                             @foreach($proveedores as $proveedor)
                                                                 <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                                                             @endforeach
@@ -46,7 +47,7 @@
                                                                 number="true"
                                                                 required
                                                                 title="Debe ingresar un No. Factura valido"
-                                                                v-model="n_factura"
+                                                                v-model="informacion.n_factura"
                                                         >
                                                     </div>
                                                 </div>
@@ -60,7 +61,7 @@
                                                                 name="fecha_factura"
                                                                 required
                                                                 title="Debe seleccionar una Fecha valida"
-                                                                v-model="fecha_factura"
+                                                                v-model="informacion.fecha_factura"
                                                         >
                                                     </div>
                                                 </div>
@@ -73,9 +74,9 @@
                                                                 id="moneda_id"
                                                                 required
                                                                 title="Debe seleccionar una Moneda"
-                                                                v-model="moneda_id"
+                                                                v-model="informacion.moneda_id"
                                                         >
-                                                            <option value="">-Seleccione-</option>
+                                                            <option selected value="">-Seleccione-</option>
                                                             @foreach($monedas as $moneda)
                                                                 <option value="{{ $moneda->id }}">{{ $moneda->nombre }} - {{ $moneda->sigla }}</option>
                                                             @endforeach
@@ -95,9 +96,9 @@
                                                                 id="proyecto_id"
                                                                 required
                                                                 title="Debe seleccionar un Proyecto valido"
-                                                                v-model="proyecto_id"
+                                                                v-model="informacion.proyecto_id"
                                                         >
-                                                            <option value="">-Seleccione-</option>
+                                                            <option selected value="">-Seleccione-</option>
                                                             @foreach($proyectos as $proyecto)
                                                                 <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
                                                             @endforeach
@@ -113,9 +114,9 @@
                                                                 id="tarea_id"
                                                                 required
                                                                 title="Debe seleccionar una Tarea valida"
-                                                                v-model="tarea_id"
+                                                                v-model="informacion.tarea_id"
                                                         >
-                                                            <option value="">-Seleccione-</option>
+                                                            <option selected value="">-Seleccione-</option>
                                                             @foreach($tareas as $tarea)
                                                                 <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
                                                             @endforeach
@@ -131,9 +132,9 @@
                                                                 id="tipo_concepto_id"
                                                                 required
                                                                 title="Debe seleccionar un Tipo / Concepto valido"
-                                                                v-model="tipo_concepto_id"
+                                                                v-model="informacion.tipo_concepto_id"
                                                         >
-                                                            <option value="">-Seleccione-</option>
+                                                            <option selected value="">-Seleccione-</option>
                                                             @foreach($tiposconcepto as $tipoconcepto)
                                                                 <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
                                                             @endforeach
@@ -145,7 +146,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="card" id="app">
+                        <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">
                                     Detalles de la Entrada
@@ -177,9 +178,9 @@
                                                             :name="'row_articulo-' + $index"
                                                             :id="'row_articulo-' + $index"
                                                             title="Debe seleccionar un Articulo valido">
-                                                        <option value="">-Seleccione-</option>
+                                                        <option selected value="">-Seleccione-</option>
                                                         @foreach($articulos as $articulo)
-                                                            <option value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
+                                                            <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
@@ -193,6 +194,7 @@
                                                             :id="'row_cantidad-' + $index"
                                                             title="Debe ingresar un numero valido"
                                                             v-model="row.cantidad"
+                                                            number
                                                     >
                                                 </td>
                                                 <td>
@@ -205,6 +207,8 @@
                                                             :id="'row_costo-' + $index"
                                                             title="Debe ingresar un numero valido"
                                                             v-model="row.costo"
+                                                            data-type="currency"
+                                                            number
                                                     >
                                                 </td>
                                                 <td>
@@ -217,6 +221,7 @@
                                                             :id="'row_serie-' + $index"
                                                             title="Debe ingresar un numero valido"
                                                             v-model="row.serie"
+                                                            number
                                                     >
                                                 </td>
                                                 <td>
@@ -229,6 +234,7 @@
                                                             :id="'row_lote-' + $index"
                                                             title="Debe ingresar un numero valido"
                                                             v-model="row.lote"
+                                                            number
                                                     >
                                                 </td>
                                                 <td>
@@ -269,7 +275,20 @@
                                     <div class="card card-plain">
                                         <div class="card-content">
                                             <div class="col-md-3 col-md-offset-9">
-                                                <h5 class="text-right">Total: <span>@{{ total | currencyDisplay }}</span></h5>
+                                                <div class="col-md-4">
+                                                    <h5 class="text-right">Total:</h5>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input
+                                                            class="form-control text-right"
+                                                            :value="total | currencyDisplay"
+                                                            v-model="informacion.grand_total | currencyDisplay"
+                                                            number
+                                                            :name="grand_total"
+                                                            :id="informacion.grand_total"
+                                                            readonly />
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +300,7 @@
                                                 <div class="card-content">
                                                     <label class="col-sm-2 control-label">Notas</label>
                                                     <div class="col-sm-10">
-                                                        <textarea name="notas" id="notas" class="form-control" rows="3"></textarea>
+                                                        <textarea v-model="informacion.notas" name="notas" id="notas" class="form-control" rows="3"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,13 +311,21 @@
                                     <div class="col-md-3 col-md-offset-9">
                                         <div class="card card-plain">
                                             <div class="card-content">
-                                                <button type="reset" class="btn btn-fill btn-danger btn-magnify">
+                                                <button
+                                                        type="reset"
+                                                        class="btn btn-fill btn-danger btn-magnify"
+                                                        id="reset"
+                                                >
                                                     <span class="btn-label">
 	                                                    <i class="ti-trash"></i>
 	                                                </span>
                                                     Limpiar
                                                 </button>
-                                                <button type="submit" class="btn btn-fill btn-info btn-magnify" @click="getData()">
+                                                <button
+
+                                                        class="btn btn-fill btn-info btn-magnify" @click="postData()"
+                                                        id="submit"
+                                                >
                                                     <span class="btn-label">
 	                                                    <i class="ti-save"></i>
 	                                                </span>
@@ -316,110 +343,160 @@
         </div>
     </div>
     <script type="text/javascript">
-        Vue.filter('currencyDisplay', {
-            // model -> view
-            read: function (val) {
-                if (val > 0) {
-                    return accounting.formatMoney(val, "$", 2, ".", ",");
-                }
-            },
-            // view -> model
-            write: function (val, oldVal) {
-                return accounting.unformat(val, ",");
-            }
-        });
-
-        Vue.directive('sortable', {
-            twoWay: true,
-            deep: true,
-            bind: function () {
-                var that = this;
-
-                var options = {
-                    draggable: Object.keys(this.modifiers)[0]
-                };
-
-                this.sortable = Sortable.create(this.el, options);
-                console.log('sortable bound!')
-
-                this.sortable.option("onUpdate", function (e) {
-                    that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
-                });
-
-                this.onUpdate = function(value) {
-                    that.value = value;
-                }
-            },
-            update: function (value) {
-                this.onUpdate(value);
-            }
-        });
-
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                rows: [
-                    //initial data
-                    {
-                        articulo: 5,
-                        cantidad: 27,
-                        costo: 55.20,
-                        serie: 10,
-                        lote: 27,
-                    },
-
-                ],
-                total: 0,
-            },
-            computed: {
-                total: function () {
-                    var t = 0;
-                    $.each(this.rows, function (i, e) {
-                        t += accounting.unformat(e.total, ",");
-                    });
-                    return t;
-                },
-            },
-            methods: {
-                addRow: function (index) {
-                    try {
-                        this.rows.splice(index + 1, 0, {});
-                    } catch(e)
-                    {
-                        console.log(e);
-                    }
-                },
-                removeRow: function (index) {
-                    if (this.rows.length > 1) {
-                        this.rows.splice(index, 1);
-                    } else {
-                        swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: '¡No puedes borrar la ultima fila que te queda!',
-                        })
-                    }
-                },
-                getData: function () {
-                    $.ajax({
-                        context: this,
-                        type: "POST",
-                        data: {
-                            rows: this.rows,
-                            total: this.total,
-                        },
-                        url: "/api/data"
-                    });
-                }
-            }
-        });
 
         $(document).ready(function () {
-            $('select').select2({
-                theme: 'bootstrap'
+
+            Vue.filter('currencyDisplay', {
+                // model -> view
+                read: function (val) {
+                    if (val > 0) {
+                        return accounting.formatMoney(val, "$", 2, ".", ",");
+                    }
+                },
+                // view -> model
+                write: function (val, oldVal) {
+                    return accounting.unformat(val, ",");
+                }
             });
 
-            $('#nueva-entrada-form').validate();
+            Vue.directive('sortable', {
+                twoWay: true,
+                deep: true,
+                bind: function () {
+                    var that = this;
+
+                    var options = {
+                        draggable: Object.keys(this.modifiers)[0]
+                    };
+
+                    this.sortable = Sortable.create(this.el, options);
+                    console.log('sortable bound!')
+
+                    this.sortable.option("onUpdate", function (e) {
+                        that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
+                    });
+
+                    this.onUpdate = function(value) {
+                        that.value = value;
+                    }
+                },
+                update: function (value) {
+                    this.onUpdate(value);
+                }
+            });
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    rows: [
+                        //initial data
+                        {
+                            articulo: "",
+                            cantidad: "",
+                            costo: "",
+                            serie: "",
+                            lote: ""
+                        },
+
+                    ],
+                    informacion: {
+                        grand_total: "0",
+                        notas: "",
+                        id_proveedor: "",
+                        moneda_id: "",
+                        proyecto_id: "",
+                        tarea_id: "",
+                        tipo_concepto_id: "",
+                        n_factura: "",
+                        fecha_factura: ""
+                    }
+                },
+                computed: {
+                    total: function () {
+                        var t = 0;
+                        $.each(this.rows, function (i, e) {
+                            t += accounting.unformat(e.total, ",");
+                        });
+                        return t;
+                    },
+                },
+                methods: {
+                    addRow: function (index) {
+                        try {
+                            this.rows.splice(index + 1, 0, {});
+                        } catch(e)
+                        {
+                            console.log(e);
+                        }
+                    },
+                    removeRow: function (index) {
+                        if (this.rows.length > 1) {
+                            this.rows.splice(index, 1);
+                        } else {
+                            swal({
+                                type: 'error',
+                                title: 'Oops...',
+                                text: '¡No puedes borrar la ultima fila que te queda!',
+                            })
+                        }
+                    },
+                    postData: function () {
+                        var _this = this;
+                        $('#nueva-entrada-form').validate(
+                            {
+                                submitHandler: function(form) {
+                                    // some other code
+                                    // maybe disabling submit button
+                                    // then:
+                                    $('#submit').addClass('disabled');
+                                    var token = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+                                        context: this,
+                                        type: "POST",
+                                        url: "/Entrada/Nueva/Compra/Guardar",
+                                        dataType: 'json',
+                                        data: {
+                                            _token: token,
+                                            informacion: _this.informacion,
+                                            rows: _this.rows,
+                                        },
+                                        success: function(result) {
+                                            swal({
+                                                title: result.estado,
+                                                text: result.mensaje,
+                                                type: result.tipo,
+                                                confirmButtonClass: "btn btn-success btn-fill",
+                                                buttonsStyling: false
+                                            }).then(function() {
+                                                location.reload();
+                                            });
+
+                                        },
+                                        error: function(xhr) {
+                                            var errorMessage = '';
+                                            jQuery.each(xhr.responseJSON, function(i, val) {
+                                                errorMessage += " - " + val + "<br>";
+                                            });
+                                            swal({
+                                                title: 'Oh no, algo ha salido mal',
+                                                html:
+                                                '<b>Error:</b> ' + xhr.status + " " + xhr.statusText+ '<br>'+
+                                                '<b>Mensaje</b> ' + '<br>' +
+                                                errorMessage,
+                                                type: 'error',
+                                                confirmButtonClass: "btn btn-info btn-fill",
+                                                buttonsStyling: false
+                                            });
+                                            $('#submit').removeClass('disabled');
+                                        }
+                                    });
+                                }
+                            }
+                        );
+
+                    }
+                }
+            });
 
             $('.datetimepicker').datetimepicker({
                 format: 'YYYY-MM-DD H:mm:ss',    //use this format if you want the 12hours timpiecker with AM/PM toggle

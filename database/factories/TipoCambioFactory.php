@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\TipoCambio::class, function (Faker\Generator $faker) {
+$factory->define(App\TipoCambio::class, function (Faker\Generator $faker) {
     return [
         'moneda_id' => $faker->numberBetween($min = 1, $max = 10),
         'fecha' => $faker->dateTime($max = 'now', $timezone = null),

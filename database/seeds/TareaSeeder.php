@@ -11,6 +11,6 @@ class TareaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Tarea::class, 10)->create();
+        factory(App\Tarea::class, 10)->create();
     }
 }

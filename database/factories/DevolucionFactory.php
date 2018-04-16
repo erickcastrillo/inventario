@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Devolucion::class, function (Faker\Generator $faker) {
+$factory->define(App\Devolucion::class, function (Faker\Generator $faker) {
     return [
         'fecha_devolucion' => $faker->dateTime($max = 'now', $timezone = null),
         'cliente_id' => $faker->numberBetween($min = 1, $max = 50),

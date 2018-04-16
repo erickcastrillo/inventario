@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\NotificacionDetalle::class, function (Faker\Generator $faker) {
+$factory->define(App\NotificacionDetalle::class, function (Faker\Generator $faker) {
     return [
         
         'correo' => $faker->email(),

@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Moneda::class, function (Faker\Generator $faker) {
+$factory->define(App\Moneda::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->firstName(),
         'sigla' => $faker->currencyCode(),

@@ -1,18 +1,18 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
-use Inventario\Articulo;
-use Inventario\Moneda;
+use App\User;
+use App\Articulo;
+use App\Moneda;
 
 class DesechoDetalle extends Model
 {
     public function desecho()
     {
-        return $this->belongsTo('Inventario\Desecho');
+        return $this->belongsTo('App\Desecho');
     }
 
     public function get_articulo()

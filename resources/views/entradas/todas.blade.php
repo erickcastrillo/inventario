@@ -154,22 +154,23 @@
                 text: "¡Por favor tenga en cuenta que esta acción no se podrá revertir!",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonClass: 'btn btn-success btn-fill',
+                cancelButtonClass: 'btn btn-danger btn-fill',
                 cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Si, ¡Bórralo!'
+                confirmButtonText: 'Si, ¡Bórralo!',
+                buttonsStyling: false
             }).then(function() {
                 $.ajax({
                     url: '/Entrada/' + entrada,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
+                    data :{
+                        _token : $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'DELETE',
                     success: function(result) {
                         swal({
-                            title: '¿Entrada borrada!',
-                            text: 'La Entrada seleccionada se ha borrado correctamente.' ,
-                            type: 'success',
+                            title: result.estado,
+                            text: result.mensaje,
+                            type: result.tipo,
                             confirmButtonClass: "btn btn-success btn-fill",
                             buttonsStyling: false
                         }).then(function() {

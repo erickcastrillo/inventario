@@ -1,18 +1,18 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
-use Inventario\Bodega;
-use Inventario\Cliente;
+use App\User;
+use App\Bodega;
+use App\Cliente;
 
 class Devolucion extends Model
 {
 
     public function detalles()
     {
-        return $this->hasMany('Inventario\DevolucionDetalle');
+        return $this->hasMany('App\DevolucionDetalle');
     }
 
     public function get_bodega()

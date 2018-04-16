@@ -1,19 +1,18 @@
 <?php
 
-namespace Inventario\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Inventario\Http\Requests;
-use Inventario\Http\Controllers\Controller;
-use Inventario\Enlace;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Enlace;
 
 class EnlaceController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('supervisor');
     }
     /**
      * Display a listing of the resource.

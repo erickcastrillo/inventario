@@ -1,16 +1,16 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
-use Inventario\Departamento;
+use App\User;
+use App\Departamento;
 
 class Notificacion extends Model
 {
     public function detalles()
     {
-        return $this->hasMany('Inventario\NotificacionDetalle');
+        return $this->hasMany('App\NotificacionDetalle');
     }
 
     public function get_departamento()

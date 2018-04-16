@@ -11,9 +11,9 @@ class TrasladoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Traslado::class, 50)->create()->each(function($u) {
+        factory(App\Traslado::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\TrasladoDetalle::class)->make());
+                $u->detalles()->save(factory(App\TrasladoDetalle::class)->make());
             }
         });
     }

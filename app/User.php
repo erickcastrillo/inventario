@@ -1,6 +1,6 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,13 +9,16 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
-
+    use Authenticatable, CanResetPassword, Authorizable, EntrustUserTrait {
+        EntrustUserTrait::can as may;
+        Authorizable::can insteadof EntrustUserTrait;
+    }
     /**
      * The database table used by the model.
      *

@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Cliente::class, function (Faker\Generator $faker) {
+$factory->define(App\Cliente::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->company(),
         'cedula' => $faker->ean13(),

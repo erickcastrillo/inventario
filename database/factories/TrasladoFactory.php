@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Traslado::class, function (Faker\Generator $faker) {
+$factory->define(App\Traslado::class, function (Faker\Generator $faker) {
     return [
         'bodega_id_entrada' => $faker->numberBetween($min = 1, $max = 50),
         'bodega_id_salida' => $faker->numberBetween($min = 1, $max = 50),

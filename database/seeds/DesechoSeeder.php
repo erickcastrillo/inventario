@@ -11,9 +11,9 @@ class DesechoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Desecho::class, 50)->create()->each(function($u) {
+        factory(App\Desecho::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\DesechoDetalle::class)->make());
+                $u->detalles()->save(factory(App\DesechoDetalle::class)->make());
             }
         });
     }

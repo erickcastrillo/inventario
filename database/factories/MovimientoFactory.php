@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Movimiento::class, function (Faker\Generator $faker) {
+$factory->define(App\Movimiento::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->firstName(),
         'tipo' => $faker->word(),

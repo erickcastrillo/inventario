@@ -1,15 +1,15 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
+use App\User;
 
 class Enlace extends Model
 {
     public function proyecto()
     {
-        return $this->belongsTo('Inventario\Proyecto');
+        return $this->belongsTo('App\Proyecto');
     }
 
     public function get_creador_name()

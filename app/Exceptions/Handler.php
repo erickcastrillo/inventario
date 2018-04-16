@@ -1,12 +1,14 @@
 <?php
 
-namespace Inventario\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Redirect;
+
 
 class Handler extends ExceptionHandler
 {
@@ -42,6 +44,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        // handle 403 errors
+        if ($e instanceof HttpException && $e->getStatusCode()==403) {
+
+            // put your redirect logic here
+            return Redirect::back()->with('error', '¡SU perfil no tiene los permisos necesarios para ingresar a la página solicitada!');
+
+        }
+
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }

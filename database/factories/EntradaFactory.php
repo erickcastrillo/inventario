@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Entrada::class, function (Faker\Generator $faker) {
+$factory->define(App\Entrada::class, function (Faker\Generator $faker) {
     return [
         'fecha_factura' => $faker->dateTime($max = 'now', $timezone = null),
         'n_factura' => $faker->numberBetween($min = 1, $max = 50),

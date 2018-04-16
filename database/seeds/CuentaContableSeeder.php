@@ -11,6 +11,6 @@ class CuentaContableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\CuentaContable::class, 50)->create();
+        factory(App\CuentaContable::class, 50)->create();
     }
 }

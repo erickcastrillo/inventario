@@ -11,9 +11,9 @@ class GastoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Gasto::class, 50)->create()->each(function($u) {
+        factory(App\Gasto::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\GastoDetalle::class)->make());
+                $u->detalles()->save(factory(App\GastoDetalle::class)->make());
             }
         });
     }

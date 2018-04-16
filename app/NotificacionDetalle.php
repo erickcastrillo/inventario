@@ -1,15 +1,15 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
+use App\User;
 
 class NotificacionDetalle extends Model
 {
     public function notificacion()
     {
-        return $this->belongsTo('Inventario\Notificacion');
+        return $this->belongsTo('App\Notificacion');
     }
 
     public function get_creador_name()

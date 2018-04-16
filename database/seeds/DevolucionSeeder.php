@@ -11,9 +11,9 @@ class DevolucionSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Devolucion::class, 50)->create()->each(function($u) {
+        factory(App\Devolucion::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\DevolucionDetalle::class)->make());
+                $u->detalles()->save(factory(App\DevolucionDetalle::class)->make());
             }
         });
     }

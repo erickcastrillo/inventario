@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Proyecto::class, function (Faker\Generator $faker) {
+$factory->define(App\Proyecto::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->firstName(),
 

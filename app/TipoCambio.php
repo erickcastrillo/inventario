@@ -1,10 +1,10 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
-use Inventario\Moneda;
+use App\User;
+use App\Moneda;
 
 class TipoCambio extends Model
 {

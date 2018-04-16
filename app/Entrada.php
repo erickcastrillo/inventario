@@ -1,23 +1,23 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\Proyecto;
-use Inventario\Tarea;
-use Inventario\TipoConcepto;
-use Inventario\User;
-use Inventario\Proveedor;
+use App\Proyecto;
+use App\Tarea;
+use App\TipoConcepto;
+use App\User;
+use App\Proveedor;
 
 class Entrada extends Model
 {
     public function detalles()
     {
-        return $this->hasMany('Inventario\EntradaDetalle');
+        return $this->hasMany('App\EntradaDetalle');
     }
 
     public function movimientos() {
-        return $this->hasOne('Inventario\Movimiento');
+        return $this->hasOne('App\Movimiento');
     }
 
     public function get_proyecto()

@@ -32,7 +32,10 @@ Route::resource('Entrada', 'EntradaController',
 Route::get('/Entrada/Obtener/{fecha_inicio}/{fecha_final}', 'EntradaController@get_data' )->name('Vista personalizada');
 
 // Route for new Entradas by Compra
-Route::get('/Entrada/Nueva/Compra', 'EntradaController@nueva_entrada')->name('Nueva Entrada por Compra');
+Route::get('/Entrada/Nueva/Compra', 'EntradaController@nueva_entrada_compra')->name('Nueva Entrada por Compra');
+
+// Save a new Entrada
+Route::post('/Entrada/Nueva/Compra/Guardar', 'EntradaController@guardar_entrada');
 
 // Rutas de las devoluciones como resource
 Route::resource('Devolucion', 'DevolucionController',

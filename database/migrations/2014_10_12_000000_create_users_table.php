@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('user_name')->unique();
             $table->string('password');
             $table->string('email')->unique();
-            $table->string('access_level');
             $table->string('country');
             
             // This 5 lines must appear on all migrations

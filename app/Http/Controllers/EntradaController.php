@@ -1,26 +1,27 @@
 <?php
 
-namespace Inventario\Http\Controllers;
-
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Inventario\Http\Requests;
-use Inventario\Http\Controllers\Controller;
-use Inventario\Entrada;
-use Inventario\Proveedor;
-use Inventario\Moneda;
-use Inventario\Proyecto;
-use Inventario\Tarea;
-use Inventario\TipoConcepto;
-use Inventario\Articulo;
+use Illuminate\Support\Facades\Auth;
+use Validator;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Entrada;
+use App\Proveedor;
+use App\Moneda;
+use App\Proyecto;
+use App\Tarea;
+use App\TipoConcepto;
+use App\Articulo;
+use App\Http\Requests\EntradaRequest;
 
 class EntradaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('supervisor');
+        $this->middleware('role:Administrador');
     }
     /**
      * Display a listing of the resource.
@@ -33,12 +34,13 @@ class EntradaController extends Controller
     }
 
     public function get_data($fecha_inicio, $fecha_final) {
-        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->get();
 
+        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->get();
         return view('entradas.todas', ['entradas' => $data ]);
+
     }
 
-    public function nueva_entrada()
+    public function nueva_entrada_compra()
     {
         return view('entradas.nueva.compra', [
             'proveedores' => Proveedor::all(),
@@ -50,6 +52,41 @@ class EntradaController extends Controller
         ]);
     }
 
+    public function guardar_entrada(EntradaRequest $request) {
+        $entrada = new Entrada();
+
+        $entrada->fecha_factura = $request->input('informacion.fecha_factura');
+        $entrada->proveedor_id = $request->input('informacion.id_proveedor');
+        if(defined($request->input('informacion.notas'))){
+            $entrada->notas = $request->input('informacion.notas');
+        }
+        //$entrada->moneda_id = $request->input('informacion.moneda_id');
+        $entrada->n_factura = $request->input('informacion.n_factura');
+        $entrada->proyecto_id = $request->input('informacion.proyecto_id');
+        $entrada->tarea_id = $request->input('informacion.tarea_id');
+        $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
+        $entrada->pais = Auth::user()->country;
+        $entrada->estado = 1;
+        $entrada->creado_id = Auth::user()->id;
+        $entrada->editado_id = Auth::user()->id;
+
+
+        if($entrada->save()){
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Entrada se ha sido guardado exitosamente",
+                'tipo' => 'success'
+            ], 201);
+        } else {
+            return response()->json([
+                'estado' => '¡Error!',
+                'mensaje' => "La nueva entrada no se ha podido guardar",
+                'tipo' => 'error'
+            ]. 201);
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,7 +94,14 @@ class EntradaController extends Controller
      */
     public function create()
     {
-        //
+        return view('entradas.nueva.compra', [
+            'proveedores' => Proveedor::all(),
+            'monedas' => Moneda::all(),
+            'proyectos' => Proyecto::all(),
+            'tareas' => Tarea::all(),
+            'tiposconcepto' => TipoConcepto::all(),
+            'articulos' => Articulo::all(),
+        ]);
     }
 
     /**
@@ -93,11 +137,7 @@ class EntradaController extends Controller
      */
     public function edit($id)
     {
-        
-        return view('entradas.editar', [
-            'entrada' => Entrada::find($id),
-            'detalles' => Entrada::find($id)->detalles()->get()
-        ]);
+
     }
 
     /**
@@ -121,13 +161,33 @@ class EntradaController extends Controller
     public function destroy($id)
     {
         $entrada = Entrada::find($id);
-        if ($entrada->delete())
-        {
-            return response()->json(['status' => 'Success', 'mensaje' => "Entrada con id '" . $id . "' ha sido borrado exitosamente"]);
+
+        if(!$entrada) {
+            return response()->json([
+                'estado' => '¡Error!',
+                'mensaje' => "Entrada con id '" . $id . "' no existe",
+                'tipo' => 'error'
+            ]);
         }
         else
         {
-            return response()->json(['status' => 'Error', 'mensaje' => "Entrada con id '" . $id . "' no se ha borrado"]);
+            if ($entrada->delete())
+            {
+                return response()->json([
+                    'estado' => '¡Exito!',
+                    'mensaje' => "Entrada con id '" . $id . "' ha sido borrado exitosamente",
+                    'tipo' => 'success'
+                ]);
+            }
+            else
+            {
+                return response()->json([
+                    'estado' => '¡Error!',
+                    'mensaje' => "Entrada con id '" . $id . "' no se ha borrado",
+                    'tipo' => 'error'
+                ]);
+            }
         }
+
     }
 }

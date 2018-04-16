@@ -11,6 +11,6 @@ class MonedaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Moneda::class, 10)->create();
+        factory(App\Moneda::class, 10)->create();
     }
 }

@@ -1,16 +1,16 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
+use App\User;
 
 class Proyecto extends Model
 {
 
     public function enlaces()
     {
-        return $this->hasMany('Inventario\Enlance');
+        return $this->hasMany('App\Enlance');
     }
 
     public function get_creador_name()

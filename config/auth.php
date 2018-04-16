@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Inventario\User::class,
+    'model' => App\User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +62,14 @@ return [
         'email'  => 'emails.password',
         'table'  => 'password_resets',
         'expire' => 60,
+    ],
+
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+            'table' => 'users',
+        ],
     ],
 
 ];

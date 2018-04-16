@@ -11,6 +11,6 @@ class ArticuloSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Articulo::class, 50)->create();
+        factory(App\Articulo::class, 50)->create();
     }
 }

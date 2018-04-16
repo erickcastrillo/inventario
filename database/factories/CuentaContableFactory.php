@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\CuentaContable::class, function (Faker\Generator $faker) {
+$factory->define(App\CuentaContable::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->text(),
 

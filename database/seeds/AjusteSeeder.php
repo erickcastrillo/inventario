@@ -11,9 +11,9 @@ class AjusteSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Ajuste::class, 50)->create()->each(function($u) {
+        factory(App\Ajuste::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(Inventario\AjusteDetalle::class)->make());
+                $u->detalles()->save(factory(App\AjusteDetalle::class)->make());
             }
             
         });

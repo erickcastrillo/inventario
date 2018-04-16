@@ -11,6 +11,6 @@ class DepartamentoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Inventario\Departamento::class, 10)->create();
+        factory(App\Departamento::class, 10)->create();
     }
 }

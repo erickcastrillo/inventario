@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Inventario\Desecho::class, function (Faker\Generator $faker) {
+$factory->define(App\Desecho::class, function (Faker\Generator $faker) {
     return [
         'fecha_desecho' => $faker->dateTime($max = 'now', $timezone = null),
         'auditor_id' => $faker->numberBetween($min = 1, $max = 50),

@@ -1,11 +1,11 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\User;
-use Inventario\Categoria;
-use Inventario\UnidadMedida;
+use App\User;
+use App\Categoria;
+use App\UnidadMedida;
 
 class Articulo extends Model
 {

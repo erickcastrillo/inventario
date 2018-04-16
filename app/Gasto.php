@@ -1,21 +1,21 @@
 <?php
 
-namespace Inventario;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Inventario\Departamento;
-use Inventario\Proyecto;
-use Inventario\Tarea;
-use Inventario\User;
-use Inventario\Cliente;
-use Inventario\Bodega;
-use Inventario\Movimiento;
+use App\Departamento;
+use App\Proyecto;
+use App\Tarea;
+use App\User;
+use App\Cliente;
+use App\Bodega;
+use App\Movimiento;
 
 class Gasto extends Model
 {
     public function detalles()
     {
-        return $this->hasMany('Inventario\GastoDetalle');
+        return $this->hasMany('App\GastoDetalle');
     }
 
     public function get_departamento()
