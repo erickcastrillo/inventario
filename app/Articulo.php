@@ -9,6 +9,11 @@ use App\UnidadMedida;
 
 class Articulo extends Model
 {
+    public function bodega()
+    {
+        return $this->belongsTo('App\Bodega');
+    }
+
     public function get_categoria()
     {
         return Categoria::find($this->categoria_id);

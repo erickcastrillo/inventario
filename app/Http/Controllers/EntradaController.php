@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EntradaDetalle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -14,6 +15,7 @@ use App\Proyecto;
 use App\Tarea;
 use App\TipoConcepto;
 use App\Articulo;
+use App\Bodega;
 use App\Http\Requests\EntradaRequest;
 
 class EntradaController extends Controller
@@ -42,13 +44,21 @@ class EntradaController extends Controller
 
     public function nueva_entrada_compra()
     {
+        $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->get();
+        $articulos = [];
+        foreach ($detalles_bodega_usuario as $detalle_bodega_usuario)
+        {
+            array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
+        }
         return view('entradas.nueva.compra', [
             'proveedores' => Proveedor::all(),
             'monedas' => Moneda::all(),
             'proyectos' => Proyecto::all(),
             'tareas' => Tarea::all(),
             'tiposconcepto' => TipoConcepto::all(),
-            'articulos' => Articulo::all(),
+            'articulos' => $articulos,
+
+            //'articulos' => Articulo::all(),
         ]);
     }
 
@@ -70,8 +80,23 @@ class EntradaController extends Controller
         $entrada->creado_id = Auth::user()->id;
         $entrada->editado_id = Auth::user()->id;
 
+        foreach ($request->input('rows') as $key => $val)
+        {
+            $entrada_detalle = new EntradaDetalle();
+            $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
+            $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
+            $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
+            $entrada_detalle->moneda_id = $request->input('informacion.moneda_id');
+            $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
+            $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
+            $entrada_detalle->pais = Auth::user()->country;
 
-        if($entrada->save()){
+            $saved_entrada = $entrada->save();
+            $saved_entrada_detalle = $entrada->detalles()->save($entrada_detalle);
+        }
+
+        if($saved_entrada and $saved_entrada_detalle){
+
             return response()->json([
                 'estado' => '¡Exito!',
                 'mensaje' => "Entrada se ha sido guardado exitosamente",
@@ -94,14 +119,7 @@ class EntradaController extends Controller
      */
     public function create()
     {
-        return view('entradas.nueva.compra', [
-            'proveedores' => Proveedor::all(),
-            'monedas' => Moneda::all(),
-            'proyectos' => Proyecto::all(),
-            'tareas' => Tarea::all(),
-            'tiposconcepto' => TipoConcepto::all(),
-            'articulos' => Articulo::all(),
-        ]);
+
     }
 
     /**

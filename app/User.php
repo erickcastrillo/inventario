@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Bodega;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -46,5 +47,10 @@ class User extends Model implements AuthenticatableContract,
         $last_name = ucfirst ($this->last_name);
 
         return $name . " " . $last_name;
+    }
+
+    public function get_bodega()
+    {
+        return Bodega::where('responsable_id', '=', $this->id);
     }
 }

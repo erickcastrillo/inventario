@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Articulo;
 
 class BodegaDetalle extends Model
 {
@@ -26,6 +27,11 @@ class BodegaDetalle extends Model
         $last_name = User::find($this->editado_id)->last_name;
 
         return $name . " " . $last_name;
+    }
+
+    public function get_articulo()
+    {
+        return Articulo::find($this->articulo_id);
     }
 
     public function get_creador()
