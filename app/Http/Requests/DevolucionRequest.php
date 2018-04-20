@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class EntradaRequest extends Request
+class DevolucionRequest extends Request
 {
 
     /**
@@ -24,14 +24,11 @@ class EntradaRequest extends Request
     public function rules()
     {
         $rules = [
-            'informacion.fecha_factura' => 'required|date',
-            'informacion.grand_total' => 'required|numeric',
-            'informacion.id_proveedor' => 'required|numeric',
+            'informacion.fecha_devolucion' => 'required|date',
+            // 'informacion.grand_total' => 'required|numeric',
+            'informacion.cliente_id' => 'required|numeric',
+            'informacion.bodega_id' => 'required|numeric',
             'informacion.moneda_id' => 'required|numeric',
-            'informacion.n_factura' => 'required|numeric',
-            'informacion.proyecto_id' => 'required|numeric',
-            'informacion.tarea_id' => 'required|numeric',
-            'informacion.tipo_concepto_id' => 'required|numeric',
             'informacion.notas' => 'required',
 
         ];
@@ -49,14 +46,10 @@ class EntradaRequest extends Request
     public function messages()
     {
         $messages = [
-            'informacion.fecha_factura' => 'Fecha de factura es requesrida y debe contener fechas',
-            'informacion.grand_total' => 'El total es requerido y debe contener solo numeros',
-            'informacion.id_proveedor' => 'ID del Proveedor es requerido y debe contener solo numeros',
+            'informacion.fecha_devolucion' => 'Fecha de devolución es requesrida y debe contener fechas',
+            'informacion.cliente_id' => 'El cliente es requerido y debe contener solo numeros',
+            'informacion.bodega_id' => 'ID de bodega es requerido y debe contener solo numeros',
             'informacion.moneda_id' => 'ID de la Moneda es requerido y debe contener solo numeros',
-            'informacion.n_factura' => 'Numero de la Factura es requerido y debe contener solo numeros',
-            'informacion.proyecto_id' => 'ID del Proyecto es requerido y debe contener solo numeros',
-            'informacion.tarea_id' => 'ID de la tarea es requerido y debe contener solo numeros',
-            'informacion.tipo_concepto_id' => 'Tipo de Concepto requerido y debe contener solo numeros',
             'informacion.notas' => 'El campo Notas solo puede contener letras, nombres, y dashes.'
         ];
         foreach($this->request->get('rows') as $key => $val)

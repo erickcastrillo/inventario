@@ -15,9 +15,13 @@
 Route::get('/', 'InicioController@Index' )->name('Dashboard');
 Route::get('/home', 'InicioController@Index' )->name('Dashboard');
 
+// --------------------------------------------------------------------------------
+// Entrada
+// --------------------------------------------------------------------------------
+
 // Rutas de las entradas como resource
 Route::resource('Entrada', 'EntradaController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las entradas',
         'edit' => 'Editar entrada',
@@ -31,15 +35,13 @@ Route::resource('Entrada', 'EntradaController',
 // Route to get entradas using specific dates
 Route::get('/Entrada/Obtener/{fecha_inicio}/{fecha_final}', 'EntradaController@get_data' )->name('Vista personalizada');
 
-// Route for new Entradas by Compra
-Route::get('/Entrada/Nueva/Compra', 'EntradaController@nueva_entrada_compra')->name('Nueva Entrada por Compra');
-
-// Save a new Entrada
-Route::post('/Entrada/Nueva/Compra/Guardar', 'EntradaController@guardar_entrada');
+// --------------------------------------------------------------------------------
+// Devolucion
+// --------------------------------------------------------------------------------
 
 // Rutas de las devoluciones como resource
 Route::resource('Devolucion', 'DevolucionController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las devoluciones',
         'edit' => 'Editar devolucion',
@@ -50,9 +52,16 @@ Route::resource('Devolucion', 'DevolucionController',
     ]
 ]);
 
+// Entrada por devolucion
+Route::get('/Devolucion/Nueva/Devolucion', 'DevolucionController@nueva_entrada_devolucion')->name('Nueva Entrada por Devolucion');
+
+// --------------------------------------------------------------------------------
+// Traslado
+// --------------------------------------------------------------------------------
+
 // Rutas de los traslados como resource
 Route::resource('Traslado', 'TrasladoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los traslados',
         'edit' => 'Editar traslado',
@@ -65,7 +74,7 @@ Route::resource('Traslado', 'TrasladoController',
 
 // Rutas de los ajustes como resource
 Route::resource('Ajuste', 'TrasladoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los ajustes',
         'edit' => 'Editar ajuste',
@@ -78,7 +87,7 @@ Route::resource('Ajuste', 'TrasladoController',
 
 // Rutas de los gastos como resource
 Route::resource('Gasto', 'GastoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los gastos',
         'edit' => 'Editar gasto',
@@ -91,7 +100,7 @@ Route::resource('Gasto', 'GastoController',
 
 // Rutas de los desechos como resource
 Route::resource('Desecho', 'DesechoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los desechos',
         'edit' => 'Editar desecho',
@@ -104,7 +113,7 @@ Route::resource('Desecho', 'DesechoController',
 
 // Rutas de las bodegas como resource
 Route::resource('Bodega', 'DesechoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas los bodegas',
         'edit' => 'Editar bodega',
@@ -117,7 +126,7 @@ Route::resource('Bodega', 'DesechoController',
 
 // Rutas de los tipos cambio como resource
 Route::resource('TipoCambio', 'TipoCambioController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los tipos cambio',
         'edit' => 'Editar tipo cambio',
@@ -130,7 +139,7 @@ Route::resource('TipoCambio', 'TipoCambioController',
 
 // Rutas de los articulos como resource
 Route::resource('Articulo', 'ArticuloController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los articulos',
         'edit' => 'Editar articulo',
@@ -143,7 +152,7 @@ Route::resource('Articulo', 'ArticuloController',
 
 // Rutas de los proveedores como resource
 Route::resource('Proveedor', 'ProveedorController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los proveedores',
         'edit' => 'Editar proveedor',
@@ -156,7 +165,7 @@ Route::resource('Proveedor', 'ProveedorController',
 
 // Rutas de las cuentas contables como resource
 Route::resource('CuentaContable', 'CuentaContableController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las cuentas contables',
         'edit' => 'Editar cuentas contable',
@@ -169,7 +178,7 @@ Route::resource('CuentaContable', 'CuentaContableController',
 
 // Rutas de los proyectos como resource
 Route::resource('Proyecto', 'ProyectoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los proyectos',
         'edit' => 'Editar proyecto',
@@ -182,7 +191,7 @@ Route::resource('Proyecto', 'ProyectoController',
 
 // Rutas de las tareas como resource
 Route::resource('Tarea', 'TareaController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las tareas',
         'edit' => 'Editar tarea',
@@ -195,7 +204,7 @@ Route::resource('Tarea', 'TareaController',
 
 // Rutas de las unidades de medida como resource
 Route::resource('UnidadMedida', 'UnidadMedidaController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las unidades de medida',
         'edit' => 'Editar unidad de medida',
@@ -208,7 +217,7 @@ Route::resource('UnidadMedida', 'UnidadMedidaController',
 
 // Rutas de las monedas como resource
 Route::resource('Moneda', 'MonedaController',
-['names' => 
+['names' =>
     [
         'index' => 'Todas las monedas',
         'edit' => 'Editar moneda',
@@ -221,7 +230,7 @@ Route::resource('Moneda', 'MonedaController',
 
 // Rutas de los tipos de concepto como resource
 Route::resource('TipoConcepto', 'TipoConceptoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los tipos de concepto',
         'edit' => 'Editar tipo de concepto',
@@ -234,7 +243,7 @@ Route::resource('TipoConcepto', 'TipoConceptoController',
 
 // Rutas de los movimientos como resource
 Route::resource('Movimiento', 'MovimientoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los movimientos',
         'edit' => 'Editar movimiento',
@@ -247,7 +256,7 @@ Route::resource('Movimiento', 'MovimientoController',
 
 // Rutas de los departamentos como resource
 Route::resource('Departamento', 'DepartamentoController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los departamentos',
         'edit' => 'Editar departamento',
@@ -260,7 +269,7 @@ Route::resource('Departamento', 'DepartamentoController',
 
 // Rutas de los clientes como resource
 Route::resource('Cliente', 'ClienteController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los clientes',
         'edit' => 'Editar cliente',
@@ -273,7 +282,7 @@ Route::resource('Cliente', 'ClienteController',
 
 // Rutas de los enlaces como resource
 Route::resource('Enlace', 'EnlaceController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los enlace',
         'edit' => 'Editar enlace',
@@ -286,7 +295,7 @@ Route::resource('Enlace', 'EnlaceController',
 
 // Rutas de los notificaciones como resource
 Route::resource('Notificacion', 'NotificacionController',
-['names' => 
+['names' =>
     [
         'index' => 'Todos los notificaciones',
         'edit' => 'Editar notificacion',

@@ -77,13 +77,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/Entrada/Nueva/Compra">
+                            <a href="/Entrada/create">
                                 <span class="sidebar-mini">PC</span>
                                 <span class="sidebar-normal">Por compra</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/Devolucion/create">
                                 <span class="sidebar-mini">PD</span>
                                 <span class="sidebar-normal">Por devoluci&oacute;n</span>
                             </a>

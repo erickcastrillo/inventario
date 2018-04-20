@@ -3,12 +3,17 @@
     @include('layouts.flashes')
     <!-- ### $App Screen Content ### -->
     <div class="content">
-        <div class="container-fluid">
+        <div class="container-fluid" id="printTable">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header row">
+                          <div class="col-md-10">
                             <h4 class="card-title">Informacion general de la Entrada número {{ $entrada->id }}</h4>
+                          </div>
+                          <div class="col-md-2">
+                            
+                          </div>
                         </div>
                         <br/>
                         <div class="card-content">
@@ -105,4 +110,18 @@
             </div>
         </div>
     </div>
+    <script type='text/javascript'>
+    function printData()
+    {
+     var divToPrint=document.getElementById("printTable");
+     newWin= window.open("");
+     newWin.document.write(divToPrint.outerHTML);
+     newWin.print();
+     newWin.close();
+    }
+
+    $('button').on('click',function(){
+    printData();
+    })
+  </script>
 @endsection

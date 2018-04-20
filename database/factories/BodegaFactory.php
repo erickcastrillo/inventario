@@ -2,7 +2,7 @@
 
 $factory->define(App\Bodega::class, function (Faker\Generator $faker) {
     return [
-        'descripcion' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+        'descripcion' => $faker->streetAddress(),
         'responsable_id' => $faker->numberBetween($min = 1, $max = 12),
         'pais' => $faker->country(),
 

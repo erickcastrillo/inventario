@@ -453,7 +453,7 @@
                                     $.ajax({
                                         context: this,
                                         type: "POST",
-                                        url: "/Entrada/Nueva/Compra/Guardar",
+                                        url: "/Entrada",
                                         dataType: 'json',
                                         data: {
                                             _token: token,
