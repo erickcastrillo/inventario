@@ -164,7 +164,34 @@ class DevolucionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $entrada = Devolucion::find($id);
+
+      if(!$entrada) {
+          return response()->json([
+              'estado' => '¡Error!',
+              'mensaje' => "Entrada con id '" . $id . "' no existe",
+              'tipo' => 'error'
+          ]);
+      }
+      else
+      {
+          if ($entrada->delete())
+          {
+              return response()->json([
+                  'estado' => '¡Exito!',
+                  'mensaje' => "Entrada con id '" . $id . "' ha sido borrado exitosamente",
+                  'tipo' => 'success'
+              ]);
+          }
+          else
+          {
+              return response()->json([
+                  'estado' => '¡Error!',
+                  'mensaje' => "Entrada con id '" . $id . "' no se ha borrado",
+                  'tipo' => 'error'
+              ]);
+          }
+      }
     }
 
 }
