@@ -64,7 +64,7 @@ class DevolucionController extends Controller
       return view('devoluciones.nueva.devolucion', [
           'clientes' => Cliente::all(),
           'monedas' => Moneda::all(),
-          'bodegas' => Auth::user()->get_bodega()->get(),
+          'bodegas' => Auth::user()->get_bodega()->first()->get(),
           'articulos' => $articulos,
       ]);
     }
