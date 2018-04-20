@@ -81,7 +81,7 @@ class DevolucionController extends Controller
 
       $devolucion->fecha_devolucion = $request->input('informacion.fecha_devolucion');
       $devolucion->cliente_id = $request->input('informacion.cliente_id');
-      if(defined($request->input('informacion.notas'))){
+      if($request->input('informacion.notas')){
           $devolucion->notas = $request->input('informacion.notas');
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');

@@ -78,7 +78,7 @@ class EntradaController extends Controller
 
       $entrada->fecha_factura = $request->input('informacion.fecha_factura');
       $entrada->proveedor_id = $request->input('informacion.id_proveedor');
-      if(defined($request->input('informacion.notas'))){
+      if($request->input('informacion.notas')){
           $entrada->notas = $request->input('informacion.notas');
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');
