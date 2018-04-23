@@ -128,7 +128,7 @@
                 </div>
             </li>
             <li class="{{ Request::route()->getName() == 'Traslado' ? 'active' : '' }}">
-                <a href="#">
+                <a href="/Traslado/create">
                     <i class="ti-share"></i>
                     <p>Solicitud de traslado</p>
                 </a>

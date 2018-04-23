@@ -350,7 +350,7 @@
                 // model -> view
                 read: function (val) {
                     if (val > 0) {
-                        return accounting.formatMoney(val, "$", 2, ".", ",");
+                        return accounting.formatMoney(val, "{{ Auth::user()->get_moneda()->first()->sigla}}", 2, ".", ",");
                     }
                 },
                 // view -> model

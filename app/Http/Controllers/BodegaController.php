@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Bodega;
 use App\BodegaDetalle;
+use App\Articulo;
 
 class BodegaController extends Controller
 {
@@ -15,6 +16,34 @@ class BodegaController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function getProductos($id)
+    {
+      $results = [];
+      $detalles_bodega =  Bodega::find($id)->detalles()->select('id', 'articulo_id', 'bodega_id')->get();
+      foreach ($detalles_bodega as $detalle_bodega) {
+        $detalle_bodega['nombre_producto'] = Articulo::find($detalle_bodega->articulo_id)->descripcion;
+      }
+      return response()->json( $detalles_bodega );
+    }
+
+    public function getLotes($bodega_id, $producto_id)
+    {
+      $lotes =  Bodega::find($bodega_id)->detalles()->where('articulo_id', '=', $producto_id)->select('lote', 'id', 'articulo_id')->get();
+      return response()->json( $lotes );
+    }
+
+    public function getSerie($bodega_id, $producto_id, $lote)
+    {
+      $serie =  Bodega::find($bodega_id)
+                            ->detalles()
+                            ->where('articulo_id', '=', $producto_id)
+                            ->where('lote', '=', $lote)
+                            ->select('serie', 'id', 'articulo_id')
+                            ->get();
+      return response()->json( $serie );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -90,4 +119,6 @@ class BodegaController extends Controller
     {
         //
     }
+
+
 }

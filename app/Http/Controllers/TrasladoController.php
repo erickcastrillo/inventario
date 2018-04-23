@@ -8,12 +8,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Traslado;
 use App\TrasladoDetalle;
+use App\Departamento;
+use Illuminate\Support\Facades\Auth;
 
 class TrasladoController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:Supervisor');
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +25,7 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        return response()->json(Traslado::all());
+        // return response()->json(Traslado::all());
     }
 
     /**
@@ -32,7 +35,11 @@ class TrasladoController extends Controller
      */
     public function create()
     {
-        //
+      return view('traslado.nuevo.traslado', [
+        'bodegas_propias' => Auth::user()->get_otras_bodega()->get(),
+        'bodegas' =>  Auth::user()->get_bodega()->get(),
+        'departamentos' => Departamento::all(),
+      ]);
     }
 
     /**

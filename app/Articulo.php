@@ -49,6 +49,6 @@ class Articulo extends Model
     {
         return User::find($this->editado_id);
     }
-    
+
     protected $table = 'articulos';
 }

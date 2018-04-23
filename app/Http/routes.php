@@ -66,14 +66,14 @@ Route::resource('Traslado', 'TrasladoController',
         'index' => 'Todos los traslados',
         'edit' => 'Editar traslado',
         'show' => 'Mostrar traslado',
-        'create' => 'Crear traslado',
+        'create' => 'Solicitud de traslado',
         'update' => 'Actualizar traslado',
         'destroy' => 'Borrar traslado',
     ]
 ]);
 
 // Rutas de los ajustes como resource
-Route::resource('Ajuste', 'TrasladoController',
+Route::resource('Ajuste', 'AjusteController',
 ['names' =>
     [
         'index' => 'Todos los ajustes',
@@ -111,8 +111,12 @@ Route::resource('Desecho', 'DesechoController',
     ]
 ]);
 
+// --------------------------------------------------------------------------------
+// Bodega
+// --------------------------------------------------------------------------------
+
 // Rutas de las bodegas como resource
-Route::resource('Bodega', 'DesechoController',
+Route::resource('Bodega', 'BodegaController',
 ['names' =>
     [
         'index' => 'Todas los bodegas',
@@ -123,6 +127,10 @@ Route::resource('Bodega', 'DesechoController',
         'destroy' => 'Borrar bodega',
     ]
 ]);
+
+Route::get('/Bodega/{id}/detalles', 'BodegaController@getProductos');
+Route::get('/Bodega/{bodega_id}/{producto_id}/lotes', 'BodegaController@getLotes');
+Route::get('/Bodega/{bodega_id}/{producto_id}/{lote}/series', 'BodegaController@getSerie');
 
 // Rutas de los tipos cambio como resource
 Route::resource('TipoCambio', 'TipoCambioController',

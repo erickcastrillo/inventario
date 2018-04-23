@@ -277,7 +277,7 @@
             // model -> view
             read: function (val) {
                 if (val > 0) {
-                    return accounting.formatMoney(val, "$", 2, ".", ",");
+                    return accounting.formatMoney(val, "{{ Auth::user()->get_moneda()->first()->sigla}}", 2, ".", ",");
                 }
             },
             // view -> model
@@ -350,7 +350,13 @@
                         this.rows.splice(index + 1, 0, {});
                     } catch(e)
                     {
-                        console.log(e);
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: e,
+                            confirmButtonClass: "btn btn-success btn-fill",
+                            buttonsStyling: false
+                        });
                     }
                 },
                 removeRow: function (index) {
@@ -361,6 +367,8 @@
                             type: 'error',
                             title: 'Oops...',
                             text: '¡No puedes borrar la ultima fila que te queda!',
+                            confirmButtonClass: "btn btn-success btn-fill",
+                            buttonsStyling: false
                         })
                     }
                 },
