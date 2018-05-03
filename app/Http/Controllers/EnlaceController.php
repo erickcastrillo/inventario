@@ -21,7 +21,7 @@ class EnlaceController extends Controller
      */
     public function index()
     {
-        return response()->json(Enlace::all());
+        return response()->json(Enlace::where('estado' , '=', 1)->get());
     }
 
     /**

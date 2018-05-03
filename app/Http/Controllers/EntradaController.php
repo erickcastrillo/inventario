@@ -37,7 +37,7 @@ class EntradaController extends Controller
 
     public function get_data($fecha_inicio, $fecha_final) {
 
-        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->get();
+        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->where('estado' , '=', 1)->get();
         return view('entradas.todas', ['entradas' => $data ]);
 
     }
@@ -56,11 +56,11 @@ class EntradaController extends Controller
           array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
       }
       return view('entradas.nueva.compra', [
-          'proveedores' => Proveedor::all(),
-          'monedas' => Moneda::all(),
-          'proyectos' => Proyecto::all(),
-          'tareas' => Tarea::all(),
-          'tiposconcepto' => TipoConcepto::all(),
+          'proveedores' => Proveedor::where('estado' , '=', 1)->get(),
+          'monedas' => Moneda::where('estado' , '=', 1)->get(),
+          'proyectos' => Proyecto::where('estado' , '=', 1)->get(),
+          'tareas' => Tarea::where('estado' , '=', 1)->get(),
+          'tiposconcepto' => TipoConcepto::where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
 
       ]);

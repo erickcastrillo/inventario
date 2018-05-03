@@ -21,7 +21,7 @@ class Traslado extends Migration
             $table->integer('bodega_id_salida');
             $table->date('fecha_retiro');
             $table->time('hora_retiro');
-            $table->string('motivo', 100);
+            $table->integer('movimiento_id');
             $table->integer('departamento_id');
             $table->string('nombre_retira', 100);
             $table->integer('id_personal_retira');

@@ -21,7 +21,7 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        return response()->json(Movimiento::all());
+        return response()->json(Movimiento::where('estado' , '=', 1)->get());
     }
 
     /**

@@ -40,7 +40,7 @@ class BodegaController extends Controller
                             ->where('articulo_id', '=', $producto_id)
                             ->where('lote', '=', $lote)
                             ->select('serie', 'id', 'articulo_id')
-                            ->get();
+                            ->where('estado' , '=', 1)->get();
       return response()->json( $serie );
     }
 
@@ -51,7 +51,7 @@ class BodegaController extends Controller
      */
     public function index()
     {
-        return response()->json(Bodega::all());
+        return response()->json(Bodega::where('estado' , '=', 1)->get());
     }
 
     /**

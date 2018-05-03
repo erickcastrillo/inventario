@@ -22,7 +22,7 @@ class DesechoController extends Controller
      */
     public function index()
     {
-        return response()->json(Desecho::all());
+        return response()->json(Desecho::where('estado' , '=', 1)->get());
     }
 
     /**

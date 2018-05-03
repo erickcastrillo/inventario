@@ -42,10 +42,11 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label">Motivo</label>
                       <div class="col-sm-8">
-                        <select class="form-control" name="motivo" id="motivo" required title="Debe seleccionar una Motivo" v-model="informacion.motivo">
+                        <select class="form-control" name="movimiento_id" id="movimiento_id" required title="Debe seleccionar una Motivo" v-model="informacion.movimiento_id">
                             <option disabled selected value="">-Seleccione-</option>
-                            <option value="1">Uno</option>
-                            <option value="2">Dos</option>
+                            @foreach($movimientos as $movimiento)
+                                <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
+                            @endforeach
                         </select>
                       </div>
                     </div>

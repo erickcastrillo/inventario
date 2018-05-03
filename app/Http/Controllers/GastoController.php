@@ -22,7 +22,7 @@ class GastoController extends Controller
      */
     public function index()
     {
-        return response()->json(Gasto::all());
+        return response()->json(Gasto::where('estado' , '=', 1)->get());
     }
 
     /**

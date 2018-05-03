@@ -21,7 +21,7 @@ class TipoConceptoController extends Controller
      */
     public function index()
     {
-        return response()->json(TipoConcepto::all());
+        return response()->json(TipoConcepto::where('estado' , '=', 1)->get());
     }
 
     /**

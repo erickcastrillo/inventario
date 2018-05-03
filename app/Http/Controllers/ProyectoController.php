@@ -21,7 +21,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        return response()->json(Proyecto::all());
+        return response()->json(Proyecto::where('estado' , '=', 1)->get());
     }
 
     /**

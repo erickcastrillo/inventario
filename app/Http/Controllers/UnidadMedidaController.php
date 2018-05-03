@@ -21,7 +21,7 @@ class UnidadMedidaController extends Controller
      */
     public function index()
     {
-        return response()->json(UnidadMedida::all());
+        return response()->json(UnidadMedida::where('estado' , '=', 1)->get());
     }
 
     /**

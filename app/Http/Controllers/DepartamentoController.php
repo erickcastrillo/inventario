@@ -21,7 +21,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        return response()->json(Departamento::all());
+        return response()->json(Departamento::where('estado' , '=', 1)->get());
     }
 
     /**

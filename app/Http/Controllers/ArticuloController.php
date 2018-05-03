@@ -21,7 +21,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return response()->json(Articulo::all());
+        return response()->json(Articulo::where('estado' , '=', 1)->get());
     }
 
     /**

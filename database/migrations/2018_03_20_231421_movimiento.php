@@ -18,7 +18,7 @@ class Movimiento extends Migration
             
             // Table specific entries
             $table->string('nombre', 100);
-            $table->string('tipo', 50);
+            $table->integer('tipo');
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations

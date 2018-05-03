@@ -21,7 +21,7 @@ class TipoCambioController extends Controller
      */
     public function index()
     {
-        return response()->json(TipoCambio::all());
+        return response()->json(TipoCambio::where('estado' , '=', 1)->get());
     }
 
     /**

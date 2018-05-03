@@ -21,7 +21,7 @@ class NotificacionController extends Controller
      */
     public function index()
     {
-        return response()->json(Notificacion::all());
+        return response()->json(Notificacion::where('estado' , '=', 1)->get());
     }
 
     /**

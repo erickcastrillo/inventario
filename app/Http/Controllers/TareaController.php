@@ -21,7 +21,7 @@ class TareaController extends Controller
      */
     public function index()
     {
-        return response()->json(Tarea::all());
+        return response()->json(Tarea::where('estado' , '=', 1)->get());
     }
 
     /**

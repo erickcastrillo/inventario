@@ -21,7 +21,7 @@ class MonedaController extends Controller
      */
     public function index()
     {
-        return response()->json(Moneda::all());
+        return response()->json(Moneda::where('estado' , '=', 1)->get());
     }
 
     /**

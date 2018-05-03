@@ -21,7 +21,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        return response()->json(Proveedor::all());
+        return response()->json(Proveedor::where('estado' , '=', 1)->get());
     }
 
     /**

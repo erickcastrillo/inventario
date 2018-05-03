@@ -10,6 +10,7 @@ use App\Traslado;
 use App\TrasladoDetalle;
 use App\Departamento;
 use App\Bodega;
+use App\Movimiento;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrasladoRequest;
 
@@ -38,9 +39,10 @@ class TrasladoController extends Controller
     public function create()
     {
       return view('traslado.nuevo.traslado', [
-        'bodegas_propias' => Auth::user()->get_otras_bodega()->get(),
-        'bodegas' =>  Auth::user()->get_bodega()->get(),
-        'departamentos' => Departamento::all(),
+        'bodegas_propias' => Auth::user()->get_otras_bodega()->where('estado' , '=', 1)->get(),
+        'bodegas' =>  Auth::user()->get_bodega()->where('estado' , '=', 1)->get(),
+        'departamentos' => Departamento::where('estado' , '=', 1)->get(),
+        'movimientos' => Movimiento::where('tipo' , '=', 3)->where('estado' , '=', 1)->get(),
       ]);
     }
 
@@ -58,7 +60,7 @@ class TrasladoController extends Controller
         $traslado->bodega_id_salida = $request->input('informacion.bodega_id_salida');
         $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
         $traslado->hora_retiro = $request->input('informacion.hora_retiro');
-        $traslado->motivo = $request->input('informacion.motivo');
+        $traslado->movimiento_id = $request->input('informacion.movimiento_id');
         $traslado->departamento_id = $request->input('informacion.departamento_id');
         $traslado->nombre_retira = $request->input('informacion.nombre_retira');
         $traslado->id_personal_retira = $request->input('informacion.id_personal_retira');
@@ -84,7 +86,7 @@ class TrasladoController extends Controller
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
             $traslado_detalle->costo_unitario = $p;
-            $traslado_detalle->moneda_id = $request->input('informacion.moneda_id');
+            //$traslado_detalle->moneda_id = $request->input('informacion.moneda_id');
             $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
             $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
             $traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;

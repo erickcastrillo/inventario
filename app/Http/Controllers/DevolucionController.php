@@ -32,9 +32,9 @@ class DevolucionController extends Controller
           array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
       }
       return view('devoluciones.nueva.devolucion', [
-          'clientes' => Cliente::all(),
-          'monedas' => Moneda::all(),
-          'bodegas' => Auth::user()->get_bodega()->get(),
+          'clientes' => Cliente::where('estado' , '=', 1)->get(),
+          'monedas' => Moneda::where('estado' , '=', 1)->get(),
+          'bodegas' => Auth::user()->get_bodega()->where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
       ]);
     }
@@ -56,16 +56,16 @@ class DevolucionController extends Controller
      */
     public function create()
     {
-      $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->get();
+      $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->where('estado' , '=', 1)->get();
       $articulos = [];
       foreach ($detalles_bodega_usuario as $detalle_bodega_usuario)
       {
           array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
       }
       return view('devoluciones.nueva.devolucion', [
-          'clientes' => Cliente::all(),
-          'monedas' => Moneda::all(),
-          'bodegas' => Auth::user()->get_bodega()->first()->get(),
+          'clientes' => Cliente::where('estado' , '=', 1)->get(),
+          'monedas' => Moneda::where('estado' , '=', 1)->get(),
+          'bodegas' => Auth::user()->get_bodega()->first()->where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
       ]);
     }

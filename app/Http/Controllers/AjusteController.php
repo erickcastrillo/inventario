@@ -22,7 +22,7 @@ class AjusteController extends Controller
      */
     public function index()
     {
-        return response()->json(Ajuste::all());
+        return response()->json(Ajuste::where('estado' , '=', 1)->get());
     }
 
     /**

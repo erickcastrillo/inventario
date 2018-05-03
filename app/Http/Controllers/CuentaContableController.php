@@ -21,7 +21,7 @@ class CuentaContableController extends Controller
      */
     public function index()
     {
-        return response()->json(CuentaContable::all());
+        return response()->json(CuentaContable::where('estado' , '=', 1)->get());
     }
 
     /**
