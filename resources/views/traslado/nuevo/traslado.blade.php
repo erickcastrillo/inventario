@@ -200,7 +200,6 @@
           </div>
         </form>
       </div>
-      <pre>@{{ $data | json }}</pre>
     </div>
   </div>
 </div>
