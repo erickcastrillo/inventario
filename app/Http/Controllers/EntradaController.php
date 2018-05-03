@@ -92,6 +92,8 @@ class EntradaController extends Controller
       $entrada->creado_id = Auth::user()->id;
       $entrada->editado_id = Auth::user()->id;
 
+      $saved_entrada = $entrada->save();
+
       foreach ($request->input('rows') as $key => $val)
       {
           $entrada_detalle = new EntradaDetalle();
@@ -102,9 +104,10 @@ class EntradaController extends Controller
           $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
           $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
           $entrada_detalle->pais = Auth::user()->country;
+          $entrada_detalle->estado = 1;
 
-          $saved_entrada = $entrada->save();
           $saved_entrada_detalle = $entrada->detalles()->save($entrada_detalle);
+
       }
 
       if($saved_entrada and $saved_entrada_detalle){

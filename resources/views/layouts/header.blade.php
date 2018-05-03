@@ -14,9 +14,6 @@
     <!-- Bootstrap core CSS     -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link href="/css/select2-bootstrap.css" rel="stylesheet">
-
     <!--  Paper Dashboard core CSS    -->
     <link href="/css/paper-dashboard.css?v=1.2.1" rel="stylesheet">
 
@@ -24,19 +21,12 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
     <link href="/css/themify-icons.css" rel="stylesheet">
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/common.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/util.js"></script>
-    <script type="text/javascript" charset="UTF-8"
-            src="https://maps.googleapis.com/maps-api-v3/api/js/32/8/stats.js"></script>
+
     <!-- Datatables css file -->
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
 
     <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
     <script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="https://cdn.bootcss.com/select2/4.0.0/js/select2.js"></script>
 
     <script src="https://openexchangerates.github.io/accounting.js/accounting.min.js" type="text/javascript"></script>
     <script src="https://rubaxa.github.io/Sortable/Sortable.js" type="text/javascript"></script>

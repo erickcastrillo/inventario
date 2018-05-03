@@ -108,6 +108,7 @@
                       <th scope="col">Lote</th>
                       <th scope="col">Serie</th>
                       <th scope="col">Cantidad</th>
+                      <th scope="col" class="hidden">Costo unitario</th>
                       <th scope="col" class="td-actions text-right">Acciones</th>
                     </tr>
                   </thead>
@@ -199,7 +200,7 @@
           </div>
         </form>
       </div>
-      {{-- <pre>@{{ $data | json }}</pre> --}}
+      <pre>@{{ $data | json }}</pre>
     </div>
   </div>
 </div>
@@ -306,51 +307,51 @@
         },
         postData: function() {
           var _this = this;
-          $('#nueva-entrada-form').validate({
+          $('#nueva-traslado-form').validate({
             submitHandler: function(form) {
-              // some other code
-              // maybe disabling submit button
-              // then:
               $('#submit').addClass('disabled');
+              _this.informacion.hora_retiro = moment(_this.informacion.hora_retiro, 'h:mm a').format('H:mm:ss');
               var token = $('meta[name="csrf-token"]').attr('content');
-              $.ajax({
-                context: this,
-                type: "POST",
-                url: "/Entrada",
-                dataType: 'json',
-                data: {
-                  _token: token,
-                  informacion: _this.informacion,
-                  rows: _this.rows,
-                },
-                success: function(result) {
-                  swal({
-                    title: result.estado,
-                    text: result.mensaje,
-                    type: result.tipo,
-                    confirmButtonClass: "btn btn-success btn-fill",
-                    buttonsStyling: false
-                  }).then(function() {
-                    location.reload();
-                  });
 
-                },
-                error: function(xhr) {
-                  var errorMessage = '';
-                  jQuery.each(xhr.responseJSON, function(i, val) {
-                    errorMessage += " - " + val + "<br>";
-                  });
-                  swal({
-                    title: 'Oh no, algo ha salido mal',
-                    html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
-                      '<b>Mensaje</b> ' + '<br>' +
-                      errorMessage,
-                    type: 'error',
-                    confirmButtonClass: "btn btn-info btn-fill",
-                    buttonsStyling: false
-                  });
-                  $('#submit').removeClass('disabled');
-                }
+              $.ajax({
+                  context: this,
+                  type: "POST",
+                  url: "/Traslado",
+                  dataType: 'json',
+                  data: {
+                      _token: token,
+                      informacion: _this.informacion,
+                      rows: _this.rows,
+                  },
+                  success: function(result) {
+                      swal({
+                          title: result.estado,
+                          text: result.mensaje,
+                          type: result.tipo,
+                          confirmButtonClass: "btn btn-success btn-fill",
+                          buttonsStyling: false
+                      }).then(function() {
+                          location.reload();
+                      });
+
+                  },
+                  error: function(xhr) {
+                      var errorMessage = '';
+                      jQuery.each(xhr.responseJSON, function(i, val) {
+                          errorMessage += " - " + val + "<br>";
+                      });
+                      swal({
+                          title: 'Oh no, algo ha salido mal',
+                          html:
+                          '<b>Error:</b> ' + xhr.status + " " + xhr.statusText+ '<br>'+
+                          '<b>Mensaje</b> ' + '<br>' +
+                          errorMessage,
+                          type: 'error',
+                          confirmButtonClass: "btn btn-info btn-fill",
+                          buttonsStyling: false
+                      });
+                      $('#submit').removeClass('disabled');
+                  }
               });
             }
           });
@@ -455,7 +456,8 @@
     });
 
     $('.datepicker').datetimepicker({
-      format: 'YYYY/DD/MM', //use this format if you want the 12hours timpiecker with AM/PM toggle
+      format: 'YYYY-DD-MM', //use this format if you want the 12hours timpiecker with AM/PM toggle
+      locale: 'es',
       icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",
@@ -472,6 +474,7 @@
     $('.timepicker').datetimepicker({
       //          format: 'H:mm',    // use this format if you want the 24hours timepicker
       format: 'h:mm A', //use this format if you want the 12hours timpiecker with AM/PM toggle
+      locale: 'es',
       icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",

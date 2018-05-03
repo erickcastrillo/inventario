@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Traslado;
 use App\TrasladoDetalle;
 use App\Departamento;
+use App\Bodega;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TrasladoRequest;
 
 class TrasladoController extends Controller
 {
@@ -48,9 +50,65 @@ class TrasladoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TrasladoRequest $request)
     {
-        //
+        $traslado = new Traslado();
+
+        $traslado->bodega_id_entrada = $request->input('informacion.bodega_id_entrada');
+        $traslado->bodega_id_salida = $request->input('informacion.bodega_id_salida');
+        $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
+        $traslado->hora_retiro = $request->input('informacion.hora_retiro');
+        $traslado->motivo = $request->input('informacion.motivo');
+        $traslado->departamento_id = $request->input('informacion.departamento_id');
+        $traslado->nombre_retira = $request->input('informacion.nombre_retira');
+        $traslado->id_personal_retira = $request->input('informacion.id_personal_retira');
+        if($request->input('informacion.notas')){
+            $traslado->notas = $request->input('informacion.notas');
+        }
+        $traslado->pais = Auth::user()->country;
+        $traslado->creado_id = Auth::user()->id;
+        $traslado->editado_id = Auth::user()->id;
+        $traslado->estado = 1;
+
+        $saved_traslado = $traslado->save();
+        foreach ($request->input('rows') as $key => $val)
+        {
+          $p =  Bodega::find($request->input('informacion.bodega_id_salida'))
+                                ->detalles()
+                                ->where('articulo_id', '=', $request->input('rows.'.$key.'.articulo'))
+                                ->where('lote', '=', $request->input('rows.'.$key.'.lote'))
+                                ->where('serie', '=', $request->input('rows.'.$key.'.serie'))
+                                ->select( 'costo_unitario')
+                                ->get();
+            $traslado_detalle = new TrasladoDetalle();
+            $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
+            $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
+            $traslado_detalle->costo_unitario = $p;
+            $traslado_detalle->moneda_id = $request->input('informacion.moneda_id');
+            $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
+            $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
+            $traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
+            $traslado_detalle->pais = Auth::user()->country;
+            $traslado_detalle->estado = 1;
+
+            $saved_traslado_detalle = $traslado->detalles()->save($traslado_detalle);
+        }
+
+        if($saved_traslado and $saved_traslado_detalle){
+
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Traslado se ha sido guardado exitosamente",
+                'tipo' => 'success'
+            ], 201);
+        } else {
+            return response()->json([
+                'estado' => '¡Error!',
+                'mensaje' => "El nuevo Traslado no se ha podido guardar",
+                'tipo' => 'error'
+            ]. 201);
+        }
+
     }
 
     /**

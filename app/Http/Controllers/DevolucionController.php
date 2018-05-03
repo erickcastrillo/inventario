@@ -91,6 +91,9 @@ class DevolucionController extends Controller
       $devolucion->estado = 1;
       $devolucion->creado_id = Auth::user()->id;
       $devolucion->editado_id = Auth::user()->id;
+      $devolucion->estado = 1;
+
+      $saved_devolucion = $devolucion->save();
 
       foreach ($request->input('rows') as $key => $val)
       {
@@ -102,9 +105,10 @@ class DevolucionController extends Controller
           $DevolucionDetalle->lote = $request->input('rows.'.$key.'.lote');
           $DevolucionDetalle->serie = $request->input('rows.'.$key.'.serie');
           $DevolucionDetalle->pais = Auth::user()->country;
+          $DevolucionDetalle->estado = 1;
 
-          $saved_devolucion = $devolucion->save();
           $saved_devolucion_detalle = $devolucion->detalles()->save($DevolucionDetalle);
+
       }
 
       if($saved_devolucion and $saved_devolucion_detalle){
