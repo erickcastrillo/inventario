@@ -12,7 +12,7 @@
          data-ps-id="09443449-f7f7-e6cf-bafa-ff063f282ac0">
         <div class="user">
             <div class="photo">
-                <img src="{{ $usuario->profile_pic}}">
+                <img src="{{ Auth::user()->profile_pic}}">
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
