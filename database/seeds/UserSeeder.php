@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
         DB::table('users')->insert([
             'name' => 'Erick',
             'last_name' => 'Castrillo',
@@ -20,6 +21,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('ndrk1396'),
             'email' => 'erick.castrillo@gmail.com',
             'country' => 'Costa Rica',
+            'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
             'estado' => 1,
             'creado_id' => 1,
             'editado_id' => 1
@@ -32,6 +34,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
             'email' => 'diego81db@gmail.com',
             'country' => 'Costa Rica',
+            'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
             'estado' => 1,
             'creado_id' => 1,
             'editado_id' => 1

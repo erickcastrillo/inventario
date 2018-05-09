@@ -50,12 +50,12 @@
                             @endif
                             <div class="card" data-background="color" data-color="blue">
                                 <div class="card-header">
-                                    <h3 class="card-title text-center">Login</h3>
+                                    <h3 class="card-title text-center">Iniciar Sesión</h3>
                                 </div>
                                 <div class="card-content">
                                     <div class="form-group">
-                                        <label>Correo electr&oacute;nico</label>
-                                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Ingrese correo" class="form-control input-no-border" required>
+                                        <label>Nombre de Usuario</label>
+                                        <input type="text" name="user_name" value="{{ old('user_name') }}" placeholder="Ingrese nombre de usuario" class="form-control input-no-border" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Contraseña</label>

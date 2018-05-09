@@ -26,6 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => bcrypt('Password123'),
         'email' => lcfirst($name) . '.' . lcfirst($lastName) .'@' . $faker->domainName,
         'country' => $faker->country,
+        'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
         'estado' => 1,
         'creado_id' => 1,
         'editado_id' => 1

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('country');
+            $table->string('profile_pic');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

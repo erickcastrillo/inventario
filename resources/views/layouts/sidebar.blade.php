@@ -12,11 +12,12 @@
          data-ps-id="09443449-f7f7-e6cf-bafa-ff063f282ac0">
         <div class="user">
             <div class="photo">
-                <img src="https://randomuser.me/api/portraits/thumb/men/83.jpg">
+                <img src="{{ $usuario->profile_pic}}">
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
 	                        <span>
+                                <!-- todo - remove photo -->
 								{{ Auth::user()->get_full_name() }}
 		                        <b class="caret"></b>
 							</span>
@@ -26,21 +27,15 @@
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li>
-                            <a href="#profile">
+                            <a href="/Usuario/{{ Auth::user()->id }}">
                                 <span class="sidebar-mini">Mp</span>
                                 <span class="sidebar-normal">Mi Perfil</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#edit">
+                            <a href="/Usuario/{{ Auth::user()->id }}/edit">
                                 <span class="sidebar-mini">Ep</span>
                                 <span class="sidebar-normal">Editar Perfil</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#settings">
-                                <span class="sidebar-mini">S</span>
-                                <span class="sidebar-normal">Ajustes</span>
                             </a>
                         </li>
                         <li>
