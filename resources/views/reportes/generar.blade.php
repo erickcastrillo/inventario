@@ -166,6 +166,7 @@
                                 this.$nextTick(function () {
 
                                     if ( $.fn.dataTable.isDataTable( '#datatable' ) ) {
+
                                         $('#datatable').DataTable({
                                             dom: 'Bfrtip',
                                             destroy: true,
@@ -178,8 +179,10 @@
                                                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                                             }
                                         });
+
                                     }
                                     else {
+
                                         $('#datatable').DataTable({
                                             dom: 'Bfrtip',
                                             responsive: true,
@@ -192,6 +195,7 @@
                                                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                                             }
                                         });
+                                        
                                     }
 
                                 });
