@@ -26,7 +26,7 @@ Route::resource('Entrada', 'EntradaController',
         'index' => 'Todas las entradas',
         'edit' => 'Editar entrada',
         'show' => 'Mostrar entrada',
-        'create' => 'Crear entrada',
+        'create' => 'Crear entrada por compra',
         'update' => 'Actualizar entrada',
         'destroy' => 'Borrar entrada',
     ]
@@ -46,7 +46,7 @@ Route::resource('Devolucion', 'DevolucionController',
         'index' => 'Todas las devoluciones',
         'edit' => 'Editar devolucion',
         'show' => 'Mostrar devolucion',
-        'create' => 'Crear devolucion',
+        'create' => 'Crear entrada por devolución',
         'update' => 'Actualizar devolucion',
         'destroy' => 'Borrar devolucion',
     ]
@@ -326,6 +326,9 @@ Route::resource('Usuario', 'UserController',
         'destroy' => 'Borrar usuario',
     ]
 ]);
+
+Route::get('Reporte', 'ReporteController@index')->name('Generar reporte');
+Route::post('Reporte/Generar', 'ReporteController@generar');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');

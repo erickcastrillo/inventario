@@ -10,7 +10,7 @@
         <span class="icon-bar bar2"></span>
         <span class="icon-bar bar3"></span>
       </button>
-      <a class="navbar-brand" href="#">{{ Request::route()->getName() }}</a>
+      <a class="navbar-brand">{{ Request::route()->getName() }}</a>
     </div>
     <div class="collapse navbar-collapse">
       <form class="navbar-form navbar-left navbar-search-form" role="search">

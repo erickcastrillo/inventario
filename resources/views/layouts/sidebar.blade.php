@@ -64,19 +64,19 @@
                 </a>
                 <div class="collapse" id="todas-las-entradas">
                     <ul class="nav">
-                        <li>
+                        <li class="{{ Request::route()->getName() == 'Todas las entradas' ? 'active' : '' }}">
                             <a href="/Entrada">
                                 <span class="sidebar-mini">T</span>
                                 <span class="sidebar-normal">Todas</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ Request::route()->getName() == 'Crear entrada por compra' ? 'active' : '' }}">
                             <a href="/Entrada/create">
                                 <span class="sidebar-mini">PC</span>
                                 <span class="sidebar-normal">Por compra</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ Request::route()->getName() == 'Crear entrada por devolución' ? 'active' : '' }}">
                             <a href="/Devolucion/create">
                                 <span class="sidebar-mini">PD</span>
                                 <span class="sidebar-normal">Por devoluci&oacute;n</span>
@@ -85,7 +85,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ Request::route()->getName() == 'Todas las salidas' ? 'active' : '' }}">
+            <li>
                 <a data-toggle="collapse" href="#todas-las-salidas">
                     <i class="ti-export"></i>
                     <p>Salidas
@@ -121,20 +121,20 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ Request::route()->getName() == 'Traslado' ? 'active' : '' }}">
+            <li class="{{ Request::route()->getName() == 'Solicitud de traslado' ? 'active' : '' }}">
                 <a href="/Traslado/create">
                     <i class="ti-share"></i>
                     <p>Solicitud de traslado</p>
                 </a>
             </li>
-            <li {{ Request::route()->getName() == 'Ajuste' ? 'active' : '' }}>
+            <li class="{{ Request::route()->getName() == 'Ajuste' ? 'active' : '' }}">
                 <a href="#">
                     <i class="ti-pencil-alt"></i>
                     <p>Ajuste</p>
                 </a>
             </li>
-            <li class="{{ Request::route()->getName() == 'Reporte' ? 'active' : '' }}">
-                <a href="#">
+            <li class="{{ Request::route()->getName() == 'Generar reporte' ? 'active' : '' }}">
+                <a href="/Reporte">
                     <i class="ti-files"></i>
                     <p>Reportes</p>
                 </a>
