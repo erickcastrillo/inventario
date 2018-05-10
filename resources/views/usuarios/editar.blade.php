@@ -2,124 +2,105 @@
 <div class="content">
     <div class="content-fluid">
         <div class="row" id="app">
-            <div class="col-lg-4 col-md-5">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="card card-user">
                     <div class="image">
-                        <img src="/img/background/blurred-1525842692193-3271.jpg" class="img-fluid" >
+                        <img src="/img/background/blurred-1525842692193-3271.jpg" >
                     </div>
                     <div class="card-content">
                         <div class="author">
-                          <img class="avatar border-white" src="{{ $usuario->profile_pic}}" alt="{{ $usuario->get_full_name() }}">
-                          <h4 class="card-title">{{ $usuario->get_full_name() }}<br>
-                             <a href="#"><small>{{ $usuario->email }}</small></a>
-                          </h4>
-                        </div>
-                        <p class="description text-center">
-                            "I like the way you work it <br>
-                            No diggity <br>
-                            I wanna bag it up"
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <div class="row">
-                            <div class="col-md-3 col-md-offset-1">
-                                <h5>12<br><small>Files</small></h5>
-                            </div>
-                            <div class="col-md-4">
-                                <h5>2GB<br><small>Used</small></h5>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>24,6$<br><small>Spent</small></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-7">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Edit Profile</h4>
-                    </div>
-                    <div class="card-content">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Company</label>
-                                        <input type="text" class="form-control border-input" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control border-input" placeholder="Email">
-                                    </div>
-                                </div>
-                            </div>
+                            <img class="avatar border-white" src="{{ $usuario->profile_pic}}" alt="{{ $usuario->get_full_name() }}">
+                            <h4 class="card-title">{{ $usuario->get_full_name() }}<br>
+                                <small>{{ $usuario->email }}</small><br>
+                                <small>{{ $usuario->user_name }}</small>
+                            </h4>
+                            <hr>
+                            
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control border-input" placeholder="Company" value="Chet">
+                                    <h4 class="text-left">Detalles</h4>
+                                    <div class="row">
+                                        <strong class="col-md-5 text-left">Nombre</strong>
+                                        <p class="col-md-7 text-left">{{ $usuario->name }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <strong class="col-md-5 text-left">Apellido</strong>
+                                        <p class="col-md-7 text-left">{{ $usuario->last_name }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <strong class="col-md-5 text-left">Nombre de usuario</strong>
+                                        <p class="col-md-7 text-left">{{ $usuario->user_name }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <strong class="col-md-5 text-left">Correo Electrónico</strong>
+                                        <p class="col-md-7 text-left">{{ $usuario->email }}</p>
+                                    </div>
+                                    <div class="row">
+                                        <strong class="col-md-5 text-left">Pais</strong>
+                                        <p class="col-md-7 text-left">{{ $usuario->country }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control border-input" placeholder="Last Name" value="Faker">
-                                    </div>
+                                    <h4 class="text-left">Niveles de accesso</h4>
+                                    @foreach ($roles as $role)
+                                        <div class="row">
+                                            <strong class="col-md-4 text-left">{{ $role->display_name }}</strong>
+                                            <p class="col-md-8 text-left">{{ $role->description }}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
-                                    </div>
+                                    <form method="get" action="/" class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Nombre</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="name" placeholder="{{ $usuario->name }}">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Apellido</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="form-control" class="form-control" name="last_name" placeholder="{{ $usuario->last_name }}">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Correo Electrónico</label>
+                                                <div class="col-sm-9">
+                                                <input type="email" placeholder="{{ $usuario->email }}" class="form-control" name="email">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Pais</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" placeholder="Disabled input here..." class="form-control">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                    </form>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>City</label>
-                                        <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Country</label>
-                                        <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Postal Code</label>
-                                        <input type="number" class="form-control border-input" placeholder="ZIP Code">
-                                    </div>
-                                </div>
+                            
+                            <br>
+                            <div class="card-footer">
+                                <a href="/Usuario/{{ Auth::user()->id }}/edit" class="btn btn-wd btn-default text-center">
+                                    <span class="btn-label">
+                                        <i class="ti-pencil"></i>
+                                    </span>
+                                    Editar Perfil
+                                </a>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>About Me</label>
-                                        <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">
-                                            Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions.
-                                        </textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
