@@ -202,7 +202,6 @@
 
                             },
                             error: function(xhr) {
-                                console.log(xhr);
                                 var errorMessage = '';
                                 swal({
                                     title: 'Oh no, algo ha salido mal',
