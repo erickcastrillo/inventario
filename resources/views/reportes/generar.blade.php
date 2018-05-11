@@ -195,7 +195,7 @@
                                                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                                             }
                                         });
-                                        
+
                                     }
 
                                 });
@@ -203,6 +203,14 @@
                             },
                             error: function(xhr) {
                                 console.log(xhr);
+                                var errorMessage = '';
+                                swal({
+                                    title: 'Oh no, algo ha salido mal',
+                                    html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText,
+                                    type: 'error',
+                                    confirmButtonClass: "btn btn-info btn-fill",
+                                    buttonsStyling: false
+                                });
                             }
                         });
                     }
