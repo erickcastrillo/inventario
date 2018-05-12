@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Event;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ use App\Bodega;
 use App\Movimiento;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrasladoRequest;
+use App\Events\NotificationEvent;
 
 class TrasladoController extends Controller
 {
@@ -39,8 +41,8 @@ class TrasladoController extends Controller
     public function create()
     {
       return view('traslado.nuevo.traslado', [
-        'bodegas_propias' => Auth::user()->get_otras_bodega()->where('estado' , '=', 1)->get(),
-        'bodegas' =>  Auth::user()->get_bodega()->where('estado' , '=', 1)->get(),
+        'bodegas_propias' => Bodega::where('estado' , '=', 1)->get(),
+        'bodegas' =>  Bodega::where('estado' , '=', 1)->get(),
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
         'movimientos' => Movimiento::where('tipo' , '=', 3)->where('estado' , '=', 1)->get(),
       ]);
@@ -86,29 +88,40 @@ class TrasladoController extends Controller
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
             $traslado_detalle->costo_unitario = $p;
-            //$traslado_detalle->moneda_id = $request->input('informacion.moneda_id');
             $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
             $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
             $traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
             $traslado_detalle->pais = Auth::user()->country;
-            $traslado_detalle->estado = 1;
+
+            // estado 0 means pending, 1 approved, 2 rejected
+            $traslado_detalle->estado = 0;
 
             $saved_traslado_detalle = $traslado->detalles()->save($traslado_detalle);
         }
 
         if($saved_traslado and $saved_traslado_detalle){
 
+            $notiticacion = new \stdClass();
+            $notiticacion->estado = '¡Exito!';
+            $notiticacion->mensaje = "Traslado se ha sido guardado exitosamente";
+            $notiticacion->tipo = 'success';
+
+            Event::fire(new NotificationEvent($notiticacion));
+
             return response()->json([
                 'estado' => '¡Exito!',
                 'mensaje' => "Traslado se ha sido guardado exitosamente",
                 'tipo' => 'success'
             ], 201);
+
         } else {
+
             return response()->json([
                 'estado' => '¡Error!',
                 'mensaje' => "El nuevo Traslado no se ha podido guardar",
                 'tipo' => 'error'
             ]. 201);
+
         }
 
     }

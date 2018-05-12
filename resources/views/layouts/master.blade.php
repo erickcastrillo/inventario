@@ -110,6 +110,8 @@
 <!--   Sharrre Library    -->
 <script src="/js/jquery.sharrre.js"></script>
 
+<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+
 </body>
 
 </html>

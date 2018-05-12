@@ -108,7 +108,7 @@ class ReporteController extends Controller
                 "returnCode" => "error",
                 "data" => $e->getMessage()
             ];
-            return response()->json($error);
+            return response()->json($error, 500);
         }
         
     }
