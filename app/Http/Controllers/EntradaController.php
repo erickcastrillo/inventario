@@ -74,56 +74,76 @@ class EntradaController extends Controller
      */
     public function store(EntradaRequest $request)
     {
-      $entrada = new Entrada();
+        
+        $n_factura = $request->input('informacion.n_factura');
+        $proveedor_id = $request->input('informacion.id_proveedor');
 
-      $entrada->fecha_factura = $request->input('informacion.fecha_factura');
-      $entrada->proveedor_id = $request->input('informacion.id_proveedor');
-      if($request->input('informacion.notas')){
-          $entrada->notas = $request->input('informacion.notas');
-      }
-      //$entrada->moneda_id = $request->input('informacion.moneda_id');
-      $entrada->n_factura = $request->input('informacion.n_factura');
-      $entrada->proyecto_id = $request->input('informacion.proyecto_id');
-      $entrada->tarea_id = $request->input('informacion.tarea_id');
-      $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
-      $entrada->pais = Auth::user()->country;
-      $entrada->estado = 1;
-      $entrada->movimiento_id = 1;
-      $entrada->creado_id = Auth::user()->id;
-      $entrada->editado_id = Auth::user()->id;
+        $result = Entrada::where('n_factura', $n_factura)->where('proveedor_id', 10)->get();
 
-      $saved_entrada = $entrada->save();
+        if (!$result->isEmpty()) {
 
-      foreach ($request->input('rows') as $key => $val)
-      {
-          $entrada_detalle = new EntradaDetalle();
-          $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
-          $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
-          $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
-          $entrada_detalle->moneda_id = $request->input('informacion.moneda_id');
-          $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
-          $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
-          $entrada_detalle->pais = Auth::user()->country;
-          $entrada_detalle->estado = 1;
+            return response()->json([
+                'estado' => '¡Error!',
+                'mensaje' => "El numero de Factura asociado al Proveedor seleccionado ya existe",
+                'tipo' => 'error'
+            ], 201);
 
-          $saved_entrada_detalle = $entrada->detalles()->save($entrada_detalle);
+        } else {
 
-      }
+            $entrada = new Entrada();
 
-      if($saved_entrada and $saved_entrada_detalle){
+            $entrada->fecha_factura = $request->input('informacion.fecha_factura');
+            $entrada->proveedor_id = $request->input('informacion.id_proveedor');
+            if($request->input('informacion.notas')){
+                $entrada->notas = $request->input('informacion.notas');
+            }
+            //$entrada->moneda_id = $request->input('informacion.moneda_id');
+            $entrada->n_factura = $request->input('informacion.n_factura');
+            $entrada->proyecto_id = $request->input('informacion.proyecto_id');
+            $entrada->tarea_id = $request->input('informacion.tarea_id');
+            $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
+            $entrada->pais = Auth::user()->country;
+            $entrada->estado = 1;
+            $entrada->movimiento_id = 1;
+            $entrada->creado_id = Auth::user()->id;
+            $entrada->editado_id = Auth::user()->id;
+    
+            $saved_entrada = $entrada->save();
+    
+            foreach ($request->input('rows') as $key => $val)
+            {
+                $entrada_detalle = new EntradaDetalle();
+                $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
+                $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
+                $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
+                $entrada_detalle->moneda_id = $request->input('informacion.moneda_id');
+                $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
+                $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
+                $entrada_detalle->pais = Auth::user()->country;
+                $entrada_detalle->estado = 1;
+    
+                $saved_entrada_detalle = $entrada->detalles()->save($entrada_detalle);
+    
+            }
+    
+            if($saved_entrada and $saved_entrada_detalle){
+    
+                return response()->json([
+                    'estado' => '¡Exito!',
+                    'mensaje' => "Entrada se ha sido guardado exitosamente",
+                    'tipo' => 'success'
+                ], 201);
 
-          return response()->json([
-              'estado' => '¡Exito!',
-              'mensaje' => "Entrada se ha sido guardado exitosamente",
-              'tipo' => 'success'
-          ], 201);
-      } else {
-          return response()->json([
-              'estado' => '¡Error!',
-              'mensaje' => "La nueva entrada no se ha podido guardar",
-              'tipo' => 'error'
-          ]. 201);
-      }
+            } else {
+
+                return response()->json([
+                    'estado' => '¡Error!',
+                    'mensaje' => "La nueva entrada no se ha podido guardar",
+                    'tipo' => 'error'
+                ], 201);
+
+            }
+        }
     }
 
     /**
