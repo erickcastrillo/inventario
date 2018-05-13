@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Event;
+use Illuminate\Support\Facades\App;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -102,9 +103,10 @@ class TrasladoController extends Controller
         if($saved_traslado and $saved_traslado_detalle){
 
             $notiticacion = new \stdClass();
-            $notiticacion->estado = '¡Exito!';
-            $notiticacion->mensaje = "Traslado se ha sido guardado exitosamente";
-            $notiticacion->tipo = 'success';
+            $notiticacion->title = "Nueva solicitud de traslado";
+            $notiticacion->message = "El usuario " . Auth::user()->get_full_name() . " ha solicitado un nuevo traslado, por favor revisa los detalles aqui";
+            $notiticacion->type = 'info';
+            $notiticacion->url = '/';
 
             Event::fire(new NotificationEvent($notiticacion));
 

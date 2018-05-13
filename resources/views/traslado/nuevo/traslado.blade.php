@@ -489,19 +489,6 @@
 
     });
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('070f3ca82259b2c85a65', {
-      cluster: 'us2',
-      encrypted: true
-    });
-
-    var channel = pusher.subscribe('notifications');
-      channel.bind("App\\Events\\NotificationEvent", function(data) {
-      console.log(data.message);
-    });
-
   });
 </script>
 @endsection

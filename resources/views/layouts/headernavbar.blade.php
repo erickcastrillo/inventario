@@ -26,8 +26,8 @@
             <p>Stats</p>
           </a>
         </li>
-        <li class="dropdown">
-          <a href="#notigfications" class="dropdown-toggle" data-toggle="dropdown">
+        <li class="dropdown btn-magnify">
+          <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
             <i class="ti-bell"></i>
             <span class="notification">5</span>
             <p class="hidden-md hidden-lg">

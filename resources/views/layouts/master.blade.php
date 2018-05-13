@@ -112,6 +112,40 @@
 
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('070f3ca82259b2c85a65', {
+      cluster: 'us2',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('notifications');
+    channel.bind('App\\Events\\NotificationEvent', function(data) {
+        console.log(data);
+        $.notify({
+            icon: "ti-bell",
+            title: data.title,
+            message: data.message,
+            url: data.url
+        },{
+            type: data.type,
+            timer: 4000,
+            allow_dismiss: true,
+            placement: {
+                from: 'top',
+                align: 'right',
+            },
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutUp',
+            },
+        });
+    });
+  </script>
+
 </body>
 
 </html>
