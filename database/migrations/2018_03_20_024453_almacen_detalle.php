@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BodegaDetalle extends Migration
+class AlmacenDetalle extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class BodegaDetalle extends Migration
      */
     public function up()
     {
-        Schema::create('bodegas_detalle', function (Blueprint $table) {
+        Schema::create('almacenes_detalle', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('bodega_id');
+            $table->integer('almacen_id');
             $table->integer('articulo_id');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);
@@ -42,6 +42,6 @@ class BodegaDetalle extends Migration
      */
     public function down()
     {
-        Schema::drop('bodegas_detalle');
+        Schema::drop('almacenes_detalle');
     }
 }

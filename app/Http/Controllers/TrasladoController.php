@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Traslado;
 use App\TrasladoDetalle;
 use App\Departamento;
-use App\Bodega;
+use App\Almacen;
 use App\Movimiento;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrasladoRequest;
@@ -42,8 +42,8 @@ class TrasladoController extends Controller
     public function create()
     {
       return view('traslado.nuevo.traslado', [
-        'bodegas_propias' => Bodega::where('estado' , '=', 1)->get(),
-        'bodegas' =>  Bodega::where('estado' , '=', 1)->get(),
+        'almacenes_propias' => Almacen::where('estado' , '=', 1)->get(),
+        'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
         'movimientos' => Movimiento::where('tipo' , '=', 3)->where('estado' , '=', 1)->get(),
       ]);
@@ -59,8 +59,8 @@ class TrasladoController extends Controller
     {
         $traslado = new Traslado();
 
-        $traslado->bodega_id_entrada = $request->input('informacion.bodega_id_entrada');
-        $traslado->bodega_id_salida = $request->input('informacion.bodega_id_salida');
+        $traslado->almacenes_id_entrada = $request->input('informacion.almacenes_id_entrada');
+        $traslado->almacenes_id_salida = $request->input('informacion.almacenes_id_salida');
         $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
         $traslado->hora_retiro = $request->input('informacion.hora_retiro');
         $traslado->movimiento_id = $request->input('informacion.movimiento_id');
@@ -78,7 +78,7 @@ class TrasladoController extends Controller
         $saved_traslado = $traslado->save();
         foreach ($request->input('rows') as $key => $val)
         {
-          $p =  Bodega::find($request->input('informacion.bodega_id_salida'))
+          $p =  Almacen::find($request->input('informacion.almacenes_id_salida'))
                                 ->detalles()
                                 ->where('articulo_id', '=', $request->input('rows.'.$key.'.articulo'))
                                 ->where('lote', '=', $request->input('rows.'.$key.'.lote'))

@@ -10,7 +10,7 @@ use App\Devolucion;
 use App\DevolucionDetalle;
 use Illuminate\Support\Facades\Auth;
 use App\Articulo;
-use App\Bodega;
+use App\Almacen;
 use App\Moneda;
 use App\Cliente;
 use App\Http\Requests\DevolucionRequest;
@@ -25,16 +25,16 @@ class DevolucionController extends Controller
 
     public function nueva_entrada_devolucion()
     {
-      $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->get();
+      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->get();
       $articulos = [];
-      foreach ($detalles_bodega_usuario as $detalle_bodega_usuario)
+      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
       {
-          array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
+          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
       }
       return view('devoluciones.nueva.devolucion', [
           'clientes' => Cliente::where('estado' , '=', 1)->get(),
           'monedas' => Moneda::where('estado' , '=', 1)->get(),
-          'bodegas' => Auth::user()->get_bodega()->where('estado' , '=', 1)->get(),
+          'almacenes' => Auth::user()->get_almacenes()->where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
       ]);
     }
@@ -56,16 +56,16 @@ class DevolucionController extends Controller
      */
     public function create()
     {
-      $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->where('estado' , '=', 1)->get();
+      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->where('estado' , '=', 1)->get();
       $articulos = [];
-      foreach ($detalles_bodega_usuario as $detalle_bodega_usuario)
+      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
       {
-          array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
+          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
       }
       return view('devoluciones.nueva.devolucion', [
           'clientes' => Cliente::where('estado' , '=', 1)->get(),
           'monedas' => Moneda::where('estado' , '=', 1)->get(),
-          'bodegas' => Auth::user()->get_bodega()->first()->where('estado' , '=', 1)->get(),
+          'almacenes' => Auth::user()->get_almacenes()->first()->where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
       ]);
     }
@@ -86,7 +86,7 @@ class DevolucionController extends Controller
           $devolucion->notas = $request->input('informacion.notas');
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');
-      $devolucion->bodega_id = $request->input('informacion.bodega_id');
+      $devolucion->almacenes_id = $request->input('informacion.almacenes_id');
       $devolucion->pais = Auth::user()->country;
       $devolucion->estado = 1;
       $devolucion->creado_id = Auth::user()->id;

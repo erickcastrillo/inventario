@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Bodega;
+use App\Almacen;
 use App\Departamento;
 use App\User;
 
@@ -19,14 +19,14 @@ class Traslado extends Model
         return Departamento::find($this->departamento_id);
     }
 
-    public function get_bodega_entrada()
+    public function get_almacenes_entrada()
     {
-        return Bodega::find($this->bodega_id_entrada);
+        return Almacen::find($this->almacenes_id_entrada);
     }
 
-    public function get_bodega_salida()
+    public function get_almacenes_salida()
     {
-        return Bodega::find($this->bodega_id_salida);
+        return Almacen::find($this->almacenes_id_salida);
     }
 
     public function get_creador_name()

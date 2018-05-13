@@ -9,9 +9,9 @@ use App\UnidadMedida;
 
 class Articulo extends Model
 {
-    public function bodega()
+    public function almacenes()
     {
-        return $this->belongsTo('App\Bodega');
+        return $this->belongsTo('App\Almacen');
     }
 
     public function get_categoria()

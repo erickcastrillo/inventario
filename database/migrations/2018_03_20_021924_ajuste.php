@@ -19,7 +19,7 @@ class Ajuste extends Migration
             // Table specific entries
             $table->dateTime('fecha_ajuste');
             $table->integer('auditor_id');
-            $table->integer('bodega_id');
+            $table->integer('almacen_id');
             $table->string('notas', 500);
             $table->string('pais', 50);
             

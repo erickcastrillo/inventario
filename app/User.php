@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
-use App\Bodega;
+use App\Almacen;
 use App\Moneda;
 
 class User extends Model implements AuthenticatableContract,
@@ -55,13 +55,13 @@ class User extends Model implements AuthenticatableContract,
       return Moneda::where('pais', '=', $this->country);
     }
 
-    public function get_bodega()
+    public function get_almacenes()
     {
-        return Bodega::where('responsable_id', '=', $this->id);
+        return Almacen::where('responsable_id', '=', $this->id);
     }
 
-    public function get_otras_bodega()
+    public function get_otras_almacenes()
     {
-        return Bodega::where('pais', '<>', $this->id);
+        return Almacen::where('pais', '<>', $this->id);
     }
 }

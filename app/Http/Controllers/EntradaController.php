@@ -15,7 +15,7 @@ use App\Proyecto;
 use App\Tarea;
 use App\TipoConcepto;
 use App\Articulo;
-use App\Bodega;
+use App\Almacen;
 use App\Http\Requests\EntradaRequest;
 
 class EntradaController extends Controller
@@ -49,11 +49,11 @@ class EntradaController extends Controller
      */
     public function create()
     {
-      $detalles_bodega_usuario = Auth::user()->get_bodega()->first()->detalles()->get();
+      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->get();
       $articulos = [];
-      foreach ($detalles_bodega_usuario as $detalle_bodega_usuario)
+      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
       {
-          array_push($articulos, Articulo::find($detalle_bodega_usuario->articulo_id) );
+          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
       }
       return view('entradas.nueva.compra', [
           'proveedores' => Proveedor::where('estado' , '=', 1)->get(),

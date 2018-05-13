@@ -17,8 +17,8 @@ class Traslado extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->integer('bodega_id_entrada');
-            $table->integer('bodega_id_salida');
+            $table->integer('almacenes_id_entrada');
+            $table->integer('almacenes_id_salida');
             $table->date('fecha_retiro');
             $table->time('hora_retiro');
             $table->integer('movimiento_id');

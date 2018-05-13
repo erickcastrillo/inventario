@@ -4,10 +4,10 @@
     <list default="true" id="f2546cea-ddf3-4636-b34e-22e0fb0c4295" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Articulo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Articulo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/BodegaDetalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BodegaDetalle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AlmacenDetalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AlmacenDetalle.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/BodegaFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/BodegaFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/AlmacenFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AlmacenFactory.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,8 +43,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BodegaDetalle.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/BodegaDetalle.php">
+      <file leaf-file-name="AlmacenDetalle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AlmacenDetalle.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="805">
               <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
@@ -85,8 +85,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bodega.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Bodega.php">
+      <file leaf-file-name="Almacen.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Almacen.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="9" column="28" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="28" />
@@ -174,7 +174,7 @@
         <option value="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AjusteController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArticuloController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BodegaController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AlmacenController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CuentaContableController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DepartamentoController.php" />
@@ -210,12 +210,12 @@
         <option value="$PROJECT_DIR$/resources/views/entradas/todas.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/EntradaRequest.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/database/factories/BodegaFactory.php" />
+        <option value="$PROJECT_DIR$/database/factories/AlmacenFactory.php" />
         <option value="$PROJECT_DIR$/app/Articulo.php" />
         <option value="$PROJECT_DIR$/app/Entrada.php" />
-        <option value="$PROJECT_DIR$/app/Bodega.php" />
+        <option value="$PROJECT_DIR$/app/Almacen.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/BodegaDetalle.php" />
+        <option value="$PROJECT_DIR$/app/AlmacenDetalle.php" />
         <option value="$PROJECT_DIR$/resources/views/entradas/nueva/compra.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EntradaController.php" />
       </list>
@@ -713,7 +713,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/BodegaFactory.php">
+    <entry file="file://$PROJECT_DIR$/database/factories/AlmacenFactory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
@@ -768,7 +768,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/BodegaDetalle.php">
+    <entry file="file://$PROJECT_DIR$/app/AlmacenDetalle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="805">
           <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
@@ -778,7 +778,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Bodega.php">
+    <entry file="file://$PROJECT_DIR$/app/Almacen.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="9" column="28" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="28" />

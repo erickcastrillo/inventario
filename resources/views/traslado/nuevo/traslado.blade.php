@@ -18,23 +18,24 @@
                   <h4 class="card-title text-center">Detalle del Traslado</h4>
                   <div class="form-horizontal">
                     <div class="form-group">
-                      <label class="col-md-4 control-label">Bodega de Entrada</label>
+                      <label class="col-md-4 control-label">Almacen</label>
                       <div class="col-sm-8">
-                        <select class="form-control" name="bodega_id_entrada" id="bodega_id_entrada" required title="Debe seleccionar una Bodega" v-model="informacion.bodega_id_entrada">
+                        <select class="form-control" name="almacenes_id_entrada" id="almacenes_id_entrada" required title="Debe seleccionar una Almacen" v-model="informacion.almacenes_id_entrada">
                             <option disabled selected value="">-Seleccione-</option>
-                            @foreach($bodegas_propias as $bodega_propia)
-                                <option value="{{ $bodega_propia->id }}">{{ $bodega_propia->descripcion }}</option>
+                            @foreach($almacenes_propias as $almacenes_propia)
+                                <option value="{{ $almacenes_propia->id }}">{{ $almacenes_propia->descripcion }}</option>
                             @endforeach
                         </select>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-4 control-label">Bodega de Salida</label>
+                      <label class="col-md-4 control-label">Almacen principal</label>
                       <div class="col-sm-8">
-                        <select v-on:change="getProductos()" class="form-control" name="bodega_id_salida" id="bodega_id_salida" required title="Debe seleccionar una Bodega" v-model="informacion.bodega_id_salida">
+                        <select v-on:change="getProductos()" class="form-control" name="almacenes_id_salida" id="almacenes_id_salida" required title="Debe seleccionar una Almacen" v-model="informacion.almacenes_id_salida" disabled>
                             <option disabled selected value="">-Seleccione-</option>
-                            @foreach($bodegas as $bodega)
-                                <option value="{{ $bodega->id }}">{{ $bodega->descripcion }} </option>
+                            <!-- Todo - mostrar Almacen principal -->
+                            @foreach($almacenes as $almacenes)
+                                <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }} </option>
                             @endforeach
                         </select>
                       </div>
@@ -44,6 +45,7 @@
                       <div class="col-sm-8">
                         <select class="form-control" name="movimiento_id" id="movimiento_id" required title="Debe seleccionar una Motivo" v-model="informacion.movimiento_id">
                             <option disabled selected value="">-Seleccione-</option>
+                            <!-- Movivientos por pais de la persona logueada -->
                             @foreach($movimientos as $movimiento)
                                 <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
                             @endforeach
@@ -239,7 +241,7 @@
         productos: [
           {
             id: "",
-            bodega_id: "",
+            almacenes_id: "",
             articulo_id: "",
             nombre_producto: ""
             }
@@ -268,8 +270,8 @@
         ],
         informacion: {
           notas: "",
-          bodega_id_entrada: "",
-          bodega_id_salida: "",
+          almacenes_id_entrada: "",
+          almacenes_id_salida: "",
           motivo: "",
           departamento_id: "",
           fecha_retiro: "",
@@ -362,7 +364,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Bodega/" + _this.informacion.bodega_id_salida + "/detalles",
+            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/detalles",
             dataType: 'json',
             data: {
               _token: token,
@@ -394,7 +396,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Bodega/" + _this.informacion.bodega_id_salida + "/" + row.articulo + "/lotes",
+            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/" + row.articulo + "/lotes",
             dataType: 'json',
             data: {
               _token: token,
@@ -426,7 +428,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Bodega/" + _this.informacion.bodega_id_salida + "/" + row.articulo + "/" + row.lote + "/series",
+            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/" + row.articulo + "/" + row.lote + "/series",
             dataType: 'json',
             data: {
               _token: token,

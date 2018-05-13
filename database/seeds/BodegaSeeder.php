@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BodegaSeeder extends Seeder
+class AlmacenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class BodegaSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Bodega::class, 50)->create()->each(function($u) {
+        factory(App\Almacen::class, 50)->create()->each(function($u) {
             for ($i = 1; $i <= 10; $i++) {
-                $u->detalles()->save(factory(App\BodegaDetalle::class)->make());
+                $u->detalles()->save(factory(App\AlmacenDetalle::class)->make());
             }
         });
     }

@@ -30,8 +30,8 @@ class TrasladoRequest extends Request
         'informacion.hora_retiro' => 'required|date_format:H:i:s',
         'informacion.departamento_id' => 'required|numeric',
         'informacion.movimiento_id' => 'required|numeric',
-        'informacion.bodega_id_salida' => 'required|numeric',
-        'informacion.bodega_id_entrada' => 'required|numeric',
+        'informacion.almacenes_id_salida' => 'required|numeric',
+        'informacion.almacenes_id_entrada' => 'required|numeric',
         'informacion.notas' => 'required',
 
       ];

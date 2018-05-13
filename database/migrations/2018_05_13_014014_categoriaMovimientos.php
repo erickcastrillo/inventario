@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Bodega extends Migration
+class CategoriaMovimientos extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class Bodega extends Migration
      */
     public function up()
     {
-        Schema::create('bodegas', function (Blueprint $table) {
+        Schema::create('categoriamovimientos', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
             
             // Table specific entries
-            $table->string('descripcion', 500);
-            $table->integer('responsable_id');
+            $table->string('nombre', 100);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
@@ -37,6 +36,6 @@ class Bodega extends Migration
      */
     public function down()
     {
-        Schema::drop('bodegas');
+        Schema::drop('categoriamovimientos');
     }
 }

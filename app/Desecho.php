@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Bodega;
+use App\Almacen;
 
 class Desecho extends Model
 {
@@ -13,9 +13,9 @@ class Desecho extends Model
         return $this->hasMany('App\DesechoDetalle');
     }
 
-    public function get_bodega()
+    public function get_almacenes()
     {
-        return Bodega::find($this->bodega_id);
+        return Almacen::find($this->almacenes_id);
     }
 
     public function get_auditor()

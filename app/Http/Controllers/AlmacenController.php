@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Bodega;
-use App\BodegaDetalle;
+use App\Almacen;
+use App\AlmacenDetalle;
 use App\Articulo;
 
-class BodegaController extends Controller
+class AlmacenController extends Controller
 {
     public function __construct()
     {
@@ -20,22 +20,22 @@ class BodegaController extends Controller
     public function getProductos($id)
     {
       $results = [];
-      $detalles_bodega =  Bodega::find($id)->detalles()->select('id', 'articulo_id', 'bodega_id')->get();
-      foreach ($detalles_bodega as $detalle_bodega) {
-        $detalle_bodega['nombre_producto'] = Articulo::find($detalle_bodega->articulo_id)->descripcion;
+      $detalles_almacenes =  Almacen::find($id)->detalles()->select('id', 'articulo_id', 'almacenes_id')->get();
+      foreach ($detalles_almacenes as $detalle_almacenes) {
+        $detalle_almacenes['nombre_producto'] = Articulo::find($detalle_almacenes->articulo_id)->descripcion;
       }
-      return response()->json( $detalles_bodega );
+      return response()->json( $detalles_almacenes );
     }
 
-    public function getLotes($bodega_id, $producto_id)
+    public function getLotes($almacenes_id, $producto_id)
     {
-      $lotes =  Bodega::find($bodega_id)->detalles()->where('articulo_id', '=', $producto_id)->select('lote', 'id', 'articulo_id')->get();
+      $lotes =  Almacen::find($almacenes_id)->detalles()->where('articulo_id', '=', $producto_id)->select('lote', 'id', 'articulo_id')->get();
       return response()->json( $lotes );
     }
 
-    public function getSerie($bodega_id, $producto_id, $lote)
+    public function getSerie($almacenes_id, $producto_id, $lote)
     {
-      $serie =  Bodega::find($bodega_id)
+      $serie =  Almacen::find($almacenes_id)
                             ->detalles()
                             ->where('articulo_id', '=', $producto_id)
                             ->where('lote', '=', $lote)
@@ -51,7 +51,7 @@ class BodegaController extends Controller
      */
     public function index()
     {
-        return response()->json(Bodega::where('estado' , '=', 1)->get());
+        return response()->json(Almacen::where('estado' , '=', 1)->get());
     }
 
     /**

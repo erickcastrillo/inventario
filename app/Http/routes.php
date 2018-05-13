@@ -112,25 +112,25 @@ Route::resource('Desecho', 'DesechoController',
 ]);
 
 // --------------------------------------------------------------------------------
-// Bodega
+// Almacen
 // --------------------------------------------------------------------------------
 
-// Rutas de las bodegas como resource
-Route::resource('Bodega', 'BodegaController',
+// Rutas de las almacenes como resource
+Route::resource('Almacen', 'AlmacenController',
 ['names' =>
     [
-        'index' => 'Todas los bodegas',
-        'edit' => 'Editar bodega',
-        'show' => 'Mostrar bodega',
-        'create' => 'Crear bodega',
-        'update' => 'Actualizar bodega',
-        'destroy' => 'Borrar bodega',
+        'index' => 'Todas los almacenes',
+        'edit' => 'Editar almacenes',
+        'show' => 'Mostrar almacenes',
+        'create' => 'Crear almacenes',
+        'update' => 'Actualizar almacenes',
+        'destroy' => 'Borrar almacenes',
     ]
 ]);
 
-Route::get('/Bodega/{id}/detalles', 'BodegaController@getProductos');
-Route::get('/Bodega/{bodega_id}/{producto_id}/lotes', 'BodegaController@getLotes');
-Route::get('/Bodega/{bodega_id}/{producto_id}/{lote}/series', 'BodegaController@getSerie');
+Route::get('/Almacen/{id}/detalles', 'AlmacenController@getProductos');
+Route::get('/Almacen/{almacenes_id}/{producto_id}/lotes', 'AlmacenController@getLotes');
+Route::get('/Almacen/{almacenes_id}/{producto_id}/{lote}/series', 'AlmacenController@getSerie');
 
 // Rutas de los tipos cambio como resource
 Route::resource('TipoCambio', 'TipoCambioController',

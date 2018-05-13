@@ -8,7 +8,7 @@ use App\Proyecto;
 use App\Tarea;
 use App\User;
 use App\Cliente;
-use App\Bodega;
+use App\Almacen;
 use App\Movimiento;
 
 class Gasto extends Model
@@ -59,8 +59,8 @@ class Gasto extends Model
         return User::find($this->creado_id);
     }
 
-    public function get_bodega() {
-        return Bodega::find($this->bodega_id);
+    public function get_almacenes() {
+        return Almacen::find($this->almacenes_id);
     }
 
     public function get_editor()

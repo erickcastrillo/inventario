@@ -4,13 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Articulo;
 
-class BodegaDetalle extends Model
+class Almacen extends Model
 {
-    public function bodega()
+    public function detalles()
     {
-        return $this->belongsTo('App\Bodega');
+        return $this->hasMany('App\AlmacenDetalle');
+    }
+
+    public function get_responsable()
+    {
+        return User::find($this->responsable_id);
+    }
+
+    public function get_responsable_name()
+    {
+        $name = User::find($this->responsable_id)->name;
+        $last_name = User::find($this->responsable_id)->last_name;
+
+        return $name . " " . $last_name;
     }
 
     public function get_creador_name()
@@ -29,11 +41,6 @@ class BodegaDetalle extends Model
         return $name . " " . $last_name;
     }
 
-    public function get_articulo()
-    {
-        return Articulo::find($this->articulo_id);
-    }
-
     public function get_creador()
     {
         return User::find($this->creado_id);
@@ -44,5 +51,5 @@ class BodegaDetalle extends Model
         return User::find($this->editado_id);
     }
 
-    protected $table = 'bodegas_detalle';
+    protected $table = 'almacenes';
 }

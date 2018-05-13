@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TrasladoSeeder::class);
         $this->call(GastoSeeder::class);
         $this->call(DesechoSeeder::class);
-        $this->call(BodegaSeeder::class);
+        $this->call(AlmacenSeeder::class);
         $this->call(TipoCambioSeeder::class);
         $this->call(ArticuloSeeder::class);
         $this->call(ProveedorSeeder::class);
@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificacionSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(EnlaceSeeder::class);
+        $this->call(CategoriaMovimientosSeeder::class);
 
         Model::reguard();
     }
