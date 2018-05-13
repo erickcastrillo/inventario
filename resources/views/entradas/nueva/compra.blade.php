@@ -19,7 +19,7 @@
                                         <div class="col-md-6">
                                             <div class="form-horizontal">
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label">Proveeddor</label>
+                                                    <label class="col-md-4 control-label">Proveedor</label>
                                                     <div class="col-sm-8">
                                                         <select
                                                                 class="form-control"

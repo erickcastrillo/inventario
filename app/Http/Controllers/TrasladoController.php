@@ -112,7 +112,7 @@ class TrasladoController extends Controller
 
             return response()->json([
                 'estado' => '¡Exito!',
-                'mensaje' => "Traslado se ha sido guardado exitosamente",
+                'mensaje' => "Traslado ha sido guardado exitosamente",
                 'tipo' => 'success'
             ], 201);
 

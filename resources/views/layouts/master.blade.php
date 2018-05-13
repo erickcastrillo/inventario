@@ -124,7 +124,6 @@
 
     var channel = pusher.subscribe('notifications');
     channel.bind('App\\Events\\NotificationEvent', function(data) {
-        console.log(data);
         $.notify({
             icon: "ti-bell",
             title: data.notification.title,
