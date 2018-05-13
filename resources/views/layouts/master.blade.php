@@ -127,11 +127,11 @@
         console.log(data);
         $.notify({
             icon: "ti-bell",
-            title: data.title,
-            message: data.message,
-            url: data.url
+            title: data.notification.title,
+            message: data.notification.message,
+            url: data.notification.url
         },{
-            type: data.type,
+            type: data.notification.type,
             timer: 4000,
             allow_dismiss: true,
             placement: {
