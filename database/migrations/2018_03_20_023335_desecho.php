@@ -19,7 +19,7 @@ class Desecho extends Migration
             // Table specific entries
             $table->dateTime('fecha_desecho');
             $table->integer('auditor_id');
-            $table->integer('almacenes_id');
+            $table->integer('almacen_id');
             $table->string('notas', 500);
             $table->string('pais', 50);
             

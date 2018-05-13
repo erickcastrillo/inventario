@@ -20,22 +20,22 @@ class AlmacenController extends Controller
     public function getProductos($id)
     {
       $results = [];
-      $detalles_almacenes =  Almacen::find($id)->detalles()->select('id', 'articulo_id', 'almacenes_id')->get();
+      $detalles_almacenes =  Almacen::find($id)->detalles()->select('id', 'articulo_id', 'almacen_id')->get();
       foreach ($detalles_almacenes as $detalle_almacenes) {
         $detalle_almacenes['nombre_producto'] = Articulo::find($detalle_almacenes->articulo_id)->descripcion;
       }
       return response()->json( $detalles_almacenes );
     }
 
-    public function getLotes($almacenes_id, $producto_id)
+    public function getLotes($almacen_id, $producto_id)
     {
-      $lotes =  Almacen::find($almacenes_id)->detalles()->where('articulo_id', '=', $producto_id)->select('lote', 'id', 'articulo_id')->get();
+      $lotes =  Almacen::find($almacen_id)->detalles()->where('articulo_id', '=', $producto_id)->select('lote', 'id', 'articulo_id')->get();
       return response()->json( $lotes );
     }
 
-    public function getSerie($almacenes_id, $producto_id, $lote)
+    public function getSerie($almacen_id, $producto_id, $lote)
     {
-      $serie =  Almacen::find($almacenes_id)
+      $serie =  Almacen::find($almacen_id)
                             ->detalles()
                             ->where('articulo_id', '=', $producto_id)
                             ->where('lote', '=', $lote)

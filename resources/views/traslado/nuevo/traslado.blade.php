@@ -20,7 +20,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label">Almacen</label>
                       <div class="col-sm-8">
-                        <select class="form-control" name="almacenes_id_entrada" id="almacenes_id_entrada" required title="Debe seleccionar una Almacen" v-model="informacion.almacenes_id_entrada">
+                        <select class="form-control" name="almacen_id_entrada" id="almacen_id_entrada" required title="Debe seleccionar una Almacen" v-model="informacion.almacen_id_entrada">
                             <option disabled selected value="">-Seleccione-</option>
                             @foreach($almacenes_propias as $almacenes_propia)
                                 <option value="{{ $almacenes_propia->id }}">{{ $almacenes_propia->descripcion }}</option>
@@ -31,7 +31,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label">Almacen principal</label>
                       <div class="col-sm-8">
-                        <select v-on:change="getProductos()" class="form-control" name="almacenes_id_salida" id="almacenes_id_salida" required title="Debe seleccionar una Almacen" v-model="informacion.almacenes_id_salida" disabled>
+                        <select v-on:change="getProductos()" class="form-control" name="almacen_id_salida" id="almacen_id_salida" required title="Debe seleccionar una Almacen" v-model="informacion.almacen_id_salida">
                             <option disabled selected value="">-Seleccione-</option>
                             <!-- Todo - mostrar Almacen principal -->
                             @foreach($almacenes as $almacenes)
@@ -241,7 +241,7 @@
         productos: [
           {
             id: "",
-            almacenes_id: "",
+            almacen_id: "",
             articulo_id: "",
             nombre_producto: ""
             }
@@ -270,8 +270,8 @@
         ],
         informacion: {
           notas: "",
-          almacenes_id_entrada: "",
-          almacenes_id_salida: "",
+          almacen_id_entrada: "",
+          almacen_id_salida: "",
           motivo: "",
           departamento_id: "",
           fecha_retiro: "",
@@ -364,7 +364,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/detalles",
+            url: "/Almacen/" + _this.informacion.almacen_id_salida + "/detalles",
             dataType: 'json',
             data: {
               _token: token,
@@ -396,7 +396,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/" + row.articulo + "/lotes",
+            url: "/Almacen/" + _this.informacion.almacen_id_salida + "/" + row.articulo + "/lotes",
             dataType: 'json',
             data: {
               _token: token,
@@ -428,7 +428,7 @@
           $.ajax({
             context: this,
             type: "GET",
-            url: "/Almacen/" + _this.informacion.almacenes_id_salida + "/" + row.articulo + "/" + row.lote + "/series",
+            url: "/Almacen/" + _this.informacion.almacen_id_salida + "/" + row.articulo + "/" + row.lote + "/series",
             dataType: 'json',
             data: {
               _token: token,

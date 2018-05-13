@@ -86,7 +86,7 @@ class DevolucionController extends Controller
           $devolucion->notas = $request->input('informacion.notas');
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');
-      $devolucion->almacenes_id = $request->input('informacion.almacenes_id');
+      $devolucion->almacen_id = $request->input('informacion.almacen_id');
       $devolucion->pais = Auth::user()->country;
       $devolucion->estado = 1;
       $devolucion->creado_id = Auth::user()->id;

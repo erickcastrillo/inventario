@@ -21,12 +21,12 @@ class Traslado extends Model
 
     public function get_almacenes_entrada()
     {
-        return Almacen::find($this->almacenes_id_entrada);
+        return Almacen::find($this->almacen_id_entrada);
     }
 
     public function get_almacenes_salida()
     {
-        return Almacen::find($this->almacenes_id_salida);
+        return Almacen::find($this->almacen_id_salida);
     }
 
     public function get_creador_name()

@@ -30,7 +30,7 @@
                       <div class="form-group">
                         <label class="col-md-4 control-label">Almacen a Ingresar</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="almacenes_id" id="almacenes_id" required title="Debe seleccionar una Moneda" v-model="informacion.almacenes_id">
+                          <select class="form-control" name="almacen_id" id="almacen_id" required title="Debe seleccionar una Moneda" v-model="informacion.almacen_id">
                               <option selected value="">-Seleccione-</option>
                               @foreach($almacenes as $almacenes)
                                   <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }}</option>
@@ -329,7 +329,7 @@
                     grand_total: "0",
                     notas: "",
                     cliente_id: "",
-                    almacenes_id: "",
+                    almacen_id: "",
                     moneda_id: "",
                     fecha_devolucion: "",
                 }

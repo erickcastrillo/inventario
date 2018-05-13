@@ -25,7 +25,7 @@ class Gasto extends Migration
             $table->integer('tarea_id');
             $table->integer('departamento_id');
             $table->string('pais', 50);
-            $table->integer('almacenes_id');
+            $table->integer('almacen_id');
             $table->string('notas', 300);
             
             // This 5 lines must appear on all migrations

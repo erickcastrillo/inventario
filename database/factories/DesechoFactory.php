@@ -4,7 +4,7 @@ $factory->define(App\Desecho::class, function (Faker\Generator $faker) {
     return [
         'fecha_desecho' => $faker->dateTime($max = 'now', $timezone = null),
         'auditor_id' => $faker->numberBetween($min = 1, $max = 50),
-        'almacenes_id' => $faker->numberBetween($min = 1, $max = 10),
+        'almacen_id' => $faker->numberBetween($min = 1, $max = 10),
         'notas' => $faker->text($maxNbChars = 200),
         'pais' => $faker->country(),
 

@@ -27,7 +27,7 @@ class DevolucionRequest extends Request
             'informacion.fecha_devolucion' => 'required|date',
             // 'informacion.grand_total' => 'required|numeric',
             'informacion.cliente_id' => 'required|numeric',
-            'informacion.almacenes_id' => 'required|numeric',
+            'informacion.almacen_id' => 'required|numeric',
             'informacion.moneda_id' => 'required|numeric',
             'informacion.notas' => 'required',
 
@@ -48,7 +48,7 @@ class DevolucionRequest extends Request
         $messages = [
             'informacion.fecha_devolucion' => 'Fecha de devolución es requesrida y debe contener fechas',
             'informacion.cliente_id' => 'El cliente es requerido y debe contener solo numeros',
-            'informacion.almacenes_id' => 'ID de almacenes es requerido y debe contener solo numeros',
+            'informacion.almacen_id' => 'ID de almacenes es requerido y debe contener solo numeros',
             'informacion.moneda_id' => 'ID de la Moneda es requerido y debe contener solo numeros',
             'informacion.notas' => 'El campo Notas solo puede contener letras, nombres, y dashes.'
         ];

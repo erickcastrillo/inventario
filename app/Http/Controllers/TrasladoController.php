@@ -59,8 +59,8 @@ class TrasladoController extends Controller
     {
         $traslado = new Traslado();
 
-        $traslado->almacenes_id_entrada = $request->input('informacion.almacenes_id_entrada');
-        $traslado->almacenes_id_salida = $request->input('informacion.almacenes_id_salida');
+        $traslado->almacen_id_entrada = $request->input('informacion.almacen_id_entrada');
+        $traslado->almacen_id_salida = $request->input('informacion.almacen_id_salida');
         $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
         $traslado->hora_retiro = $request->input('informacion.hora_retiro');
         $traslado->movimiento_id = $request->input('informacion.movimiento_id');
@@ -78,7 +78,7 @@ class TrasladoController extends Controller
         $saved_traslado = $traslado->save();
         foreach ($request->input('rows') as $key => $val)
         {
-          $p =  Almacen::find($request->input('informacion.almacenes_id_salida'))
+          $p =  Almacen::find($request->input('informacion.almacen_id_salida'))
                                 ->detalles()
                                 ->where('articulo_id', '=', $request->input('rows.'.$key.'.articulo'))
                                 ->where('lote', '=', $request->input('rows.'.$key.'.lote'))

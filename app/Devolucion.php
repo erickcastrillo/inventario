@@ -17,7 +17,7 @@ class Devolucion extends Model
 
     public function get_almacenes()
     {
-        return Almacen::find($this->almacenes_id);
+        return Almacen::find($this->almacen_id);
     }
 
     public function get_cliente()

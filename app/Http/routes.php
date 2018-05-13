@@ -129,8 +129,8 @@ Route::resource('Almacen', 'AlmacenController',
 ]);
 
 Route::get('/Almacen/{id}/detalles', 'AlmacenController@getProductos');
-Route::get('/Almacen/{almacenes_id}/{producto_id}/lotes', 'AlmacenController@getLotes');
-Route::get('/Almacen/{almacenes_id}/{producto_id}/{lote}/series', 'AlmacenController@getSerie');
+Route::get('/Almacen/{almacen_id}/{producto_id}/lotes', 'AlmacenController@getLotes');
+Route::get('/Almacen/{almacen_id}/{producto_id}/{lote}/series', 'AlmacenController@getSerie');
 
 // Rutas de los tipos cambio como resource
 Route::resource('TipoCambio', 'TipoCambioController',

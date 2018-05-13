@@ -2,8 +2,8 @@
 
 $factory->define(App\Traslado::class, function (Faker\Generator $faker) {
     return [
-        'almacenes_id_entrada' => $faker->numberBetween($min = 1, $max = 50),
-        'almacenes_id_salida' => $faker->numberBetween($min = 1, $max = 50),
+        'almacen_id_entrada' => $faker->numberBetween($min = 1, $max = 50),
+        'almacen_id_salida' => $faker->numberBetween($min = 1, $max = 50),
         'fecha_retiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora_retiro' => time($format = 'H:i:s', $max = 'now'),
         'movimiento_id' => $faker->numberBetween($min = 1, $max = 50),
