@@ -24,10 +24,10 @@ class EntradaRequest extends Request
     public function rules()
     {
         $rules = [
-            'informacion.fecha_factura' => 'required|date',
-            'informacion.grand_total' => 'required|numeric',
+            'informacion.fecha_factura' => 'required|date_format:Y-m-d',
+            'informacion.total' => 'required|numeric',
             'informacion.id_proveedor' => 'required|numeric',
-            'informacion.moneda_id' => 'required|numeric',
+            'informacion.moneda_id' => 'required',
             'informacion.n_factura' => 'required|numeric',
             'informacion.proyecto_id' => 'required|numeric',
             'informacion.tarea_id' => 'required|numeric',
@@ -42,7 +42,7 @@ class EntradaRequest extends Request
             $rules['rows.'.$key.'.costo'] = 'required|numeric';
             $rules['rows.'.$key.'.lote'] = 'required|numeric';
             $rules['rows.'.$key.'.serie'] = 'required|numeric';
-            $rules['rows.'.$key.'.total'] = 'required|numeric';
+            $rules['rows.'.$key.'.subtotal'] = 'required|numeric';
         }
         return $rules;
     }

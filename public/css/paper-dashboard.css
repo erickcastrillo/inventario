@@ -17,6 +17,22 @@
 
 [v-cloak] > * { display:none; }
 
+#app .selected-tag {
+  background-color: #F3F2EE;
+  margin: 0px 0px 0px 0px;
+  border: none;
+  color: #66615b;
+  font-size: 14px;
+  padding: 9px 18px;
+  height: 40px;
+  -webkit-box-shadow: none;
+  box-shadow: none
+}
+
+#app .v-select {
+  background-color: #F3F2EE;
+}
+
 .ct-blue {
   stroke: #7A9E9F !important;
 }
@@ -6387,7 +6403,7 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 
 .form-control {
   background-color: #F3F2EE;
-  border: 1px solid #e8e7e3;
+  /* border: 1px solid #e8e7e3; */
   border-radius: 4px;
   color: #66615b;
   font-size: 14px;
@@ -6459,11 +6475,9 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 
 .input-group-addon {
   background-color: #F3F2EE;
-  border: 1px solid #e8e7e3;
-  border-radius: 4px;
 }
 .has-success .input-group-addon, .has-error .input-group-addon {
-  background-color: #FFFFFF;
+  background-color: transparent;
 }
 .has-error .form-control:focus + .input-group-addon {
   color: #EB5E28;
@@ -6477,17 +6491,18 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 .has-error .input-group-addon {
   color: #EB5E28;
   border-color: #EB5E28;
+  background-color: #FFC0A4
 }
-.has-error .input-group-addon {
-  color: #7AC29A;
-  border-color: #7AC29A;
-}
+
 .input-group-addon + .form-control {
   padding-left: 0;
 }
 
 .input-group {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .input-group[disabled] .input-group-addon {

@@ -92,17 +92,17 @@
                                 </tr>
                             </thead>
                             <tbody v-sortable.tr="rows">
-                                <tr role="row" v-for="row in rows" track-by="$index">
+                                <tr role="row" v-for="(row, index) in rows" :key="index">
                                     <td>
-                                        @{{ $index +1 }}
+                                        @{{ index +1 }}
                                     </td>
                                     <td>
                                         <select
                                                 class="form-control"
                                                 v-model="row.articulo"
                                                 required
-                                                :name="'row_articulo-' + $index"
-                                                :id="'row_articulo-' + $index"
+                                                :name="'row_articulo-' + index"
+                                                :id="'row_articulo-' + index"
                                                 title="Debe seleccionar un Articulo valido">
                                             <option selected value="">-Seleccione-</option>
                                             @foreach($articulos as $articulo)
@@ -116,8 +116,8 @@
                                                 class="form-control"
                                                 number="true"
                                                 required
-                                                :name="'row_cantidad-' + $index"
-                                                :id="'row_cantidad-' + $index"
+                                                :name="'row_cantidad-' + index"
+                                                :id="'row_cantidad-' + index"
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.cantidad"
                                                 number
@@ -129,8 +129,8 @@
                                                 class="form-control"
                                                 number="true"
                                                 required
-                                                :name="'row_costo-' + $index"
-                                                :id="'row_costo-' + $index"
+                                                :name="'row_costo-' + index"
+                                                :id="'row_costo-' + index"
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.costo"
                                                 data-type="currency"
@@ -143,8 +143,8 @@
                                                 class="form-control"
                                                 number="true"
                                                 required
-                                                :name="'row_serie-' + $index"
-                                                :id="'row_serie-' + $index"
+                                                :name="'row_serie-' + index"
+                                                :id="'row_serie-' + index"
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.serie"
                                                 number
@@ -156,8 +156,8 @@
                                                 class="form-control"
                                                 number="true"
                                                 required
-                                                :name="'row_lote-' + $index"
-                                                :id="'row_lote-' + $index"
+                                                :name="'row_lote-' + index"
+                                                :id="'row_lote-' + index"
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.lote"
                                                 number
@@ -166,11 +166,11 @@
                                     <td>
                                         <input
                                                 class="form-control text-right"
-                                                :value="row.cantidad * row.costo | currencyDisplay"
-                                                v-model="row.total | currencyDisplay"
+                                                v-bind:name="rowTotal(row)"
+                                                v-model="row.subtotal"
                                                 number
-                                                :name="'row_total-' + $index"
-                                                :id="'row_total-' + $index"
+                                                :name="'row_subtotal-' + index"
+                                                :id="'row_subtotal-' + index"
                                                 readonly />
                                     </td>
                                     <td data-name="del" class="text-right td-actions">
@@ -178,7 +178,7 @@
                                                 rel="tooltip"
                                                 class="btn btn-success btn-simple btn-xs"
                                                 data-original-title="Añadir"
-                                                @click="addRow($index)"
+                                                @click="addRow(index)"
                                         >
                                             <i class="ti-plus"></i>
                                             Añadir
@@ -187,7 +187,7 @@
                                                 rel="tooltip"
                                                 class="btn btn-danger btn-simple btn-xs"
                                                 data-original-title="Borrar"
-                                                @click="removeRow($index)"
+                                                @click="removeRow(index)"
                                         >
                                             <i class="ti-close"></i>
                                             Borrar
@@ -207,11 +207,11 @@
                                     <div class="col-md-8">
                                         <input
                                                 class="form-control text-right"
-                                                :value="total | currencyDisplay"
-                                                v-model="informacion.grand_total | currencyDisplay"
+                                                :value="total()"
+                                                v-model="informacion.total"
                                                 number
-                                                :name="grand_total"
-                                                :id="informacion.grand_total"
+                                                :name="total"
+                                                :id="informacion.total"
                                                 readonly />
                                     </div>
 
@@ -272,45 +272,6 @@
 
     $(document).ready(function () {
 
-        Vue.filter('currencyDisplay', {
-            // model -> view
-            read: function (val) {
-                if (val > 0) {
-                    return accounting.formatMoney(val, "{{ Auth::user()->get_moneda()->first()->sigla}}", 2, ".", ",");
-                }
-            },
-            // view -> model
-            write: function (val, oldVal) {
-                return accounting.unformat(val, ",");
-            }
-        });
-
-        Vue.directive('sortable', {
-            twoWay: true,
-            deep: true,
-            bind: function () {
-                var that = this;
-
-                var options = {
-                    draggable: Object.keys(this.modifiers)[0]
-                };
-
-                this.sortable = Sortable.create(this.el, options);
-                console.log('sortable bound!')
-
-                this.sortable.option("onUpdate", function (e) {
-                    that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
-                });
-
-                this.onUpdate = function(value) {
-                    that.value = value;
-                }
-            },
-            update: function (value) {
-                this.onUpdate(value);
-            }
-        });
-
         var vm = new Vue({
             el: '#app',
             data: {
@@ -326,7 +287,7 @@
 
                 ],
                 informacion: {
-                    grand_total: "0",
+                    total: "0",
                     notas: "",
                     cliente_id: "",
                     almacen_id: "",
@@ -334,16 +295,22 @@
                     fecha_devolucion: "",
                 }
             },
-            computed: {
+            methods: {
+                rowTotal: function(row) {
+                    row.subtotal =  row.cantidad * row.costo;
+                    var t = 0;
+                    $.each(this.rows, function (i, e) {
+                        t += e.subtotal;
+                    });
+                    this.informacion.total = t;
+                },
                 total: function () {
                     var t = 0;
                     $.each(this.rows, function (i, e) {
-                        t += accounting.unformat(e.total, ",");
+                        t += e.subtotal;
                     });
-                    return t;
+                    this.informacion.total = t;
                 },
-            },
-            methods: {
                 addRow: function (index) {
                     try {
                         this.rows.splice(index + 1, 0, {});
@@ -430,7 +397,7 @@
         });
 
         $('.datetimepicker').datetimepicker({
-            format: 'YYYY-MM-DD H:mm:ss',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+            format: 'YYYY-MM-DD',    //use this format if you want the 12hours timpiecker with AM/PM toggle
             locale: 'es',
             icons: {
                 time: "fa fa-clock-o",

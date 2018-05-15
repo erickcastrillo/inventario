@@ -116,12 +116,12 @@
                     </tr>
                   </thead>
                   <tbody v-sortable.tr="rows">
-                    <tr role="row" v-for="row in rows" track-by="$index">
+                    <tr  role="row" v-for="(row, index) in rows" :key="index">
                       <td>
-                        @{{ $index +1 }}
+                        @{{ index +1 }}
                       </td>
                       <td>
-                        <select v-on:change="getLotes(row)" class="form-control" v-model="row.articulo" required :name="'row_articulo-' + $index" :id="'row_articulo-' + $index" title="Debe seleccionar un Articulo valido">
+                        <select v-on:change="getLotes(row)" class="form-control" v-model="row.articulo" required :name="'row_articulo-' + index" :id="'row_articulo-' + index" title="Debe seleccionar un Articulo valido">
                             <option disabled selected value="">-Seleccione-</option>
                             <option v-for="producto in productos"
                               :value="producto.articulo_id">
@@ -130,7 +130,7 @@
                         </select>
                       </td>
                       <td>
-                        <select v-on:change="getSerie(row)" class="form-control" v-model="row.lote" required :name="'row_lote-' + $index" :id="'row_lote-' + $index" title="Debe seleccionar un Articulo valido">
+                        <select v-on:change="getSerie(row)" class="form-control" v-model="row.lote" required :name="'row_lote-' + index" :id="'row_lote-' + index" title="Debe seleccionar un Articulo valido">
                             <option disabled selected value="">-Seleccione-</option>
                             <option v-for="lote in row.lotes"
                               :id="lote.articulo_id" >
@@ -139,7 +139,7 @@
                         </select>
                       </td>
                       <td>
-                        <select class="form-control" v-model="row.serie" required :name="'row_serie-' + $index" :id="'row_serie-' + $index" title="Debe seleccionar un Articulo valido">
+                        <select class="form-control" v-model="row.serie" required :name="'row_serie-' + index" :id="'row_serie-' + index" title="Debe seleccionar un Articulo valido">
                             <option disabled selected value="">-Seleccione-</option>
                             <option v-for="serie in row.series"
                               :id="serie.articulo_id" >
@@ -148,14 +148,14 @@
                         </select>
                       </td>
                       <td>
-                        <input type="text" class="form-control" number="true" required :name="'row_cantidad-' + $index" :id="'row_cantidad-' + $index" title="Debe ingresar un numero valido" v-model="row.cantidad" number>
+                        <input type="text" class="form-control" number="true" required :name="'row_cantidad-' + index" :id="'row_cantidad-' + index" title="Debe ingresar un numero valido" v-model="row.cantidad" number>
                       </td>
                       <td data-name="del" class="text-right td-actions">
-                        <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow($index)">
+                        <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
                             <i class="ti-plus"></i>
                             Añadir
                         </a>
-                        <a rel="tooltip" class="btn btn-danger btn-simple btn-xs" data-original-title="Borrar" @click="removeRow($index)">
+                        <a rel="tooltip" class="btn btn-danger btn-simple btn-xs" data-original-title="Borrar" @click="removeRow(index)">
                             <i class="ti-close"></i>
                             Borrar
                         </a>

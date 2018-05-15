@@ -62,7 +62,6 @@ class EntradaController extends Controller
           'tareas' => Tarea::where('estado' , '=', 1)->get(),
           'tiposconcepto' => TipoConcepto::where('estado' , '=', 1)->get(),
           'articulos' => $articulos,
-
       ]);
     }
 
@@ -83,10 +82,9 @@ class EntradaController extends Controller
         if (!$result->isEmpty()) {
 
             return response()->json([
-                'estado' => '¡Error!',
                 'mensaje' => "El numero de Factura asociado al Proveedor seleccionado ya existe",
                 'tipo' => 'error'
-            ], 201);
+            ], 405);
 
         } else {
 
@@ -116,7 +114,7 @@ class EntradaController extends Controller
                 $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
                 $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
                 $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
-                $entrada_detalle->moneda_id = $request->input('informacion.moneda_id');
+                $entrada_detalle->moneda_id = $request->input('informacion.moneda_id.id');
                 $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
                 $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
                 $entrada_detalle->pais = Auth::user()->country;
@@ -137,7 +135,6 @@ class EntradaController extends Controller
             } else {
 
                 return response()->json([
-                    'estado' => '¡Error!',
                     'mensaje' => "La nueva entrada no se ha podido guardar",
                     'tipo' => 'error'
                 ], 201);

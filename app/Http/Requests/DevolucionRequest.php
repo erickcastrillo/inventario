@@ -24,7 +24,7 @@ class DevolucionRequest extends Request
     public function rules()
     {
         $rules = [
-            'informacion.fecha_devolucion' => 'required|date',
+            'informacion.fecha_devolucion' => 'required|date_format:Y-m-d',
             // 'informacion.grand_total' => 'required|numeric',
             'informacion.cliente_id' => 'required|numeric',
             'informacion.almacen_id' => 'required|numeric',
@@ -39,7 +39,7 @@ class DevolucionRequest extends Request
             $rules['rows.'.$key.'.costo'] = 'required|numeric';
             $rules['rows.'.$key.'.lote'] = 'required|numeric';
             $rules['rows.'.$key.'.serie'] = 'required|numeric';
-            $rules['rows.'.$key.'.total'] = 'required|numeric';
+            $rules['rows.'.$key.'.subtotal'] = 'required|numeric';
         }
         return $rules;
     }

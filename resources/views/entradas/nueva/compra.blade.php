@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row" id="app">
                 <div class="col-md-12">
-                    <form id="nueva-entrada-form">
+                    <form id="nueva-entrada-form" @submit="postData($event)">
                         {{ csrf_field() }}
                         <div class="card">
                             <div class="card-header">
@@ -22,65 +22,66 @@
                                                     <label class="col-md-4 control-label">Proveedor</label>
                                                     <div class="col-sm-8">
                                                         <select
-                                                                class="form-control"
-                                                                name="id_proveedor"
-                                                                id="id_proveedor"
-                                                                required
-                                                                title="Debe seleccionar un Proveeddor"
-                                                                v-model="informacion.id_proveedor"
+                                                            :class="{'form-control': true, 'error': errors.first('id_proveedor')}"
+                                                            name="id_proveedor"
+                                                            id="id_proveedor"
+                                                            required
+                                                            v-validate="'required'"
+                                                            v-model="informacion.id_proveedor"
                                                         >
-                                                            <option disabled selected value="">-Seleccione-</option>
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>  
                                                             @foreach($proveedores as $proveedor)
                                                                 <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <span v-cloak >@{{ errors.first('id_proveedor') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">No. Factura</label>
                                                     <div class="col-sm-8">
                                                         <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                name="n_factura"
-                                                                id="n_factura"
-                                                                number="true"
-                                                                required
-                                                                title="Debe ingresar un No. Factura valido"
-                                                                v-model="informacion.n_factura"
+                                                            type="text"
+                                                            :class="{'form-control': true, 'error': errors.first('n_factura')}"
+                                                            name="n_factura"
+                                                            id="n_factura"
+                                                            number="true"
+                                                            required
+                                                            v-validate="'required|decimal'"
+                                                            v-model="informacion.n_factura"
                                                         >
+                                                        <span v-cloak >@{{ errors.first('n_factura') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Fecha Factura</label>
                                                     <div class="col-sm-8">
                                                         <input
-                                                                type="text"
-                                                                id="fecha_factura"
-                                                                class="form-control datetimepicker"
-                                                                name="fecha_factura"
-                                                                required
-                                                                title="Debe seleccionar una Fecha valida"
-                                                                v-model="informacion.fecha_factura"
+                                                            type="text"
+                                                            id="fecha_factura"
+                                                            :class="{'form-control datetimepicker': true, 'error': errors.first('fecha_factura')}"
+                                                            name="fecha_factura"
+                                                            required
+                                                            v-model="informacion.fecha_factura"
+                                                            v-validate="'required|date_format:YYYY-MM-DD'"
                                                         >
+                                                        <span v-cloak>@{{ errors.first('fecha_factura') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Moneda</label>
                                                     <div class="col-sm-8">
-                                                        <select
-                                                                class="form-control"
-                                                                name="moneda_id"
-                                                                id="moneda_id"
-                                                                required
-                                                                title="Debe seleccionar una Moneda"
-                                                                v-model="informacion.moneda_id"
-                                                        >
-                                                            <option selected value="">-Seleccione-</option>
-                                                            @foreach($monedas as $moneda)
-                                                                <option value="{{ $moneda->id }}">{{ $moneda->nombre }} - {{ $moneda->sigla }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <v-select  
+                                                            :value.sync="informacion.moneda_id" 
+                                                            v-model="informacion.moneda_id"
+                                                            :class="{'error': errors.first('n_factura')}"
+                                                            :options="monedas" 
+                                                            id="moneda_id"
+                                                            name="moneda_id"
+                                                            v-validate="'required'"
+                                                            required
+                                                            ></v-select>
+                                                        <span v-cloak >@{{ errors.first('moneda_id') }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,54 +92,57 @@
                                                     <label class="col-md-4 control-label">Proyecto</label>
                                                     <div class="col-sm-8">
                                                         <select
-                                                                class="form-control"
-                                                                name="proyecto_id"
-                                                                id="proyecto_id"
-                                                                required
-                                                                title="Debe seleccionar un Proyecto valido"
-                                                                v-model="informacion.proyecto_id"
+                                                            :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                            name="proyecto_id"
+                                                            id="proyecto_id"
+                                                            required
+                                                            v-model="informacion.proyecto_id"
+                                                            v-validate="'required'"
                                                         >
-                                                            <option selected value="">-Seleccione-</option>
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>
                                                             @foreach($proyectos as $proyecto)
                                                                 <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <span v-cloak >@{{ errors.first('proyecto_id') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Tarea</label>
                                                     <div class="col-sm-8">
                                                         <select
-                                                                class="form-control"
-                                                                name="tarea_id"
-                                                                id="tarea_id"
-                                                                required
-                                                                title="Debe seleccionar una Tarea valida"
-                                                                v-model="informacion.tarea_id"
+                                                            :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                            name="tarea_id"
+                                                            id="tarea_id"
+                                                            required
+                                                            v-model="informacion.tarea_id"
+                                                            v-validate="'required'"
                                                         >
-                                                            <option selected value="">-Seleccione-</option>
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>  
                                                             @foreach($tareas as $tarea)
                                                                 <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <span v-cloak >@{{ errors.first('tarea_id') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Tipo / Concepto</label>
                                                     <div class="col-sm-8">
                                                         <select
-                                                                class="form-control"
-                                                                name="tipo_concepto_id"
-                                                                id="tipo_concepto_id"
-                                                                required
-                                                                title="Debe seleccionar un Tipo / Concepto valido"
-                                                                v-model="informacion.tipo_concepto_id"
+                                                            :class="{'form-control': true, 'error': errors.first('tipo_concepto_id')}"
+                                                            name="tipo_concepto_id"
+                                                            id="tipo_concepto_id"
+                                                            required
+                                                            v-model="informacion.tipo_concepto_id"
+                                                            v-validate="'required'"
                                                         >
-                                                            <option selected value="">-Seleccione-</option>
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>
                                                             @foreach($tiposconcepto as $tipoconcepto)
                                                                 <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <span v-cloak >@{{ errors.first('tipo_concepto_id') }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,105 +170,134 @@
                                             </tr>
                                         </thead>
                                         <tbody v-sortable.tr="rows">
-                                            <tr role="row" v-for="row in rows" track-by="$index">
+                                            <tr role="row" v-for="(row, index) in rows" :key="index">
                                                 <td>
-                                                    @{{ $index +1 }}
+                                                    @{{ index + 1 }}
                                                 </td>
                                                 <td>
-                                                    <select
+                                                    <div class="input-group" >
+                                                        <select
+                                                            {{-- :class="{'form-control': true, 'error': errors.first(\"'row_articulo-' + index\")}" --}}
                                                             class="form-control"
                                                             v-model="row.articulo"
                                                             required
-                                                            :name="'row_articulo-' + $index"
-                                                            :id="'row_articulo-' + $index"
-                                                            title="Debe seleccionar un Articulo valido">
-                                                        <option selected value="">-Seleccione-</option>
-                                                        @foreach($articulos as $articulo)
-                                                            <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                            v-validate="'required'"
+                                                            :name="'row_articulo-' + index"
+                                                            :id="'row_articulo-' + index"
+                                                            v-validate="'required'"
+                                                            >
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>
+                                                            @foreach($articulos as $articulo)
+                                                                <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <span v-cloak >@{{ errors.first('row.articulo') }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            number="true"
-                                                            required
-                                                            :name="'row_cantidad-' + $index"
-                                                            :id="'row_cantidad-' + $index"
-                                                            title="Debe ingresar un numero valido"
-                                                            v-model="row.cantidad"
-                                                            number
-                                                    >
+                                                    <div class="input-group" >
+                                                        <input
+                                                        type="text"
+                                                        {{-- :class='{"form-control": true, "error": errors.first("\'row_cantidad-\' + index")}' --}}
+                                                        class="form-control"
+                                                        number="true"
+                                                        required
+                                                        v-on:change="rowTotal(row)"
+                                                        :name="'row_cantidad-' + index"
+                                                        :id="'row_cantidad-' + index"
+                                                        v-model="row.cantidad"
+                                                        number
+                                                        v-validate="'required|decimal'"
+                                                        >
+                                                        <span v-cloak >@{{ errors.first('row.cantidad') }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <input
+                                                    <div class="input-group" >
+                                                        <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
+                                                        <input
                                                             type="text"
+                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_costo-\' + index")}' --}}
                                                             class="form-control"
                                                             number="true"
+                                                            v-on:change="rowTotal(row)"
                                                             required
-                                                            :name="'row_costo-' + $index"
-                                                            :id="'row_costo-' + $index"
-                                                            title="Debe ingresar un numero valido"
+                                                            :name="'row_costo-' + index"
+                                                            :id="'row_costo-' + index"
                                                             v-model="row.costo"
-                                                            data-type="currency"
                                                             number
-                                                    >
+                                                            v-validate="'required|decimal'"
+                                                        >
+                                                        <span v-cloak >@{{ errors.first('row.costo') }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <input
+                                                    <div class="input-group">
+                                                        <input
                                                             type="text"
+                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_serie-\' + index")}' --}}
                                                             class="form-control"
                                                             number="true"
                                                             required
-                                                            :name="'row_serie-' + $index"
-                                                            :id="'row_serie-' + $index"
-                                                            title="Debe ingresar un numero valido"
+                                                            :name="'row_serie-' + index"
+                                                            :id="'row_serie-' + index"
                                                             v-model="row.serie"
                                                             number
-                                                    >
+                                                            v-validate="'required'"
+                                                        >
+                                                        <span v-cloak >@{{ errors.first('row.serie') }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <input
+                                                    <div class="input-group" >
+                                                        <input
                                                             type="text"
+                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_lote-\' + index")}' --}}
                                                             class="form-control"
                                                             number="true"
                                                             required
-                                                            :name="'row_lote-' + $index"
-                                                            :id="'row_lote-' + $index"
-                                                            title="Debe ingresar un numero valido"
+                                                            :name="'row_lote-' + index"
+                                                            :id="'row_lote-' + index"
                                                             v-model="row.lote"
                                                             number
-                                                    >
+                                                            v-validate="'required'"
+                                                        >
+                                                        <span v-cloak >@{{ errors.first('row.lote') }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    <input
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" disabled>@{{ informacion.moneda_id.id }}</span>
+                                                        <input
                                                             class="form-control text-right"
-                                                            :value="row.cantidad * row.costo | currencyDisplay"
-                                                            v-model="row.total | currencyDisplay"
+                                                            v-bind:name="rowTotal(row)"
+                                                            v-model="row.subtotal"
                                                             number
-                                                            :name="'row_total-' + $index"
-                                                            :id="'row_total-' + $index"
-                                                            readonly />
+                                                            :name="'row_subtotal-' + index"
+                                                            :id="'row_subtotal-' + index"
+                                                            readonly 
+                                                        >    
+                                                    </div>
+
                                                 </td>
                                                 <td data-name="del" class="text-right td-actions">
                                                     <a
-                                                            rel="tooltip"
-                                                            class="btn btn-success btn-simple btn-xs"
-                                                            data-original-title="Añadir"
-                                                            @click="addRow($index)"
+                                                        rel="tooltip"
+                                                        class="btn btn-success btn-simple btn-xs"
+                                                        data-original-title="Añadir"
+                                                        @click="addRow(index)"
                                                     >
-                                                        <i class="ti-plus"></i>
-                                                        Añadir
+                                                    <i class="ti-plus"></i>
+                                                    Añadir
                                                     </a>
                                                     <a
-                                                            rel="tooltip"
-                                                            class="btn btn-danger btn-simple btn-xs"
-                                                            data-original-title="Borrar"
-                                                            @click="removeRow($index)"
+                                                        rel="tooltip"
+                                                        class="btn btn-danger btn-simple btn-xs"
+                                                        data-original-title="Borrar"
+                                                        @click="removeRow(index)"
                                                     >
-                                                        <i class="ti-close"></i>
-                                                        Borrar
+                                                    <i class="ti-close"></i>
+                                                    Borrar
                                                     </a>
                                                 </td>
                                             </tr>
@@ -280,15 +313,13 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <input
-                                                            class="form-control text-right"
-                                                            :value="total | currencyDisplay"
-                                                            v-model="informacion.grand_total | currencyDisplay"
-                                                            number
-                                                            :name="grand_total"
-                                                            :id="informacion.grand_total"
-                                                            readonly />
+                                                        class="form-control text-right"
+                                                        :value="total()"
+                                                        v-model="informacion.total"
+                                                        number
+                                                        :id="informacion.total"
+                                                        readonly />
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +331,13 @@
                                                 <div class="card-content">
                                                     <label class="col-sm-2 control-label">Notas</label>
                                                     <div class="col-sm-10">
-                                                        <textarea v-model="informacion.notas" name="notas" id="notas" class="form-control" rows="3"></textarea>
+                                                        <textarea 
+                                                        v-model="informacion.notas" 
+                                                        name="notas" 
+                                                        id="notas" 
+                                                        :class="{'form-control': true, 'error': errors.first('notas')}"
+                                                        v-validate="'required'"
+                                                        rows="3"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -321,11 +358,7 @@
 	                                                </span>
                                                     Limpiar
                                                 </button>
-                                                <button
-
-                                                        class="btn btn-fill btn-info btn-magnify" @click="postData()"
-                                                        id="submit"
-                                                >
+                                                <button class="btn btn-fill btn-info btn-magnify" type="submit">
                                                     <span class="btn-label">
 	                                                    <i class="ti-save"></i>
 	                                                </span>
@@ -346,48 +379,18 @@
 
         $(document).ready(function () {
 
-            Vue.filter('currencyDisplay', {
-                // model -> view
-                read: function (val) {
-                    if (val > 0) {
-                        return accounting.formatMoney(val, "{{ Auth::user()->get_moneda()->first()->sigla}}", 2, ".", ",");
-                    }
-                },
-                // view -> model
-                write: function (val, oldVal) {
-                    return accounting.unformat(val, ",");
-                }
-            });
+            Vue.component('v-select', VueSelect.VueSelect);
 
-            Vue.directive('sortable', {
-                twoWay: true,
-                deep: true,
-                bind: function () {
-                    var that = this;
-
-                    var options = {
-                        draggable: Object.keys(this.modifiers)[0]
-                    };
-
-                    this.sortable = Sortable.create(this.el, options);
-                    console.log('sortable bound!')
-
-                    this.sortable.option("onUpdate", function (e) {
-                        that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
-                    });
-
-                    this.onUpdate = function(value) {
-                        that.value = value;
-                    }
-                },
-                update: function (value) {
-                    this.onUpdate(value);
-                }
-            });
+            Vue.use(VeeValidate);
 
             var vm = new Vue({
                 el: '#app',
                 data: {
+                    monedas: [
+                        @foreach($monedas as $moneda)
+                        {label: "{{ $moneda->nombre }} - {{ $moneda->sigla }}", value: "{{ $moneda->id }}", id: "{{ $moneda->sigla }}"},
+                        @endforeach
+                    ],
                     rows: [
                         //initial data
                         {
@@ -395,12 +398,13 @@
                             cantidad: "",
                             costo: "",
                             serie: "",
-                            lote: ""
+                            lote: "",
+                            subtotal: ""
                         },
 
                     ],
                     informacion: {
-                        grand_total: "0",
+                        total: "",
                         notas: "",
                         id_proveedor: "",
                         moneda_id: "",
@@ -411,16 +415,46 @@
                         fecha_factura: ""
                     }
                 },
-                computed: {
+                methods: {
+                    rowTotal: function(row) {
+                        row.subtotal =  row.cantidad * row.costo;
+                        var t = 0;
+                        $.each(this.rows, function (i, e) {
+                            t += e.subtotal;
+                        });
+                        this.informacion.total = t;
+                    },
                     total: function () {
                         var t = 0;
                         $.each(this.rows, function (i, e) {
-                            t += accounting.unformat(e.total, ",");
+                            t += e.subtotal;
                         });
-                        return t;
+                        this.informacion.total = t;
                     },
-                },
-                methods: {
+                    resetData: function() {
+                        this.informacion = {
+                            total: "0",
+                            notas: "",
+                            id_proveedor: "",
+                            moneda_id: "",
+                            proyecto_id: "",
+                            tarea_id: "",
+                            tipo_concepto_id: "",
+                            n_factura: "",
+                            fecha_factura: ""
+                        };
+                        this.rows = [
+                            //initial data
+                            {
+                                articulo: "",
+                                cantidad: "",
+                                costo: "",
+                                serie: "",
+                                lote: ""
+                            },
+
+                        ];
+                    },
                     addRow: function (index) {
                         try {
                             this.rows.splice(index + 1, 0, {});
@@ -432,6 +466,7 @@
                     removeRow: function (index) {
                         if (this.rows.length > 1) {
                             this.rows.splice(index, 1);
+                            this.informacion.total -= this.rows[index].subtotal;
                         } else {
                             swal({
                                 type: 'error',
@@ -440,66 +475,66 @@
                             })
                         }
                     },
-                    postData: function () {
+                    postData: function (event) {
                         var _this = this;
-                        $('#nueva-entrada-form').validate(
-                            {
-                                submitHandler: function(form) {
-                                    // some other code
-                                    // maybe disabling submit button
-                                    // then:
-                                    $('#submit').addClass('disabled');
-                                    var token = $('meta[name="csrf-token"]').attr('content');
-                                    $.ajax({
-                                        context: this,
-                                        type: "POST",
-                                        url: "/Entrada",
-                                        dataType: 'json',
-                                        data: {
-                                            _token: token,
-                                            informacion: _this.informacion,
-                                            rows: _this.rows,
-                                        },
-                                        success: function(result) {
-                                            swal({
-                                                title: result.estado,
-                                                text: result.mensaje,
-                                                type: result.tipo,
-                                                confirmButtonClass: "btn btn-success btn-fill",
-                                                buttonsStyling: false
-                                            }).then(function() {
-                                                location.reload();
-                                            });
+                        $('#submit').addClass('disabled');
+                        var token = $('meta[name="csrf-token"]').attr('content');
 
-                                        },
-                                        error: function(xhr) {
-                                            var errorMessage = '';
-                                            jQuery.each(xhr.responseJSON, function(i, val) {
-                                                errorMessage += " - " + val + "<br>";
-                                            });
-                                            swal({
-                                                title: 'Oh no, algo ha salido mal',
-                                                html:
-                                                '<b>Error:</b> ' + xhr.status + " " + xhr.statusText+ '<br>'+
-                                                '<b>Mensaje</b> ' + '<br>' +
-                                                errorMessage,
-                                                type: 'error',
-                                                confirmButtonClass: "btn btn-info btn-fill",
-                                                buttonsStyling: false
-                                            });
-                                            $('#submit').removeClass('disabled');
-                                        }
-                                    });
-                                }
-                            }
-                        );
+                        this.$validator.validate().then(result => {
+                        if (!result) {
+                            swal({
+                                    title: "Error",
+                                    text: "Por favor revise los campos e intenta de nuevo",
+                                    type: "error",
+                                    confirmButtonClass: "btn btn-success btn-fill",
+                                    buttonsStyling: false
+                                });
+                        } else {
+                            $.ajax({
+                            context: this,
+                            type: "POST",
+                            url: "/Entrada",
+                            dataType: 'json',
+                            data: {
+                                _token: token,
+                                informacion: _this.informacion,
+                                rows: _this.rows,
+                            },
+                            success: function(result) {
+                                swal({
+                                    title: result.estado,
+                                    text: result.mensaje,
+                                    type: result.tipo,
+                                    confirmButtonClass: "btn btn-success btn-fill",
+                                    buttonsStyling: false
+                                });
 
-                    }
+                            },
+                            error: function(xhr) {
+                                console.log(xhr);
+                                var errorMessage = '';
+                                jQuery.each(xhr.responseJSON, function(i, val) {
+                                    errorMessage += " - " + val + "<br>";
+                                });
+                                swal({
+                                    title: 'Oh no, algo ha salido mal',
+                                    text: xhr.responseJSON.mensaje,
+                                    type: xhr.responseJSON.tipo,
+                                    confirmButtonClass: "btn btn-info btn-fill",
+                                    buttonsStyling: false
+                                });
+                                $('#submit').removeClass('disabled');
+                            }});
+                        }
+                        });
+                        
+                        event.preventDefault();
+                    } //
                 }
             });
 
             $('.datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD H:mm:ss',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                format: 'YYYY-MM-DD',    //use this format if you want the 12hours timpiecker with AM/PM toggle
                 locale: 'es',
                 icons: {
                     time: "fa fa-clock-o",
