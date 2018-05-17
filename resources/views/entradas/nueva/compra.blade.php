@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row" id="app">
                 <div class="col-md-12">
-                    <form id="nueva-entrada-form" @submit="postData($event)">
+                    <form id="nueva-entrada-form" @submit="postData($event)" v-cloak>
                         {{ csrf_field() }}
                         <div class="card">
                             <div class="card-header">
@@ -34,7 +34,7 @@
                                                                 <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span v-cloak >@{{ errors.first('id_proveedor') }}</span>
+                                                        <span  >@{{ errors.first('id_proveedor') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -50,22 +50,23 @@
                                                             v-validate="'required|decimal'"
                                                             v-model="informacion.n_factura"
                                                         >
-                                                        <span v-cloak >@{{ errors.first('n_factura') }}</span>
+                                                        <span  >@{{ errors.first('n_factura') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Fecha Factura</label>
                                                     <div class="col-sm-8">
-                                                        <input
-                                                            type="text"
+                                                        <date-picker
+                                                            :config="config"
                                                             id="fecha_factura"
                                                             :class="{'form-control datetimepicker': true, 'error': errors.first('fecha_factura')}"
                                                             name="fecha_factura"
                                                             required
                                                             v-model="informacion.fecha_factura"
                                                             v-validate="'required|date_format:YYYY-MM-DD'"
-                                                        >
-                                                        <span v-cloak>@{{ errors.first('fecha_factura') }}</span>
+                                                            >
+                                                        </date-picker>
+                                                        <span >@{{ errors.first('fecha_factura') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -81,7 +82,7 @@
                                                             v-validate="'required'"
                                                             required
                                                             ></v-select>
-                                                        <span v-cloak >@{{ errors.first('moneda_id') }}</span>
+                                                        <span  >@{{ errors.first('moneda_id') }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +105,7 @@
                                                                 <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span v-cloak >@{{ errors.first('proyecto_id') }}</span>
+                                                        <span  >@{{ errors.first('proyecto_id') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -123,7 +124,7 @@
                                                                 <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span v-cloak >@{{ errors.first('tarea_id') }}</span>
+                                                        <span  >@{{ errors.first('tarea_id') }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -142,7 +143,7 @@
                                                                 <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span v-cloak >@{{ errors.first('tipo_concepto_id') }}</span>
+                                                        <span  >@{{ errors.first('tipo_concepto_id') }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,37 +180,39 @@
                                                         <select
                                                             {{-- :class="{'form-control': true, 'error': errors.first(\"'row_articulo-' + index\")}" --}}
                                                             class="form-control"
+                                                            v-on:change="getUnidadesMedida(row.articulo)"
                                                             v-model="row.articulo"
                                                             required
                                                             v-validate="'required'"
                                                             :name="'row_articulo-' + index"
                                                             :id="'row_articulo-' + index"
                                                             v-validate="'required'"
-                                                            >
+                                                        >
                                                             <option disabled="" selected="" value="">-Seleccione-</option>
                                                             @foreach($articulos as $articulo)
                                                                 <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span v-cloak >@{{ errors.first('row.articulo') }}</span>
+                                                        <span  >@{{ errors.first('row.articulo') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="input-group" >
+                                                        <span class="input-group-addon">@{{ unidadDeMedida }}</span>
                                                         <input
-                                                        type="text"
-                                                        {{-- :class='{"form-control": true, "error": errors.first("\'row_cantidad-\' + index")}' --}}
-                                                        class="form-control"
-                                                        number="true"
-                                                        required
-                                                        v-on:change="rowTotal(row)"
-                                                        :name="'row_cantidad-' + index"
-                                                        :id="'row_cantidad-' + index"
-                                                        v-model="row.cantidad"
-                                                        number
-                                                        v-validate="'required|decimal'"
+                                                            type="text"
+                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_cantidad-\' + index")}' --}}
+                                                            class="form-control"
+                                                            number="true"
+                                                            required
+                                                            v-on:change="rowTotal(row)"
+                                                            :name="'row_cantidad-' + index"
+                                                            :id="'row_cantidad-' + index"
+                                                            v-model="row.cantidad"
+                                                            number
+                                                            v-validate="'required|decimal'"
                                                         >
-                                                        <span v-cloak >@{{ errors.first('row.cantidad') }}</span>
+                                                        <span  >@{{ errors.first('row.cantidad') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -228,7 +231,7 @@
                                                             number
                                                             v-validate="'required|decimal'"
                                                         >
-                                                        <span v-cloak >@{{ errors.first('row.costo') }}</span>
+                                                        <span  >@{{ errors.first('row.costo') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -245,7 +248,7 @@
                                                             number
                                                             v-validate="'required'"
                                                         >
-                                                        <span v-cloak >@{{ errors.first('row.serie') }}</span>
+                                                        <span  >@{{ errors.first('row.serie') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -262,7 +265,7 @@
                                                             number
                                                             v-validate="'required'"
                                                         >
-                                                        <span v-cloak >@{{ errors.first('row.lote') }}</span>
+                                                        <span  >@{{ errors.first('row.lote') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -381,16 +384,27 @@
 
             Vue.component('v-select', VueSelect.VueSelect);
 
-            Vue.use(VeeValidate);
+            Vue.component('date-picker', VueBootstrapDatetimePicker.default);
+
+            Vue.use(VeeValidate);            
 
             var vm = new Vue({
                 el: '#app',
+                
                 data: {
+                    date: null,
+                    config: {
+                        format: 'YYYY-MM-DD',
+                        useCurrent: true,
+                        showClear: true,
+                        showClose: true,
+                    },
                     monedas: [
                         @foreach($monedas as $moneda)
                         {label: "{{ $moneda->nombre }} - {{ $moneda->sigla }}", value: "{{ $moneda->id }}", id: "{{ $moneda->sigla }}"},
                         @endforeach
                     ],
+                    unidadDeMedida: "",
                     rows: [
                         //initial data
                         {
@@ -416,6 +430,41 @@
                     }
                 },
                 methods: {
+                    getUnidadesMedida: function(id) {
+                        if(id) {
+                            var _this = this;
+                            var token = $('meta[name="csrf-token"]').attr('content');
+
+                            $.ajax({
+                                context: this,
+                                type: "GET",
+                                url: "/Articulo/" + id + "/UnidadesMedida",
+                                dataType: 'json',
+                                data: {
+                                _token: token,
+                                },
+                                success: function(result) {
+                                    Vue.set(_this, 'unidadDeMedida', result);
+                                    //_this.productos = result;
+                                },
+                                error: function(xhr) {
+                                    var errorMessage = '';
+                                    jQuery.each(xhr.responseJSON, function(i, val) {
+                                        errorMessage += " - " + val + "<br>";
+                                    });
+                                    swal({
+                                        title: 'Oh no, algo ha salido mal',
+                                        html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
+                                        '<b>Mensaje</b> ' + '<br>' +
+                                        errorMessage,
+                                        type: 'error',
+                                        confirmButtonClass: "btn btn-info btn-fill",
+                                        buttonsStyling: false
+                                    });
+                                }
+                            });
+                        }
+                    },
                     rowTotal: function(row) {
                         row.subtotal =  row.cantidad * row.costo;
                         var t = 0;
@@ -530,22 +579,6 @@
                         
                         event.preventDefault();
                     } //
-                }
-            });
-
-            $('.datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD',    //use this format if you want the 12hours timpiecker with AM/PM toggle
-                locale: 'es',
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-chevron-up",
-                    down: "fa fa-chevron-down",
-                    previous: 'fa fa-chevron-left',
-                    next: 'fa fa-chevron-right',
-                    today: 'fa fa-screenshot',
-                    clear: 'fa fa-trash',
-                    close: 'fa fa-remove'
                 }
             });
 

@@ -370,7 +370,8 @@
               _token: token,
             },
             success: function(result) {
-                _this.productos = result;
+              Vue.set(_this, 'productos', result);
+                //_this.productos = result;
             },
             error: function(xhr) {
               var errorMessage = '';

@@ -28,7 +28,7 @@ class DevolucionRequest extends Request
             // 'informacion.grand_total' => 'required|numeric',
             'informacion.cliente_id' => 'required|numeric',
             'informacion.almacen_id' => 'required|numeric',
-            'informacion.moneda_id' => 'required|numeric',
+            'informacion.moneda_id' => 'required',
             'informacion.notas' => 'required',
 
         ];

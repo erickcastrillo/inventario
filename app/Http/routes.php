@@ -158,6 +158,9 @@ Route::resource('Articulo', 'ArticuloController',
     ]
 ]);
 
+// Get the Unidades de Medida o a guveb product ID
+Route::get('/Articulo/{id}/UnidadesMedida', 'ArticuloController@getUnidadesMedida');
+
 // Rutas de los proveedores como resource
 Route::resource('Proveedor', 'ProveedorController',
 ['names' =>

@@ -101,7 +101,7 @@ class DevolucionController extends Controller
           $DevolucionDetalle->articulo_id = $request->input('rows.'.$key.'.articulo');
           $DevolucionDetalle->cantidad = $request->input('rows.'.$key.'.cantidad');
           $DevolucionDetalle->costo_unitario = $request->input('rows.'.$key.'.costo');
-          $DevolucionDetalle->moneda_id = $request->input('informacion.moneda_id');
+          $DevolucionDetalle->moneda_id = $request->input('informacion.moneda_id.id');
           $DevolucionDetalle->lote = $request->input('rows.'.$key.'.lote');
           $DevolucionDetalle->serie = $request->input('rows.'.$key.'.serie');
           $DevolucionDetalle->pais = Auth::user()->country;

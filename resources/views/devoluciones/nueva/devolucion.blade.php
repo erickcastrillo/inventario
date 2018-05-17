@@ -45,26 +45,31 @@
                       <div class="form-group">
                         <label class="col-md-4 control-label">Moneda</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="moneda_id" id="moneda_id" required title="Debe seleccionar una Moneda" v-model="informacion.moneda_id">
-                              <option selected value="">-Seleccione-</option>
-                              @foreach($monedas as $moneda)
-                                  <option value="{{ $moneda->id }}">{{ $moneda->nombre }} - {{ $moneda->sigla }}</option>
-                              @endforeach
-                          </select>
+                                <v-select
+                                    
+                                    :value.sync="informacion.moneda_id" 
+                                    v-model="informacion.moneda_id"
+                                    :options="monedas" 
+                                    id="moneda_id"
+                                    name="moneda_id"
+                                    required title="Debe seleccionar una Moneda" 
+                                    required
+                                ></v-select>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-md-4 control-label">Fecha de Devolución</label>
                         <div class="col-sm-8">
-                          <input
-                                  type="text"
-                                  id="fecha_devolucion"
-                                  class="form-control datetimepicker"
-                                  name="fecha_devolucion"
-                                  required
-                                  title="Debe seleccionar una Fecha valida"
-                                  v-model="informacion.fecha_devolucion"
-                          >
+                            <date-picker
+                                :config="config"
+                                id="fecha_devolucion"
+                                class="form-control"
+                                name="fecha_devolucion"
+                                required
+                                title="Debe seleccionar una Fecha valida"
+                                v-model="informacion.fecha_devolucion"
+                                >
+                            </date-picker>
                         </div>
                       </div>
                     </div>
@@ -97,21 +102,26 @@
                                         @{{ index +1 }}
                                     </td>
                                     <td>
-                                        <select
+                                        <div class="input-group" >
+                                            <select
                                                 class="form-control"
                                                 v-model="row.articulo"
+                                                v-on:change="getUnidadesMedida(row.articulo)"
                                                 required
                                                 :name="'row_articulo-' + index"
                                                 :id="'row_articulo-' + index"
                                                 title="Debe seleccionar un Articulo valido">
-                                            <option selected value="">-Seleccione-</option>
-                                            @foreach($articulos as $articulo)
-                                                <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
-                                            @endforeach
-                                        </select>
+                                                <option selected value="">-Seleccione-</option>
+                                                @foreach($articulos as $articulo)
+                                                    <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input
+                                        <div class="input-group" >
+                                            <span class="input-group-addon">@{{ unidadDeMedida }}</span>
+                                            <input
                                                 type="text"
                                                 class="form-control"
                                                 number="true"
@@ -121,10 +131,13 @@
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.cantidad"
                                                 number
-                                        >
+                                            >
+                                        </div>
                                     </td>
                                     <td>
-                                        <input
+                                        <div class="input-group" >
+                                            <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
+                                            <input
                                                 type="text"
                                                 class="form-control"
                                                 number="true"
@@ -135,10 +148,12 @@
                                                 v-model="row.costo"
                                                 data-type="currency"
                                                 number
-                                        >
+                                            >
+                                        </div>
                                     </td>
                                     <td>
-                                        <input
+                                        <div class="input-group" >
+                                            <input
                                                 type="text"
                                                 class="form-control"
                                                 number="true"
@@ -148,10 +163,12 @@
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.serie"
                                                 number
-                                        >
+                                            >
+                                        </div>
                                     </td>
                                     <td>
-                                        <input
+                                        <div class="input-group" >
+                                            <input
                                                 type="text"
                                                 class="form-control"
                                                 number="true"
@@ -161,7 +178,8 @@
                                                 title="Debe ingresar un numero valido"
                                                 v-model="row.lote"
                                                 number
-                                        >
+                                            >
+                                        </div>
                                     </td>
                                     <td>
                                         <input
@@ -272,9 +290,25 @@
 
     $(document).ready(function () {
 
+        Vue.component('date-picker', VueBootstrapDatetimePicker.default);
+        Vue.component('v-select', VueSelect.VueSelect);
+
         var vm = new Vue({
             el: '#app',
             data: {
+                date: null,
+                config: {
+                    format: 'YYYY-MM-DD',
+                    useCurrent: true,
+                    showClear: true,
+                    showClose: true,
+                },
+                monedas: [
+                    @foreach($monedas as $moneda)
+                    {label: "{{ $moneda->nombre }} - {{ $moneda->sigla }}", value: "{{ $moneda->id }}", id: "{{ $moneda->sigla }}"},
+                    @endforeach
+                ],
+                unidadDeMedida: "",
                 rows: [
                     //initial data
                     {
@@ -296,6 +330,41 @@
                 }
             },
             methods: {
+                getUnidadesMedida: function(id) {
+                    if(id) {
+                        var _this = this;
+                        var token = $('meta[name="csrf-token"]').attr('content');
+
+                        $.ajax({
+                            context: this,
+                            type: "GET",
+                            url: "/Articulo/" + id + "/UnidadesMedida",
+                            dataType: 'json',
+                            data: {
+                            _token: token,
+                            },
+                            success: function(result) {
+                                Vue.set(_this, 'unidadDeMedida', result);
+                                //_this.productos = result;
+                            },
+                            error: function(xhr) {
+                                var errorMessage = '';
+                                jQuery.each(xhr.responseJSON, function(i, val) {
+                                    errorMessage += " - " + val + "<br>";
+                                });
+                                swal({
+                                    title: 'Oh no, algo ha salido mal',
+                                    html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
+                                    '<b>Mensaje</b> ' + '<br>' +
+                                    errorMessage,
+                                    type: 'error',
+                                    confirmButtonClass: "btn btn-info btn-fill",
+                                    buttonsStyling: false
+                                });
+                            }
+                        });
+                    }
+                },
                 rowTotal: function(row) {
                     row.subtotal =  row.cantidad * row.costo;
                     var t = 0;

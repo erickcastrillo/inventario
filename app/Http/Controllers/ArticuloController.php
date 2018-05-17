@@ -89,4 +89,9 @@ class ArticuloController extends Controller
     {
         //
     }
+
+    public function getUnidadesMedida($id) {
+        $sigla = Articulo::find($id)->get_unidad_medida()->sigla;
+        return response()->json($sigla);
+    }
 }
