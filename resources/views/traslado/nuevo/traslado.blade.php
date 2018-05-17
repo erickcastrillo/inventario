@@ -71,13 +71,29 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label">Fecha</label>
                       <div class="col-sm-8">
-                        <input type="text" id="fecha_retiro" class="form-control datepicker" name="fecha_retiro" required title="Debe seleccionar una Fecha valida" v-model="informacion.fecha_retiro">
+                          <date-picker
+                            :config="datepicker"
+                            id="fecha_retiro"
+                            class="form-control"
+                            name="fecha_retiro"
+                            required
+                            title="Debe seleccionar una Hora valida"
+                            v-model="informacion.fecha_retiro"
+                          > </date-picker>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-md-4 control-label">Hora</label>
                       <div class="col-sm-8">
-                        <input type="text" id="hora_retiro" class="form-control timepicker" name="hora_retiro" required title="Debe seleccionar una Hora valida" v-model="informacion.hora_retiro">
+                          <date-picker
+                            :config="timepicker"
+                            id="hora_retiro"
+                            class="form-control"
+                            name="hora_retiro"
+                            required
+                            title="Debe seleccionar una Hora valida"
+                            v-model="informacion.hora_retiro"
+                          > </date-picker>
                       </div>
                     </div>
                     <div class="form-group">
@@ -209,35 +225,25 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    Vue.directive('sortable', {
-      twoWay: true,
-      deep: true,
-      bind: function() {
-        var that = this;
-
-        var options = {
-          draggable: Object.keys(this.modifiers)[0]
-        };
-
-        this.sortable = Sortable.create(this.el, options);
-
-        this.sortable.option("onUpdate", function(e) {
-          that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
-        });
-
-        this.onUpdate = function(value) {
-          that.value = value;
-        }
-      },
-      update: function(value) {
-        this.onUpdate(value);
-      }
-    });
+    Vue.component('date-picker', VueBootstrapDatetimePicker.default);
+    Vue.component('v-select', VueSelect.VueSelect);
 
     var vm = new Vue({
       el: '#app',
       data: {
-        //initial data
+        date: null,
+        datepicker: {
+            format: 'YYYY-MM-DD',
+            useCurrent: true,
+            showClear: true,
+            showClose: true,
+        },
+        timepicker: {
+            format: 'h:mm: A',
+            useCurrent: true,
+            showClear: true,
+            showClose: true,
+        },
         productos: [
           {
             id: "",
@@ -332,10 +338,7 @@
                           type: result.tipo,
                           confirmButtonClass: "btn btn-success btn-fill",
                           buttonsStyling: false
-                      }).then(function() {
-                          //location.reload();
                       });
-
                   },
                   error: function(xhr) {
                       var errorMessage = '';
@@ -352,9 +355,10 @@
                           confirmButtonClass: "btn btn-info btn-fill",
                           buttonsStyling: false
                       });
-                      $('#submit').removeClass('disabled');
                   }
               });
+
+              $('#submit').removeClass('disabled');
             }
           });
         },
@@ -456,40 +460,6 @@
           });
         }
       }
-    });
-
-    $('.datepicker').datetimepicker({
-      format: 'YYYY-DD-MM', //use this format if you want the 12hours timpiecker with AM/PM toggle
-      locale: 'es',
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-      }
-    });
-
-    $('.timepicker').datetimepicker({
-      //          format: 'H:mm',    // use this format if you want the 24hours timepicker
-      format: 'h:mm A', //use this format if you want the 12hours timpiecker with AM/PM toggle
-      locale: 'es',
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-      }
-
     });
 
   });

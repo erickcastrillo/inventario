@@ -434,10 +434,7 @@
                                             type: result.tipo,
                                             confirmButtonClass: "btn btn-success btn-fill",
                                             buttonsStyling: false
-                                        }).then(function() {
-                                            location.reload();
                                         });
-
                                     },
                                     error: function(xhr) {
                                         var errorMessage = '';
@@ -462,22 +459,6 @@
                     );
 
                 }
-            }
-        });
-
-        $('.datetimepicker').datetimepicker({
-            format: 'YYYY-MM-DD',    //use this format if you want the 12hours timpiecker with AM/PM toggle
-            locale: 'es',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-chevron-up",
-                down: "fa fa-chevron-down",
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-screenshot',
-                clear: 'fa fa-trash',
-                close: 'fa fa-remove'
             }
         });
 
