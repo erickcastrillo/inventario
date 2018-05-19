@@ -44,7 +44,9 @@ var param_sidebar_mini = false;
 
        $('html').addClass('perfect-scrollbar-on');
    } else {
-       $('html').addClass('perfect-scrollbar-off');
+       $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+       $('html').addClass('perfect-scrollbar-on');
+
    }
 })();
 
