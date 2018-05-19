@@ -26,29 +26,38 @@
                                 <div class="col-md-3">
                                     <h4 class="card-title">Fecha de Inicio</h4>
                                     <div class="form-group">
-                                        <input v-model="ajaxData.fechaInicio" 
-                                            type="text" id="fechaInicio"
-                                            v-on:change="checkForm"
-                                            class="form-control datetimepicker"
-                                            placeholder="Fecha de Inicio">
+                                        <date-picker
+                                            :config="inicio"
+                                            id="fechaInicio"
+                                            class="form-control"
+                                            name="fechaInicio"
+                                            :value="moment().startOf('month').format('YYYY-MM-DD')"
+                                            required
+                                            title="Debe seleccionar una fecha valida"
+                                            v-model="ajaxData.fechaInicio"
+                                        > </date-picker>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <h4 class="card-title">Fecha Final</h4>
                                     <div class="form-group">
-                                        <input v-model="ajaxData.fechaFinal" 
-                                            type="text" id="fechaFinal"
-                                            v-on:change="checkForm"
-                                            class="form-control datetimepicker"
-                                            placeholder="Fecha Final">
+                                        <date-picker
+                                            :config="final"
+                                            id="fechaFinal"
+                                            class="form-control"
+                                            name="fechaFinal"
+                                            required
+                                            :value="moment().format('YYYY-MM-DD')"
+                                            title="Debe seleccionar una fecha valida"
+                                            v-model="ajaxData.fechaFinal"
+                                        > </date-picker>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <h4 class="card-title">&nbsp;</h4>
                                     <div class="form-group">
                                         <button type="button" class="btn btn-wd btn-default btn-fill btn-move-right"
-                                            v-on:click="postData()"
-                                            :disabled="isGenerateButtonDisable">
+                                            v-on:click="postData()">
                                             Generar
                                             <span class="btn-label">
                                                 <i class="ti-control-play"></i>
@@ -75,12 +84,12 @@
                                                 aria-describedby="datatables_info">
                                             <thead>
                                                 <tr role="row">
-                                                    <th v-for="header in dataTable.headers">@{{ header }}</th>
+                                                    <th v-for="header in datatableinfo.headers">@{{ header }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr role="row" v-for="row in dataTable.rows">
-                                                    <td v-for="(value, key) in row">@{{ key }}</td>
+                                                <tr role="row" v-for="row in datatableinfo.data">
+                                                    <td v-for="value in row">@{{ value }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -99,15 +108,17 @@
     
     $(document).ready(function () {
 
+        Vue.component('date-picker', VueBootstrapDatetimePicker.default);
+        Vue.component('v-select', VueSelect.VueSelect);
+
         var app = new Vue({
             el: '#app',
             data: {
                 isTableVisible: false,
-                isGenerateButtonDisable: true,
                 ajaxData: {
                     table: "",
-                    fechaInicio: "",
-                    fechaFinal: "",
+                    fechaInicio: moment().startOf('month').format('YYYY-MM-DD'),
+                    fechaFinal: moment().format('YYYY-MM-DD'),
                     filtros: [
                         {
                             nombre: "",
@@ -115,27 +126,49 @@
                         },
                     ]
                 },
-                dataTable: {
+                inicio: {
+                    format: 'YYYY-MM-DD',
+                    useCurrent: true,
+                    showClear: true,
+                    showClose: true,
+                },
+                final: {
+                    format: 'YYYY-MM-DD',
+                    useCurrent: true,
+                    showClear: true,
+                    showClose: true,
+                },
+                datatableinfo: {
                     headers: {
                         
                     },
-                    rows: {
+                    data: {
                         
                     }
                 }
             },
             watch: {
-                ajaxData: {
+                datatableinfo: {
                     handler(newVal) {
-                        var _this = this;
-                        if(!newVal.table == "" && newVal.fechaInicio && newVal.fechaFinal)
-                        {
-                            _this.isGenerateButtonDisable = false
-                        }
-                        else
-                        {
-                            _this.isGenerateButtonDisable = true
-                        }
+
+                        console.log(newVal);
+
+                        this.$nextTick(function () {
+
+                            $('#datatable').DataTable({
+                                dom: 'Bfrtip',
+                                responsive: true,
+                                destroy: true,
+                                buttons: [
+                                    'excelHtml5',
+                                    'pdfHtml5',
+                                ],
+                                language: {
+                                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                                }
+                            });
+
+                        });
                     },
                     deep: true,
                 }
@@ -159,47 +192,16 @@
                                 filtros: _this.ajaxData.filtros
                             },
                             success: function(result) {
-                                Vue.set(_this.dataTable, 'headers', result.headers);
-                                Vue.set(_this.dataTable, 'rows', result.data);
 
-                                _this.isTableVisible = !_this.isTableVisible;
+                               _this.isTableVisible = false;
 
-                                this.$nextTick(function () {
+                                if ( $.fn.DataTable.isDataTable('#datatable') ) {
+                                    $('#datatable').DataTable().destroy();
+                                }
 
-                                    if ( $.fn.dataTable.isDataTable( '#datatable' ) ) {
+                                Vue.set(_this, 'datatableinfo', result);
 
-                                        $('#datatable').DataTable({
-                                            dom: 'Bfrtip',
-                                            destroy: true,
-                                            responsive: true,
-                                            buttons: [
-                                                'excelHtml5',
-                                                'pdfHtml5',
-                                            ],
-                                            language: {
-                                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                                            }
-                                        });
-
-                                    }
-                                    else {
-
-                                        $('#datatable').DataTable({
-                                            dom: 'Bfrtip',
-                                            responsive: true,
-                                            destroy: true,
-                                            buttons: [
-                                                'excelHtml5',
-                                                'pdfHtml5',
-                                            ],
-                                            language: {
-                                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                                            }
-                                        });
-
-                                    }
-
-                                });
+                                _this.isTableVisible = true;
 
                             },
                             error: function(xhr) {
@@ -216,29 +218,18 @@
                     }
                     else
                     {                        
-                        //_this.isGenerateButtonDisable = !_this.isGenerateButtonDisable
-                        //_this.isTableVisible = !_this.isTableVisible;
+                        console.log(_this.ajaxData);
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Parece haber un problema con la informacion reqerida para procesar el reporte',
+                            confirmButtonClass: "btn btn-info btn-fill",
+                            buttonsStyling: false
+                        })
                     }
                 },
             }
         })
-
-        
-        $('.datetimepicker').datetimepicker({
-            format: 'YYYY-MM-DD',    //use this format if you want the 12hours timpiecker with AM/PM toggle
-            locale: 'es',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-chevron-up",
-                down: "fa fa-chevron-down",
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-screenshot',
-                clear: 'fa fa-trash',
-                close: 'fa fa-remove'
-            }
-        });
 
     });
     

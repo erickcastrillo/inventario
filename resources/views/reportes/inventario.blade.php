@@ -142,17 +142,17 @@
                                 <div id="datatables_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                     <table 
                                         id="datatable"
-                                        class="table table-striped table-no-bordered table-hover dataTable dtr-inline"
+                                        class="table table-striped table-no-bordered table-hover dataTable table-condensed"
                                         cellspacing="0" width="100%" style="width: 100%;" role="grid"
                                         aria-describedby="datatables_info"
                                         >
                                         <thead>
                                             <tr role="row">
-                                                <th v-for="header in headers">@{{ header }}</th>
+                                                <th v-for="header in datatableinfo.headers">@{{ header }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr role="row" v-for="row in data">
+                                            <tr role="row" v-for="row in datatableinfo.data">
                                                 <td v-for="value in row">@{{ value }}</td>
                                             </tr>
                                         </tbody>
@@ -186,7 +186,7 @@
                         },
                     ]
                 },
-                date: null,
+                
                 inicio: {
                     format: 'YYYY-MM-DD',
                     useCurrent: true,
@@ -199,12 +199,38 @@
                     showClear: true,
                     showClose: true,
                 },
-                headers: [
+                datatableinfo: {
+                    headers: [
                     "",
-                ],
-                data: [
-                    "",
-                ],
+                    ],
+                    data: [
+                        "",
+                    ],
+                }
+            },
+            watch: {
+                datatableinfo: {
+                    handler() {
+
+                        this.$nextTick(function () {
+
+                            $('#datatable').DataTable({
+                                dom: 'Bfrtip',
+                                responsive: true,
+                                destroy: true,
+                                buttons: [
+                                    'excelHtml5',
+                                    'pdfHtml5',
+                                ],
+                                language: {
+                                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                                }
+                            });
+
+                        });
+                    },
+                    deep: true,
+                }
             },
             methods: {
                 addRow: function(index) {
@@ -253,47 +279,17 @@
                                     ajaxData: _this.ajaxData,
                                 },
                                 success: function(result) {
+
+                                    _this.isTableVisible = false;
+
+                                    if ( $.fn.DataTable.isDataTable('#datatable') ) {
+                                        $('#datatable').DataTable().destroy();
+                                    }
+                                    
+                                    Vue.set(_this, 'datatableinfo', result);
+
                                     _this.isTableVisible = true;
-                                    
-                                    Vue.set(_this, 'headers', result.headers);
-                                    Vue.set(_this, 'data', result.data);
-                                    
-                                    this.$nextTick(function () {
 
-                                        if ( $.fn.dataTable.isDataTable( '#datatable' ) ) {
-
-                                            $('#datatable').DataTable({
-                                                dom: 'Bfrtip',
-                                                destroy: true,
-                                                responsive: true,
-                                                buttons: [
-                                                    'excelHtml5',
-                                                    'pdfHtml5',
-                                                ],
-                                                language: {
-                                                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                                                }
-                                            });
-
-                                        }
-                                        else {
-
-                                            $('#datatable').DataTable({
-                                                dom: 'Bfrtip',
-                                                responsive: true,
-                                                destroy: true,
-                                                buttons: [
-                                                    'excelHtml5',
-                                                    'pdfHtml5',
-                                                ],
-                                                language: {
-                                                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                                                }
-                                            });
-
-                                        }
-
-                                    });
                                 },
                                 error: function(xhr) {
                                     var errorMessage = '';
