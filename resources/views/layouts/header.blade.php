@@ -25,16 +25,11 @@
     <!-- Datatables css file -->
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
 
-    <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
-    <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/vue-select@latest"></script>
-    <script src="https://unpkg.com/vee-validate@latest"></script>
-    <script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
 
     <!-- Date-picker itself -->
-    <script src="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script>
+    
     <link href="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/vue-bootstrap-datetimepicker"></script>
+
 
 </head>

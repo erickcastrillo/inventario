@@ -58,6 +58,8 @@
     </div>
 </div>
 
+ <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
+
 <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -72,6 +74,14 @@
 <script src="/DataTables/datatables.js"></script>
 <script src="/js/paper-dashboard.js?v=1.2.1"></script>
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
+
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+<script src="https://unpkg.com/vee-validate@latest"></script>
+<script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
+
+<script src="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/vue-bootstrap-datetimepicker"></script>
 
 <script>
 
