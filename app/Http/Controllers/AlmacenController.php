@@ -39,7 +39,7 @@ class AlmacenController extends Controller
                             ->detalles()
                             ->where('articulo_id', '=', $producto_id)
                             ->where('lote', '=', $lote)
-                            ->select('serie', 'id', 'articulo_id')
+                            ->select('serie', 'id', 'articulo_id', 'cantidad')
                             ->where('estado' , '=', 1)->get();
       return response()->json( $serie );
     }

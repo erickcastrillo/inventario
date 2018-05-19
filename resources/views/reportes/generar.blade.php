@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="title">Por favor especifique los parametors del reporte</h4>
+                        <h4 class="title">Por favor especifique los par&aacute;metros del reporte</h4>
                     </div>
                     <div class="card-content">
                         <form>
@@ -91,6 +91,7 @@
                     </div>
                 </div>
             </div>
+            
         </div> <!-- end row -->
     </div>
 </div>

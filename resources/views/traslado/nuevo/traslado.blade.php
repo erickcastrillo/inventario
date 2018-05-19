@@ -77,7 +77,7 @@
                             class="form-control"
                             name="fecha_retiro"
                             required
-                            title="Debe seleccionar una Hora valida"
+                            title="Debe seleccionar una Fecha valida"
                             v-model="informacion.fecha_retiro"
                           > </date-picker>
                       </div>
@@ -137,34 +137,54 @@
                         @{{ index +1 }}
                       </td>
                       <td>
-                        <select v-on:change="getLotes(row)" class="form-control" v-model="row.articulo" required :name="'row_articulo-' + index" :id="'row_articulo-' + index" title="Debe seleccionar un Articulo valido">
-                            <option disabled selected value="">-Seleccione-</option>
-                            <option v-for="producto in productos"
-                              :value="producto.articulo_id">
-                              @{{ producto.nombre_producto }}
-                            </option>
-                        </select>
+                        <div class="input-group">
+                          <select v-on:change="getLotes(row)" class="form-control" v-model="row.articulo" required :name="'row_articulo-' + index" :id="'row_articulo-' + index" title="Debe seleccionar un Articulo valido">
+                              <option disabled selected value="">-Seleccione-</option>
+                              <option v-for="producto in productos"
+                                :value="producto.articulo_id">
+                                @{{ producto.nombre_producto }}
+                              </option>
+                          </select>
+                        </div>
                       </td>
                       <td>
-                        <select v-on:change="getSerie(row)" class="form-control" v-model="row.lote" required :name="'row_lote-' + index" :id="'row_lote-' + index" title="Debe seleccionar un Articulo valido">
-                            <option disabled selected value="">-Seleccione-</option>
-                            <option v-for="lote in row.lotes"
-                              :id="lote.articulo_id" >
-                              @{{ lote.lote }}
-                            </option>
-                        </select>
+                        <div class="input-group">
+                          <select v-on:change="getSerie(row)" class="form-control" v-model="row.lote" required :name="'row_lote-' + index" :id="'row_lote-' + index" title="Debe seleccionar un Articulo valido">
+                              <option disabled selected value="">-Seleccione-</option>
+                              <option v-for="lote in row.lotes"
+                                :id="lote.articulo_id" >
+                                @{{ lote.lote }}
+                              </option>
+                          </select>
+                        </div>
                       </td>
                       <td>
-                        <select class="form-control" v-model="row.serie" required :name="'row_serie-' + index" :id="'row_serie-' + index" title="Debe seleccionar un Articulo valido">
-                            <option disabled selected value="">-Seleccione-</option>
-                            <option v-for="serie in row.series"
-                              :id="serie.articulo_id" >
-                              @{{ serie.serie }}
-                            </option>
-                        </select>
+                        <div class="input-group">
+                          <select class="form-control" v-model="row.serie" required :name="'row_serie-' + index" :id="'row_serie-' + index" title="Debe seleccionar un Articulo valido">
+                              <option disabled selected value="">-Seleccione-</option>
+                              <option v-for="serie in row.series"
+                                :id="serie.articulo_id" >
+                                @{{ serie.serie }}
+                              </option>
+                            </select>
+                        </div>
                       </td>
                       <td>
-                        <input type="text" class="form-control" number="true" required :name="'row_cantidad-' + index" :id="'row_cantidad-' + index" title="Debe ingresar un numero valido" v-model="row.cantidad" number>
+                        <div class="input-group">
+                          <span class="input-group-addon">Maximo @{{ row.cantidad_maxima }}</span>
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            number="true" 
+                            required
+                            v-bind:max='row.cantidad_maxima'
+                            :name="'row_cantidad-' + index" 
+                            :id="'row_cantidad-' + index" 
+                            title="Debe ingresar un numero valido" 
+                            v-model="row.cantidad" 
+                            number
+                            >
+                        </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
                         <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
@@ -245,11 +265,11 @@
             showClose: true,
         },
         productos: [
-          {
-            id: "",
-            almacen_id: "",
-            articulo_id: "",
-            nombre_producto: ""
+            {
+              id: "",
+              almacen_id: "",
+              articulo_id: "",
+              nombre_producto: ""
             }
         ],
         rows: [
@@ -258,6 +278,7 @@
             serie: "",
             lote: "",
             cantidad: "",
+            cantidad_maxima: 0,
             series: [
               {
                 id: "",
@@ -440,6 +461,7 @@
             },
             success: function(result) {
                 Vue.set(row, 'series', result);
+                Vue.set(row, 'cantidad_maxima', result.cantidad);
             },
             error: function(xhr) {
               var errorMessage = '';

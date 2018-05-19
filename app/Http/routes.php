@@ -332,6 +332,8 @@ Route::resource('Usuario', 'UserController',
 
 Route::get('Reporte', 'ReporteController@index')->name('Generar reporte');
 Route::post('Reporte/Generar', 'ReporteController@generar');
+Route::get('Reporte/Inventario', 'ReporteController@reporte_inventario')->name('Reporte de Inventario');
+Route::post('Reporte/Inventario/generar', 'ReporteController@genear_reporte_inventario');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin')->name('Iniciar sesión');

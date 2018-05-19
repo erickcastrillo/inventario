@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Almacen;
 
 class ReporteController extends Controller
 {
@@ -113,5 +114,81 @@ class ReporteController extends Controller
         
     }
 
-    
+    public function reporte_inventario() {
+        return view('reportes.inventario', [
+            'almacenes' => Almacen::where('estado' , '=', 1)->get()
+        ]);
+    }
+
+    public function genear_reporte_inventario(Request $request) {
+        
+        // deletes incomplete filter data
+        $filtros = $request->input('ajaxData.filtros');
+        foreach ($filtros as $key => $val) {
+            if( !isset($key) || !isset($value) ) {         
+                array_splice($filtros, $key, 1);
+            }
+        }
+
+        // If filters are empty, we proceed to get all products from the given Almacen
+        if(empty($filtros)) {
+            if ($request->input('ajaxData.almacen') == -1) {
+                return response()->json("Todas la bodegas");
+            } else {
+                $id = $request->input('ajaxData.almacen');
+                $fechaInicio = $request->input('ajaxData.fechaInicio');
+                $fechaFinal = $request->input('ajaxData.fechaFinal');
+                $raw = "SELECT 
+                            almacenes_detalle.articulo_id AS 'ID Artitulo',
+                            almacenes_detalle.cantidad AS 'Cantidad',
+                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
+                            monedas.nombre AS 'Moneda',
+                            articulos.codigo AS 'Codigo de Producto',
+                            articulos.descripcion AS 'Descripcion',
+                            unidades_medidas.nombre AS 'Unidad de Medida',
+                            articulos.cantidad_minima AS 'Cantidad Minima',
+                            almacenes_detalle.lote AS 'Lote',
+                            almacenes_detalle.serie AS 'Serie',
+                            almacenes_detalle.pais AS 'Pais'
+                        FROM
+                            almacenes_detalle
+                                INNER JOIN
+                            articulos ON almacenes_detalle.articulo_id = articulos.id
+                                INNER JOIN
+                            unidades_medidas ON articulos.medida_id = unidades_medidas.id
+                                INNER JOIN
+                            monedas ON almacenes_detalle.moneda_id = monedas.id
+                        WHERE
+                            almacen_id = {$id} AND
+                            almacenes_detalle.estado = 1 AND
+                            almacenes_detalle.created_at between '{$fechaInicio}' AND '{$fechaFinal}';";
+                $data = DB::select($raw);
+                $headers = [
+                    'ID Artitulo',
+                    'Cantidad',
+                    'Costo Unitario',
+                    'Moneda',
+                    'Codigo de Producto',
+                    'Descripcion',
+                    'Unidad de Medida',
+                    'Cantidad Minima',
+                    'Lote',
+                    'Serie',
+                    'Pais'
+                ];
+
+                $result = [
+                    "headers" => $headers,
+                    "data" => $data,
+                ];
+
+                return response()->json($result);
+            }
+        } else {
+
+        }
+        return response()->json(empty($filtros));
+    }
+
+
 }

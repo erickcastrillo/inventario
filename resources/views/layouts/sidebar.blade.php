@@ -139,6 +139,12 @@
                     <p>Reportes</p>
                 </a>
             </li>
+            <li class="{{ Request::route()->getName() == 'Reporte de Inventario' ? 'active' : '' }}">
+                <a href="/Reporte/Inventario">
+                    <i class="ti-package"></i>
+                    <p>Reporte de Inventario</p>
+                </a>
+            </li>
             <li {{ Request::route()->getName() == 'Admin' ? 'active' : '' }}>
                 <a href="#">
                     <i class="ti-settings"></i>
