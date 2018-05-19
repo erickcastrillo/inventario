@@ -27,6 +27,7 @@
 
     <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
     <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vue-select@latest"></script>
     <script src="https://unpkg.com/vee-validate@latest"></script>
