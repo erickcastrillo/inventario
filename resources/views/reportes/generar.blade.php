@@ -11,7 +11,7 @@
                         <form>
                             {{ csrf_field() }}
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <h4 class="card-title">Tipo de reporte</h4>
                                     <div class="form-group">
                                         <select v-model="ajaxData.table" name="table" id="table" class="form-control">
@@ -23,7 +23,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <h4 class="card-title">Fecha de Inicio</h4>
                                     <div class="form-group">
                                         <date-picker
@@ -38,7 +38,7 @@
                                         > </date-picker>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <h4 class="card-title">Fecha Final</h4>
                                     <div class="form-group">
                                         <date-picker
@@ -53,12 +53,78 @@
                                         > </date-picker>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <h4 class="card-title">&nbsp;</h4>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-wd btn-default btn-fill btn-move-right"
+                            </div>
+                            <div class="row">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-border panel-default">
+                                        <a data-toggle="collapse" href="#collapseOnePlain" class="collapsed" aria-expanded="false">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    Filtros adicionales
+                                                    <i class="ti-angle-down"></i>
+                                                </h4>
+                                            </div>
+                                        </a>
+                                        <div id="collapseOnePlain" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Tipo de filtro</th>
+                                                            <th scope="col">Valor</th>
+                                                            <th scope="col" class="td-actions text-center">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody >
+                                                        <tr  role="row" v-for="(filtro, index) in ajaxData.filtros" :key="index">
+                                                            <td>
+                                                                @{{ index +1 }}
+                                                            </td>
+                                                            <td>
+                                                                <select 
+                                                                    class="form-control" 
+                                                                    v-model="filtro.nombre" 
+                                                                    :name="'filtro_nombre-' + index" 
+                                                                    :id="'filtro_nombre-' + index"
+                                                                >
+                                                                    <option disabled selected value="">-Seleccione-</option>
+                                                                    
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input 
+                                                                    type="text" 
+                                                                    class="form-control" 
+                                                                    :name="'filtro_valor-' + index" 
+                                                                    :id="'filtro_valor-' + index" 
+                                                                    v-model="filtro.valor" 
+                                                                >
+                                                            </td>
+                                                            <td data-name="del" class="text-center td-actions">
+                                                                <a rel="tooltip" class="btn btn-success btn-simple" data-original-title="Añadir" @click="addRow(index)">
+                                                                    <i class="ti-plus"></i>
+                                                                    Añadir
+                                                                </a>
+                                                                <a rel="tooltip" class="btn btn-danger btn-simple" data-original-title="Borrar" @click="removeRow(index)">
+                                                                    <i class="ti-close"></i>
+                                                                    Borrar
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <div class="form-group text-center">
+                                        <button type="button" class="btn btn-wd btn-default btn-fill btn-lg"
                                             v-on:click="postData()">
-                                            Generar
+                                            Generar Reporte
                                             <span class="btn-label">
                                                 <i class="ti-control-play"></i>
                                             </span>
