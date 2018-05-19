@@ -58,37 +58,19 @@
     </div>
 </div>
 
-
-<!--  Forms Validations Plugin -->
+<script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/jquery.validate.min.js"></script>
-
-<!-- Promise Library for SweetAlert2 working on IE -->
 <script src="/js/es6-promise-auto.min.js"></script>
-
-<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="/js/moment.min.js"></script>
-
-<!--  Date Time Picker Plugin is included in this js file -->
 <script src="/js/bootstrap-datetimepicker.js"></script>
-
-<!--  Select Picker Plugin -->
 <script src="/js/bootstrap-selectpicker.js"></script>
-
-<!--  Notifications Plugin    -->
 <script src="/js/bootstrap-notify.js"></script>
-
-<!-- Sweet Alert 2 plugin -->
 <script src="/js/sweetalert2.js"></script>
-
-<!--  Bootstrap Table Plugin    -->
 <script src="/js/bootstrap-table.js"></script>
-
-<!--  Plugin for DataTables.net  -->
 <script src="/DataTables/datatables.js"></script>
-
-<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
 <script src="/js/paper-dashboard.js?v=1.2.1"></script>
-
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
 <script>

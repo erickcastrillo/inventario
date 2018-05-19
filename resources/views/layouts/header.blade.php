@@ -27,7 +27,6 @@
 
     <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
     <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vue-select@latest"></script>
     <script src="https://unpkg.com/vee-validate@latest"></script>
@@ -38,6 +37,4 @@
     <link href="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="https://unpkg.com/vue-bootstrap-datetimepicker"></script>
 
-    <script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
