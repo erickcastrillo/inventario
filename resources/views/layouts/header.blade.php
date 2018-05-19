@@ -30,6 +30,7 @@
     <!-- Date-picker itself -->
     
     <link href="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
 
 
 </head>

@@ -64,12 +64,6 @@
                 </a>
                 <div class="collapse" id="todas-las-entradas">
                     <ul class="nav">
-                        <li class="{{ Request::route()->getName() == 'Todas las entradas' ? 'active' : '' }}">
-                            <a href="/Entrada">
-                                <span class="sidebar-mini">T</span>
-                                <span class="sidebar-normal">Todas</span>
-                            </a>
-                        </li>
                         <li class="{{ Request::route()->getName() == 'Crear entrada por compra' ? 'active' : '' }}">
                             <a href="/Entrada/create">
                                 <span class="sidebar-mini">PC</span>
@@ -94,12 +88,6 @@
                 </a>
                 <div class="collapse" id="todas-las-salidas">
                     <ul class="nav">
-                        <li>
-                            <a href="/Salida">
-                                <span class="sidebar-mini">T</span>
-                                <span class="sidebar-normal">Todas</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="#">
                                 <span class="sidebar-mini">PG</span>

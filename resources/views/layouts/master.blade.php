@@ -70,6 +70,7 @@
 <script src="/js/bootstrap-selectpicker.js"></script>
 <script src="/js/bootstrap-notify.js"></script>
 <script src="/js/sweetalert2.js"></script>
+<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
 <script src="/js/bootstrap-table.js"></script>
 <script src="/DataTables/datatables.js"></script>
 <script src="/js/paper-dashboard.js?v=1.2.1"></script>
@@ -78,6 +79,7 @@
 <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 <script src="https://unpkg.com/vee-validate@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.0.9/locale/es.js"></script>
 <script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
 
 <script src="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script>

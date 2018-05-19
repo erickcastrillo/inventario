@@ -330,6 +330,11 @@ Route::resource('Usuario', 'UserController',
     ]
 ]);
 
+Route::put('User/Update/Basic', 'UserController@update_basic_info');
+Route::put('User/Update/Password', 'UserController@update_password');
+Route::put('User/Update/Roles', 'UserController@update_roles');
+Route::put('User/Update/Country', 'UserController@update_country');
+
 Route::get('Reporte', 'ReporteController@index')->name('Generar reporte');
 Route::post('Reporte/Generar', 'ReporteController@generar');
 Route::get('Reporte/Inventario', 'ReporteController@reporte_inventario')->name('Reporte de Inventario');
@@ -343,3 +348,13 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister')->name('Nuevo registro');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+

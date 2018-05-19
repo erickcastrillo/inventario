@@ -6,7 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\UserBasicInfoRequest;
+use App\Http\Requests\PasswordChangeRequest;
+use App\Http\Requests\RolesRequest;
+
+use App\Role;
+
 use App\User;
+use Auth;
+use App\Pais;
 
 class UserController extends Controller
 {
@@ -54,10 +63,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('usuarios.ver', [
-            'usuario' => User::find($id),
-            'roles' =>  User::find($id)->roles()->get()
-        ]);
+        if (Auth::user()->id == $id || Auth::user()->hasRole('Superuser') || Auth::user()->hasRole('Administrador')) {
+            return view('usuarios.ver', [
+                'usuario' => User::find($id),
+                'roles' =>  User::find($id)->roles()->get()
+            ]);
+        } else {
+            return Redirect::back()->with('error', '¡SU perfil no tiene los permisos necesarios para ingresar a la página solicitada!');
+        }
+        
     }
 
     /**
@@ -68,10 +82,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('usuarios.editar', [
-            'usuario' => User::find($id),
-            'roles' =>  User::find($id)->roles()->get()
-        ]);
+        if (Auth::user()->id == $id || Auth::user()->hasRole('Superuser') || Auth::user()->hasRole('Administrador')) {
+            return view('usuarios.editar', [
+                'usuario' => User::find($id),
+                'roles_usuario' => Auth::user()->roles()->get(),
+                'roles_usuario_editar' =>  User::find($id)->roles()->get(),
+                'paises' => Pais::where('estado' , '=', 1)->get()
+            ]);
+        } else {
+            return Redirect::back()->with('error', '¡SU perfil no tiene los permisos necesarios para ingresar a la página solicitada!');
+        }
     }
 
     /**
@@ -81,9 +101,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+
     }
 
     /**
@@ -95,5 +116,104 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function update_password(PasswordChangeRequest $request) {
+        $new_password = $request->input('password_change.password');
+        $encrypted_password = bcrypt($new_password);
+
+        $user = Auth::user();
+
+        $user->password = $encrypted_password;
+
+        try {
+            $user->save();
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Se han actualizado tu contraseña",
+                'tipo' => 'success'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'estado' => 'Error!',
+                'mensaje' => "Sucedio algo inesperado tratando de guardar los cambios\n".$e->getMessage(),
+                'tipo' => 'Error'
+            ]);
+        }
+    }
+
+    public function update_basic_info (UserBasicInfoRequest $request) {
+        $name = $request->input('basic.name');
+        $last_name = $request->input('basic.last_name');
+        $user_name = $request->input('basic.user_name');
+        $email = $request->input('basic.email');
+
+        $user = Auth::user();
+
+        $user->name = $name;
+        $user->last_name = $last_name;
+        $user->user_name = $user_name;
+        $user->email = $email;
+
+        try {
+            $user->save();
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Se han actualizado tus datos",
+                'tipo' => 'success'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'estado' => 'Error!',
+                'mensaje' => "Sucedio algo inesperado tratando de guardar los cambios\n".$e->getMessage(),
+                'tipo' => 'Error'
+            ]);
+        }
+    }
+
+    public function update_roles(RolesRequest $request) {
+        try {
+            $user_to_change = User::find($request->input('user_id'));
+            $nuevos_roles = $request->input('roles_usuario_editar');
+
+            $user_to_change->detachRoles($user_to_change->roles);
+
+            foreach ($nuevos_roles as $rol_nuevo) {
+                $rol = Role::where('name', $rol_nuevo)->get()->first();
+                $user_to_change->attachRole($rol);
+            }
+
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Se han actualizado los roles",
+                'tipo' => 'success'
+            ]);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'estado' => 'Error!',
+                'mensaje' => "Sucedio algo inesperado tratando de guardar los cambios\n".$e->getMessage(),
+                'tipo' => 'Error'
+            ]);
+        }
+        
+
+        return response()->json([
+            'nuevos_roles' => $nuevos_roles
+        ]);
+    }
+
+    public function update_country() {
+        try {
+
+
+
+        } catch (Exception $e) {
+            return response()->json([
+                'estado' => 'Error!',
+                'mensaje' => "Sucedio algo inesperado tratando de guardar los cambios\n".$e->getMessage(),
+                'tipo' => 'Error'
+            ]);
+        }
     }
 }

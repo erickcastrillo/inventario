@@ -29,7 +29,7 @@
   box-shadow: none
 }
 
-#app .v-select {
+.v-select, .v-select * {
   background-color: #F3F2EE;
 }
 

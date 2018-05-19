@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificacionSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(EnlaceSeeder::class);
-        $this->call(CategoriaMovimientosSeeder::class);
+        $this->call(PaisSeeder::class);
 
         Model::reguard();
     }

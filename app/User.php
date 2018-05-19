@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'last_name', 'user_name', 'country', 'profile_pic', 'estado'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -64,4 +64,5 @@ class User extends Model implements AuthenticatableContract,
     {
         return Almacen::where('pais', '<>', $this->id);
     }
+
 }
