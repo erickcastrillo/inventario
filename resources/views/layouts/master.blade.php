@@ -74,26 +74,11 @@
 <!--  Select Picker Plugin -->
 <script src="/js/bootstrap-selectpicker.js"></script>
 
-<!--  Switch and Tags Input Plugins -->
-<script src="/js/bootstrap-switch-tags.js"></script>
-
-<!-- Circle Percentage-chart -->
-<script src="/js/jquery.easypiechart.min.js"></script>
-
-<!--  Charts Plugin -->
-<script src="/js/chartist.min.js"></script>
-
 <!--  Notifications Plugin    -->
 <script src="/js/bootstrap-notify.js"></script>
 
 <!-- Sweet Alert 2 plugin -->
 <script src="/js/sweetalert2.js"></script>
-
-<!-- Vector Map plugin -->
-<script src="/js/jquery-jvectormap.js"></script>
-
-<!-- Wizard Plugin    -->
-<script src="/js/jquery.bootstrap.wizard.min.js"></script>
 
 <!--  Bootstrap Table Plugin    -->
 <script src="/js/bootstrap-table.js"></script>
@@ -101,14 +86,8 @@
 <!--  Plugin for DataTables.net  -->
 <script src="/DataTables/datatables.js"></script>
 
-<!--  Full Calendar Plugin    -->
-<script src="/js/fullcalendar.min.js"></script>
-
 <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
 <script src="/js/paper-dashboard.js?v=1.2.1"></script>
-
-<!--   Sharrre Library    -->
-<script src="/js/jquery.sharrre.js"></script>
 
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
