@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row" id="app" v-cloak>
       <div class="col-md-12">
-        <form @submit.prevent="postData()" data-vv-scope="traslado">
+        <form @submit.prevent="postData()">
           {{ csrf_field() }}
           <div class="card">
             <div class="card-header">
@@ -291,7 +291,8 @@
           }
         },
         postData: function() {
-          console.log("Erick");
+          this.$validator.validate().then(result => { console.log(result); });
+            
           var _this = this;
           // this.$validator.validateAll("traslado").then(result => {
           //     if (result) {

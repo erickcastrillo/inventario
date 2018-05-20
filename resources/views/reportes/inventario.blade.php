@@ -169,7 +169,7 @@
         $(document).ready(function() {
       
             Vue.component('date-picker', VueBootstrapDatetimePicker.default);
-            //Vue.component('v-select', VueSelect.VueSelect);
+            Vue.component('v-select', VueSelect.VueSelect);
       
             var vm = new Vue({
             el: '#app',

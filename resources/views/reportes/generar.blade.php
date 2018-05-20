@@ -15,7 +15,6 @@
                                     <h4 class="card-title">Tipo de reporte</h4>
                                     <div class="form-group">
                                         <select v-model="ajaxData.table" name="table" id="table" class="form-control">
-                                            <option selected value="">-Seleccione-</option>
                                             @foreach ($tipos_reporte as $tipo_reporte)
                                                 <!-- todo -->
                                                 <option value="{{ $tipo_reporte["name"] }}"> {{ $tipo_reporte["name"] }} </option>
@@ -182,7 +181,7 @@
             data: {
                 isTableVisible: false,
                 ajaxData: {
-                    table: "",
+                    table: 1,
                     fechaInicio: moment().startOf('month').format('YYYY-MM-DD'),
                     fechaFinal: moment().format('YYYY-MM-DD'),
                     filtros: [
