@@ -181,7 +181,7 @@
             data: {
                 isTableVisible: false,
                 ajaxData: {
-                    table: 1,
+                    table: "",
                     fechaInicio: moment().startOf('month').format('YYYY-MM-DD'),
                     fechaFinal: moment().format('YYYY-MM-DD'),
                     filtros: [
