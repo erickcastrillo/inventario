@@ -227,39 +227,6 @@
                 </form>
             </div>
         @endrole
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Imagen de perfil</h4>
-            </div>
-            <div class="card-content">
-                <div class="row form-horizontal" >
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="col-md-5 control-label">Seleccione nueva Imagen</label>
-                            <div class="col-md-7">
-                                <input type="file" v-model="informacion.user_profile_pic.new_profile_pic" id="new_profile_pic" name="new_profile_pic" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <img :src="informacion.user_profile_pic.profile_pic" :alt="informacion.full_name" class="img-circle">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="text-center">
-                    <button class="btn btn-fill btn-info btn-magnify" v-on:click="">
-                        <span class="btn-label">
-                            <i class="ti-save"></i>
-                        </span>
-                        Guardar
-                    </button>
-                </div>
-            </div>
-        </div> <!-- Informaction personal -->
     </div>
 </div>
 <script type="text/javascript">
@@ -381,7 +348,6 @@
                                     confirmButtonClass: "btn btn-success btn-fill",
                                     buttonsStyling: false
                                 });
-                                location.reload();
                             },
                             error: function(xhr) {
                                 var errorMessage = '';
@@ -428,7 +394,6 @@
                                     confirmButtonClass: "btn btn-success btn-fill",
                                     buttonsStyling: false
                                 });
-                                location.reload();
                             },
                             error: function(xhr) {
                                 var errorMessage = '';
@@ -482,7 +447,6 @@
                                     confirmButtonClass: "btn btn-success btn-fill",
                                     buttonsStyling: false
                                 });
-                                location.reload();
                             },
                             error: function(xhr) {
                                 var errorMessage = '';
