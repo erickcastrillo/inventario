@@ -159,7 +159,7 @@ class UserController extends Controller
             $user->save();
             return response()->json([
                 'estado' => '¡Exito!',
-                'mensaje' => "Se han actualizado tus datos",
+                'mensaje' => "Se han actualizado los datos del usuario seleccionado",
                 'tipo' => 'success'
             ]);
         } catch (Exception $e) {
@@ -185,7 +185,7 @@ class UserController extends Controller
 
             return response()->json([
                 'estado' => '¡Exito!',
-                'mensaje' => "Se han actualizado los roles",
+                'mensaje' => "Se han actualizado los roles del usuario seleccionado",
                 'tipo' => 'success'
             ]);
 
@@ -196,17 +196,23 @@ class UserController extends Controller
                 'tipo' => 'Error'
             ]);
         }
-        
-
-        return response()->json([
-            'nuevos_roles' => $nuevos_roles
-        ]);
     }
 
-    public function update_country() {
+    public function update_country(Request $request) {
         try {
 
+            $user_to_change = User::find($request->input('user_id'));
+            $new_country = $request->input('pais');
 
+            $user_to_change->country = $new_country;
+
+            $user_to_change->save();
+
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Se ha actualizado el pais del usuario seleccionado",
+                'tipo' => 'success'
+            ]);
 
         } catch (Exception $e) {
             return response()->json([
