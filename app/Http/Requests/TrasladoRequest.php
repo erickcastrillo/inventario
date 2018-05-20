@@ -30,8 +30,7 @@ class TrasladoRequest extends Request
         'informacion.hora_retiro' => 'required|date_format:H:i:s',
         'informacion.departamento_id' => 'required|numeric',
         'informacion.movimiento_id' => 'required|numeric',
-        'informacion.almacen_id_salida' => 'required|numeric',
-        'informacion.almacen_id_entrada' => 'required|numeric',
+        'informacion.almacen_id' => 'required|numeric',
         'informacion.notas' => 'required',
 
       ];
@@ -39,10 +38,6 @@ class TrasladoRequest extends Request
       {
         $rules['rows.'.$key.'.articulo'] = 'required|numeric';
         $rules['rows.'.$key.'.cantidad'] = 'required|numeric';
-        // $rules['rows.'.$key.'.costo'] = 'required|numeric';
-        $rules['rows.'.$key.'.lote'] = 'required|numeric';
-        $rules['rows.'.$key.'.serie'] = 'required|numeric';
-        //$rules['rows.'.$key.'.total'] = 'required|numeric';
       }
       return $rules;
     }

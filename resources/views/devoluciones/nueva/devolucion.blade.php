@@ -28,7 +28,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-md-4 control-label">Almacen a Ingresar</label>
+                        <label class="col-md-4 control-label">Almac&eacute;n a Ingresar</label>
                         <div class="col-sm-8">
                           <select class="form-control" name="almacen_id" id="almacen_id" required title="Debe seleccionar una Moneda" v-model="informacion.almacen_id">
                               <option selected value="">-Seleccione-</option>

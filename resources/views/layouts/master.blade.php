@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="perfect-scrollbar-on">
+<html lang="en">
 @include('layouts.header')
 <body>
 <div class="wrapper">
@@ -58,43 +58,43 @@
     </div>
 </div>
 
- <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
 
-<script src="/js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/js/perfect-scrollbar.min.js" type="text/javascript"></script>
-<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<!--  Forms Validations Plugin -->
 <script src="/js/jquery.validate.min.js"></script>
+
+<!-- Promise Library for SweetAlert2 working on IE -->
 <script src="/js/es6-promise-auto.min.js"></script>
+
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="/js/moment.min.js"></script>
+
+<!--  Date Time Picker Plugin is included in this js file -->
 <script src="/js/bootstrap-datetimepicker.js"></script>
-<script src="/js/bootstrap-selectpicker.js"></script>
+
+
+<!--  Notifications Plugin    -->
 <script src="/js/bootstrap-notify.js"></script>
+
+<!-- Sweet Alert 2 plugin -->
 <script src="/js/sweetalert2.js"></script>
-<script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+
+<!--  Bootstrap Table Plugin    -->
 <script src="/js/bootstrap-table.js"></script>
+
+<!--  Plugin for DataTables.net  -->
 <script src="/DataTables/datatables.js"></script>
-<script src="/js/paper-dashboard.js?v=1.2.1"></script>
+
+<script src="/js/paper-dashboard.js"></script>
+
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
-<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/vue-select@latest"></script>
-<script src="https://unpkg.com/vee-validate@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.0.9/locale/es.js"></script>
-<script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
-
-<script src="https://unpkg.com/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://unpkg.com/vue-bootstrap-datetimepicker"></script>
-
 <script>
-
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
-
     var pusher = new Pusher('070f3ca82259b2c85a65', {
       cluster: 'us2',
       encrypted: true
     });
-
     var channel = pusher.subscribe('notifications');
     channel.bind('App\\Events\\NotificationEvent', function(data) {
         $.notify({

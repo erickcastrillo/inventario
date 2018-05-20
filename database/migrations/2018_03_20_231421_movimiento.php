@@ -17,7 +17,7 @@ class Movimiento extends Migration
             $table->increments('id');
             
             // Table specific entries
-            $table->string('nombre', 100);
+            $table->string('nombre', 50);
             $table->integer('tipo');
             $table->string('pais', 100);
             

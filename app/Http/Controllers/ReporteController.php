@@ -209,17 +209,17 @@ class ReporteController extends Controller
                             almacenes_detalle.created_at between '{$fechaInicio}' AND '{$fechaFinal}';";
                 $data = DB::select($raw);
                 $headers = [
-                    'ID Artitulo',
+                    'ID Artículo',
                     'Cantidad',
                     'Costo Unitario',
                     'Moneda',
-                    'Codigo de Producto',
-                    'Descripcion',
+                    'Coódigo de Producto',
+                    'Descripción',
                     'Unidad de Medida',
-                    'Cantidad Minima',
+                    'Cantidad Mínima',
                     'Lote',
                     'Serie',
-                    'Pais'
+                    'País'
                 ];
 
                 $result = [

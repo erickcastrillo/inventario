@@ -42,10 +42,9 @@ class TrasladoController extends Controller
     public function create()
     {
       return view('traslado.nuevo.traslado', [
-        'almacenes_propias' => Almacen::where('estado' , '=', 1)->get(),
         'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
-        'movimientos' => Movimiento::where('tipo' , '=', 3)->where('estado' , '=', 1)->get(),
+        'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
       ]);
     }
 
