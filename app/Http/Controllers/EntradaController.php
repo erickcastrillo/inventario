@@ -18,6 +18,7 @@ use App\Articulo;
 use App\Almacen;
 use App\Http\Requests\EntradaRequest;
 use App\CuentaContable;
+use App\BodegaDetalle;
 
 class EntradaController extends Controller
 {
@@ -97,6 +98,7 @@ class EntradaController extends Controller
             $entrada->proyecto_id = $request->input('informacion.proyecto_id');
             $entrada->tarea_id = $request->input('informacion.tarea_id');
             $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
+            $entrada->almacen_id = $request->input('informacion.almacen_id');
             $entrada->pais = Auth::user()->country;
             $entrada->estado = 1;
             $entrada->movimiento_id = 1;
@@ -106,22 +108,31 @@ class EntradaController extends Controller
             $saved_entrada = $entrada->save();
 
             $saved_entrada_detalle = true;
+            $saved_new_stock = true;
     
             foreach ($request->input('rows') as $key => $val)
             {
+                // Adds the row data entrada_detalle to db colum
                 $entrada_detalle = new EntradaDetalle();
                 $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
                 $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
                 $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
-                $entrada_detalle->moneda_id = $request->input('informacion.moneda_id.id');
+                $entrada_detalle->moneda_id = $request->input('informacion.moneda_id.value');
                 $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
                 if($request->input('rows.'.$key.'.serie')){
                     $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
                 }
                 $entrada_detalle->pais = Auth::user()->country;
                 $entrada_detalle->estado = 1;
-    
+                
+                // Saves the data to db
                 $saved_entrada_detalle = $saved_entrada_detalle and $entrada->detalles()->save($entrada_detalle);
+
+                // Look for existing articles
+
+                // BodegaDetalle::where('estado' , '=', 1)
+                //                 ->where('almacen_id', 1)
+                //                 ->where("articulo_id", $request->input('rows.'.$key.'.articulo'))
     
             }
     

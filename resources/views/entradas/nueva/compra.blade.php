@@ -600,6 +600,31 @@
                                     buttonsStyling: false
                                 });
 
+                                Vue.set(_this, 'informacion', {
+                                    total: "",
+                                    notas: "",
+                                    cuenta_contable: "",
+                                    almacen_id: "",
+                                    id_proveedor: "",
+                                    moneda_id: "",
+                                    proyecto_id: "",
+                                    tarea_id: "",
+                                    tipo_concepto_id: "",
+                                    n_factura: "",
+                                    fecha_factura: ""
+                                });
+                                Vue.set(_this, 'rows', [
+                                    //initial data
+                                    {
+                                        articulo: "",
+                                        cantidad: "",
+                                        costo: "",
+                                        serie: "",
+                                        lote: "",
+                                        subtotal: ""
+                                    },
+
+                                ]);
                                 $("#reset").trigger("click");
 
                             },
