@@ -229,7 +229,6 @@
                                                             v-validate="'required'"
                                                             :name="'row_articulo-' + index"
                                                             :id="'row_articulo-' + index"
-                                                            v-validate="'required'"
                                                         >
                                                             <option disabled="" selected="" value="">-Seleccione-</option>
                                                             @foreach($articulos as $articulo)
@@ -246,16 +245,16 @@
                                                             type="text"
                                                             {{-- :class='{"form-control": true, "error": errors.first("\'row_cantidad-\' + index")}' --}}
                                                             class="form-control"
-                                                            number="true"
                                                             required
                                                             v-on:change="rowTotal(row)"
                                                             :name="'row_cantidad-' + index"
                                                             :id="'row_cantidad-' + index"
                                                             v-model="row.cantidad"
+                                                            type="number"
                                                             number
-                                                            v-validate="'required|decimal'"
+                                                            v-validate="'required|numeric'"
                                                         >
-                                                        <span  >@{{ errors.first('row.cantidad') }}</span>
+                                                        <span  >@{{ errors.first("'row_cantidad-' + index") }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -271,10 +270,11 @@
                                                             :name="'row_costo-' + index"
                                                             :id="'row_costo-' + index"
                                                             v-model="row.costo"
+                                                            type="number"
                                                             number
-                                                            v-validate="'required|decimal'"
+                                                            v-validate="'required|numeric'"
                                                         >
-                                                        <span  >@{{ errors.first('row.costo') }}</span>
+                                                        <span  >@{{ errors.first("'row_costo-' + index") }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -286,6 +286,8 @@
                                                             :name="'row_serie-' + index"
                                                             :id="'row_serie-' + index"
                                                             v-model="row.serie"
+                                                            v-validate="'required'"
+                                                            required
                                                         >
                                                         <span  >@{{ errors.first('row.serie') }}</span>
                                                     </div>
@@ -296,12 +298,11 @@
                                                             type="text"
                                                             {{-- :class='{"form-control": true, "error": errors.first("\'row_lote-\' + index")}' --}}
                                                             class="form-control"
-                                                            number="true"
+                                                            type="number"
                                                             required
                                                             :name="'row_lote-' + index"
                                                             :id="'row_lote-' + index"
                                                             v-model="row.lote"
-                                                            number
                                                             v-validate="'required'"
                                                         >
                                                         <span  >@{{ errors.first('row.lote') }}</span>
@@ -315,6 +316,7 @@
                                                             v-bind:name="rowTotal(row)"
                                                             v-model="row.subtotal"
                                                             number
+                                                            type="number"
                                                             :name="'row_subtotal-' + index"
                                                             :id="'row_subtotal-' + index"
                                                             readonly 
@@ -377,7 +379,7 @@
                                                         v-model="informacion.notas" 
                                                         name="notas" 
                                                         id="notas" 
-                                                        :class="{'form-control': true, 'error': errors.first('notas')}"
+                                                        class="form-control"
                                                         rows="3"></textarea>
                                                     </div>
                                                 </div>
@@ -573,9 +575,13 @@
 
                         this.$validator.validate().then(result => {
                         if (!result) {
+                            var errorMessage = 'Por favor revise los campos e intenta de nuevo <br>';
+                            jQuery.each(this.errors.items, function(i, val) {
+                                errorMessage += " - " + val.msg + "<br>";
+                            });
                             swal({
                                     title: "Error",
-                                    text: "Por favor revise los campos e intenta de nuevo",
+                                    html: errorMessage,
                                     type: "error",
                                     confirmButtonClass: "btn btn-success btn-fill",
                                     buttonsStyling: false
