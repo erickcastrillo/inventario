@@ -46,7 +46,7 @@ Route::resource('Devolucion', 'DevolucionController',
         'index' => 'Todas las devoluciones',
         'edit' => 'Editar devolucion',
         'show' => 'Mostrar devolucion',
-        'create' => 'Crear entrada por devolución',
+        'create' => 'Crear entrada por desinstalación',
         'update' => 'Actualizar devolucion',
         'destroy' => 'Borrar devolucion',
     ]

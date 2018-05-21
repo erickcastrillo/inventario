@@ -46,7 +46,7 @@ class DevolucionRequest extends Request
     public function messages()
     {
         $messages = [
-            'informacion.fecha_devolucion' => 'Fecha de devolución es requesrida y debe contener fechas',
+            'informacion.fecha_devolucion' => 'Fecha de desinstalación es requesrida y debe contener fechas',
             'informacion.cliente_id' => 'El cliente es requerido y debe contener solo numeros',
             'informacion.almacen_id' => 'ID de almacenes es requerido y debe contener solo numeros',
             'informacion.moneda_id' => 'ID de la Moneda es requerido y debe contener solo numeros',

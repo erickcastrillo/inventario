@@ -70,7 +70,7 @@
                                 <span class="sidebar-normal">Por compra</span>
                             </a>
                         </li>
-                        <li class="{{ Request::route()->getName() == 'Crear entrada por devolución' ? 'active' : '' }}">
+                        <li class="{{ Request::route()->getName() == 'Crear entrada por desinstalación' ? 'active' : '' }}">
                             <a href="/Devolucion/create">
                                 <span class="sidebar-mini">PD</span>
                                 <span class="sidebar-normal">Por devoluci&oacute;n</span>

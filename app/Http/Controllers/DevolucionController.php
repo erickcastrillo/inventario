@@ -121,7 +121,7 @@ class DevolucionController extends Controller
       } else {
           return response()->json([
               'estado' => '¡Error!',
-              'mensaje' => "La nueva devolución no se ha podido guardar",
+              'mensaje' => "La nueva desinstalación no se ha podido guardar",
               'tipo' => 'error'
           ]. 201);
       }
