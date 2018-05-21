@@ -19,6 +19,30 @@
                                     <div class="col-md-6">
                                         <div class="form-horizontal">
                                             <div class="form-group">
+                                                    <label class="col-md-4 control-label">Almac&eacute;n</label>
+                                                    <div class="col-sm-8">
+                                                        <select
+                                                            :class="{'form-control': true, 'error': errors.first('almacen_id')}"
+                                                            name="almacen_id"
+                                                            id="almacen_id"
+                                                            required
+                                                            v-model="informacion.almacen_id"
+                                                            v-validate="'required'"
+                                                        >
+                                                            <option disabled="" selected="" value="">-Seleccione-</option>
+                                                            @foreach($almacenes as $almacen)
+                                                                <option value="{{ $almacen->id }}">
+                                                                    @if ($almacen->tipo_almacen === 1)
+                                                                        *
+                                                                    @endif
+                                                                    {{ $almacen->descripcion }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <span  >@{{ errors.first('almacen_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group">
                                                 <label class="col-md-4 control-label">Proveedor</label>
                                                 <div class="col-sm-8">
                                                     <select
@@ -163,30 +187,6 @@
                                                         @endforeach
                                                     </select>
                                                     <span  >@{{ errors.first('cuenta_contable') }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label">Almac&eacute;n</label>
-                                                <div class="col-sm-8">
-                                                    <select
-                                                        :class="{'form-control': true, 'error': errors.first('almacen_id')}"
-                                                        name="almacen_id"
-                                                        id="almacen_id"
-                                                        required
-                                                        v-model="informacion.almacen_id"
-                                                        v-validate="'required'"
-                                                    >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>
-                                                        @foreach($almacenes as $almacen)
-                                                            <option value="{{ $almacen->id }}">
-                                                                @if ($almacen->tipo_almacen === 1)
-                                                                    *
-                                                                @endif
-                                                                {{ $almacen->descripcion }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    <span  >@{{ errors.first('almacen_id') }}</span>
                                                 </div>
                                             </div>
                                         </div>
