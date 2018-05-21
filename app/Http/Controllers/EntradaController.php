@@ -104,6 +104,8 @@ class EntradaController extends Controller
             $entrada->editado_id = Auth::user()->id;
     
             $saved_entrada = $entrada->save();
+
+            $saved_entrada_detalle = true;
     
             foreach ($request->input('rows') as $key => $val)
             {
@@ -117,7 +119,7 @@ class EntradaController extends Controller
                 $entrada_detalle->pais = Auth::user()->country;
                 $entrada_detalle->estado = 1;
     
-                $saved_entrada_detalle = $entrada->detalles()->save($entrada_detalle);
+                $saved_entrada_detalle = $saved_entrada_detalle and $entrada->detalles()->save($entrada_detalle);
     
             }
     

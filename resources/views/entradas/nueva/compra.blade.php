@@ -166,7 +166,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label">Alman&eacute;n</label>
+                                                <label class="col-md-4 control-label">Almac&eacute;n</label>
                                                 <div class="col-sm-8">
                                                     <select
                                                         :class="{'form-control': true, 'error': errors.first('almacen_id')}"
