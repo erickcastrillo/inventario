@@ -2,7 +2,7 @@
 
 $factory->define(App\CuentaContable::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->text(),
+        'nombre' => $faker->name(),
 
         'pais' => $faker->country(),
 

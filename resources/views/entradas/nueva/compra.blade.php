@@ -15,140 +15,183 @@
                                 </p>
                             </div>
                             <div class="card-content" >
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Proveedor</label>
-                                                    <div class="col-sm-8">
-                                                        <select
-                                                            :class="{'form-control': true, 'error': errors.first('id_proveedor')}"
-                                                            name="id_proveedor"
-                                                            id="id_proveedor"
-                                                            required
-                                                            v-validate="'required'"
-                                                            v-model="informacion.id_proveedor"
-                                                        >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>  
-                                                            @foreach($proveedores as $proveedor)
-                                                                <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span  >@{{ errors.first('id_proveedor') }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">No. Factura</label>
-                                                    <div class="col-sm-8">
-                                                        <input
-                                                            type="text"
-                                                            :class="{'form-control': true, 'error': errors.first('n_factura')}"
-                                                            name="n_factura"
-                                                            id="n_factura"
-                                                            number="true"
-                                                            required
-                                                            v-validate="'required|decimal'"
-                                                            v-model="informacion.n_factura"
-                                                        >
-                                                        <span  >@{{ errors.first('n_factura') }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Fecha Factura</label>
-                                                    <div class="col-sm-8">
-                                                        <date-picker
-                                                            :config="config"
-                                                            id="fecha_factura"
-                                                            :class="{'form-control datetimepicker': true, 'error': errors.first('fecha_factura')}"
-                                                            name="fecha_factura"
-                                                            required
-                                                            v-model="informacion.fecha_factura"
-                                                            v-validate="'required|date_format:YYYY-MM-DD'"
-                                                            >
-                                                        </date-picker>
-                                                        <span >@{{ errors.first('fecha_factura') }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Moneda</label>
-                                                    <div class="col-sm-8">
-                                                        <v-select  
-                                                            :value.sync="informacion.moneda_id" 
-                                                            v-model="informacion.moneda_id"
-                                                            :class="{'error': errors.first('n_factura')}"
-                                                            :options="monedas" 
-                                                            id="moneda_id"
-                                                            name="moneda_id"
-                                                            v-validate="'required'"
-                                                            required
-                                                            ></v-select>
-                                                        <span  >@{{ errors.first('moneda_id') }}</span>
-                                                    </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Proveedor</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('id_proveedor')}"
+                                                        name="id_proveedor"
+                                                        id="id_proveedor"
+                                                        required
+                                                        v-validate="'required'"
+                                                        v-model="informacion.id_proveedor"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>  
+                                                        @foreach($proveedores as $proveedor)
+                                                            <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('id_proveedor') }}</span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Proyecto</label>
-                                                    <div class="col-sm-8">
-                                                        <select
-                                                            :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
-                                                            name="proyecto_id"
-                                                            id="proyecto_id"
-                                                            required
-                                                            v-model="informacion.proyecto_id"
-                                                            v-validate="'required'"
-                                                        >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>
-                                                            @foreach($proyectos as $proyecto)
-                                                                <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span  >@{{ errors.first('proyecto_id') }}</span>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">No. Factura</label>
+                                                <div class="col-sm-8">
+                                                    <input
+                                                        type="text"
+                                                        :class="{'form-control': true, 'error': errors.first('n_factura')}"
+                                                        name="n_factura"
+                                                        id="n_factura"
+                                                        number="true"
+                                                        required
+                                                        v-validate="'required|decimal'"
+                                                        v-model="informacion.n_factura"
+                                                    >
+                                                    <span  >@{{ errors.first('n_factura') }}</span>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Tarea</label>
-                                                    <div class="col-sm-8">
-                                                        <select
-                                                            :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
-                                                            name="tarea_id"
-                                                            id="tarea_id"
-                                                            required
-                                                            v-model="informacion.tarea_id"
-                                                            v-validate="'required'"
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Fecha Factura</label>
+                                                <div class="col-sm-8">
+                                                    <date-picker
+                                                        :config="config"
+                                                        id="fecha_factura"
+                                                        :class="{'form-control datetimepicker': true, 'error': errors.first('fecha_factura')}"
+                                                        name="fecha_factura"
+                                                        required
+                                                        v-model="informacion.fecha_factura"
+                                                        v-validate="'required|date_format:YYYY-MM-DD'"
                                                         >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>  
-                                                            @foreach($tareas as $tarea)
-                                                                <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span  >@{{ errors.first('tarea_id') }}</span>
-                                                    </div>
+                                                    </date-picker>
+                                                    <span >@{{ errors.first('fecha_factura') }}</span>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label">Tipo / Concepto</label>
-                                                    <div class="col-sm-8">
-                                                        <select
-                                                            :class="{'form-control': true, 'error': errors.first('tipo_concepto_id')}"
-                                                            name="tipo_concepto_id"
-                                                            id="tipo_concepto_id"
-                                                            required
-                                                            v-model="informacion.tipo_concepto_id"
-                                                            v-validate="'required'"
-                                                        >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>
-                                                            @foreach($tiposconcepto as $tipoconcepto)
-                                                                <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span  >@{{ errors.first('tipo_concepto_id') }}</span>
-                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Moneda</label>
+                                                <div class="col-sm-8">
+                                                    <v-select  
+                                                        :value.sync="informacion.moneda_id" 
+                                                        v-model="informacion.moneda_id"
+                                                        :class="{'error': errors.first('n_factura')}"
+                                                        :options="monedas" 
+                                                        id="moneda_id"
+                                                        name="moneda_id"
+                                                        v-validate="'required'"
+                                                        required
+                                                        ></v-select>
+                                                    <span  >@{{ errors.first('moneda_id') }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Proyecto</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                        name="proyecto_id"
+                                                        id="proyecto_id"
+                                                        required
+                                                        v-model="informacion.proyecto_id"
+                                                        v-validate="'required'"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>
+                                                        @foreach($proyectos as $proyecto)
+                                                            <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('proyecto_id') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Tarea</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                        name="tarea_id"
+                                                        id="tarea_id"
+                                                        required
+                                                        v-model="informacion.tarea_id"
+                                                        v-validate="'required'"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>  
+                                                        @foreach($tareas as $tarea)
+                                                            <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('tarea_id') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Tipo / Concepto</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('tipo_concepto_id')}"
+                                                        name="tipo_concepto_id"
+                                                        id="tipo_concepto_id"
+                                                        required
+                                                        v-model="informacion.tipo_concepto_id"
+                                                        v-validate="'required'"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>
+                                                        @foreach($tiposconcepto as $tipoconcepto)
+                                                            <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('tipo_concepto_id') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Cuenta contable</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('cuenta_contable')}"
+                                                        name="cuenta_contable"
+                                                        id="cuenta_contable"
+                                                        required
+                                                        v-model="informacion.cuenta_contable"
+                                                        v-validate="'required'"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>
+                                                        @foreach($cuentas_contable as $cuenta_contable)
+                                                            <option value="{{ $cuenta_contable->id }}">{{ $cuenta_contable->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('cuenta_contable') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Alman&eacute;n</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        :class="{'form-control': true, 'error': errors.first('almacen_id')}"
+                                                        name="almacen_id"
+                                                        id="almacen_id"
+                                                        required
+                                                        v-model="informacion.almacen_id"
+                                                        v-validate="'required'"
+                                                    >
+                                                        <option disabled="" selected="" value="">-Seleccione-</option>
+                                                        @foreach($almacenes as $almacen)
+                                                            <option value="{{ $almacen->id }}">
+                                                                @if ($almacen->tipo_almacen === 1)
+                                                                    *
+                                                                @endif
+                                                                {{ $almacen->descripcion }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  >@{{ errors.first('almacen_id') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card">
@@ -386,7 +429,9 @@
 
             Vue.component('date-picker', VueBootstrapDatetimePicker.default);
 
-            Vue.use(VeeValidate);            
+            Vue.use(VeeValidate, {
+                locale: 'es',
+            });           
 
             var vm = new Vue({
                 el: '#app',
@@ -420,6 +465,8 @@
                     informacion: {
                         total: "",
                         notas: "",
+                        cuenta_contable: "",
+                        almacen_id: "",
                         id_proveedor: "",
                         moneda_id: "",
                         proyecto_id: "",
@@ -567,8 +614,8 @@
                                 });
                                 swal({
                                     title: 'Oh no, algo ha salido mal',
-                                    text: xhr.responseJSON.mensaje,
-                                    type: xhr.responseJSON.tipo,
+                                    html: errorMessage,
+                                    type: 'error',
                                     confirmButtonClass: "btn btn-info btn-fill",
                                     buttonsStyling: false
                                 });

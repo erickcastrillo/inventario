@@ -12,7 +12,6 @@
 */
 
 // use the factory to create a Faker\Generator instance
-$faker1 = Faker\Factory::create();
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
 

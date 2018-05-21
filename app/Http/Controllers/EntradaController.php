@@ -17,6 +17,7 @@ use App\TipoConcepto;
 use App\Articulo;
 use App\Almacen;
 use App\Http\Requests\EntradaRequest;
+use App\CuentaContable;
 
 class EntradaController extends Controller
 {
@@ -49,19 +50,15 @@ class EntradaController extends Controller
      */
     public function create()
     {
-      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->get();
-      $articulos = [];
-      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
-      {
-          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
-      }
       return view('entradas.nueva.compra', [
           'proveedores' => Proveedor::where('estado' , '=', 1)->get(),
           'monedas' => Moneda::where('estado' , '=', 1)->get(),
           'proyectos' => Proyecto::where('estado' , '=', 1)->get(),
           'tareas' => Tarea::where('estado' , '=', 1)->get(),
           'tiposconcepto' => TipoConcepto::where('estado' , '=', 1)->get(),
-          'articulos' => $articulos,
+          'articulos' => Articulo::where('estado' , '=', 1)->get(),
+          'cuentas_contable' => CuentaContable::where('estado' , '=', 1)->get(),
+          'almacenes' => Almacen::where('estado' , '=', 1)->orderBy('tipo_almacen')->get(),
       ]);
     }
 
@@ -95,7 +92,7 @@ class EntradaController extends Controller
             if($request->input('informacion.notas')){
                 $entrada->notas = $request->input('informacion.notas');
             }
-            //$entrada->moneda_id = $request->input('informacion.moneda_id');
+            $entrada->cuenta_contable = $request->input('informacion.cuenta_contable');
             $entrada->n_factura = $request->input('informacion.n_factura');
             $entrada->proyecto_id = $request->input('informacion.proyecto_id');
             $entrada->tarea_id = $request->input('informacion.tarea_id');

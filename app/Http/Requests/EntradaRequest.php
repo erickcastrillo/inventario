@@ -25,6 +25,8 @@ class EntradaRequest extends Request
     {
         $rules = [
             'informacion.fecha_factura' => 'required|date_format:Y-m-d',
+            'informacion.cuenta_contable' => 'required',
+            'informacion.almacen_id' => 'required',
             'informacion.total' => 'required|numeric',
             'informacion.id_proveedor' => 'required|numeric',
             'informacion.moneda_id' => 'required',
@@ -50,6 +52,7 @@ class EntradaRequest extends Request
     {
         $messages = [
             'informacion.fecha_factura' => 'Fecha de factura es requesrida y debe contener fechas',
+            'informacion.cuenta_contable' => 'La cuenta contable es requerida',
             'informacion.grand_total' => 'El total es requerido y debe contener solo numeros',
             'informacion.id_proveedor' => 'ID del Proveedor es requerido y debe contener solo numeros',
             'informacion.moneda_id' => 'ID de la Moneda es requerido y debe contener solo numeros',

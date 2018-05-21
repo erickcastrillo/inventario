@@ -21,7 +21,8 @@
                                         type="text" 
                                         v-validate="'required'" 
                                         v-model="informacion.basic.name" 
-                                        id="name" name="name"
+                                        id="name" 
+                                        name="name"
                                         data-vv-as="nombre"
                                         class="form-control">
                                     <span class="text-danger">@{{ errors.first('basic_information.name') }}</span>

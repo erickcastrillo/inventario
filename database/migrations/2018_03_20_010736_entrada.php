@@ -24,6 +24,8 @@ class Entrada extends Migration
             $table->integer('proyecto_id');
             $table->integer('tarea_id');
             $table->integer('tipo_concepto_id');
+            $table->integer('cuenta_contable');
+            $table->integer('almacen_id');
             $table->string('pais', 50);
             $table->string('notas', 300);
             $table->string('notas_devolucion', 300);

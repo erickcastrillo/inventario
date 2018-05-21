@@ -58,8 +58,7 @@ class TrasladoController extends Controller
     {
         $traslado = new Traslado();
 
-        $traslado->almacen_id_entrada = $request->input('informacion.almacen_id_entrada');
-        $traslado->almacen_id_salida = $request->input('informacion.almacen_id_salida');
+        $traslado->almacen_id = $request->input('informacion.almacen_id');
         $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
         $traslado->hora_retiro = $request->input('informacion.hora_retiro');
         $traslado->movimiento_id = $request->input('informacion.movimiento_id');
@@ -80,16 +79,12 @@ class TrasladoController extends Controller
           $p =  Almacen::find($request->input('informacion.almacen_id_salida'))
                                 ->detalles()
                                 ->where('articulo_id', '=', $request->input('rows.'.$key.'.articulo'))
-                                ->where('lote', '=', $request->input('rows.'.$key.'.lote'))
-                                ->where('serie', '=', $request->input('rows.'.$key.'.serie'))
                                 ->select( 'costo_unitario')
                                 ->get();
             $traslado_detalle = new TrasladoDetalle();
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
             $traslado_detalle->costo_unitario = $p;
-            $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
-            $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
             $traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
             $traslado_detalle->pais = Auth::user()->country;
 
@@ -105,7 +100,7 @@ class TrasladoController extends Controller
             $notiticacion->title = "Nueva solicitud de traslado";
             $notiticacion->message = "El usuario " . Auth::user()->get_full_name() . " ha solicitado un nuevo traslado, por favor revisa los detalles aqui";
             $notiticacion->type = 'info';
-            $notiticacion->url = '/';
+            $notiticacion->url = '/'; // todo
 
             Event::fire(new NotificationEvent($notiticacion));
 

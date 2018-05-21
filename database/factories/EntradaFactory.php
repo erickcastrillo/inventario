@@ -9,6 +9,8 @@ $factory->define(App\Entrada::class, function (Faker\Generator $faker) {
         'proyecto_id' => $faker->numberBetween($min = 1, $max = 10),
         'tarea_id' => $faker->numberBetween($min = 1, $max = 10),
         'tipo_concepto_id' => $faker->numberBetween($min = 1, $max = 10),
+        'cuenta_contable' => $faker->numberBetween($min = 1, $max = 10),
+        'almacen_id' => $faker->numberBetween($min = 1, $max = 10),
         'pais' => $faker->country(),
 
         'estado' => true,

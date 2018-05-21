@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row" id="app" v-cloak>
       <div class="col-md-12">
-        <form @submit.prevent="postData()">
+        <form @submit.prevent="postData()" data-vv-scope="postData">
           {{ csrf_field() }}
           <div class="card">
             <div class="card-header">
@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                   <h4 class="card-title text-center">Detalle del Traslado</h4>
                   <div class="form-horizontal">
-                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('informacion.movimiento_id') }">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.movimiento_id') }">
                       <label class="col-md-4 control-label">Movimiento</label>
                       <div class="col-sm-8">
                         <select 
@@ -31,7 +31,7 @@
                                 <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
                             @endforeach
                         </select>
-                        <span class="text-danger">@{{ errors.first('movimiento_id') }}</span>
+                        <span class="text-danger">@{{ errors.first('postData.movimiento_id') }}</span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -244,13 +244,6 @@
               nombre_producto: ""
             }
         ],
-        rows: [
-          {
-            articulo: "",
-            cantidad: "",
-            cantidad_maxima: 0,
-          },
-        ],
         informacion: {
           notas: "",
           almacen_id: "",
@@ -261,6 +254,16 @@
           hora_retiro: "",
           nombre_retira: "",
           id_personal_retira: ""
+        },
+        rows: [
+          {
+            articulo: "",
+            cantidad: "",
+            cantidad_maxima: 0,
+          },
+        ],
+        postData: {
+          
         }
       },
       methods: {
