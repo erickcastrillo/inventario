@@ -109,11 +109,29 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ Request::route()->getName() == 'Solicitud de traslado' ? 'active' : '' }}">
-                <a href="/Traslado/create">
+            <li class="{{ Request::route()->getName() == 'Todas las entradas' ? 'active' : '' }}">
+                <a data-toggle="collapse" href="#todas-las-traslados">
                     <i class="ti-share"></i>
-                    <p>Solicitud de traslado</p>
+                    <p>Traslados
+                        <b class="caret"></b>
+                    </p>
                 </a>
+                <div class="collapse" id="todas-las-traslados">
+                    <ul class="nav">
+                        <li class="{{ Request::route()->getName() == 'Solicitud de traslado' ? 'active' : '' }}">
+                                <a href="/Traslado/create">
+                                    <span class="sidebar-mini">S</span>
+                                    <span class="sidebar-normal">Solicitud</span>
+                                </a>
+                            </li>
+                        <li class="{{ Request::route()->getName() == 'Autorizaciones' ? 'active' : '' }}">
+                            <a href="#">
+                                <span class="sidebar-mini">A</span>
+                                <span class="sidebar-normal">Autorizaciones</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="{{ Request::route()->getName() == 'Ajuste' ? 'active' : '' }}">
                 <a href="#">
