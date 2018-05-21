@@ -600,6 +600,8 @@
                                     buttonsStyling: false
                                 });
 
+                                $("#reset").trigger("click");
+
                             },
                             error: function(xhr) {
                                 console.log(xhr);
