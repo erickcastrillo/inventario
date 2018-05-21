@@ -30,6 +30,7 @@
         <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
         <script src="https://unpkg.com/vue-select@latest"></script>
         <script src="https://unpkg.com/vee-validate@latest"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.0.9/locale/es.js"></script>
         <script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
     
         <!-- Date-picker itself -->
