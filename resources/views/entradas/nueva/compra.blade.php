@@ -283,13 +283,9 @@
                                                             type="text"
                                                             {{-- :class='{"form-control": true, "error": errors.first("\'row_serie-\' + index")}' --}}
                                                             class="form-control"
-                                                            number="true"
-                                                            required
                                                             :name="'row_serie-' + index"
                                                             :id="'row_serie-' + index"
                                                             v-model="row.serie"
-                                                            number
-                                                            v-validate="'required'"
                                                         >
                                                         <span  >@{{ errors.first('row.serie') }}</span>
                                                     </div>

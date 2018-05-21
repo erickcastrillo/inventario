@@ -115,7 +115,9 @@ class EntradaController extends Controller
                 $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
                 $entrada_detalle->moneda_id = $request->input('informacion.moneda_id.id');
                 $entrada_detalle->lote = $request->input('rows.'.$key.'.lote');
-                $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
+                if($request->input('rows.'.$key.'.serie')){
+                    $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
+                }
                 $entrada_detalle->pais = Auth::user()->country;
                 $entrada_detalle->estado = 1;
     

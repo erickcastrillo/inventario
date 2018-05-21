@@ -43,7 +43,7 @@ class EntradaRequest extends Request
             $rules['rows.'.$key.'.cantidad'] = 'required|numeric';
             $rules['rows.'.$key.'.costo'] = 'required|numeric';
             $rules['rows.'.$key.'.lote'] = 'required|numeric';
-            $rules['rows.'.$key.'.serie'] = 'required|numeric';
+            //$rules['rows.'.$key.'.serie'] = 'required|numeric';
             $rules['rows.'.$key.'.subtotal'] = 'required|numeric';
         }
         return $rules;
