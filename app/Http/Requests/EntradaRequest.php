@@ -34,7 +34,7 @@ class EntradaRequest extends Request
             'informacion.proyecto_id' => 'required|numeric',
             'informacion.tarea_id' => 'required|numeric',
             'informacion.tipo_concepto_id' => 'required|numeric',
-            'informacion.notas' => 'required',
+            //'informacion.notas' => 'required',
 
         ];
         foreach($this->request->get('rows') as $key => $val)

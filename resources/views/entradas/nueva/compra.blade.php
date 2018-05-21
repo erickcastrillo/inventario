@@ -378,7 +378,6 @@
                                                         name="notas" 
                                                         id="notas" 
                                                         :class="{'form-control': true, 'error': errors.first('notas')}"
-                                                        v-validate="'required'"
                                                         rows="3"></textarea>
                                                     </div>
                                                 </div>
