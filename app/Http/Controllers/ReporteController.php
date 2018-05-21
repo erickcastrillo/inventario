@@ -140,9 +140,8 @@ class ReporteController extends Controller
                             articulos.codigo AS 'Codigo de Producto',
                             almacenes_detalle.lote AS 'Lote',
                             almacenes_detalle.serie AS 'Serie',
-                            CONCAT(unidades_medidas.sigla, ' ' , almacenes_detalle.cantidad) AS 'Cantidad',
+                            CONCAT(almacenes_detalle.cantidad, ' ' , unidades_medidas.sigla) AS 'Cantidad',
                             CONCAT(monedas.sigla, ' ', almacenes_detalle.costo_unitario) AS 'Costo Unitario',
-                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
                             articulos.cantidad_minima AS 'Cantidad Minima'
                         FROM
                             almacenes_detalle
@@ -181,9 +180,8 @@ class ReporteController extends Controller
                             articulos.codigo AS 'Codigo de Producto',
                             almacenes_detalle.lote AS 'Lote',
                             almacenes_detalle.serie AS 'Serie',
-                            CONCAT(unidades_medidas.sigla, ' ' , almacenes_detalle.cantidad) AS 'Cantidad',
+                            CONCAT(almacenes_detalle.cantidad, ' ' , unidades_medidas.sigla) AS 'Cantidad',
                             CONCAT(monedas.sigla, ' ', almacenes_detalle.costo_unitario) AS 'Costo Unitario',
-                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
                             articulos.cantidad_minima AS 'Cantidad Minima'
                         FROM
                             almacenes_detalle
