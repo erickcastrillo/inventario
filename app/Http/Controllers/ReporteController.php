@@ -136,17 +136,14 @@ class ReporteController extends Controller
                 $fechaInicio = $request->input('ajaxData.fechaInicio');
                 $fechaFinal = $request->input('ajaxData.fechaFinal');
                 $raw = "SELECT 
-                            almacenes_detalle.articulo_id AS 'ID Artitulo',
-                            almacenes_detalle.cantidad AS 'Cantidad',
-                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
-                            monedas.nombre AS 'Moneda',
-                            articulos.codigo AS 'Codigo de Producto',
                             articulos.descripcion AS 'Descripcion',
-                            unidades_medidas.nombre AS 'Unidad de Medida',
-                            articulos.cantidad_minima AS 'Cantidad Minima',
+                            articulos.codigo AS 'Codigo de Producto',
                             almacenes_detalle.lote AS 'Lote',
                             almacenes_detalle.serie AS 'Serie',
-                            almacenes_detalle.pais AS 'Pais'
+                            CONCAT(unidades_medidas.sigla, ' ' , almacenes_detalle.cantidad) AS 'Cantidad',
+                            CONCAT(monedas.sigla, ' ', almacenes_detalle.costo_unitario) AS 'Costo Unitario',
+                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
+                            articulos.cantidad_minima AS 'Cantidad Minima'
                         FROM
                             almacenes_detalle
                                 INNER JOIN
@@ -157,20 +154,16 @@ class ReporteController extends Controller
                             monedas ON almacenes_detalle.moneda_id = monedas.id
                         WHERE
                             almacenes_detalle.estado = 1 AND
-                            almacenes_detalle.created_at between '{$fechaInicio}' AND '{$fechaFinal}';";
+                            CAST(almacenes_detalle.created_at AS DATE) between '{$fechaInicio}' AND '{$fechaFinal}';";
                 $data = DB::select($raw);
                 $headers = [
-                    'ID Artitulo',
-                    'Cantidad',
-                    'Costo Unitario',
-                    'Moneda',
-                    'Codigo de Producto',
                     'Descripcion',
-                    'Unidad de Medida',
-                    'Cantidad Minima',
+                    'Codigo de Producto',
                     'Lote',
                     'Serie',
-                    'Pais'
+                    'Cantidad',
+                    'Costo Unitario',
+                    'Cantidad Minima',
                 ];
 
                 $result = [
@@ -184,17 +177,14 @@ class ReporteController extends Controller
                 $fechaInicio = $request->input('ajaxData.fechaInicio');
                 $fechaFinal = $request->input('ajaxData.fechaFinal');
                 $raw = "SELECT 
-                            almacenes_detalle.articulo_id AS 'ID Artitulo',
-                            almacenes_detalle.cantidad AS 'Cantidad',
-                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
-                            monedas.nombre AS 'Moneda',
-                            articulos.codigo AS 'Codigo de Producto',
                             articulos.descripcion AS 'Descripcion',
-                            unidades_medidas.nombre AS 'Unidad de Medida',
-                            articulos.cantidad_minima AS 'Cantidad Minima',
+                            articulos.codigo AS 'Codigo de Producto',
                             almacenes_detalle.lote AS 'Lote',
                             almacenes_detalle.serie AS 'Serie',
-                            almacenes_detalle.pais AS 'Pais'
+                            CONCAT(unidades_medidas.sigla, ' ' , almacenes_detalle.cantidad) AS 'Cantidad',
+                            CONCAT(monedas.sigla, ' ', almacenes_detalle.costo_unitario) AS 'Costo Unitario',
+                            almacenes_detalle.costo_unitario AS 'Costo Unitario',
+                            articulos.cantidad_minima AS 'Cantidad Minima'
                         FROM
                             almacenes_detalle
                                 INNER JOIN
@@ -206,20 +196,16 @@ class ReporteController extends Controller
                         WHERE
                             almacen_id = {$id} AND
                             almacenes_detalle.estado = 1 AND
-                            almacenes_detalle.created_at between '{$fechaInicio}' AND '{$fechaFinal}';";
+                            CAST(almacenes_detalle.created_at AS DATE) between '{$fechaInicio}' AND '{$fechaFinal}';";
                 $data = DB::select($raw);
                 $headers = [
-                    'ID Artículo',
-                    'Cantidad',
-                    'Costo Unitario',
-                    'Moneda',
-                    'Coódigo de Producto',
-                    'Descripción',
-                    'Unidad de Medida',
-                    'Cantidad Mínima',
+                    'Descripcion',
+                    'Codigo de Producto',
                     'Lote',
                     'Serie',
-                    'País'
+                    'Cantidad',
+                    'Costo Unitario',
+                    'Cantidad Minima',
                 ];
 
                 $result = [

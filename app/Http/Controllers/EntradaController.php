@@ -18,7 +18,7 @@ use App\Articulo;
 use App\Almacen;
 use App\Http\Requests\EntradaRequest;
 use App\CuentaContable;
-use App\BodegaDetalle;
+use App\AlmacenDetalle;
 
 class EntradaController extends Controller
 {
@@ -130,13 +130,44 @@ class EntradaController extends Controller
 
                 // Look for existing articles
 
-                // BodegaDetalle::where('estado' , '=', 1)
-                //                 ->where('almacen_id', 1)
-                //                 ->where("articulo_id", $request->input('rows.'.$key.'.articulo'))
+                $stock_existentes = AlmacenDetalle::where('estado' , '=', 1)
+                                    ->where('almacen_id', $request->input('informacion.almacen_id'))
+                                    ->where("articulo_id", $request->input('rows.'.$key.'.articulo'))
+                                    ->get();
+
+                foreach($stock_existentes as $stock_existente) {
+                    if(
+                        $stock_existente->moneda_id ==  $request->input('informacion.moneda_id.value') &&
+                        $stock_existente->costo_unitario ==  $request->input('rows.'.$key.'.costo') &&
+                        $stock_existente->serie ==  $request->input('rows.'.$key.'.serie') &&
+                        $stock_existente->lote ==  $request->input('rows.'.$key.'.lote')
+                    ){
+                        $stock_existente->cantidad += $request->input('rows.'.$key.'.cantidad');
+                        $saved_new_stock = $saved_new_stock and $stock_existente->save();
+
+                    } else {
+                        $nuevo_detalle_almacen = new AlmacenDetalle();
+
+                        $nuevo_detalle_almacen->almacen_id = $request->input('informacion.almacen_id');
+                        $nuevo_detalle_almacen->articulo_id = $request->input('rows.'.$key.'.articulo');
+                        $nuevo_detalle_almacen->cantidad = $request->input('rows.'.$key.'.cantidad');
+                        $nuevo_detalle_almacen->costo_unitario = $request->input('rows.'.$key.'.costo');
+                        $nuevo_detalle_almacen->moneda_id = $request->input('informacion.moneda_id.value');
+                        $nuevo_detalle_almacen->lote = $request->input('rows.'.$key.'.lote');
+                        $nuevo_detalle_almacen->serie =  $request->input('rows.'.$key.'.serie');
+                        $nuevo_detalle_almacen->pais = Auth::user()->country;
+
+                        $nuevo_detalle_almacen->pais = Auth::user()->country;
+                        $nuevo_detalle_almacen->estado = 1;
+
+                        $saved_new_stock = $saved_new_stock and $nuevo_detalle_almacen->save();
+                        
+                    }
+                }
     
             }
     
-            if($saved_entrada and $saved_entrada_detalle){
+            if($saved_entrada and $saved_entrada_detalle and $saved_new_stock){
     
                 return response()->json([
                     'estado' => '¡Exito!',
