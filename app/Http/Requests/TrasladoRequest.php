@@ -25,13 +25,14 @@ class TrasladoRequest extends Request
     {
       $rules = [
         'informacion.id_personal_retira' => 'required',
+        'informacion.supervisor_id' => 'required',
         'informacion.nombre_retira' => 'required',
         'informacion.fecha_retiro' => 'required|date_format:Y-m-d',
-        'informacion.hora_retiro' => 'required|date_format:H:i:s',
+        'informacion.hora_retiro' => 'required|date_format:H:i a',
         'informacion.departamento_id' => 'required|numeric',
         'informacion.movimiento_id' => 'required|numeric',
         'informacion.almacen_id' => 'required|numeric',
-        'informacion.notas' => 'required',
+        //'informacion.notas' => 'required',
 
       ];
       foreach($this->request->get('rows') as $key => $val)

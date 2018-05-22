@@ -18,6 +18,7 @@ class TrasladoDetalle extends Migration
             
             // Table specific entries
             $table->integer('articulo_id');
+            $table->integer('almacen_id');
             $table->integer('cantidad');
             $table->float('costo_unitario', 15, 3);
             $table->integer('moneda_id');

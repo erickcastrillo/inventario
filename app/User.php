@@ -17,10 +17,13 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, Authorizable, EntrustUserTrait {
-        EntrustUserTrait::can as may;
-        Authorizable::can insteadof EntrustUserTrait;
-    }
+    use Authenticatable,
+        Authorizable,
+        CanResetPassword,
+        EntrustUserTrait // add this trait to your user model
+        {
+            EntrustUserTrait ::can insteadof Authorizable; //add insteadof avoid php trait conflict resolution
+        }
     /**
      * The database table used by the model.
      *

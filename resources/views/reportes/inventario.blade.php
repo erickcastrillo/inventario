@@ -169,7 +169,9 @@
         $(document).ready(function() {
       
             Vue.component('date-picker', VueBootstrapDatetimePicker.default);
-            Vue.component('v-select', VueSelect.VueSelect);
+            Vue.use(VeeValidate, {
+                locale: 'es',
+            });
       
             var vm = new Vue({
             el: '#app',

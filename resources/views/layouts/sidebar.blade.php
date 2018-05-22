@@ -124,8 +124,8 @@
                                     <span class="sidebar-normal">Solicitud</span>
                                 </a>
                             </li>
-                        <li class="{{ Request::route()->getName() == 'Autorizaciones' ? 'active' : '' }}">
-                            <a href="#">
+                        <li class="{{ Request::route()->getName() == 'Todos los autorizaciones' ? 'active' : '' }}">
+                            <a href="/Traslado">
                                 <span class="sidebar-mini">A</span>
                                 <span class="sidebar-normal">Autorizaciones</span>
                             </a>

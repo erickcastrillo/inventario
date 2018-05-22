@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Almacen;
 use App\Departamento;
+use App\Movimiento;
 use App\User;
 
 class Traslado extends Model
@@ -17,6 +18,11 @@ class Traslado extends Model
     public function get_departamento()
     {
         return Departamento::find($this->departamento_id);
+    }
+
+    public function get_movimiento()
+    {
+        return Movimiento::find($this->movimiento_id);
     }
 
     public function get_almacenes_entrada()

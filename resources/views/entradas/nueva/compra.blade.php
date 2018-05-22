@@ -249,7 +249,7 @@
                                                             v-on:change="rowTotal(row)"
                                                             :name="'row_cantidad-' + index"
                                                             :id="'row_cantidad-' + index"
-                                                            v-model="row.cantidad"
+                                                            v-model.numbe="row.cantidad"
                                                             type="number"
                                                             number
                                                             v-validate="'required|numeric'"
@@ -269,7 +269,7 @@
                                                             required
                                                             :name="'row_costo-' + index"
                                                             :id="'row_costo-' + index"
-                                                            v-model="row.costo"
+                                                            v-model.numbe="row.costo"
                                                             type="number"
                                                             number
                                                             v-validate="'required|numeric'"

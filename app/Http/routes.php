@@ -63,7 +63,7 @@ Route::get('/Devolucion/Nueva/Devolucion', 'DevolucionController@nueva_entrada_d
 Route::resource('Traslado', 'TrasladoController',
 ['names' =>
     [
-        'index' => 'Todos los traslados',
+        'index' => 'Todos los autorizaciones',
         'edit' => 'Editar traslado',
         'show' => 'Mostrar traslado',
         'create' => 'Solicitud de traslado',
@@ -71,6 +71,10 @@ Route::resource('Traslado', 'TrasladoController',
         'destroy' => 'Borrar traslado',
     ]
 ]);
+
+// Route to get entradas using specific dates
+Route::get('/Traslado/Obtener/{fecha_inicio}/{fecha_final}', 'TrasladoController@get_data' )->name('Vista personalizada de Traslados');
+Route::post('/Traslado/Create/Solicitud', 'TrasladoController@nueva_solicitud' )->name('Vista personalizada de Traslados');
 
 // Rutas de los ajustes como resource
 Route::resource('Ajuste', 'AjusteController',
