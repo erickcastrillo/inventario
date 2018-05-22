@@ -21,66 +21,156 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.movimiento_id') }">
                       <label class="col-md-4 control-label">Movimiento</label>
                       <div class="col-sm-8">
-                        <select class="form-control" name="movimiento_id" id="movimiento_id" data-vv-as="Movimiento" v-validate="'required'" v-model="informacion.movimiento_id">
+                        <select 
+                          class="form-control" 
+                          name="movimiento_id" 
+                          id="movimiento_id" 
+                          v-model="informacion.movimiento_id"
+                          v-validate="'required'"
+                          data-vv-as="Movimiento"
+                          >
                           @foreach($movimientos as $movimiento)
-                          <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
+                            <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
                           @endforeach
                         </select>
-                        <span class="text-danger">@{{ errors.first('postData.movimiento_id') }}</span>
+                        <span v-if="errors.has('postData.movimiento_id')">
+                            @{{ errors.first('postData.movimiento_id') }}
+                        </span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
                       <label class="col-md-4 control-label">Almac&eacute;n</label>
                       <div class="col-sm-8">
-                        <select v-on:change="getProductos()" class="form-control" name="almacen_id" id="almacen_id" v-model="informacion.almacen_id">
-                          <option disabled selected value="">-Seleccione-</option>
-                          <!-- Todo - mostrar Almacen principal -->
+                        <select 
+                          v-on:change="getProductos()" 
+                          class="form-control" 
+                          name="almacen_id" 
+                          id="almacen_id"
+                          v-model="informacion.almacen_id"
+                          v-validate="'required'"
+                          data-vv-as="Almacen"
+                        >
                           @foreach($almacenes as $almacenes)
-                          <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }} </option>
+                            <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }} </option>
                           @endforeach
                         </select>
+                        <span v-if="errors.has('postData.almacen_id')">
+                            @{{ errors.first('postData.almacen_id') }}
+                        </span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.departamento_id') }">
                       <label class="col-md-4 control-label">Departamento</label>
                       <div class="col-sm-8">
-                        <select class="form-control" name="departamento_id" id="departamento_id" v-model="informacion.departamento_id">
-                          <option selected value="">-Seleccione-</option>
+                        <select 
+                          class="form-control" 
+                          name="departamento_id" 
+                          id="departamento_id" 
+                          v-model="informacion.departamento_id"
+                          v-validate="'required'"
+                          data-vv-as="Departamento"
+                          >
                           @foreach($departamentos as $departamento)
                           <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
                           @endforeach
                         </select>
+                        <span v-if="errors.has('postData.departamento_id')">
+                            @{{ errors.first('postData.departamento_id') }}
+                        </span>
                       </div>
                     </div>
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.supervisor_id') }">
+                        <label class="col-md-4 control-label">Supervisor</label>
+                        <div class="col-sm-8">
+                          <select 
+                            class="form-control" 
+                            name="supervisor_id" 
+                            id="supervisor_id" 
+                            v-model="informacion.supervisor_id"
+                            v-validate="'required'"
+                            data-vv-as="Supervisor"
+                          >
+                              @foreach($supervisores as $supervisor)
+                                <option value="{{ $supervisor->id }}">{{ $supervisor->get_full_name() }}</option>
+                              @endforeach
+                          </select>
+                          <span v-if="errors.has('postData.supervisor_id')">
+                              @{{ errors.first('postData.supervisor_id') }}
+                          </span>
+                        </div>
+                      </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <h4 class="card-title text-center">Datos de Retiro</h4>
                   <div class="form-horizontal">
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_retiro') }">
                       <label class="col-md-4 control-label">Fecha</label>
                       <div class="col-sm-8">
-                        <date-picker :config="datepicker" id="fecha_retiro" class="form-control" name="fecha_retiro" v-model="informacion.fecha_retiro"
-                          :value="moment().format('YYYY-MM-DD')"> </date-picker>
+                        <date-picker 
+                          :config="datepicker" 
+                          id="fecha_retiro" 
+                          class="form-control" 
+                          name="fecha_retiro" 
+                          v-model="informacion.fecha_retiro"
+                          :value="moment().format('YYYY-MM-DD')"
+                          v-validate="'required|date_format:YYYY-MM-DD'"
+                          data-vv-as="Fecha retiro"
+                        > </date-picker>
+                        <span v-if="errors.has('postData.fecha_retiro')">
+                            @{{ errors.first('postData.fecha_retiro') }}
+                        </span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.hora_retiro') }">
                       <label class="col-md-4 control-label">Hora</label>
                       <div class="col-sm-8">
-                        <date-picker :config="timepicker" id="hora_retiro" class="form-control" name="hora_retiro" :value="moment().format('h:mm: A')"
-                          v-model="informacion.hora_retiro"> </date-picker>
+                        <date-picker 
+                          :config="timepicker" 
+                          id="hora_retiro" 
+                          class="form-control" 
+                          name="hora_retiro" 
+                          :value="moment().format('h:mm A')"
+                          v-model="informacion.hora_retiro"
+                          v-validate="'required|date_format:h:mm A'"
+                          data-vv-as="Hora retiro"
+                        > </date-picker>
+                        <span v-if="errors.has('postData.hora_retiro')">
+                            @{{ errors.first('postData.hora_retiro') }}
+                        </span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.nombre_retira') }">
                       <label class="col-md-4 control-label">Nombre Completo</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="nombre_retira" id="nombre_retira" v-model="informacion.nombre_retira">
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          name="nombre_retira" 
+                          id="nombre_retira" 
+                          v-model="informacion.nombre_retira"
+                          v-validate="'required|alpha_spaces'"
+                          data-vv-as="Nombre Persona Retira">
+                          <span v-if="errors.has('postData.nombre_retira')">
+                              @{{ errors.first('postData.nombre_retira') }}
+                          </span>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_personal_retira') }">
                       <label class="col-md-4 control-label">No de Indentificación</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="id_personal_retira" id="id_personal_retira" number="true" v-model="informacion.id_personal_retira">
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          name="id_personal_retira" 
+                          id="id_personal_retira" 
+                          placeholder="Ejemplo: 1-2345-6789"
+                          v-model="informacion.id_personal_retira"
+                          v-validate="'required|regex:^([0-9])-([0-9]{4})-([0-9]{4})$'"
+                          data-vv-as="ID Persona Retira">
+                          <span v-if="errors.has('postData.id_personal_retira')">
+                              @{{ errors.first('postData.id_personal_retira') }}
+                          </span>
                       </div>
                     </div>
                   </div>
@@ -109,24 +199,41 @@
                         @{{ index +1 }}
                       </td>
                       <td>
-                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('admin_roles.roles_usuario_editar') }">
-                          <div class="input-group">
-                            <select class="form-control" v-model="row.articulo" :name="'row_articulo-' + index" :id="'row_articulo-' + index">
-                              <option disabled selected value="">-Seleccione-</option>
-                              <option v-for="producto in productos" :value="producto.articulo_id">
-                                @{{ producto.nombre_producto }}
-                              </option>
-                            </select>
-                          </div>
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
+                          <select 
+                            class="form-control" 
+                            v-model="row.articulo" 
+                            :name="'row_articulo-' + index" 
+                            :id="'row_articulo-' + index"
+                            v-validate="'required'"
+                            data-vv-as="Producto"
+                            >
+                            <option v-for="producto in productos" :value="producto.articulo_id">
+                              @{{ producto.nombre_producto }}
+                            </option>
+                          </select>
+                          <span v-if="errors.has('postData.row_articulo-' + index)">
+                              @{{ errors.first('postData.row_articulo-' + index) }}
+                          </span>
                         </div>
                       </td>
                       <td>
-                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('admin_roles.roles_usuario_editar') }">
-                          <div class="input-group">
-                            <span class="input-group-addon">Maximo @{{ row.cantidad_maxima }}</span>
-                            <input type="text" class="form-control" number="true" v-bind:max='row.cantidad_maxima' :name="'row_cantidad-' + index" :id="'row_cantidad-' + index"
-                              v-model="row.cantidad" number>
-                          </div>
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            number="true" 
+                            v-bind:max='row.cantidad_maxima' 
+                            :name="'row_cantidad-' + index" 
+                            :id="'row_cantidad-' + index"
+                            v-model="row.cantidad" 
+                            number
+                            v-validate="'required|numeric'"
+                            data-vv-as="Cantidad"
+                            >
+                            <span v-if="errors.has('postData.row_cantidad-' + index)">
+                                @{{ errors.first('postData.row_cantidad-' + index) }}
+                            </span>
                         </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
@@ -168,7 +275,7 @@
                         </span>
                         Limpiar
                       </button>
-                      <button class="btn btn-fill btn-info btn-magnify" type="submit" id="submit">
+                      <button :disabled="errors.any()" class="btn btn-fill btn-info btn-magnify" type="submit" id="submit">
                         <span class="btn-label">
                           <i class="ti-save"></i>
                         </span>
@@ -205,7 +312,7 @@
           showClose: true,
         },
         timepicker: {
-          format: 'h:mm: A',
+          format: 'h:mm A',
           useCurrent: true,
           showClear: true,
           showClose: true,
@@ -219,22 +326,21 @@
         informacion: {
           notas: "",
           almacen_id: "",
-          movimiento_id,
+          movimiento_id: "",
           motivo: "",
           departamento_id: "",
-          fecha_retiro: "",
-          hora_retiro: "",
+          fecha_retiro: moment().format('YYYY-MM-DD'),
+          hora_retiro: moment().format('h:mm A'),
           nombre_retira: "",
-          id_personal_retira: ""
+          id_personal_retira: "",
+          supervisor_id: "",
         },
         rows: [{
           articulo: "",
           cantidad: "",
           cantidad_maxima: 0,
-        }, ],
-        postData: {
+        }],
 
-        }
       },
       methods: {
         addRow: function (index) {
@@ -265,14 +371,14 @@
         },
         postData: function () {
           var _this = this;
-          this.$validator.validateAll("traslado").then(result => {
+          this.$validator.validateAll("postData").then(result => {
             if (result) {
               var token = $('meta[name="csrf-token"]').attr('content');
 
               $.ajax({
                 context: this,
                 type: "POST",
-                url: "/Traslado",
+                url: "/Traslado/Create/Solicitud",
                 dataType: 'json',
                 data: {
                   _token: token,
@@ -287,6 +393,7 @@
                     confirmButtonClass: "btn btn-success btn-fill",
                     buttonsStyling: false
                   });
+                  location.reload();
                 },
                 error: function (xhr) {
                   var errorMessage = '';
