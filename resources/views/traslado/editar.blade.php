@@ -363,7 +363,7 @@
                         <span class="btn-label">
                           <i class="ti-save"></i>
                         </span>
-                        Guardar
+                        Autorizar
                       </button>
                     </div>
                   </div>
@@ -416,6 +416,7 @@
         rows: [
           @foreach($detalles as $detalle)
               {
+              detalle_id: "{{ $detalle->id }}",   
               articulo: "{{ $detalle->articulo_id }}",
               almacen_id: "",
               lote: "",
@@ -457,13 +458,14 @@
         postData: function () {
           var _this = this;
           this.$validator.validateAll("postData").then(result => {
-            if (result) {
+            if (result) 
+            {
               var token = $('meta[name="csrf-token"]').attr('content');
 
               $.ajax({
                 context: this,
-                type: "POST",
-                url: "/Traslado/Create/Solicitud",
+                type: "PUT",
+                url: "/Traslado/{{$traslado->id}}",
                 dataType: 'json',
                 data: {
                   _token: token,
@@ -496,6 +498,10 @@
                   });
                 }
               });
+            }
+            else
+            {
+              console.log(this.errors)
             }
           });
         },

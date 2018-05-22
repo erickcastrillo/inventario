@@ -172,7 +172,60 @@ class TrasladoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $traslado = Traslado::find($id);
+
+        $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
+        $traslado->hora_retiro = $request->input('informacion.hora_retiro');
+        if($request->input('informacion.notas')){
+            $traslado->notas = $traslado->notas += "\n" . $request->input('informacion.notas');
+        }
+        
+        $traslado->creado_id = Auth::user()->id;
+        $traslado->editado_id = Auth::user()->id;
+
+        // estado 0 means pending, 1 approved, 2 rejected
+        //$traslado->estado = 0;
+
+        $saved_traslado = $traslado->save();
+        foreach ($request->input('rows') as $key => $val)
+        {
+            $traslado_detalle = TrasladoDetalle::find($request->input('rows.'.$key.'.detalle_id'));
+            $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
+            $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
+            $traslado_detalle->cantidad_asinada = $request->input('rows.'.$key.'.cantidad_asinada');
+
+            // estado 0 means pending, 1 approved, 2 rejected
+            $traslado_detalle->estado = 1;
+            $traslado_detalle->pais = Auth::user()->country;
+
+            $saved_traslado_detalle = $traslado_detalle->save();
+        }
+
+        if($saved_traslado and $saved_traslado_detalle){
+
+            $notiticacion = new \stdClass();
+            $notiticacion->title = "Nueva solicitud de traslado";
+            $notiticacion->message = "El usuario " . Auth::user()->get_full_name() . " ha solicitado un nuevo traslado, por favor revisa los detalles aqui";
+            $notiticacion->type = 'info';
+            $notiticacion->url = '/'; // todo
+
+            Event::fire(new NotificationEvent($notiticacion));
+
+            return response()->json([
+                'estado' => '¡Exito!',
+                'mensaje' => "Traslado ha sido guardado exitosamente",
+                'tipo' => 'success'
+            ], 201);
+
+        } else {
+
+            return response()->json([
+                'estado' => '¡Error!',
+                'mensaje' => "El nuevo Traslado no se ha podido guardar",
+                'tipo' => 'error'
+            ]. 201);
+
+        }
     }
 
     /**
