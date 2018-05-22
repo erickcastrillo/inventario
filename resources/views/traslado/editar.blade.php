@@ -28,6 +28,7 @@
                           v-model="informacion.movimiento_id"
                           v-validate="'required'"
                           data-vv-as="Movimiento"
+                          disabled
                           >
                           @foreach($movimientos as $movimiento)
                             <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
@@ -49,6 +50,7 @@
                           v-model="informacion.almacen_id"
                           v-validate="'required'"
                           data-vv-as="Almacen"
+                          disabled
                         >
                           @foreach($almacenes as $almacenes)
                             <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }} </option>
@@ -69,6 +71,7 @@
                           v-model="informacion.departamento_id"
                           v-validate="'required'"
                           data-vv-as="Departamento"
+                          disabled
                           >
                           @foreach($departamentos as $departamento)
                           <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
@@ -89,6 +92,7 @@
                             v-model="informacion.supervisor_id"
                             v-validate="'required'"
                             data-vv-as="Supervisor"
+                            disabled
                           >
                               @foreach($supervisores as $supervisor)
                                 <option value="{{ $supervisor->id }}">{{ $supervisor->get_full_name() }}</option>
@@ -150,7 +154,8 @@
                           id="nombre_retira" 
                           v-model="informacion.nombre_retira"
                           v-validate="'required|alpha_spaces'"
-                          data-vv-as="Nombre Persona Retira">
+                          data-vv-as="Nombre Persona Retira"
+                          disabled>
                           <span v-if="errors.has('postData.nombre_retira')">
                               @{{ errors.first('postData.nombre_retira') }}
                           </span>
@@ -167,7 +172,8 @@
                           placeholder="Ejemplo: 1-2345-6789"
                           v-model="informacion.id_personal_retira"
                           v-validate="'required|regex:^([0-9])-([0-9]{4})-([0-9]{4})$'"
-                          data-vv-as="ID Persona Retira">
+                          data-vv-as="ID Persona Retira"
+                          disabled>
                           <span v-if="errors.has('postData.id_personal_retira')">
                               @{{ errors.first('postData.id_personal_retira') }}
                           </span>
@@ -324,16 +330,16 @@
           nombre_producto: ""
         }],
         informacion: {
-          notas: "",
-          almacen_id: "",
-          movimiento_id: "",
+          notas: "{{ $traslado->notas }}",
+          almacen_id: "{{ $traslado->almacen_id }}",
+          movimiento_id: "{{ $traslado->movimiento_id }}",
           motivo: "",
-          departamento_id: "",
-          fecha_retiro: moment().format('YYYY-MM-DD'),
-          hora_retiro: moment().format('h:mm A'),
-          nombre_retira: "",
-          id_personal_retira: "",
-          supervisor_id: "",
+          departamento_id: "{{ $traslado->departamento_id }}",
+          fecha_retiro: "{{ $traslado->fecha_retiro }}",
+          hora_retiro: "{{ $traslado->hora_retiro }}",
+          nombre_retira: "{{ $traslado->nombre_retira }}",
+          id_personal_retira: "{{ $traslado->id_personal_retira }}",
+          supervisor_id: "{{ $traslado->supervisor_id }}",
         },
         rows: [{
           articulo: "",

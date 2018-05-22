@@ -42,21 +42,6 @@ class TrasladoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      return view('traslado.nuevo.traslado', [
-        'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
-        'departamentos' => Departamento::where('estado' , '=', 1)->get(),
-        'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
-        'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
-      ]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -139,13 +124,29 @@ class TrasladoController extends Controller
      */
     public function show($id)
     {
-        $traslado = Traslado::find($id)->get();
+        $traslado = Traslado::find($id);
         return view('traslado.editar', [
             'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
             'departamentos' => Departamento::where('estado' , '=', 1)->get(),
             'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
             'traslado' => $traslado,
+            'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
         ]);   
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+      return view('traslado.nuevo.traslado', [
+        'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
+        'departamentos' => Departamento::where('estado' , '=', 1)->get(),
+        'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
+        'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
+      ]);
     }
 
     /**
