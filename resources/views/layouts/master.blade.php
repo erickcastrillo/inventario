@@ -104,7 +104,6 @@
             url: data.notification.url
         },{
             type: data.notification.type,
-            timer: 4000,
             allow_dismiss: true,
             placement: {
                 from: 'top',

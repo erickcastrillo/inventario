@@ -223,6 +223,7 @@ class TrasladoController extends Controller
 
             // estado 0 means pending, 1 approved, 2 rejected
             $traslado_detalle->estado = 0;
+            $traslado_detalle->pais = Auth::user()->country;
 
             $saved_traslado_detalle = $traslado->detalles()->save($traslado_detalle);
         }
