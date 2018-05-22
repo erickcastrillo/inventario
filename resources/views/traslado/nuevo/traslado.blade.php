@@ -337,6 +337,7 @@
         },
         rows: [{
           articulo: "",
+          almacen_id: "",
           cantidad: "",
           cantidad_maxima: 0,
         }],
