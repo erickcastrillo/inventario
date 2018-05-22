@@ -213,10 +213,11 @@
                             :id="'row_articulo-' + index"
                             v-validate="'required'"
                             data-vv-as="Producto"
+                            disabled
                             >
-                            <option v-for="producto in productos" :value="producto.articulo_id">
-                              @{{ producto.nombre_producto }}
-                            </option>
+                            @foreach($productos as $producto)
+                              <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
+                            @endforeach
                           </select>
                           <span v-if="errors.has('postData.row_articulo-' + index)">
                               @{{ errors.first('postData.row_articulo-' + index) }}
@@ -236,6 +237,7 @@
                             number
                             v-validate="'required|numeric'"
                             data-vv-as="Cantidad"
+                            disabled
                             >
                             <span v-if="errors.has('postData.row_cantidad-' + index)">
                                 @{{ errors.first('postData.row_cantidad-' + index) }}
@@ -323,12 +325,6 @@
           showClear: true,
           showClose: true,
         },
-        productos: [{
-          id: "",
-          almacen_id: "",
-          articulo_id: "",
-          nombre_producto: ""
-        }],
         informacion: {
           notas: "{{ $traslado->notas }}",
           almacen_id: "{{ $traslado->almacen_id }}",
@@ -341,11 +337,18 @@
           id_personal_retira: "{{ $traslado->id_personal_retira }}",
           supervisor_id: "{{ $traslado->supervisor_id }}",
         },
-        rows: [{
-          articulo: "",
-          cantidad: "",
-          cantidad_maxima: 0,
-        }],
+        rows: [
+          @foreach($detalles as $detalle)
+              {
+              articulo: "{{ $detalle->articulo_id }}",
+              almacen_id: "",
+              lote: "",
+              serie: "",
+              cantidad: "{{ $detalle->cantidad }}",
+              cantidad_asinada: "",
+            },
+          @endforeach
+        ],
 
       },
       methods: {

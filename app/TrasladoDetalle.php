@@ -24,6 +24,11 @@ class TrasladoDetalle extends Model
         return Articulo::find($this->articulo_id);
     }
 
+    public function get_almacen()
+    {
+        return Almacen::find($this->almacen_id);
+    }
+
     public function get_creador_name()
     {
         $name = User::find($this->creado_id)->name;

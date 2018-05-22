@@ -19,6 +19,7 @@ use App\Http\Requests\TrasladoRequest;
 use App\Events\NotificationEvent;
 use Carbon\Carbon;
 use App\User;
+use App\Articulo;
 
 class TrasladoController extends Controller
 {
@@ -130,7 +131,9 @@ class TrasladoController extends Controller
             'departamentos' => Departamento::where('estado' , '=', 1)->get(),
             'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
             'traslado' => $traslado,
+            'detalles' => $traslado->detalles()->get(),
             'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
+            'productos' => Articulo::where('estado' , '=', 1)->get(),
         ]);   
     }
 
@@ -218,7 +221,7 @@ class TrasladoController extends Controller
         foreach ($request->input('rows') as $key => $val)
         {
             $traslado_detalle = new TrasladoDetalle();
-            $traslado_detalle->almacen_id = $request->input('informacion.almacen_id');
+            //$traslado_detalle->almacen_id = $request->input('informacion.almacen_id');
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
 

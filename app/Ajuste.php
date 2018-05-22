@@ -13,7 +13,7 @@ class Ajuste extends Model
         return $this->hasMany('App\AjusteDetalle');
     }
 
-    public function get_almacenes()
+    public function get_almacen()
     {
         return Almacen::find($this->almacen_id);
     }
