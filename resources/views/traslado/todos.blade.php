@@ -67,8 +67,7 @@
                                                 <thead>
                                                 <tr role="row">
                                                     <th>#</th>
-                                                    <th>Almacen Entrada</th>
-                                                    <th>Almacen Salida</th>
+                                                    <th>Almacen</th>
                                                     <th>Fecha Retiro</th>
                                                     <th>Hora Retiro</th>
                                                     <th>Movimiento</th>
@@ -83,8 +82,7 @@
                                                 @foreach ($traslados as $traslado)
                                                     <tr role="row">
                                                         <td tabindex="0" class="sorting_1">{{ $traslado->id }}</td>
-                                                        <td>{{ $traslado->get_almacenes_entrada()->descripcion }}</td>
-                                                        <td>{{ $traslado->get_almacenes_salida()->descripcion }}</td>
+                                                        <td>{{ $traslado->get_almacen()->descripcion }}</td>
                                                         <td>{{ $traslado->fecha_retiro }}</td>
                                                         <td>{{ $traslado->hora_retiro }}</td>
                                                         <td>{{ $traslado->get_movimiento()->nombre }}</td>
