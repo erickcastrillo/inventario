@@ -157,7 +157,7 @@
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_personal_retira') }">
-                      <label class="col-md-4 control-label">No de Indentificación</label>
+                      <label class="col-md-4 control-label">No de Identificación</label>
                       <div class="col-sm-8">
                         <input 
                           type="text" 
@@ -446,7 +446,7 @@
               $('#submit').removeClass('disabled');
             }
           });
-        },
+        }
       }
     });
 

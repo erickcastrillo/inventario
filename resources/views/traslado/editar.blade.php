@@ -10,7 +10,7 @@
               <h4 class="card-title">Solicitud de traslado</h4>
               <p class="category">
                 Por favor ingrese los datos requeridos, una vez llenos presione
-                <strong>Guardar</strong>
+                <strong>Autorizar</strong>
               </p>
             </div>
             <div class="card-content">
@@ -162,7 +162,7 @@
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_personal_retira') }">
-                      <label class="col-md-4 control-label">No de Indentificación</label>
+                      <label class="col-md-4 control-label">No de Identificación</label>
                       <div class="col-sm-8">
                         <input 
                           type="text" 
@@ -210,7 +210,7 @@
                       </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
-                          <select 
+                          <select
                             class="form-control" 
                             v-model="row.articulo" 
                             :name="'row_articulo-' + index" 
@@ -218,7 +218,7 @@
                             v-validate="'required'"
                             data-vv-as="Producto"
                             disabled
-                            >
+                          >
                             @foreach($productos as $producto)
                               <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
                             @endforeach
@@ -230,7 +230,8 @@
                       </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_almacen_id-' + index) }">
-                          <select 
+                          <select
+                            @change="getLotes(row)"
                             class="form-control" 
                             :name="'row_almacen_id-' + index" 
                             :id="'row_almacen_id-' + index"
@@ -249,35 +250,45 @@
                       </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_lote-' + index) }">
-                          <input 
-                            type="text" 
+                          <select
+                            @change="getSerie(row)"
                             class="form-control" 
-                            number="true" 
-                            :name="'row_lote-' + index" 
-                            :id="'row_lote-' + index"
-                            v-model="row.lote" 
-                            number
-                            v-validate="'required|numeric'"
-                            data-vv-as="Lote"
-                            >
-                            <span v-if="errors.has('postData.row_lote-' + index)">
-                                @{{ errors.first('postData.row_lote-' + index) }}
-                            </span>
+                            :name="'row_almacen_id-' + index" 
+                            :id="'row_almacen_id-' + index"
+                            v-model="row.lote"
+                            v-validate="'required'"
+                            data-vv-as="Almacen"
+                          >
+                            <option selected value="0">-No aplica-</option>
+                            <option v-for="lote in row.lotes"
+                              :id="lote.articulo_id" >
+                              @{{ lote.lote }}
+                            </option>
+                          </select>
+                          <span v-if="errors.has('postData.row_lote-' + index)">
+                              @{{ errors.first('postData.row_lote-' + index) }}
+                          </span>
                         </div>
                       </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_serie-' + index) }">
-                          <input 
-                            type="text" 
-                            class="form-control" 
-                            number="true" 
-                            :name="'row_serie-' + index" 
-                            :id="'row_serie-' + index"
-                            v-model="row.serie" 
-                            number
-                            v-validate="'required|numeric'"
-                            data-vv-as="Serie"
+                            <select 
+                              class="form-control"
+                              @change="updateCantidadMaxima(row)"
+                              v-model="row.serie"
+                              number="true"
+                              number
+                              :name="'row_serie-' + index" 
+                              :id="'row_serie-' + index"
+                              v-validate="'required'"
+                              data-vv-as="Serie"
                             >
+                              <option selected value="0">-No aplica-</option>
+                              <option v-for="serie in row.series"
+                                :id="serie.articulo_id" >
+                                @{{ serie.serie }}
+                              </option>
+                            </select>
                             <span v-if="errors.has('postData.row_serie-' + index)">
                                 @{{ errors.first('postData.row_serie-' + index) }}
                             </span>
@@ -294,7 +305,7 @@
                             v-model="row.cantidad" 
                             number
                             v-validate="'required|numeric'"
-                            data-vv-as="Cantidad"
+                            data-vv-as="cantidad"
                             disabled
                             >
                             <span v-if="errors.has('postData.row_cantidad-' + index)">
@@ -305,15 +316,16 @@
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad_asignada-' + index) }">
                           <input 
-                            type="text" 
+                            type="number" 
                             class="form-control" 
                             number="true" 
                             :name="'row_cantidad_asignada-' + index" 
                             :id="'row_cantidad_asignada-' + index"
                             v-model="row.cantidad_asignada" 
                             number
-                            v-validate="'required|numeric'"
-                            data-vv-as="Cantidad Asignada"
+                            v-validate="{ required: true, max_value: row.cantidad_maxima }"
+                            data-vv-as="cantidad asignada"
+                            placeholder="Maximo "
                             >
                             <span v-if="errors.has('postData.row_cantidad_asignada-' + index)">
                                 @{{ errors.first('postData.row_cantidad_asignada-' + index) }}
@@ -321,20 +333,19 @@
                         </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
-                        <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
+                        {{-- <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
                           <i class="ti-plus"></i>
                           Añadir
                         </a>
                         <a rel="tooltip" class="btn btn-danger btn-simple btn-xs" data-original-title="Borrar" @click="removeRow(index)">
                           <i class="ti-close"></i>
                           Borrar
-                        </a>
+                        </a> --}}
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
               <div class="row">
                 <div class="card card-plain">
                   <div class="col-md-12">
@@ -353,12 +364,6 @@
                 <div class="col-md-3 col-md-offset-9">
                   <div class="card card-plain">
                     <div class="card-content">
-                      <button type="reset" class="btn btn-fill btn-danger btn-magnify" id="reset">
-                        <span class="btn-label">
-                          <i class="ti-trash"></i>
-                        </span>
-                        Limpiar
-                      </button>
                       <button :disabled="errors.any()" class="btn btn-fill btn-info btn-magnify" type="submit" id="submit">
                         <span class="btn-label">
                           <i class="ti-save"></i>
@@ -420,13 +425,32 @@
               articulo: "{{ $detalle->articulo_id }}",
               almacen_id: "",
               lote: "",
+              lotes: [
+                {
+                  "lote": "",
+                  "id": "",
+                },
+              ],
               serie: "",
+              series: [
+                {
+                  "": "",
+                },
+              ],
               cantidad: "{{ $detalle->cantidad }}",
-              cantidad_asinada: "",
+              cantidad_asignada: "",
+              cantidad_maxima: 0,
             },
           @endforeach
         ],
 
+      },
+      computed: {
+        rules: function(row) {
+          if (!row.cantidad_maxima) return 'required';
+          
+          return `required|max_value:${row.cantidad_maxima}`;
+        }
       },
       methods: {
         addRow: function (index) {
@@ -505,38 +529,84 @@
             }
           });
         },
-        getProductos: function () {
+        getLotes: function (row) {
           var _this = this;
           var token = $('meta[name="csrf-token"]').attr('content');
-          $.ajax({
-            context: this,
-            type: "GET",
-            url: "/Almacen/" + _this.informacion.almacen_id + "/detalles",
-            dataType: 'json',
-            data: {
-              _token: token,
-            },
-            success: function (result) {
-              Vue.set(_this, 'productos', result);
-            },
-            error: function (xhr) {
-              var errorMessage = '';
-              jQuery.each(xhr.responseJSON, function (i, val) {
-                errorMessage += " - " + val + "<br>";
-              });
-              swal({
-                title: 'Oh no, algo ha salido mal',
-                html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
-                  '<b>Mensaje</b> ' + '<br>' +
-                  errorMessage,
-                type: 'error',
-                confirmButtonClass: "btn btn-info btn-fill",
-                buttonsStyling: false
-              });
-              $('#submit').removeClass('disabled');
+          if (!row.almacen_id == "")
+          {
+            $.ajax({
+              context: this,
+              type: "GET",
+              url: "/Almacen/" + row.almacen_id + "/" + row.articulo + "/lotes",
+              dataType: 'json',
+              data: {
+                _token: token,
+              },
+              success: function(result) {
+                  Vue.set(row, 'lotes', result);
+              },
+              error: function(xhr) {
+                var errorMessage = '';
+                jQuery.each(xhr.responseJSON, function(i, val) {
+                  errorMessage += " - " + val + "<br>";
+                });
+                swal({
+                  title: 'Oh no, algo ha salido mal',
+                  html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
+                    '<b>Mensaje</b> ' + '<br>' +
+                    errorMessage,
+                  type: 'error',
+                  confirmButtonClass: "btn btn-info btn-fill",
+                  buttonsStyling: false
+                });
+              }
+            });
+          }
+        },
+        getSerie: function (row) {
+          var _this = this;
+          var token = $('meta[name="csrf-token"]').attr('content');
+          if(!row.lote == "" && !row.almacen_id == "")
+          {
+            $.ajax({
+              context: this,
+              type: "GET",
+              url: "/Almacen/" + row.almacen_id + "/" + row.articulo + "/" + row.lote + "/series",
+              dataType: 'json',
+              data: {
+                _token: token,
+              },
+              success: function(result) {
+                  Vue.set(row, 'series', result);
+              },
+              error: function(xhr) {
+                var errorMessage = '';
+                jQuery.each(xhr.responseJSON, function(i, val) {
+                  errorMessage += " - " + val + "<br>";
+                });
+                swal({
+                  title: 'Oh no, algo ha salido mal',
+                  html: '<b>Error:</b> ' + xhr.status + " " + xhr.statusText + '<br>' +
+                    '<b>Mensaje</b> ' + '<br>' +
+                    errorMessage,
+                  type: 'error',
+                  confirmButtonClass: "btn btn-info btn-fill",
+                  buttonsStyling: false
+                });
+                $('#submit').removeClass('disabled');
+              }
+            });
+          }
+        },
+        updateCantidadMaxima: function (row) {
+
+          row.series.forEach(function(serie) {
+            if (serie.serie == row.serie) {
+              row.cantidad_maxima = serie.cantidad;
             }
           });
-        },
+
+        }
       }
     });
 
