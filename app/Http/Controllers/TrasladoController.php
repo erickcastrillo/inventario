@@ -195,10 +195,15 @@ class TrasladoController extends Controller
             $traslado_detalle->cantidad_asinada = $request->input('rows.'.$key.'.cantidad_asinada');
 
             // estado 0 means pending, 1 approved, 2 rejected
-            $traslado_detalle->estado = 1;
+            $traslado_detalle->estado = $request->input('rows.'.$key.'.estado');
             $traslado_detalle->pais = Auth::user()->country;
 
             $saved_traslado_detalle = $traslado_detalle->save();
+
+            if ($request->input('rows.'.$key.'.estado') == 1)
+            {
+                
+            }
         }
 
         if($saved_traslado and $saved_traslado_detalle){
