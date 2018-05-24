@@ -26,7 +26,7 @@ class TrasladoDetalle extends Migration
             $table->string('serie', 100);
             $table->string('pais', 100);
             $table->integer('traslado_id');
-            $table->integer('cantidad_asinada');
+            $table->integer('cantidad_asignada');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

@@ -400,7 +400,6 @@
                 confirmButtonClass: "btn btn-info btn-fill",
                 buttonsStyling: false
               });
-              $('#submit').removeClass('disabled');
             }
           });
         }

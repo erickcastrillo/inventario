@@ -349,18 +349,13 @@
                                     <div class="col-md-3 col-md-offset-9">
                                         <div class="card card-plain">
                                             <div class="card-content">
-                                                <button
-                                                        type="reset"
-                                                        class="btn btn-fill btn-danger btn-magnify"
-                                                        id="reset"
-                                                        :disabled="errors.any()"
-                                                >
+                                                <button type="reset" class="btn btn-fill btn-danger btn-magnify" id="reset" >
                                                     <span class="btn-label">
 	                                                    <i class="ti-trash"></i>
 	                                                </span>
                                                     Limpiar
                                                 </button>
-                                                <button class="btn btn-fill btn-info btn-magnify" type="submit">
+                                                <button class="btn btn-fill btn-info btn-magnify" type="submit" :disabled="errors.any()">
                                                     <span class="btn-label">
 	                                                    <i class="ti-save"></i>
 	                                                </span>
@@ -448,7 +443,6 @@
                                 },
                                 success: function(result) {
                                     Vue.set(_this, 'unidadDeMedida', result);
-                                    //_this.productos = result;
                                 },
                                 error: function(xhr) {
                                     var errorMessage = '';
@@ -496,7 +490,6 @@
                             fecha_factura: ""
                         };
                         this.rows = [
-                            //initial data
                             {
                                 articulo: "",
                                 cantidad: "",
@@ -529,7 +522,6 @@
                     },
                     postData: function (event) {
                         var _this = this;
-                        $('#submit').addClass('disabled');
                         var token = $('meta[name="csrf-token"]').attr('content');
 
                         this.$validator.validateAll("postData").then(result => {
@@ -569,7 +561,6 @@
                                         confirmButtonClass: "btn btn-info btn-fill",
                                         buttonsStyling: false
                                     });
-                                    $('#submit').removeClass('disabled');
                                 }});
                             }
                         });

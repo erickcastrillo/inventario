@@ -7,7 +7,7 @@
             {{ csrf_field() }}
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Nueva Entrada por Devolucion</h4>
+                <h4 class="card-title">Nueva Entrada por desinstalación</h4>
                 <p class="category">
                   Por favor ingrese los datos requeridos, una vez llenos presione <strong>Guardar</strong>
                 </p>
@@ -65,15 +65,15 @@
                             ></v-select>
                         </div>
                       </div>
-                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_devolucion') }">
-                        <label class="col-md-4 control-label">Fecha de Devolución</label>
+                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_desinstalación') }">
+                        <label class="col-md-4 control-label">Fecha de desinstalación</label>
                         <div class="col-sm-8">
                             <date-picker
                                 :config="config"
-                                id="fecha_devolucion"
+                                id="fecha_desinstalación"
                                 class="form-control"
-                                name="fecha_devolucion"
-                                v-model="informacion.fecha_devolucion"
+                                name="fecha_desinstalación"
+                                v-model="informacion.fecha_desinstalación"
                                 v-validate="'required'"
                                 >
                             </date-picker>
@@ -87,7 +87,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">
-                        Detalles de la Devolucion
+                        Detalles de la desinstalación
                     </h4>
                     <div class="card-content" >
                         <table class="table">
@@ -321,7 +321,7 @@
                     cliente_id: "",
                     almacen_id: "",
                     moneda_id: "",
-                    fecha_devolucion: "",
+                    fecha_desinstalación: "",
                 }
             },
             methods: {
@@ -411,7 +411,7 @@
                             $.ajax({
                                 context: this,
                                 type: "POST",
-                                url: "/Devolucion",
+                                url: "/desinstalación",
                                 dataType: 'json',
                                 data: {
                                     _token: token,

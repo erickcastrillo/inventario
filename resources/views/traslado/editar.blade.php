@@ -529,7 +529,6 @@
                   confirmButtonClass: "btn btn-info btn-fill",
                   buttonsStyling: false
                 });
-                $('#submit').removeClass('disabled');
               }
             });
           }
@@ -545,11 +544,9 @@
         },
         aceptarProducto: function(row) {
           row.estado = "aceptado"
-          console.log(row);
         },
         rechazarProducto: function(row) {
           row.estado = "rechazado"
-          console.log(row);
         }
       }
     });

@@ -184,16 +184,13 @@ class TrasladoController extends Controller
         $traslado->creado_id = Auth::user()->id;
         $traslado->editado_id = Auth::user()->id;
 
-        // estado 0 means pending, 1 approved, 2 rejected
-        //$traslado->estado = 0;
-
         $saved_traslado = $traslado->save();
         foreach ($request->input('rows') as $key => $val)
         {
             $traslado_detalle = TrasladoDetalle::find($request->input('rows.'.$key.'.detalle_id'));
             $traslado_detalle->lote = $request->input('rows.'.$key.'.lote');
             $traslado_detalle->serie = $request->input('rows.'.$key.'.serie');
-            $traslado_detalle->cantidad_asinada = $request->input('rows.'.$key.'.cantidad_asinada');
+            $traslado_detalle->cantidad_asignada = $request->input('rows.'.$key.'.cantidad_asignada');
 
             // estado 0 means pending, 1 approved, 2 rejected
             $traslado_detalle->estado = $request->input('rows.'.$key.'.estado');
@@ -203,7 +200,7 @@ class TrasladoController extends Controller
 
             if ($request->input('rows.'.$key.'.estado') == 1)
             {
-
+                
             }
         }
 

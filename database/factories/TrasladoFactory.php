@@ -4,7 +4,7 @@ use Carbon\Carbon;
 
 $factory->define(App\Traslado::class, function (Faker\Generator $faker) {
     return [
-        'almacen_id' => $faker->numberBetween($min = 1, $max = 10),
+        'almacen_id' => $faker->numberBetween($min = 1, $max = 5),
         'supervisor_id' => $faker->numberBetween($min = 1, $max = 10),
         'fecha_retiro' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'hora_retiro' => $faker->time($format = 'H:i:s', $max = 'now'),
