@@ -319,6 +319,7 @@
         },
         productos: [{
           id: "",
+          codigo: "",
           almacen_id: "",
           articulo_id: "",
           nombre_producto: ""

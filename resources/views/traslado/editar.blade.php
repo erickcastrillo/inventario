@@ -193,7 +193,7 @@
                 <table class="table">
                   <thead>
                     <tr role="row">
-                      <th scope="col" style="width: 50px;" >No.</th>
+                      <th scope="col" style="width: 20px;" >No.</th>
                       <th scope="col">Artículo</th>
                       <th scope="col">Almac&eacute;n</th>
                       <th scope="col">Lote</th>
@@ -326,7 +326,7 @@
                             v-validate="{ required: true, max_value: row.cantidad_maxima }"
                             data-vv-as="cantidad asignada"
                             rel="tooltip"
-                            :data-original-title="'Cantidad maxima '+ row.cantidad_maxima"
+                            :data-original-title="'Cantidad máxima '+ row.cantidad_maxima"
                             >
                             <span v-if="errors.has('postData.row_cantidad_asignada-' + index)">
                                 @{{ errors.first('postData.row_cantidad_asignada-' + index) }}
