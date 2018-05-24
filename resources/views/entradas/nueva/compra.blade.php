@@ -287,21 +287,19 @@
                                                 <td data-name="del" class="text-right td-actions">
                                                     <a
                                                         rel="tooltip"
-                                                        class="btn btn-success btn-simple btn-xs"
+                                                        class="btn btn-success btn-xs"
                                                         data-original-title="Añadir"
                                                         @click="addRow(index)"
                                                     >
-                                                    <i class="ti-plus"></i>
-                                                    Añadir
+                                                        <i class="ti-plus"></i>
                                                     </a>
                                                     <a
                                                         rel="tooltip"
-                                                        class="btn btn-danger btn-simple btn-xs"
-                                                        data-original-title="Borrar"
+                                                        class="btn btn-danger btn-xs"
+                                                        data-original-title="Eliminar"
                                                         @click="removeRow(index)"
                                                     >
-                                                    <i class="ti-close"></i>
-                                                    Borrar
+                                                        <i class="ti-close"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -355,6 +353,7 @@
                                                         type="reset"
                                                         class="btn btn-fill btn-danger btn-magnify"
                                                         id="reset"
+                                                        :disabled="errors.any()"
                                                 >
                                                     <span class="btn-label">
 	                                                    <i class="ti-trash"></i>
@@ -534,45 +533,45 @@
                         var token = $('meta[name="csrf-token"]').attr('content');
 
                         this.$validator.validateAll("postData").then(result => {
-                        if (result) {
-                            $.ajax({
-                            context: this,
-                            type: "POST",
-                            url: "/Entrada",
-                            dataType: 'json',
-                            data: {
-                                _token: token,
-                                informacion: _this.informacion,
-                                rows: _this.rows,
-                            },
-                            success: function(result) {
-                                swal({
-                                    title: result.estado,
-                                    text: result.mensaje,
-                                    type: result.tipo,
-                                    confirmButtonClass: "btn btn-success btn-fill",
-                                    buttonsStyling: false
-                                });
+                            if (result) {
+                                $.ajax({
+                                context: this,
+                                type: "POST",
+                                url: "/Entrada",
+                                dataType: 'json',
+                                data: {
+                                    _token: token,
+                                    informacion: _this.informacion,
+                                    rows: _this.rows,
+                                },
+                                success: function(result) {
+                                    swal({
+                                        title: result.estado,
+                                        text: result.mensaje,
+                                        type: result.tipo,
+                                        confirmButtonClass: "btn btn-success btn-fill",
+                                        buttonsStyling: false
+                                    });
 
-                                location.reload();
+                                    location.reload();
 
-                            },
-                            error: function(xhr) {
-                                console.log(xhr);
-                                var errorMessage = '';
-                                jQuery.each(xhr.responseJSON, function(i, val) {
-                                    errorMessage += " - " + val + "<br>";
-                                });
-                                swal({
-                                    title: 'Oh no, algo ha salido mal',
-                                    html: errorMessage,
-                                    type: 'error',
-                                    confirmButtonClass: "btn btn-info btn-fill",
-                                    buttonsStyling: false
-                                });
-                                $('#submit').removeClass('disabled');
-                            }});
-                        }
+                                },
+                                error: function(xhr) {
+                                    console.log(xhr);
+                                    var errorMessage = '';
+                                    jQuery.each(xhr.responseJSON, function(i, val) {
+                                        errorMessage += " - " + val + "<br>";
+                                    });
+                                    swal({
+                                        title: 'Oh no, algo ha salido mal',
+                                        html: errorMessage,
+                                        type: 'error',
+                                        confirmButtonClass: "btn btn-info btn-fill",
+                                        buttonsStyling: false
+                                    });
+                                    $('#submit').removeClass('disabled');
+                                }});
+                            }
                         });
                         
                         event.preventDefault();

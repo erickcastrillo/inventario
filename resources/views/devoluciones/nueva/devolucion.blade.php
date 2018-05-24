@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row" id="app">
       <div class="col-md-12">
-        <form id="nueva-entrada-form">
+        <form id="nueva-entrada-form" v-cloak data-vv-scope="postData" @submit="postData($event)">
             {{ csrf_field() }}
             <div class="card">
               <div class="card-header">
@@ -16,22 +16,32 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-horizontal">
-                      <div class="form-group">
+                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.cliente_id') }">
                         <label class="col-md-4 control-label">Cliente</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="cliente_id" id="cliente_id" required title="Debe seleccionar un Cliente" v-model="informacion.cliente_id">
-                              <option disabled selected value="">-Seleccione-</option>
+                          <select 
+                            class="form-control" 
+                            name="cliente_id" 
+                            id="cliente_id" 
+                            v-model="informacion.cliente_id"
+                            v-validate="'required'"
+                            >
                               @foreach($clientes as $cliente)
                                   <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                               @endforeach
                           </select>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
                         <label class="col-md-4 control-label">Almac&eacute;n a Ingresar</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="almacen_id" id="almacen_id" required title="Debe seleccionar una Moneda" v-model="informacion.almacen_id">
-                              <option selected value="">-Seleccione-</option>
+                          <select 
+                            class="form-control" 
+                            name="almacen_id" 
+                            id="almacen_id" 
+                            v-model="informacion.almacen_id"
+                            v-validate="'required'"
+                            >
                               @foreach($almacenes as $almacenes)
                                   <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }}</option>
                               @endforeach
@@ -42,22 +52,20 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-horizontal">
-                      <div class="form-group">
+                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.moneda_id') }">
                         <label class="col-md-4 control-label">Moneda</label>
                         <div class="col-sm-8">
-                                <v-select
-                                    
-                                    :value.sync="informacion.moneda_id" 
-                                    v-model="informacion.moneda_id"
-                                    :options="monedas" 
-                                    id="moneda_id"
-                                    name="moneda_id"
-                                    required title="Debe seleccionar una Moneda" 
-                                    required
-                                ></v-select>
+                            <v-select
+                                :value.sync="informacion.moneda_id" 
+                                v-model="informacion.moneda_id"
+                                :options="monedas" 
+                                id="moneda_id"
+                                name="moneda_id"
+                                v-validate="'required'"
+                            ></v-select>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_devolucion') }">
                         <label class="col-md-4 control-label">Fecha de Devolución</label>
                         <div class="col-sm-8">
                             <date-picker
@@ -65,9 +73,8 @@
                                 id="fecha_devolucion"
                                 class="form-control"
                                 name="fecha_devolucion"
-                                required
-                                title="Debe seleccionar una Fecha valida"
                                 v-model="informacion.fecha_devolucion"
+                                v-validate="'required'"
                                 >
                             </date-picker>
                         </div>
@@ -86,7 +93,6 @@
                         <table class="table">
                             <thead>
                                 <tr role="row">
-                                    <th scope="col">No.</th>
                                     <th scope="col">Artículo</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Costo unitario</th>
@@ -99,19 +105,15 @@
                             <tbody v-sortable.tr="rows">
                                 <tr role="row" v-for="(row, index) in rows" :key="index">
                                     <td>
-                                        @{{ index +1 }}
-                                    </td>
-                                    <td>
-                                        <div class="input-group" >
+                                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
                                             <select
                                                 class="form-control"
                                                 v-model="row.articulo"
                                                 v-on:change="getUnidadesMedida(row.articulo)"
-                                                required
                                                 :name="'row_articulo-' + index"
                                                 :id="'row_articulo-' + index"
-                                                title="Debe seleccionar un Articulo valido">
-                                                <option selected value="">-Seleccione-</option>
+                                                v-validate="'required'"
+                                                >
                                                 @foreach($articulos as $articulo)
                                                     <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
                                                 @endforeach
@@ -119,97 +121,94 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="input-group" >
-                                            <span class="input-group-addon">@{{ unidadDeMedida }}</span>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                number="true"
-                                                required
-                                                :name="'row_cantidad-' + index"
-                                                :id="'row_cantidad-' + index"
-                                                title="Debe ingresar un numero valido"
-                                                v-model="row.cantidad"
-                                                number
-                                            >
+                                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
+                                            <div class="input-group" >
+                                                <span class="input-group-addon">@{{ unidadDeMedida }}</span>
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    number="true"
+                                                    :name="'row_cantidad-' + index"
+                                                    :id="'row_cantidad-' + index"
+                                                    v-model="row.cantidad"
+                                                    number
+                                                    v-validate="'required|numeric'"
+                                                >
+                                            </div>                                            
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="input-group" >
-                                            <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                number="true"
-                                                required
-                                                :name="'row_costo-' + index"
-                                                :id="'row_costo-' + index"
-                                                title="Debe ingresar un numero valido"
-                                                v-model="row.costo"
-                                                data-type="currency"
-                                                number
-                                            >
+                                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_costo-' + index) }">
+                                            <div class="input-group" >
+                                                <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    number="true"
+                                                    :name="'row_costo-' + index"
+                                                    :id="'row_costo-' + index"
+                                                    v-model="row.costo"
+                                                    number
+                                                    v-validate="'required|numeric'"
+                                                >
+                                            </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="input-group" >
+                                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_serie-' + index) }">
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                number="true"
-                                                required
                                                 :name="'row_serie-' + index"
                                                 :id="'row_serie-' + index"
-                                                title="Debe ingresar un numero valido"
                                                 v-model="row.serie"
-                                                number
+                                                v-validate="'required'"
                                             >
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="input-group" >
+                                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_lote-' + index) }">
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                number="true"
-                                                required
+                                                v-validate="'required'"
                                                 :name="'row_lote-' + index"
                                                 :id="'row_lote-' + index"
-                                                title="Debe ingresar un numero valido"
                                                 v-model="row.lote"
-                                                number
                                             >
                                         </div>
                                     </td>
                                     <td>
-                                        <input
+                                        <div class="form-group">
+                                            <input
                                                 class="form-control text-right"
                                                 v-bind:name="rowTotal(row)"
                                                 v-model="row.subtotal"
-                                                number
                                                 :name="'row_subtotal-' + index"
                                                 :id="'row_subtotal-' + index"
-                                                readonly />
+                                                readonly 
+                                            />
+                                        </div>
                                     </td>
                                     <td data-name="del" class="text-right td-actions">
-                                        <a
+                                        <div class="form-group">
+                                            <a
                                                 rel="tooltip"
-                                                class="btn btn-success btn-simple btn-xs"
+                                                class="btn btn-success btn-xs"
                                                 data-original-title="Añadir"
                                                 @click="addRow(index)"
-                                        >
-                                            <i class="ti-plus"></i>
-                                            Añadir
-                                        </a>
-                                        <a
-                                                rel="tooltip"
-                                                class="btn btn-danger btn-simple btn-xs"
-                                                data-original-title="Borrar"
-                                                @click="removeRow(index)"
-                                        >
-                                            <i class="ti-close"></i>
-                                            Borrar
-                                        </a>
+                                            >
+                                                <i class="ti-plus"></i>
+                                            </a>
+                                            <a
+                                                    rel="tooltip"
+                                                    class="btn btn-danger btn-xs"
+                                                    data-original-title="Eliminar"
+                                                    @click="removeRow(index)"
+                                            >
+                                                <i class="ti-close"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -255,24 +254,16 @@
                         <div class="col-md-3 col-md-offset-9">
                             <div class="card card-plain">
                                 <div class="card-content">
-                                    <button
-                                            type="reset"
-                                            class="btn btn-fill btn-danger btn-magnify"
-                                            id="reset"
-                                    >
+                                    <button type="reset" class="btn btn-fill btn-danger btn-magnify" id="reset">
                                         <span class="btn-label">
                                           <i class="ti-trash"></i>
                                       </span>
                                         Limpiar
                                     </button>
-                                    <button
-
-                                            class="btn btn-fill btn-info btn-magnify" @click="postData()"
-                                            id="submit"
-                                    >
+                                    <button type="submit" class="btn btn-fill btn-info btn-magnify" id="submit" :disabled="errors.any()">
                                         <span class="btn-label">
                                           <i class="ti-save"></i>
-                                      </span>
+                                        </span>
                                         Guardar
                                     </button>
                                 </div>
@@ -292,6 +283,10 @@
 
         Vue.component('date-picker', VueBootstrapDatetimePicker.default);
         Vue.component('v-select', VueSelect.VueSelect);
+
+        Vue.use(VeeValidate, {
+            locale: 'es',
+        });  
 
         var vm = new Vue({
             el: '#app',
@@ -407,57 +402,51 @@
                         })
                     }
                 },
-                postData: function () {
+                postData: function (event) {
                     var _this = this;
-                    $('#nueva-entrada-form').validate(
-                        {
-                            submitHandler: function(form) {
-                                // some other code
-                                // maybe disabling submit button
-                                // then:
-                                $('#submit').addClass('disabled');
-                                var token = $('meta[name="csrf-token"]').attr('content');
-                                $.ajax({
-                                    context: this,
-                                    type: "POST",
-                                    url: "/Devolucion",
-                                    dataType: 'json',
-                                    data: {
-                                        _token: token,
-                                        informacion: _this.informacion,
-                                        rows: _this.rows,
-                                    },
-                                    success: function(result) {
-                                        swal({
-                                            title: result.estado,
-                                            text: result.mensaje,
-                                            type: result.tipo,
-                                            confirmButtonClass: "btn btn-success btn-fill",
-                                            buttonsStyling: false
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        var errorMessage = '';
-                                        jQuery.each(xhr.responseJSON, function(i, val) {
-                                            errorMessage += " - " + val + "<br>";
-                                        });
-                                        swal({
-                                            title: 'Oh no, algo ha salido mal',
-                                            html:
-                                            '<b>Error:</b> ' + xhr.status + " " + xhr.statusText+ '<br>'+
-                                            '<b>Mensaje</b> ' + '<br>' +
-                                            errorMessage,
-                                            type: 'error',
-                                            confirmButtonClass: "btn btn-info btn-fill",
-                                            buttonsStyling: false
-                                        });
-                                        $('#submit').removeClass('disabled');
-                                    }
-                                });
-                            }
+                    event.preventDefault();
+                    this.$validator.validateAll("postData").then(result => {
+                        if (result) {
+                            var token = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                context: this,
+                                type: "POST",
+                                url: "/Devolucion",
+                                dataType: 'json',
+                                data: {
+                                    _token: token,
+                                    informacion: _this.informacion,
+                                    rows: _this.rows,
+                                },
+                                success: function(result) {
+                                    swal({
+                                        title: result.estado,
+                                        text: result.mensaje,
+                                        type: result.tipo,
+                                        confirmButtonClass: "btn btn-success btn-fill",
+                                        buttonsStyling: false
+                                    });
+                                },
+                                error: function(xhr) {
+                                    var errorMessage = '';
+                                    jQuery.each(xhr.responseJSON, function(i, val) {
+                                        errorMessage += " - " + val + "<br>";
+                                    });
+                                    swal({
+                                        title: 'Oh no, algo ha salido mal',
+                                        html:
+                                        '<b>Error:</b> ' + xhr.status + " " + xhr.statusText+ '<br>'+
+                                        '<b>Mensaje</b> ' + '<br>' +
+                                        errorMessage,
+                                        type: 'error',
+                                        confirmButtonClass: "btn btn-info btn-fill",
+                                        buttonsStyling: false
+                                    });
+                                    $('#submit').removeClass('disabled');
+                                }
+                            });
                         }
-                    );
-
+                    });
                 }
             }
         });
