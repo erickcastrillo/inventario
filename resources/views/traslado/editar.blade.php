@@ -336,10 +336,10 @@
                       <td data-name="del" class="text-right td-actions">
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_estado-' + index) }">
                             <input type="hidden" name="estado" id="estado" v-model="row.estado" v-validate="'required'">
-                            <a rel="tooltip" class="btn btn-success btn-default btn-xs" data-original-title="Aprobar transaccion" @click="aceptarProducto(row)">
+                            <a rel="tooltip" class="btn btn-success btn-default btn-xs" data-original-title="Aprobar traslado" @click="aceptarProducto(row)">
                               <i class="ti-check"></i>
                             </a>
-                            <a rel="tooltip" class="btn btn-danger btn-danger btn-xs" data-original-title="Rechazar transaccion" @click="rechazarProducto(row)">
+                            <a rel="tooltip" class="btn btn-danger btn-danger btn-xs" data-original-title="Rechazar traslado" @click="rechazarProducto(row)">
                               <i class="ti-close"></i>
                             </a>
                             <span v-if="errors.has('postData.row_estado-' + index)">
