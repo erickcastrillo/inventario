@@ -18,175 +18,150 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-horizontal">
-                                            <div class="form-group">
-                                                    <label class="col-md-4 control-label">Almac&eacute;n</label>
-                                                    <div class="col-sm-8">
-                                                        <select
-                                                            :class="{'form-control': true, 'error': errors.first('almacen_id')}"
-                                                            name="almacen_id"
-                                                            id="almacen_id"
-                                                            required
-                                                            v-model="informacion.almacen_id"
-                                                            v-validate="'required'"
-                                                        >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>
-                                                            @foreach($almacenes as $almacen)
-                                                                <option value="{{ $almacen->id }}">
-                                                                    @if ($almacen->tipo_almacen === 1)
-                                                                        *
-                                                                    @endif
-                                                                    {{ $almacen->descripcion }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span  >@{{ errors.first('almacen_id') }}</span>
-                                                    </div>
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
+                                                <label class="col-md-4 control-label">Almac&eacute;n</label>
+                                                <div class="col-sm-8">
+                                                    <select
+                                                        class="form-control"
+                                                        name="almacen_id"
+                                                        id="almacen_id"
+                                                        v-model="informacion.almacen_id"
+                                                        v-validate="'required'"
+                                                    >
+                                                        @foreach($almacenes as $almacen)
+                                                            <option value="{{ $almacen->id }}">
+                                                                @if ($almacen->tipo_almacen === 1)
+                                                                    *
+                                                                @endif
+                                                                {{ $almacen->descripcion }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
-                                            <div class="form-group">
+                                            </div>
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_proveedor') }">
                                                 <label class="col-md-4 control-label">Proveedor</label>
                                                 <div class="col-sm-8">
                                                     <select
-                                                        :class="{'form-control': true, 'error': errors.first('id_proveedor')}"
+                                                        class="form-control"
                                                         name="id_proveedor"
                                                         id="id_proveedor"
-                                                        required
                                                         v-validate="'required'"
                                                         v-model="informacion.id_proveedor"
                                                     >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>  
                                                         @foreach($proveedores as $proveedor)
                                                             <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span  >@{{ errors.first('id_proveedor') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.n_factura') }">
                                                 <label class="col-md-4 control-label">No. Factura</label>
                                                 <div class="col-sm-8">
                                                     <input
                                                         type="text"
-                                                        :class="{'form-control': true, 'error': errors.first('n_factura')}"
+                                                        class="form-control"
                                                         name="n_factura"
                                                         id="n_factura"
                                                         number="true"
-                                                        required
-                                                        v-validate="'required|decimal'"
+                                                        v-validate="'required'"
                                                         v-model="informacion.n_factura"
                                                     >
-                                                    <span  >@{{ errors.first('n_factura') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_factura') }">
                                                 <label class="col-md-4 control-label">Fecha Factura</label>
                                                 <div class="col-sm-8">
                                                     <date-picker
                                                         :config="config"
                                                         id="fecha_factura"
-                                                        :class="{'form-control datetimepicker': true, 'error': errors.first('fecha_factura')}"
+                                                        class="form-control"
                                                         name="fecha_factura"
-                                                        required
                                                         v-model="informacion.fecha_factura"
                                                         v-validate="'required|date_format:YYYY-MM-DD'"
                                                         >
                                                     </date-picker>
-                                                    <span >@{{ errors.first('fecha_factura') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.moneda_id') }">
                                                 <label class="col-md-4 control-label">Moneda</label>
                                                 <div class="col-sm-8">
                                                     <v-select  
                                                         :value.sync="informacion.moneda_id" 
                                                         v-model="informacion.moneda_id"
-                                                        :class="{'error': errors.first('n_factura')}"
                                                         :options="monedas" 
                                                         id="moneda_id"
                                                         name="moneda_id"
                                                         v-validate="'required'"
-                                                        required
                                                         ></v-select>
-                                                    <span  >@{{ errors.first('moneda_id') }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-horizontal">
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.proyecto_id') }">
                                                 <label class="col-md-4 control-label">Proyecto</label>
                                                 <div class="col-sm-8">
                                                     <select
-                                                        :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                        class="form-control"
                                                         name="proyecto_id"
                                                         id="proyecto_id"
-                                                        required
                                                         v-model="informacion.proyecto_id"
                                                         v-validate="'required'"
                                                     >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>
                                                         @foreach($proyectos as $proyecto)
                                                             <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span  >@{{ errors.first('proyecto_id') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.tarea_id') }">
                                                 <label class="col-md-4 control-label">Tarea</label>
                                                 <div class="col-sm-8">
                                                     <select
-                                                        :class="{'form-control': true, 'error': errors.first('proyecto_id')}"
+                                                        class="form-control"
                                                         name="tarea_id"
                                                         id="tarea_id"
-                                                        required
                                                         v-model="informacion.tarea_id"
                                                         v-validate="'required'"
                                                     >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>  
                                                         @foreach($tareas as $tarea)
                                                             <option value="{{ $tarea->id }}">{{ $tarea->nombre }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span  >@{{ errors.first('tarea_id') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.tipo_concepto_id') }">
                                                 <label class="col-md-4 control-label">Tipo / Concepto</label>
                                                 <div class="col-sm-8">
                                                     <select
-                                                        :class="{'form-control': true, 'error': errors.first('tipo_concepto_id')}"
+                                                        class="form-control"
                                                         name="tipo_concepto_id"
                                                         id="tipo_concepto_id"
-                                                        required
                                                         v-model="informacion.tipo_concepto_id"
                                                         v-validate="'required'"
                                                     >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>
                                                         @foreach($tiposconcepto as $tipoconcepto)
                                                             <option value="{{ $tipoconcepto->id }}">{{ $tipoconcepto->nombre }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span  >@{{ errors.first('tipo_concepto_id') }}</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.cuenta_contable') }">
                                                 <label class="col-md-4 control-label">Cuenta contable</label>
                                                 <div class="col-sm-8">
                                                     <select
-                                                        :class="{'form-control': true, 'error': errors.first('cuenta_contable')}"
+                                                        class="form-control"
                                                         name="cuenta_contable"
                                                         id="cuenta_contable"
-                                                        required
                                                         v-model="informacion.cuenta_contable"
                                                         v-validate="'required'"
                                                     >
-                                                        <option disabled="" selected="" value="">-Seleccione-</option>
                                                         @foreach($cuentas_contable as $cuenta_contable)
                                                             <option value="{{ $cuenta_contable->id }}">{{ $cuenta_contable->nombre }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span  >@{{ errors.first('cuenta_contable') }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -220,11 +195,9 @@
                                                             class="form-control"
                                                             v-on:change="getUnidadesMedida(row.articulo)"
                                                             v-model="row.articulo"
-                                                            required
                                                             v-validate="'required'"
                                                             :name="'row_articulo-' + index"
                                                             :id="'row_articulo-' + index"
-                                                            data-vv-as="articulo"
                                                         >
                                                             @foreach($articulos as $articulo)
                                                                 <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
@@ -238,8 +211,6 @@
                                                             <span class="input-group-addon">@{{ unidadDeMedida }}</span>
                                                             <input
                                                                 class="form-control"
-                                                                data-vv-as="cantidad"
-                                                                required
                                                                 v-on:change="rowTotal(row)"
                                                                 :name="'row_cantidad-' + index"
                                                                 :id="'row_cantidad-' + index"
@@ -260,13 +231,11 @@
                                                                 class="form-control"
                                                                 number="true"
                                                                 v-on:change="rowTotal(row)"
-                                                                required
                                                                 :name="'row_costo-' + index"
                                                                 :id="'row_costo-' + index"
                                                                 v-model.numbe="row.costo"
                                                                 number="true"
                                                                 type="number"
-                                                                number
                                                                 v-validate="'required|numeric'"
                                                             >
                                                         </div>
@@ -282,7 +251,6 @@
                                                                 :id="'row_serie-' + index"
                                                                 v-model="row.serie"
                                                                 v-validate="'required'"
-                                                                required
                                                             >
                                                         </div>
                                                     </div>
@@ -293,7 +261,6 @@
                                                             type="text"
                                                             class="form-control"
                                                             type="number"
-                                                            required
                                                             :name="'row_lote-' + index"
                                                             :id="'row_lote-' + index"
                                                             v-model="row.lote"
@@ -309,7 +276,6 @@
                                                                 class="form-control text-right"
                                                                 v-bind:name="rowTotal(row)"
                                                                 v-model="row.subtotal"
-                                                                number
                                                                 type="number"
                                                                 :name="'row_subtotal-' + index"
                                                                 :id="'row_subtotal-' + index"
@@ -567,20 +533,8 @@
                         $('#submit').addClass('disabled');
                         var token = $('meta[name="csrf-token"]').attr('content');
 
-                        this.$validator.validate().then(result => {
-                        if (!result) {
-                            var errorMessage = 'Por favor revise los campos e intenta de nuevo <br>';
-                            jQuery.each(this.errors.items, function(i, val) {
-                                errorMessage += " - " + val.msg + "<br>";
-                            });
-                            swal({
-                                    title: "Error",
-                                    html: errorMessage,
-                                    type: "error",
-                                    confirmButtonClass: "btn btn-success btn-fill",
-                                    buttonsStyling: false
-                                });
-                        } else {
+                        this.$validator.validateAll("postData").then(result => {
+                        if (result) {
                             $.ajax({
                             context: this,
                             type: "POST",
