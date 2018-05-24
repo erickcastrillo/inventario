@@ -184,7 +184,6 @@
                             number="true"
                             type="number"
                             number
-                            v-bind:max='row.cantidad_maxima' 
                             :name="'row_cantidad-' + index" 
                             :id="'row_cantidad-' + index"
                             v-model="row.cantidad" 
@@ -296,7 +295,6 @@
           articulo: "",
           almacen_id: "",
           cantidad: "",
-          cantidad_maxima: 0,
         }],
 
       },
