@@ -41,8 +41,7 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
                       <label class="col-md-4 control-label">Almac&eacute;n</label>
                       <div class="col-sm-8">
-                        <select 
-                          v-on:change="getProductos()" 
+                        <select
                           class="form-control" 
                           name="almacen_id" 
                           id="almacen_id"
@@ -187,10 +186,10 @@
                 <table class="table">
                   <thead>
                     <tr role="row">
-                      <th scope="col">No.</th>
+                      <th scope="col" style="width: 50px;">No.</th>
                       <th scope="col">Artículo</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col" class="td-actions text-right">Acciones</th>
+                      <th scope="col" style="width: 100px;" >Cantidad</th>
+                      <th scope="col" class="td-actions text-right" style="width: 50px;">Acciones</th>
                     </tr>
                   </thead>
                   <tbody v-sortable.tr="rows">
@@ -237,14 +236,14 @@
                         </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
-                        <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
-                          <i class="ti-plus"></i>
-                          Añadir
-                        </a>
-                        <a rel="tooltip" class="btn btn-danger btn-simple btn-xs" data-original-title="Borrar" @click="removeRow(index)">
-                          <i class="ti-close"></i>
-                          Borrar
-                        </a>
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_estado-' + index) }">
+                            <a rel="tooltip" class="btn btn-success btn-xs" data-original-title="Añadir" @click="addRow(index)">
+                              <i class="ti-plus"></i>
+                            </a>
+                            <a rel="tooltip" class="btn btn-danger btn-xs" data-original-title="Eliminar" @click="removeRow(index)">
+                              <i class="ti-close"></i>
+                            </a>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
