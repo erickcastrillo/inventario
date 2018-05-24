@@ -193,14 +193,14 @@
                 <table class="table">
                   <thead>
                     <tr role="row">
-                      <th scope="col">No.</th>
+                      <th scope="col" style="width: 50px;" >No.</th>
                       <th scope="col">Artículo</th>
                       <th scope="col">Almac&eacute;n</th>
                       <th scope="col">Lote</th>
                       <th scope="col">Serie</th>
-                      <th scope="col">Cantidad solicitada</th>
-                      <th scope="col">Cantidad asignada</th>
-                      <th scope="col" class="td-actions text-right">Acciones</th>
+                      <th scope="col" style="width: 50px;">Cantidad solicitada</th>
+                      <th scope="col" style="width: 50px;">Cantidad asignada</th>
+                      <th scope="col" style="width: 50px;" class="td-actions text-right">Acciones</th>
                     </tr>
                   </thead>
                   <tbody v-sortable.tr="rows">
@@ -220,7 +220,7 @@
                             disabled
                           >
                             @foreach($productos as $producto)
-                              <option value="{{$producto->id}}">{{$producto->descripcion}}</option>
+                              <option value="{{$producto->id}}">{{$producto->descripcion}} - <strong>{{$producto->codigo}}</strong></option>
                             @endforeach
                           </select>
                           <span v-if="errors.has('postData.row_articulo-' + index)">
