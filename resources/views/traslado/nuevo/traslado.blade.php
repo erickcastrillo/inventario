@@ -207,9 +207,9 @@
                             v-validate="'required'"
                             data-vv-as="Producto"
                             >
-                            <option v-for="producto in productos" :value="producto.articulo_id">
-                              @{{ producto.nombre_producto }}
-                            </option>
+                            @foreach($productos as $producto)
+                              <option value="{{$producto->id}}">{{$producto->descripcion}} - <strong>{{$producto->codigo}}</strong></option>
+                            @endforeach
                           </select>
                           <span v-if="errors.has('postData.row_articulo-' + index)">
                               @{{ errors.first('postData.row_articulo-' + index) }}

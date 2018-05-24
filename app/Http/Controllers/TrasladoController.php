@@ -149,6 +149,7 @@ class TrasladoController extends Controller
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
         'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
         'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
+        'productos' => Articulo::where('estado' , '=', 1)->get(), 
       ]);
     }
 
@@ -202,7 +203,7 @@ class TrasladoController extends Controller
 
             if ($request->input('rows.'.$key.'.estado') == 1)
             {
-                
+
             }
         }
 
