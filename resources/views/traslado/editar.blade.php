@@ -204,7 +204,7 @@
                     </tr>
                   </thead>
                   <tbody v-sortable.tr="rows">
-                    <tr role="row" v-for="(row, index) in rows" :key="index">
+                    <tr role="row" v-for="(row, index) in rows" :key="index" v-bind:class="[row.estado == 'rechazado' ? 'danger' : '']">
                       <td>
                         @{{ index +1 }}
                       </td>
