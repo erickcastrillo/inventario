@@ -7,7 +7,7 @@
           {{ csrf_field() }}
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Solicitud de traslado</h4>
+              <h4 class="card-title">Autorizaración de traslado</h4>
               <p class="category">
                 Por favor ingrese los datos requeridos, una vez llenos presione
                 <strong>Autorizar</strong>

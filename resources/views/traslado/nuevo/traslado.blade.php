@@ -156,7 +156,7 @@
                   <thead>
                     <tr role="row">
                       <th scope="col">Artículo</th>
-                      <th scope="col" style="width: 100px;" >Cantidad</th>
+                      <th scope="col" style="width: 150px;" >Cantidad</th>
                       <th scope="col" class="td-actions text-right" style="width: 50px;">Acciones</th>
                     </tr>
                   </thead>

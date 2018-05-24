@@ -24,7 +24,7 @@ class Traslado extends Migration
             $table->integer('movimiento_id');
             $table->integer('departamento_id');
             $table->string('nombre_retira', 100);
-            $table->integer('id_personal_retira');
+            $table->string('id_personal_retira', 100);
             $table->string('notas', 300);
             $table->string('pais', 50);
             

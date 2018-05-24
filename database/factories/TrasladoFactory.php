@@ -11,6 +11,7 @@ $factory->define(App\Traslado::class, function (Faker\Generator $faker) {
         'movimiento_id' => $faker->numberBetween($min = 1, $max = 8),
         'departamento_id' => $faker->numberBetween($min = 1, $max = 10),
         'nombre_retira' => $faker->name($gender = null|'male'|'female'),
+        'id_personal_retira' => $faker->swiftBicNumber(),
         'pais' => $faker->country(),
         'notas' => $faker->text(),
 
