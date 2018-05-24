@@ -325,7 +325,8 @@
                             number
                             v-validate="{ required: true, max_value: row.cantidad_maxima }"
                             data-vv-as="cantidad asignada"
-                            placeholder="Maximo "
+                            rel="tooltip"
+                            :data-original-title="'Cantidad maxima '+ row.cantidad_maxima"
                             >
                             <span v-if="errors.has('postData.row_cantidad_asignada-' + index)">
                                 @{{ errors.first('postData.row_cantidad_asignada-' + index) }}
@@ -333,14 +334,13 @@
                         </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
-                        {{-- <a rel="tooltip" class="btn btn-success btn-simple btn-xs" data-original-title="Añadir" @click="addRow(index)">
-                          <i class="ti-plus"></i>
-                          Añadir
-                        </a>
-                        <a rel="tooltip" class="btn btn-danger btn-simple btn-xs" data-original-title="Borrar" @click="removeRow(index)">
-                          <i class="ti-close"></i>
-                          Borrar
-                        </a> --}}
+                        <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_estado-' + index) }">
+                            <input type="hidden" name="estado" id="estado" v-model="row.estado" v-validate="'required'">
+                            <a rel="tooltip" class="btn btn-danger btn-danger btn-xs" data-original-title="Rechazar transaccion" @click="rechazarProducto(row)">
+                              <i class="ti-close"></i>
+                              Rechazar
+                            </a>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -440,17 +440,11 @@
               cantidad: "{{ $detalle->cantidad }}",
               cantidad_asignada: "",
               cantidad_maxima: 0,
+              estado: "aceptado",
             },
           @endforeach
         ],
 
-      },
-      computed: {
-        rules: function(row) {
-          if (!row.cantidad_maxima) return 'required';
-          
-          return `required|max_value:${row.cantidad_maxima}`;
-        }
       },
       methods: {
         addRow: function (index) {
@@ -606,6 +600,14 @@
             }
           });
 
+        },
+        aceptarProducto: function(row) {
+          row.estado = "aceptado"
+          console.log(row);
+        },
+        rechazarProducto: function(row) {
+          row.estado = "rechazado"
+          console.log(row);
         }
       }
     });
