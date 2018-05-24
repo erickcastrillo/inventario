@@ -193,7 +193,6 @@
                 <table class="table">
                   <thead>
                     <tr role="row">
-                      <th scope="col" style="width: 20px;" >No.</th>
                       <th scope="col">Artículo</th>
                       <th scope="col">Almac&eacute;n</th>
                       <th scope="col">Lote</th>
@@ -205,9 +204,6 @@
                   </thead>
                   <tbody v-sortable.tr="rows">
                     <tr role="row" v-for="(row, index) in rows" :key="index" v-bind:class="[row.estado == 'rechazado' ? 'danger' : '']">
-                      <td>
-                        @{{ index +1 }}
-                      </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
                           <select

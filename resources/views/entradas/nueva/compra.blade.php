@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row" id="app">
                 <div class="col-md-12">
-                    <form id="nueva-entrada-form" @submit="postData($event)" v-cloak>
+                    <form id="nueva-entrada-form" @submit="postData($event)" v-cloak data-vv-scope="postData">
                         {{ csrf_field() }}
                         <div class="card">
                             <div class="card-header">
@@ -203,7 +203,6 @@
                                     <table class="table">
                                         <thead>
                                             <tr role="row">
-                                                <th scope="col">No.</th>
                                                 <th scope="col">Artículo</th>
                                                 <th scope="col">Cantidad</th>
                                                 <th scope="col">Costo unitario</th>
@@ -216,12 +215,8 @@
                                         <tbody v-sortable.tr="rows">
                                             <tr role="row" v-for="(row, index) in rows" :key="index">
                                                 <td>
-                                                    @{{ index + 1 }}
-                                                </td>
-                                                <td>
-                                                    <div class="input-group" >
-                                                        <select
-                                                            {{-- :class="{'form-control': true, 'error': errors.first(\"'row_articulo-' + index\")}" --}}
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
+                                                        <select                                                        
                                                             class="form-control"
                                                             v-on:change="getUnidadesMedida(row.articulo)"
                                                             v-model="row.articulo"
@@ -229,74 +224,73 @@
                                                             v-validate="'required'"
                                                             :name="'row_articulo-' + index"
                                                             :id="'row_articulo-' + index"
+                                                            data-vv-as="articulo"
                                                         >
-                                                            <option disabled="" selected="" value="">-Seleccione-</option>
                                                             @foreach($articulos as $articulo)
                                                                 <option  value="{{ $articulo->id }}">{{ $articulo->descripcion }}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span  >@{{ errors.first('row.articulo') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group" >
-                                                        <span class="input-group-addon">@{{ unidadDeMedida }}</span>
-                                                        <input
-                                                            type="text"
-                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_cantidad-\' + index")}' --}}
-                                                            class="form-control"
-                                                            required
-                                                            v-on:change="rowTotal(row)"
-                                                            :name="'row_cantidad-' + index"
-                                                            :id="'row_cantidad-' + index"
-                                                            v-model.numbe="row.cantidad"
-                                                            type="number"
-                                                            number
-                                                            v-validate="'required|numeric'"
-                                                        >
-                                                        <span  >@{{ errors.first("'row_cantidad-' + index") }}</span>
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
+                                                        <div class="input-group" >
+                                                            <span class="input-group-addon">@{{ unidadDeMedida }}</span>
+                                                            <input
+                                                                class="form-control"
+                                                                data-vv-as="cantidad"
+                                                                required
+                                                                v-on:change="rowTotal(row)"
+                                                                :name="'row_cantidad-' + index"
+                                                                :id="'row_cantidad-' + index"
+                                                                v-model.numbe="row.cantidad"
+                                                                number="true"
+                                                                type="number"
+                                                                number
+                                                                v-validate="'required|numeric'"
+                                                            >
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group" >
-                                                        <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
-                                                        <input
-                                                            type="text"
-                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_costo-\' + index")}' --}}
-                                                            class="form-control"
-                                                            number="true"
-                                                            v-on:change="rowTotal(row)"
-                                                            required
-                                                            :name="'row_costo-' + index"
-                                                            :id="'row_costo-' + index"
-                                                            v-model.numbe="row.costo"
-                                                            type="number"
-                                                            number
-                                                            v-validate="'required|numeric'"
-                                                        >
-                                                        <span  >@{{ errors.first("'row_costo-' + index") }}</span>
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_costo-' + index) }">
+                                                        <div class="input-group" >
+                                                            <span class="input-group-addon">@{{ informacion.moneda_id.id }}</span>
+                                                            <input
+                                                                class="form-control"
+                                                                number="true"
+                                                                v-on:change="rowTotal(row)"
+                                                                required
+                                                                :name="'row_costo-' + index"
+                                                                :id="'row_costo-' + index"
+                                                                v-model.numbe="row.costo"
+                                                                number="true"
+                                                                type="number"
+                                                                number
+                                                                v-validate="'required|numeric'"
+                                                            >
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group">
-                                                        <input
-                                                            type="text"
-                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_serie-\' + index")}' --}}
-                                                            class="form-control"
-                                                            :name="'row_serie-' + index"
-                                                            :id="'row_serie-' + index"
-                                                            v-model="row.serie"
-                                                            v-validate="'required'"
-                                                            required
-                                                        >
-                                                        <span  >@{{ errors.first('row.serie') }}</span>
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_serie-' + index) }">
+                                                        <div class="input-group">
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                :name="'row_serie-' + index"
+                                                                :id="'row_serie-' + index"
+                                                                v-model="row.serie"
+                                                                v-validate="'required'"
+                                                                required
+                                                            >
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group" >
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_lote-' + index) }">
                                                         <input
                                                             type="text"
-                                                            {{-- :class='{"form-control": true, "error": errors.first("\'row_lote-\' + index")}' --}}
                                                             class="form-control"
                                                             type="number"
                                                             required
@@ -305,24 +299,24 @@
                                                             v-model="row.lote"
                                                             v-validate="'required'"
                                                         >
-                                                        <span  >@{{ errors.first('row.lote') }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon" disabled>@{{ informacion.moneda_id.id }}</span>
-                                                        <input
-                                                            class="form-control text-right"
-                                                            v-bind:name="rowTotal(row)"
-                                                            v-model="row.subtotal"
-                                                            number
-                                                            type="number"
-                                                            :name="'row_subtotal-' + index"
-                                                            :id="'row_subtotal-' + index"
-                                                            readonly 
-                                                        >    
+                                                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_subtotal-' + index) }">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" disabled>@{{ informacion.moneda_id.id }}</span>
+                                                            <input
+                                                                class="form-control text-right"
+                                                                v-bind:name="rowTotal(row)"
+                                                                v-model="row.subtotal"
+                                                                number
+                                                                type="number"
+                                                                :name="'row_subtotal-' + index"
+                                                                :id="'row_subtotal-' + index"
+                                                                readonly 
+                                                            >    
+                                                        </div>
                                                     </div>
-
                                                 </td>
                                                 <td data-name="del" class="text-right td-actions">
                                                     <a

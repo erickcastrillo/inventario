@@ -186,7 +186,6 @@
                 <table class="table">
                   <thead>
                     <tr role="row">
-                      <th scope="col" style="width: 50px;">No.</th>
                       <th scope="col">Artículo</th>
                       <th scope="col" style="width: 100px;" >Cantidad</th>
                       <th scope="col" class="td-actions text-right" style="width: 50px;">Acciones</th>
@@ -194,9 +193,6 @@
                   </thead>
                   <tbody v-sortable.tr="rows">
                     <tr role="row" v-for="(row, index) in rows" :key="index">
-                      <td>
-                        @{{ index +1 }}
-                      </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
                           <select 
@@ -208,7 +204,7 @@
                             data-vv-as="Producto"
                             >
                             @foreach($productos as $producto)
-                              <option value="{{$producto->id}}">{{$producto->descripcion}} - <strong>{{$producto->codigo}}</strong></option>
+                              <option value="{{$producto->id}}">{{$producto->descripcion}} - {{$producto->codigo}}</option>
                             @endforeach
                           </select>
                           <span v-if="errors.has('postData.row_articulo-' + index)">
@@ -218,15 +214,15 @@
                       </td>
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
-                          <input 
-                            type="text" 
+                          <input
                             class="form-control" 
-                            number="true" 
+                            number="true"
+                            type="number"
+                            number
                             v-bind:max='row.cantidad_maxima' 
                             :name="'row_cantidad-' + index" 
                             :id="'row_cantidad-' + index"
                             v-model="row.cantidad" 
-                            number
                             v-validate="'required|numeric'"
                             data-vv-as="Cantidad"
                             >
