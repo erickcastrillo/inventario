@@ -27,16 +27,12 @@
                           id="movimiento_id" 
                           v-model="informacion.movimiento_id"
                           v-validate="'required'"
-                          data-vv-as="Movimiento"
                           disabled
                           >
                           @foreach($movimientos as $movimiento)
                             <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
                           @endforeach
                         </select>
-                        <span v-if="errors.has('postData.movimiento_id')">
-                            @{{ errors.first('postData.movimiento_id') }}
-                        </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
@@ -49,16 +45,12 @@
                           id="almacen_id"
                           v-model="informacion.almacen_id"
                           v-validate="'required'"
-                          data-vv-as="Almacen"
                           disabled
                         >
                           @foreach($almacenes as $almacen)
                             <option value="{{ $almacen->id }}">{{ $almacen->descripcion }} </option>
                           @endforeach
                         </select>
-                        <span v-if="errors.has('postData.almacen_id')">
-                            @{{ errors.first('postData.almacen_id') }}
-                        </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.departamento_id') }">
@@ -70,16 +62,12 @@
                           id="departamento_id" 
                           v-model="informacion.departamento_id"
                           v-validate="'required'"
-                          data-vv-as="Departamento"
                           disabled
                           >
                           @foreach($departamentos as $departamento)
                           <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
                           @endforeach
                         </select>
-                        <span v-if="errors.has('postData.departamento_id')">
-                            @{{ errors.first('postData.departamento_id') }}
-                        </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.supervisor_id') }">
@@ -91,16 +79,12 @@
                             id="supervisor_id" 
                             v-model="informacion.supervisor_id"
                             v-validate="'required'"
-                            data-vv-as="Supervisor"
                             disabled
                           >
                               @foreach($supervisores as $supervisor)
                                 <option value="{{ $supervisor->id }}">{{ $supervisor->get_full_name() }}</option>
                               @endforeach
                           </select>
-                          <span v-if="errors.has('postData.supervisor_id')">
-                              @{{ errors.first('postData.supervisor_id') }}
-                          </span>
                         </div>
                       </div>
                   </div>
@@ -119,11 +103,7 @@
                           v-model="informacion.fecha_retiro"
                           :value="moment().format('YYYY-MM-DD')"
                           v-validate="'required|date_format:YYYY-MM-DD'"
-                          data-vv-as="Fecha retiro"
                         > </date-picker>
-                        <span v-if="errors.has('postData.fecha_retiro')">
-                            @{{ errors.first('postData.fecha_retiro') }}
-                        </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.hora_retiro') }">
@@ -137,11 +117,7 @@
                           :value="moment().format('h:mm A')"
                           v-model="informacion.hora_retiro"
                           v-validate="'required|date_format:h:mm A'"
-                          data-vv-as="Hora retiro"
                         > </date-picker>
-                        <span v-if="errors.has('postData.hora_retiro')">
-                            @{{ errors.first('postData.hora_retiro') }}
-                        </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.nombre_retira') }">
@@ -154,11 +130,7 @@
                           id="nombre_retira" 
                           v-model="informacion.nombre_retira"
                           v-validate="'required|alpha_spaces'"
-                          data-vv-as="Nombre Persona Retira"
                           disabled>
-                          <span v-if="errors.has('postData.nombre_retira')">
-                              @{{ errors.first('postData.nombre_retira') }}
-                          </span>
                       </div>
                     </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_personal_retira') }">
@@ -172,11 +144,7 @@
                           placeholder="Ejemplo: 1-2345-6789"
                           v-model="informacion.id_personal_retira"
                           v-validate="'required|regex:^([0-9])-([0-9]{4})-([0-9]{4})$'"
-                          data-vv-as="ID Persona Retira"
                           disabled>
-                          <span v-if="errors.has('postData.id_personal_retira')">
-                              @{{ errors.first('postData.id_personal_retira') }}
-                          </span>
                       </div>
                     </div>
                   </div>
@@ -212,16 +180,12 @@
                             :name="'row_articulo-' + index" 
                             :id="'row_articulo-' + index"
                             v-validate="'required'"
-                            data-vv-as="Producto"
                             disabled
                           >
                             @foreach($productos as $producto)
                               <option value="{{$producto->id}}">{{$producto->descripcion}} - <strong>{{$producto->codigo}}</strong></option>
                             @endforeach
                           </select>
-                          <span v-if="errors.has('postData.row_articulo-' + index)">
-                              @{{ errors.first('postData.row_articulo-' + index) }}
-                          </span>
                         </div>
                       </td>
                       <td>
@@ -233,15 +197,11 @@
                             :id="'row_almacen_id-' + index"
                             v-model="row.almacen_id"
                             v-validate="'required'"
-                            data-vv-as="Almacen"
                           >
                             @foreach($almacenes as $almacen)
                               <option value="{{ $almacen->id }}">{{ $almacen->descripcion }} </option>
                             @endforeach
                           </select>
-                          <span v-if="errors.has('postData.row_almacen_id-' + index)">
-                              @{{ errors.first('postData.row_almacen_id-' + index) }}
-                          </span>
                         </div>
                       </td>
                       <td>
@@ -253,7 +213,6 @@
                             :id="'row_almacen_id-' + index"
                             v-model="row.lote"
                             v-validate="'required'"
-                            data-vv-as="Almacen"
                           >
                             <option selected value="0">-No aplica-</option>
                             <option v-for="lote in row.lotes"
@@ -261,9 +220,6 @@
                               @{{ lote.lote }}
                             </option>
                           </select>
-                          <span v-if="errors.has('postData.row_lote-' + index)">
-                              @{{ errors.first('postData.row_lote-' + index) }}
-                          </span>
                         </div>
                       </td>
                       <td>
@@ -277,7 +233,6 @@
                               :name="'row_serie-' + index" 
                               :id="'row_serie-' + index"
                               v-validate="'required'"
-                              data-vv-as="Serie"
                             >
                               <option selected value="0">-No aplica-</option>
                               <option v-for="serie in row.series"
@@ -285,9 +240,6 @@
                                 @{{ serie.serie }}
                               </option>
                             </select>
-                            <span v-if="errors.has('postData.row_serie-' + index)">
-                                @{{ errors.first('postData.row_serie-' + index) }}
-                            </span>
                         </div>
                       </td>
                       <td>
@@ -301,12 +253,8 @@
                             v-model="row.cantidad" 
                             number
                             v-validate="'required|numeric'"
-                            data-vv-as="cantidad"
                             disabled
                             >
-                            <span v-if="errors.has('postData.row_cantidad-' + index)">
-                                @{{ errors.first('postData.row_cantidad-' + index) }}
-                            </span>
                         </div>
                       </td>
                       <td>
@@ -320,13 +268,9 @@
                             v-model="row.cantidad_asignada" 
                             number
                             v-validate="{ required: true, max_value: row.cantidad_maxima }"
-                            data-vv-as="cantidad asignada"
                             rel="tooltip"
                             :data-original-title="'Cantidad máxima '+ row.cantidad_maxima"
                             >
-                            <span v-if="errors.has('postData.row_cantidad_asignada-' + index)">
-                                @{{ errors.first('postData.row_cantidad_asignada-' + index) }}
-                            </span>
                         </div>
                       </td>
                       <td data-name="del" class="text-right td-actions">
@@ -338,9 +282,6 @@
                             <a rel="tooltip" class="btn btn-danger btn-xs" data-original-title="Rechazar traslado" @click="rechazarProducto(row)">
                               <i class="ti-close"></i>
                             </a>
-                            <span v-if="errors.has('postData.row_estado-' + index)">
-                                @{{ errors.first('postData.row_estado-' + index) }}
-                            </span>
                         </div>
                       </td>
                     </tr>
