@@ -20,6 +20,7 @@ class AjusteDetalle extends Migration
             $table->integer('ajuste_id');
             $table->integer('articulo_id');
             $table->integer('cantidad');
+            $table->integer('movimiento_id');
             $table->float('costo_unitario', 15, 3);
             $table->integer('moneda_id');
             $table->string('lote', 100);

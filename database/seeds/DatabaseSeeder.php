@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ClienteSeeder::class);
         $this->call(EnlaceSeeder::class);
         $this->call(PaisSeeder::class);
+        $this->call(LineaArticuloSeeder::class);
+        $this->call(GrupoArticuloSeeder::class);
+        $this->call(ABCArticuloSeeder::class);
+        $this->call(MinimoArticuloSeeder::class);
 
         Model::reguard();
     }

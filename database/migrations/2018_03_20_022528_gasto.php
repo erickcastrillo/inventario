@@ -21,6 +21,7 @@ class Gasto extends Migration
             $table->integer('enlace_id');
             $table->integer('proyecto_id');
             $table->integer('movimiento_id');
+            $table->integer('tipo_movimiento_id');
             $table->integer('cliente_id');
             $table->integer('tarea_id');
             $table->integer('departamento_id');

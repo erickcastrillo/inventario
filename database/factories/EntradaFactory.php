@@ -4,7 +4,8 @@ $factory->define(App\Entrada::class, function (Faker\Generator $faker) {
     return [
         'fecha_factura' => $faker->dateTime($max = 'now', $timezone = null),
         'n_factura' => $faker->numberBetween($min = 1, $max = 50),
-        'movimiento_id' => $faker->numberBetween($min = 1, $max = 10),
+        'movimiento_id' => $faker->numberBetween($min = 1, $max = 4),
+        'tipo_movimiento_id' => $faker->numberBetween($min = 1, $max = 7),
         'proveedor_id' => $faker->numberBetween($min = 1, $max = 10),
         'proyecto_id' => $faker->numberBetween($min = 1, $max = 10),
         'tarea_id' => $faker->numberBetween($min = 1, $max = 10),

@@ -3,8 +3,10 @@
 $factory->define(App\Desecho::class, function (Faker\Generator $faker) {
     return [
         'fecha_desecho' => $faker->dateTime($max = 'now', $timezone = null),
-        'auditor_id' => $faker->numberBetween($min = 1, $max = 50),
+        'auditor_id' => $faker->numberBetween($min = 1, $max = 5),
         'almacen_id' => $faker->numberBetween($min = 1, $max = 10),
+        'movimiento_id' => $faker->numberBetween($min = 1, $max = 4),
+        'tipo_movimiento_id' => $faker->numberBetween($min = 1, $max = 7),
         'notas' => $faker->text($maxNbChars = 200),
         'pais' => $faker->country(),
 

@@ -21,6 +21,7 @@ class Entrada extends Migration
             $table->string('n_factura', 50);
             $table->integer('proveedor_id');
             $table->integer('movimiento_id');
+            $table->integer('tipo_movimiento_id');
             $table->integer('proyecto_id');
             $table->integer('tarea_id');
             $table->integer('tipo_concepto_id');

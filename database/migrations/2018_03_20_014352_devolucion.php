@@ -19,6 +19,8 @@ class Devolucion extends Migration
             
             // Table specific entries
             $table->dateTime('fecha_devolucion');
+            $table->integer('movimiento_id');
+            $table->integer('tipo_movimiento_id');
             $table->integer('cliente_id');
             $table->integer('almacen_id');
             $table->string('notas', 500);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CategoriaMovimientos extends Migration
+class CreateGrupoArticulosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,12 @@ class CategoriaMovimientos extends Migration
      */
     public function up()
     {
-        Schema::create('categoriamovimientos', function (Blueprint $table) {
+        Schema::create('grupo_articulos', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
-            
-            // Table specific entries
-            $table->string('nombre', 100);
-            $table->integer('tipo_movimiento_id');
-            $table->string('pais', 100);
-            
+
+            $table->string('descripcion', 500);
+
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');
@@ -37,6 +34,6 @@ class CategoriaMovimientos extends Migration
      */
     public function down()
     {
-        Schema::drop('categoriamovimientos');
+        Schema::drop('grupo_articulos');
     }
 }
