@@ -70,10 +70,10 @@
                         <div class="col-sm-8">
                             <date-picker
                                 :config="config"
-                                id="fecha_desinstalación"
+                                id="fecha_devolucion"
                                 class="form-control"
-                                name="fecha_desinstalación"
-                                v-model="informacion.fecha_desinstalación"
+                                name="fecha_devolucion"
+                                v-model="informacion.fecha_devolucion"
                                 v-validate="'required'"
                                 >
                             </date-picker>
@@ -321,7 +321,7 @@
                     cliente_id: "",
                     almacen_id: "",
                     moneda_id: "",
-                    fecha_desinstalación: "",
+                    fecha_devolucion: "",
                 }
             },
             methods: {
@@ -411,7 +411,7 @@
                             $.ajax({
                                 context: this,
                                 type: "POST",
-                                url: "/desinstalación",
+                                url: "/Devolucion",
                                 dataType: 'json',
                                 data: {
                                     _token: token,
@@ -426,6 +426,7 @@
                                         confirmButtonClass: "btn btn-success btn-fill",
                                         buttonsStyling: false
                                     });
+                                    location.reload();
                                 },
                                 error: function(xhr) {
                                     var errorMessage = '';

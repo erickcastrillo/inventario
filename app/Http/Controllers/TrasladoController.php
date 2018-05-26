@@ -38,7 +38,7 @@ class TrasladoController extends Controller
         $from = Carbon::now()->startOfMonth()->toDateTimeString();
         $to = Carbon::now()->toDateTimeString();
         return view('traslado.todos', [
-            'traslados' =>  Traslado::where('estado', '=', 0)->whereBetween('created_at',[$from, $to])->get(),
+            'traslados' =>  Traslado::where('estado', '=', 0)->whereBetween('created_at',[$from, $to])->orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -54,6 +54,7 @@ class TrasladoController extends Controller
 
         $traslado->almacen_id = $request->input('informacion.almacen_id');
         $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
+        $traslado->supervisor_id = $request->input('informacion.supervisor_id');
         $traslado->hora_retiro = $request->input('informacion.hora_retiro');
         $traslado->movimiento_id = $request->input('informacion.movimiento_id');
         $traslado->departamento_id = $request->input('informacion.departamento_id');
@@ -64,7 +65,7 @@ class TrasladoController extends Controller
         }
         $traslado->pais = Auth::user()->country;
         $traslado->creado_id = Auth::user()->id;
-        $traslado->editado_id = Auth::user()->id;
+        //$traslado->editado_id = Auth::user()->id;
 
         // estado 0 means pending, 1 approved, 2 rejected
         $traslado->estado = 0;
@@ -80,11 +81,13 @@ class TrasladoController extends Controller
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
             $traslado_detalle->costo_unitario = $p;
-            $traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
+            //$traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
             $traslado_detalle->pais = Auth::user()->country;
+            
 
             // estado 0 means pending, 1 approved, 2 rejected
             $traslado_detalle->estado = 0;
+            $traslado_detalle->creado_id = Auth::user()->id;
 
             $saved_traslado_detalle = $traslado->detalles()->save($traslado_detalle);
         }
@@ -250,69 +253,4 @@ class TrasladoController extends Controller
 
     }
 
-    public function nueva_solicitud(TrasladoRequest $request) 
-    {
-
-        $traslado = new Traslado();
-
-        $traslado->almacen_id = $request->input('informacion.almacen_id');
-        $traslado->supervisor_id = $request->input('informacion.supervisor_id');
-        $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
-        $traslado->hora_retiro = $request->input('informacion.hora_retiro');
-        $traslado->movimiento_id = $request->input('informacion.movimiento_id');
-        $traslado->departamento_id = $request->input('informacion.departamento_id');
-        $traslado->nombre_retira = $request->input('informacion.nombre_retira');
-        $traslado->id_personal_retira = $request->input('informacion.id_personal_retira');
-        if($request->input('informacion.notas')){
-            $traslado->notas = $request->input('informacion.notas');
-        }
-        $traslado->pais = Auth::user()->country;
-        $traslado->creado_id = Auth::user()->id;
-        $traslado->editado_id = Auth::user()->id;
-
-        // estado 0 means pending, 1 approved, 2 rejected
-        $traslado->estado = 0;
-
-        $saved_traslado = $traslado->save();
-        foreach ($request->input('rows') as $key => $val)
-        {
-            $traslado_detalle = new TrasladoDetalle();
-            //$traslado_detalle->almacen_id = $request->input('informacion.almacen_id');
-            $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
-            $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
-
-            // estado 0 means pending, 1 approved, 2 rejected
-            $traslado_detalle->estado = 0;
-            $traslado_detalle->pais = Auth::user()->country;
-
-            $saved_traslado_detalle = $traslado->detalles()->save($traslado_detalle);
-        }
-
-        if($saved_traslado and $saved_traslado_detalle){
-
-            $notiticacion = new \stdClass();
-            $notiticacion->title = "Nueva solicitud de traslado";
-            $notiticacion->message = "El usuario " . Auth::user()->get_full_name() . " ha solicitado un nuevo traslado, por favor revisa los detalles aqui";
-            $notiticacion->type = 'info';
-            $notiticacion->url = '/'; // todo
-
-            Event::fire(new NotificationEvent($notiticacion));
-
-            return response()->json([
-                'estado' => '¡Exito!',
-                'mensaje' => "Traslado ha sido guardado exitosamente",
-                'tipo' => 'success'
-            ], 201);
-
-        } else {
-
-            return response()->json([
-                'estado' => '¡Error!',
-                'mensaje' => "El nuevo Traslado no se ha podido guardar",
-                'tipo' => 'error'
-            ]. 201);
-
-        }
-
-    }
 }

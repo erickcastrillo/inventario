@@ -19,9 +19,10 @@ class Articulo extends Migration
             // Table specific entries
             $table->string('codigo', 50);
             $table->string('descripcion', 500);
-            $table->integer('categoria_id');
+            $table->integer('grupo_id');
+            $table->integer('linea_id');
             $table->integer('medida_id');
-            $table->integer('cantidad_minima');
+            $table->char('abc', 1);
             $table->string('fotografia', 100);
             $table->string('pais', 100);
             

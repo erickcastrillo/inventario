@@ -171,7 +171,7 @@
                     </tr>
                   </thead>
                   <tbody v-sortable.tr="rows">
-                    <tr role="row" v-for="(row, index) in rows" :key="index" v-bind:class="[row.estado == 'rechazado' ? 'danger' : '']">
+                    <tr role="row" v-for="(row, index) in rows" :key="index" v-bind:class="[row.estado == 2 ? 'danger' : '']">
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
                           <select
@@ -382,7 +382,7 @@
               cantidad: "{{ $detalle->cantidad }}",
               cantidad_asignada: "",
               cantidad_maxima: 0,
-              estado: "",
+              estado: 1,
             },
           @endforeach
         ],
@@ -543,10 +543,10 @@
 
         },
         aceptarProducto: function(row) {
-          row.estado = "aceptado"
+          row.estado = 1;
         },
         rechazarProducto: function(row) {
-          row.estado = "rechazado"
+          row.estado = 2
         }
       }
     });

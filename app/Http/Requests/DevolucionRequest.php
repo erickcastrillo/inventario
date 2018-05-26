@@ -29,7 +29,7 @@ class DevolucionRequest extends Request
             'informacion.cliente_id' => 'required|numeric',
             'informacion.almacen_id' => 'required|numeric',
             'informacion.moneda_id' => 'required',
-            'informacion.notas' => 'required',
+            //'informacion.notas' => 'required',
 
         ];
         foreach($this->request->get('rows') as $key => $val)

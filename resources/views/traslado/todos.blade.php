@@ -118,6 +118,7 @@
             $('#datatable').DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
+                "order": [[ 0, "desc" ]]
                 buttons: [
                     'excelHtml5',
                 ],

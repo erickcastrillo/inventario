@@ -24,6 +24,7 @@ class AlmacenDetalle extends Migration
             $table->integer('moneda_id');
             $table->string('lote', 100);
             $table->string('serie', 100);
+            $table->float('tipo_cambio', 10, 3);
             $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations

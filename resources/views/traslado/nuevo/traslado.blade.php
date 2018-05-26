@@ -334,7 +334,7 @@
               $.ajax({
                 context: this,
                 type: "POST",
-                url: "/Traslado/Create/Solicitud",
+                url: "/Traslado/",
                 dataType: 'json',
                 data: {
                   _token: token,
