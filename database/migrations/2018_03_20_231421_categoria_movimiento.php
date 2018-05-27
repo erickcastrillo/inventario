@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Gasto extends Migration
+class CategoriaMovimiento extends Migration
 {
     /**
      * Run the migrations.
@@ -12,22 +12,14 @@ class Gasto extends Migration
      */
     public function up()
     {
-        Schema::create('gastos', function (Blueprint $table) {
+        Schema::create('categoria_movimiento', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
             
             // Table specific entries
-            $table->dateTime('fecha_gasto');
-            $table->integer('enlace_id');
-            $table->integer('proyecto_id');
-            $table->integer('movimiento_id');
-            $table->integer('tipo_movimiento_id');
-            $table->integer('cliente_id');
-            $table->integer('tarea_id');
-            $table->integer('departamento_id');
-            $table->string('pais', 50);
-            $table->integer('almacen_id');
-            $table->string('notas', 300);
+            $table->string('nombre', 50);
+            $table->integer('tipo');
+            $table->string('pais', 100);
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
@@ -45,6 +37,6 @@ class Gasto extends Migration
      */
     public function down()
     {
-        Schema::drop('gastos');
+        Schema::drop('categoria_movimiento');
     }
 }

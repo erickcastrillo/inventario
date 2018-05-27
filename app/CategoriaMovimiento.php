@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\CategoriaMovimientos;
 
-class Movimiento extends Model
+class CategoriaMovimiento extends Model
 {
 
     public function get_creador_name()
@@ -17,9 +16,9 @@ class Movimiento extends Model
         return $name . " " . $last_name;
     }
 
-    public function get_nombre_categoria() {
-        return CategoriaMovimientos::find($this->tipo)->nombre;
-    }
+    // public function get_nombre_categoria() {
+    //     return CategoriaMovimientos::find($this->tipo)->nombre;
+    // }
 
     public function get_editor_name()
     {
@@ -39,5 +38,5 @@ class Movimiento extends Model
         return User::find($this->editado_id);
     }
 
-    protected $table = 'movimientos';
+    protected $table = 'categoria_movimientos';
 }

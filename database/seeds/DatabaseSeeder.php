@@ -16,11 +16,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(Roles::class);
         $this->call(UserSeeder::class);
-        $this->call(EntradasSeeder::class);
-        $this->call(DevolucionSeeder::class);
-        $this->call(TrasladoSeeder::class);
-        $this->call(GastoSeeder::class);
-        $this->call(DesechoSeeder::class);
         $this->call(AlmacenSeeder::class);
         $this->call(TipoCambioSeeder::class);
         $this->call(ArticuloSeeder::class);
@@ -30,7 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TareaSeeder::class);
         $this->call(MonedaSeeder::class);
         $this->call(UnidadMedidaSeeder::class);
-        $this->call(MovimientoSeeder::class);
+        $this->call(CategoriaMovimientoSeeder::class);
+        $this->call(SubCategoriaMovimientoSeeder::class);
         $this->call(TipoConceptoSeeder::class);
         $this->call(DepartamentoSeeder::class);
         $this->call(NotificacionSeeder::class);
