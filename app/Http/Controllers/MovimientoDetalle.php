@@ -6,14 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Movimiento;
 
-class MovimientoController extends Controller
+class MovimientoDetalle extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +16,7 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        return response()->json(Movimiento::where('estado' , '=', 1)->get());
+        //
     }
 
     /**
