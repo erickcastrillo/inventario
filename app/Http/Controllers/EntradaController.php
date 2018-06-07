@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\EntradaDetalle;
+use App\MovimientoDetalle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Entrada;
+use App\Movimiento;
 use App\Proveedor;
 use App\Moneda;
 use App\Proyecto;
@@ -34,12 +34,12 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        return view('entradas.todas', ['entradas' => Entrada::orderBy("created_at", "des")->limit(50)->get() ]);
+        return view('entradas.todas', ['entradas' => Movimiento::orderBy("created_at", "des")->limit(50)->get() ]);
     }
 
     public function get_data($fecha_inicio, $fecha_final) {
 
-        $data = Entrada::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->where('estado' , '=', 1)->get();
+        $data = Movimiento::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->where('estado' , '=', 1)->get();
         return view('entradas.todas', ['entradas' => $data ]);
 
     }
@@ -75,7 +75,7 @@ class EntradaController extends Controller
         $n_factura = $request->input('informacion.n_factura');
         $proveedor_id = $request->input('informacion.id_proveedor');
 
-        $result = Entrada::where('n_factura', $n_factura)->where('proveedor_id', 10)->get();
+        $result = Movimiento::where('n_factura', $n_factura)->where('proveedor_id', $proveedor_id   )->get();
 
         if (!$result->isEmpty()) {
 
@@ -86,22 +86,22 @@ class EntradaController extends Controller
 
         } else {
 
-            $entrada = new Entrada();
+            $entrada = new Movimiento();
 
-            $entrada->fecha_factura = $request->input('informacion.fecha_factura');
+            $entrada->fecha = $request->input('informacion.fecha_factura');
             $entrada->proveedor_id = $request->input('informacion.id_proveedor');
             if($request->input('informacion.notas')){
                 $entrada->notas = $request->input('informacion.notas');
             }
-            $entrada->cuenta_contable = $request->input('informacion.cuenta_contable');
+            $entrada->cuenta_id = $request->input('informacion.cuenta_contable');
             $entrada->n_factura = $request->input('informacion.n_factura');
             $entrada->proyecto_id = $request->input('informacion.proyecto_id');
             $entrada->tarea_id = $request->input('informacion.tarea_id');
             $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
             $entrada->almacen_id = $request->input('informacion.almacen_id');
-            $entrada->pais = Auth::user()->country;
+            $entrada->pais = Auth::user()->get_country_id();
             $entrada->estado = 1;
-            $entrada->movimiento_id = 1;
+            $entrada->categoria_movimiento_id = 1;
             $entrada->creado_id = Auth::user()->id;
             $entrada->editado_id = Auth::user()->id;
     
@@ -113,7 +113,7 @@ class EntradaController extends Controller
             foreach ($request->input('rows') as $key => $val)
             {
                 // Adds the row data entrada_detalle to db colum
-                $entrada_detalle = new EntradaDetalle();
+                $entrada_detalle = new MovimientoDetalle();
                 $entrada_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
                 $entrada_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
                 $entrada_detalle->costo_unitario = $request->input('rows.'.$key.'.costo');
@@ -122,8 +122,9 @@ class EntradaController extends Controller
                 if($request->input('rows.'.$key.'.serie')){
                     $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
                 }
-                $entrada_detalle->pais = Auth::user()->country;
+                $entrada_detalle->pais = Auth::user()->get_country_id();
                 $entrada_detalle->estado = 1;
+                $entrada_detalle->subcategoria_movimiento_id = 1;
                 
                 // Saves the data to db
                 $saved_entrada_detalle = $saved_entrada_detalle and $entrada->detalles()->save($entrada_detalle);
@@ -155,9 +156,8 @@ class EntradaController extends Controller
                         $nuevo_detalle_almacen->moneda_id = $request->input('informacion.moneda_id.value');
                         $nuevo_detalle_almacen->lote = $request->input('rows.'.$key.'.lote');
                         $nuevo_detalle_almacen->serie =  $request->input('rows.'.$key.'.serie');
-                        $nuevo_detalle_almacen->pais = Auth::user()->country;
+                        $nuevo_detalle_almacen->pais = Auth::user()->get_country_id();
 
-                        $nuevo_detalle_almacen->pais = Auth::user()->country;
                         $nuevo_detalle_almacen->estado = 1;
 
                         $saved_new_stock = $saved_new_stock and $nuevo_detalle_almacen->save();

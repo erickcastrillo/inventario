@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Almacen;
+use App\Pais;
 use App\Moneda;
 
 class User extends Model implements AuthenticatableContract,
@@ -56,6 +57,11 @@ class User extends Model implements AuthenticatableContract,
     public function get_moneda()
     {
       return Moneda::where('pais', '=', $this->country);
+    }
+
+    public function get_country_id() 
+    {
+        return Pais::where('nombre', $this->country)->first()->id;
     }
 
     public function get_almacenes()

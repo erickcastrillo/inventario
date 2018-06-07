@@ -18,8 +18,8 @@ class CreateMovimientosTable extends Migration
 
             // Relationships IDs
             $table->integer('consecutivo');
-            $table->integer('movimiento_id');
-            $table->integer('bodega_id');
+            $table->integer('categoria_movimiento_id');
+            $table->integer('almacen_id');
 
             // Dates and times
             $table->date('fecha');
@@ -43,6 +43,8 @@ class CreateMovimientosTable extends Migration
 
             $table->text('notas_1');
             $table->text('notas_2');
+
+            $table->integer('pais');
 
             $table->boolean('estado');
             $table->integer('creado_id');

@@ -18,22 +18,6 @@
                 <div class="col-md-6">
                   <h4 class="card-title text-center">Detalle del Traslado</h4>
                   <div class="form-horizontal">
-                    <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.movimiento_id') }">
-                      <label class="col-md-4 control-label">Movimiento</label>
-                      <div class="col-sm-8">
-                        <select 
-                          class="form-control" 
-                          name="movimiento_id" 
-                          id="movimiento_id" 
-                          v-model="informacion.movimiento_id"
-                          v-validate="'required'"
-                          >
-                          @foreach($movimientos as $movimiento)
-                            <option value="{{ $movimiento->id }}">{{ $movimiento->nombre }}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
                       <label class="col-md-4 control-label">Almac&eacute;n</label>
                       <div class="col-sm-8">

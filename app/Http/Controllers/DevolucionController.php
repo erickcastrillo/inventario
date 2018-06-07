@@ -14,6 +14,8 @@ use App\Almacen;
 use App\Moneda;
 use App\Cliente;
 use App\Http\Requests\DevolucionRequest;
+use App\Movimiento;
+use App\MovimientoDetalle;
 
 class DevolucionController extends Controller
 {
@@ -25,17 +27,11 @@ class DevolucionController extends Controller
 
     public function nueva_entrada_devolucion()
     {
-      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->get();
-      $articulos = [];
-      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
-      {
-          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
-      }
       return view('devoluciones.nueva.devolucion', [
           'clientes' => Cliente::where('estado' , '=', 1)->get(),
           'monedas' => Moneda::where('estado' , '=', 1)->get(),
           'almacenes' => Auth::user()->get_almacenes()->where('estado' , '=', 1)->get(),
-          'articulos' => $articulos,
+          'articulos' => Articulo::where('estado' , '=', 1)->get(),
       ]);
     }
 
@@ -56,17 +52,12 @@ class DevolucionController extends Controller
      */
     public function create()
     {
-      $detalles_almacenes_usuario = Auth::user()->get_almacenes()->first()->detalles()->where('estado' , '=', 1)->get();
-      $articulos = [];
-      foreach ($detalles_almacenes_usuario as $detalle_almacenes_usuario)
-      {
-          array_push($articulos, Articulo::find($detalle_almacenes_usuario->articulo_id) );
-      }
+
       return view('devoluciones.nueva.devolucion', [
           'clientes' => Cliente::where('estado' , '=', 1)->get(),
           'monedas' => Moneda::where('estado' , '=', 1)->get(),
-          'almacenes' => Auth::user()->get_almacenes()->first()->where('estado' , '=', 1)->get(),
-          'articulos' => $articulos,
+          'almacenes' => Almacen::where('estado' , '=', 1)->get(),
+          'articulos' => Articulo::where('estado' , '=', 1)->get(),
       ]);
     }
 
@@ -78,34 +69,36 @@ class DevolucionController extends Controller
      */
     public function store(DevolucionRequest $request)
     {
-      $devolucion = new Devolucion();
+      $devolucion = new Movimiento();
 
-      $devolucion->fecha_devolucion = $request->input('informacion.fecha_devolucion');
+      $devolucion->fecha = $request->input('informacion.fecha_devolucion');
       $devolucion->cliente_id = $request->input('informacion.cliente_id');
       if($request->input('informacion.notas')){
           $devolucion->notas = $request->input('informacion.notas');
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');
       $devolucion->almacen_id = $request->input('informacion.almacen_id');
-      $devolucion->pais = Auth::user()->country;
+      $devolucion->pais = Auth::user()->get_country_id();
       $devolucion->estado = 1;
       $devolucion->creado_id = Auth::user()->id;
       $devolucion->editado_id = Auth::user()->id;
       $devolucion->estado = 1;
+      $devolucion->categoria_movimiento_id = 1;
 
       $saved_devolucion = $devolucion->save();
 
       foreach ($request->input('rows') as $key => $val)
       {
-          $DevolucionDetalle = new DevolucionDetalle();
+          $DevolucionDetalle = new MovimientoDetalle();
           $DevolucionDetalle->articulo_id = $request->input('rows.'.$key.'.articulo');
           $DevolucionDetalle->cantidad = $request->input('rows.'.$key.'.cantidad');
           $DevolucionDetalle->costo_unitario = $request->input('rows.'.$key.'.costo');
           $DevolucionDetalle->moneda_id = $request->input('informacion.moneda_id.id');
           $DevolucionDetalle->lote = $request->input('rows.'.$key.'.lote');
           $DevolucionDetalle->serie = $request->input('rows.'.$key.'.serie');
-          $DevolucionDetalle->pais = Auth::user()->country;
+          $DevolucionDetalle->pais = Auth::user()->get_country_id();
           $DevolucionDetalle->estado = 1;
+          $DevolucionDetalle->subcategoria_movimiento_id = 2;
 
           $saved_devolucion_detalle = $devolucion->detalles()->save($DevolucionDetalle);
 

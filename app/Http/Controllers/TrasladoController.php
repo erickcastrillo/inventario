@@ -20,6 +20,8 @@ use App\Events\NotificationEvent;
 use Carbon\Carbon;
 use App\User;
 use App\Articulo;
+use App\SubCategoriaMovimiento;
+use App\Solicitud;
 
 class TrasladoController extends Controller
 {
@@ -50,12 +52,12 @@ class TrasladoController extends Controller
      */
     public function store(TrasladoRequest $request)
     {
-        $traslado = new Traslado();
+        $traslado = new Movimiento();
 
         $traslado->almacen_id = $request->input('informacion.almacen_id');
-        $traslado->fecha_retiro = $request->input('informacion.fecha_retiro');
+        $traslado->fecha = $request->input('informacion.fecha_retiro');
         $traslado->supervisor_id = $request->input('informacion.supervisor_id');
-        $traslado->hora_retiro = $request->input('informacion.hora_retiro');
+        $traslado->hora = $request->input('informacion.hora_retiro');
         $traslado->movimiento_id = $request->input('informacion.movimiento_id');
         $traslado->departamento_id = $request->input('informacion.departamento_id');
         $traslado->nombre_retira = $request->input('informacion.nombre_retira');
@@ -77,7 +79,7 @@ class TrasladoController extends Controller
                                 ->where('articulo_id', '=', $request->input('rows.'.$key.'.articulo'))
                                 ->select( 'costo_unitario')
                                 ->get();
-            $traslado_detalle = new TrasladoDetalle();
+            $traslado_detalle = new MovimientoDetalle();
             $traslado_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
             $traslado_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
             $traslado_detalle->costo_unitario = $p;
@@ -132,7 +134,7 @@ class TrasladoController extends Controller
         return view('traslado.editar', [
             'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
             'departamentos' => Departamento::where('estado' , '=', 1)->get(),
-            'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
+            'movimientos' => SubCategoriaMovimiento::where('movimiento_id' , '=', 2)->where('estado' , '=', 1)->get(),
             'traslado' => $traslado,
             'detalles' => $traslado->detalles()->get(),
             'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
@@ -150,7 +152,7 @@ class TrasladoController extends Controller
       return view('traslado.nuevo.traslado', [
         'almacenes' =>  Almacen::where('estado' , '=', 1)->get(),
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
-        'movimientos' => Movimiento::where('tipo' , '=', 2)->where('estado' , '=', 1)->get(),
+        'movimientos' => SubCategoriaMovimiento::where('movimiento_id' , '=', 2)->where('estado' , '=', 1)->get(),
         'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
         'productos' => Articulo::where('estado' , '=', 1)->get(), 
       ]);
@@ -250,6 +252,11 @@ class TrasladoController extends Controller
 
         $data = Traslado::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->where('estado' , '=', 0)->get();
         return view('traslado.todos', ['traslados' => $data ]);
+
+    }
+
+    public function nueva_solicitud() 
+    {
 
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovimientoDetallesTable extends Migration
+class CreateSolicitudsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,23 @@ class CreateMovimientoDetallesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movimiento_detalles', function (Blueprint $table) {
+        Schema::create('solicitudes', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('movimiento_id');
             $table->integer('almacen_id');
-            $table->integer('subcategoria_movimiento_id');
-            $table->integer('articulo_id');
-            $table->integer('cantidad');
-            $table->integer('costo_unitario');
-            $table->integer('moneda_id');
-            $table->integer('tipo_cambio');
-            $table->integer('lote');
-            $table->integer('serie');
+
+            // Dates and times
+            $table->date('fecha');
+            $table->time('hora');
+
+            $table->integer('supervisor_id');
+            $table->integer('departamento_id');
+
+            $table->string('nombre_retira', 150);
+            $table->string('id_personal_retira', 15);
+
+            $table->text('notas');
+
             $table->integer('pais');
 
             $table->boolean('estado');
@@ -42,6 +46,6 @@ class CreateMovimientoDetallesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('movimiento_detalles');
+        Schema::drop('solicitudes');
     }
 }
