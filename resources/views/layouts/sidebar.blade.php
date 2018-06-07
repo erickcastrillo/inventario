@@ -109,7 +109,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ Request::route()->getName() == 'Todas las entradas' ? 'active' : '' }}">
+            <li>
                 <a data-toggle="collapse" href="#todas-las-traslados">
                     <i class="ti-share"></i>
                     <p>Traslados
@@ -151,18 +151,30 @@
                     <p>Reporte de Inventario</p>
                 </a>
             </li>
-            <li {{ Request::route()->getName() == 'Admin' ? 'active' : '' }}>
-                <a href="#">
+            <li>
+                <a data-toggle="collapse" href="#admin-section">
                     <i class="ti-settings"></i>
-                    <p>Administraci&oacute;n</p>
+                    <p>Administraci&oacute;n
+                        <b class="caret"></b>
+                    </p>
                 </a>
+                <div class="collapse" id="admin-section">
+                    <ul class="nav">
+                        <li class="{{ Request::route()->getName() == 'Administración de Artículos' ? 'active' : '' }}">
+                                <a href="/Admin/Articulos">
+                                    <span class="sidebar-mini">A</span>
+                                    <span class="sidebar-normal">Articulos</span>
+                                </a>
+                            </li>
+                        <li class="{{ Request::route()->getName() == 'Administración de Líneas de Artículos' ? 'active' : '' }}">
+                            <a href="/Admin/Lineas">
+                                <span class="sidebar-mini">LA</span>
+                                <span class="sidebar-normal">Líneas de Artículos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
-        <div class="ps-scrollbar-x-rail" style="width: 260px; left: 0px; bottom: 3px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 259px;"></div>
-        </div>
-        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; right: 3px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 188px;"></div>
-        </div>
     </div>
 </div>
