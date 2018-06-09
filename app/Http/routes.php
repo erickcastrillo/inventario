@@ -365,3 +365,4 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('Admin/Articulos', 'AdministacionController@list_all_articles')->name('Administración de Artículos');
 
 
+//

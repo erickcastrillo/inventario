@@ -28,6 +28,19 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+            'name' => 'COCO',
+            'last_name' => 'Cascante',
+            'user_name' => 'coco',
+            'password' => bcrypt('coco123'),
+            'email' => 'coco@gmail.com',
+            'country' => 'Costa Rica',
+            'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
+            'estado' => 1,
+            'creado_id' => 1,
+            'editado_id' => 1
+        ]);
+
+        DB::table('users')->insert([
             'name' => 'Diego',
             'last_name' => 'Madrigal',
             'user_name' => 'diego81db',
