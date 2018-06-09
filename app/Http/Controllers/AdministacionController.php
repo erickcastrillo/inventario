@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Articulo;
+use App\ABCArticulo;
+use App\GrupoArticulo;
 
 class AdministacionController extends Controller
 {
@@ -23,7 +26,9 @@ class AdministacionController extends Controller
     // Lista todos los articuloas
     public function list_all_articles()
     {
-        return view('admin.articulos.todos');
+        return view('admin.articulos.todos', [
+            'articulos' => Articulo::all()
+        ]);
     }
     
 }

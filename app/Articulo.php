@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Categoria;
 use App\UnidadMedida;
+use App\LineaArticulo;
+use App\GrupoArticulo;
 
 class Articulo extends Model
 {
@@ -22,6 +24,16 @@ class Articulo extends Model
     public function get_unidad_medida()
     {
         return UnidadMedida::find($this->medida_id);
+    }
+
+    public function get_linea_articulo()
+    {
+        return LineaArticulo::find($this->linea_id);
+    }
+
+    public function get_grupo()
+    {
+        return GrupoArticulo::find($this->grupo_id);
     }
 
     public function get_creador_name()

@@ -53,33 +53,35 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {{-- @foreach ($entradas as $entrada)
+                                            @foreach ($articulos as $articulo)
                                                 <tr role="row">
-                                                    <td tabindex="0" class="sorting_1">{{ $entrada->id }}</td>
-                                                    <td>{{ $entrada->fecha_factura }}</td>
-                                                    <td>{{ $entrada->n_factura }}</td>
-                                                    <td>{{ $entrada->get_movimiento()->nombre }}</td>
-                                                    <td>{{ $entrada->get_proveedor()->nombre }}</td>
-                                                    <td>{{ $entrada->get_proyecto()->nombre }}</td>
-                                                    <td>{{ $entrada->get_tarea()->nombre }}</td>
-                                                    <td>{{ $entrada->get_tipo_concepto()->nombre }}</td>
-                                                    <td>{{ $entrada->pais }}</td>
+                                                    <td tabindex="0" class="sorting_1">{{ $articulo->codigo }}</td>
+                                                    <td>{{ $articulo->descripcion }}</td>
+                                                    <td><img class="img-responsive img-rounded"  src="{{ $articulo->fotografia }}"></td>
+                                                    <td>{{ $articulo->get_unidad_medida()->sigla }}</td>
+                                                    <td>{{ $articulo->get_linea_articulo()->descripcion }}</td>
+                                                    <td>{{ $articulo->get_grupo()->descripcion }}</td>
+                                                    <td>{{ $articulo->abc }}</td>
+                                                    <td>{{ $articulo->pais }}</td>
+                                                    @if ($articulo->estado === 1)
+                                                        <td>Activo</td>
+                                                    @else
+                                                        <td>Inactivo</td>
+                                                    @endif
+                                                    <td>{{ $articulo->created_at }}</td>
+                                                    <td>{{ $articulo->updated_at }}</td>
                                                     <td>
-                                                        <a href="/Entrada/{{$entrada->id}}" role="button" class="btn btn-sm btn-simple" >
+                                                        <a href="#" role="button" class="btn btn-sm btn-simple" rel="tooltip"
+                                                        data-original-title="Editar" >
                                                             <span class="btn-label">
-                                                                <i class="fa fa-eye"></i>
+                                                                <i class="fa fa-edit"></i>
                                                             </span>
-                                                            Ver
+                                                            Editar
                                                         </a>
-                                                        <button type="button" class="btn btn-sm btn-simple" onclick="deleteEntrada({{ $entrada->id }})">
-                                                            <span class="btn-label">
-                                                                <i class="fa fa-close"></i>
-                                                            </span>
-                                                            Borrar
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
