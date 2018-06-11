@@ -24,7 +24,7 @@ class Articulo extends Migration
             $table->integer('medida_id');
             $table->char('abc', 1);
             $table->string('fotografia', 100);
-            $table->string('pais', 100);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

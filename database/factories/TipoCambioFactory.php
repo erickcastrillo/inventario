@@ -5,7 +5,7 @@ $factory->define(App\TipoCambio::class, function (Faker\Generator $faker) {
         'moneda_id' => $faker->numberBetween($min = 1, $max = 10),
         'fecha' => $faker->dateTime($max = 'now', $timezone = null),
         'cambio' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

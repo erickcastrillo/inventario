@@ -18,7 +18,7 @@ class Departamento extends Migration
             
             // Table specific entries
             $table->string('nombre', 100);
-            $table->string('pais', 50);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

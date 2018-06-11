@@ -23,7 +23,7 @@ class ClienteMigration extends Migration
             $table->string('tel_contacto', 30);
             $table->string('tel_empresa', 30);
             $table->string('correo', 50);
-            $table->string('pais', 100);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

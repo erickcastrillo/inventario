@@ -15,11 +15,11 @@ class TipoConcepto extends Migration
         Schema::create('tipos_conceptos', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
-            
+
             // Table specific entries
             $table->string('nombre', 100);
-            $table->string('pais', 50);
-            
+            $table->integer('pais');
+
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');

@@ -4,7 +4,7 @@ $factory->define(App\CuentaContable::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->name(),
 
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

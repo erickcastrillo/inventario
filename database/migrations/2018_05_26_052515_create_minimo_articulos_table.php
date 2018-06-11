@@ -20,6 +20,7 @@ class CreateMinimoArticulosTable extends Migration
             $table->integer('articulo_id');
             $table->integer('minimo');
 
+            $table->integer('pais');
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');

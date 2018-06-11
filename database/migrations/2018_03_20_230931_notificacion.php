@@ -18,7 +18,7 @@ class Notificacion extends Migration
             
             // Table specific entries
             $table->integer('departamento_id');
-            $table->string('pais', 100);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

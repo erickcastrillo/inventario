@@ -6,7 +6,7 @@ $factory->define(App\Moneda::class, function (Faker\Generator $faker) {
         'sigla' => $faker->currencyCode(),
         'por_defecto' => $faker->boolean(),
 
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

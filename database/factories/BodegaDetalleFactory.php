@@ -9,7 +9,7 @@ $factory->define(App\AlmacenDetalle::class, function (Faker\Generator $faker) {
         'moneda_id' => $faker->numberBetween($min = 1, $max = 10),
         'lote' => $faker->isbn13(),
         'serie' => $faker->ean8(),
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

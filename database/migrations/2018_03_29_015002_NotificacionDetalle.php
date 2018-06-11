@@ -15,11 +15,12 @@ class NotificacionDetalle extends Migration
         Schema::create('notificaciones_detalle', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
-            
+
             // Table specific entries
             $table->string('correo', 200);
             $table->integer('notificacion_id');
-            
+            $table->integer('pais');
+
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');

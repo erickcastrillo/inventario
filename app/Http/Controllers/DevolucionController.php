@@ -78,7 +78,7 @@ class DevolucionController extends Controller
       }
       //$entrada->moneda_id = $request->input('informacion.moneda_id');
       $devolucion->almacen_id = $request->input('informacion.almacen_id');
-      $devolucion->pais = Auth::user()->get_country_id();
+      $devolucion->pais = Auth::user()->pais;
       $devolucion->estado = 1;
       $devolucion->creado_id = Auth::user()->id;
       $devolucion->editado_id = Auth::user()->id;
@@ -96,7 +96,7 @@ class DevolucionController extends Controller
           $DevolucionDetalle->moneda_id = $request->input('informacion.moneda_id.id');
           $DevolucionDetalle->lote = $request->input('rows.'.$key.'.lote');
           $DevolucionDetalle->serie = $request->input('rows.'.$key.'.serie');
-          $DevolucionDetalle->pais = Auth::user()->get_country_id();
+          $DevolucionDetalle->pais = Auth::user()->pais;
           $DevolucionDetalle->estado = 1;
           $DevolucionDetalle->subcategoria_movimiento_id = 2;
 

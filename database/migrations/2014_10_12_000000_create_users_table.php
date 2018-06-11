@@ -13,25 +13,25 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-        
+
             // Primary key
             $table->increments('id');
-            
+
             $table->string('name');
             $table->string('last_name');
             $table->string('user_name')->unique();
             $table->string('password');
             $table->string('email')->unique();
-            $table->string('country');
+            $table->integer('pais');
             $table->string('profile_pic');
-            
+
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');
             $table->integer('editado_id');
 
             $table->timestamps();
-            
+
             $table->rememberToken();
         });
     }

@@ -99,7 +99,7 @@ class EntradaController extends Controller
             $entrada->tarea_id = $request->input('informacion.tarea_id');
             $entrada->tipo_concepto_id = $request->input('informacion.tipo_concepto_id');
             $entrada->almacen_id = $request->input('informacion.almacen_id');
-            $entrada->pais = Auth::user()->get_country_id();
+            $entrada->pais = Auth::user()->pais;
             $entrada->estado = 1;
             $entrada->categoria_movimiento_id = 1;
             $entrada->creado_id = Auth::user()->id;
@@ -122,7 +122,7 @@ class EntradaController extends Controller
                 if($request->input('rows.'.$key.'.serie')){
                     $entrada_detalle->serie = $request->input('rows.'.$key.'.serie');
                 }
-                $entrada_detalle->pais = Auth::user()->get_country_id();
+                $entrada_detalle->pais = Auth::user()->pais;
                 $entrada_detalle->estado = 1;
                 $entrada_detalle->subcategoria_movimiento_id = 1;
                 
@@ -156,7 +156,7 @@ class EntradaController extends Controller
                         $nuevo_detalle_almacen->moneda_id = $request->input('informacion.moneda_id.value');
                         $nuevo_detalle_almacen->lote = $request->input('rows.'.$key.'.lote');
                         $nuevo_detalle_almacen->serie =  $request->input('rows.'.$key.'.serie');
-                        $nuevo_detalle_almacen->pais = Auth::user()->get_country_id();
+                        $nuevo_detalle_almacen->pais = Auth::user()->pais;
 
                         $nuevo_detalle_almacen->estado = 1;
 

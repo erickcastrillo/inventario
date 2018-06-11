@@ -20,7 +20,7 @@ class EnlacesMigration extends Migration
             $table->string('nombre', 100);
             $table->string('latitud', 40);
             $table->string('longitud', 40);
-            $table->string('pais', 100);
+            $table->integer('pais');
             $table->integer('proyecto_id');
 
             // This 5 lines must appear on all migrations

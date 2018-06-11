@@ -19,6 +19,6 @@ class PaisSeeder extends Seeder
             'editado_id' => 1
         ]);
 
-        factory(App\Pais::class, 10)->create();
+        factory(App\Pais::class, 5)->create();
     }
 }

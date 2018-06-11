@@ -6,6 +6,7 @@ $factory->define(App\MinimoArticulo::class, function (Faker\Generator $faker) {
         'articulo_id' => $faker->numberBetween($min = 1, $max = 50),
         'minimo' => $faker->numberBetween($min = 10, $max = 100),
 
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),
         'editado_id' => $faker->numberBetween($min = 1, $max = 2),

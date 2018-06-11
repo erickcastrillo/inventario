@@ -16,6 +16,7 @@ class CreatePaisTable extends Migration
             $table->increments('id');
             $table->string("nombre");
 
+            $table->integer('pais');
             $table->boolean('estado');
             $table->integer('creado_id');
             $table->integer('editado_id');

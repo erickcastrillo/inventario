@@ -19,7 +19,7 @@ class CategoriaMovimiento extends Migration
             // Table specific entries
             $table->string('nombre', 50);
             $table->integer('tipo');
-            $table->string('pais', 100);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

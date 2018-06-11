@@ -10,7 +10,7 @@ $factory->define(App\Articulo::class, function (Faker\Generator $faker) {
         'abc' => $faker->randomLetter(),
         'fotografia' => $faker->imageUrl($width = 120, $height = 120, 'technics'),
 
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

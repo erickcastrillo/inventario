@@ -17,11 +17,11 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('basic_information.name') }">
                                 <label class="col-md-4 control-label">Nombre</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="text" 
-                                        v-validate="'required'" 
-                                        v-model="informacion.basic.name" 
-                                        id="name" 
+                                    <input
+                                        type="text"
+                                        v-validate="'required'"
+                                        v-model="informacion.basic.name"
+                                        id="name"
                                         name="name"
                                         data-vv-as="nombre"
                                         class="form-control">
@@ -33,13 +33,13 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('basic_information.last_name') }">
                                 <label class="col-md-4 control-label">Apellido</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         v-validate="'required'"
-                                        v-model="informacion.basic.last_name" 
-                                        id="last_name" 
+                                        v-model="informacion.basic.last_name"
+                                        id="last_name"
                                         data-vv-as="apellido"
-                                        name="last_name" 
+                                        name="last_name"
                                         class="form-control">
                                     <span class="text-danger">@{{ errors.first('basic_information.last_name') }}</span>
                                 </div>
@@ -51,13 +51,13 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('basic_information.user_name') }">
                                 <label class="col-md-4 control-label">Nombre de Usuario</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="text" 
-                                        v-validate="'required'" 
+                                    <input
+                                        type="text"
+                                        v-validate="'required'"
                                         data-vv-as="usuario"
                                         v-model="informacion.basic.user_name"
-                                        id="user_name" 
-                                        name="user_name" 
+                                        id="user_name"
+                                        name="user_name"
                                         class="form-control">
                                     <span class="text-danger">@{{ errors.first('basic_information.user_name') }}</span>
                                 </div>
@@ -67,11 +67,11 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('basic_information.email') }">
                                 <label class="col-md-4 control-label">Email</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="email" 
-                                        v-validate="'required|email'" 
-                                        v-model="informacion.basic.email" 
-                                        id="email" 
+                                    <input
+                                        type="email"
+                                        v-validate="'required|email'"
+                                        v-model="informacion.basic.email"
+                                        id="email"
                                         name="email"
                                         data-vv-as="email"
                                         class="form-control">
@@ -84,7 +84,7 @@
                     <div class="text-center">
                         <button
                             v-bind:disabled="errors.any('basic_information')"
-                            class="btn btn-fill btn-info btn-magnify" 
+                            class="btn btn-fill btn-info btn-magnify"
                             type="submit">
                             <span class="btn-label">
                                 <i class="ti-save"></i>
@@ -106,10 +106,10 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('password_change.password') }">
                                 <label class="col-md-4 control-label">Nueva Contraseña</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="password" 
-                                        v-model="informacion.password_change.password" 
-                                        id="password" 
+                                    <input
+                                        type="password"
+                                        v-model="informacion.password_change.password"
+                                        id="password"
                                         name="password"
                                         data-vv-as="contraseña"
                                         v-validate="'required|min:8|max:32|alpha_dash'"
@@ -122,13 +122,13 @@
                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('password_change.password_confirmation') }">
                                 <label class="col-md-4 control-label">Repetir Contraseña</label>
                                 <div class="col-md-8">
-                                    <input 
-                                        type="password" 
-                                        v-model="informacion.password_change.password_confirmation" 
-                                        id="password_confirmation" 
+                                    <input
+                                        type="password"
+                                        v-model="informacion.password_change.password_confirmation"
+                                        id="password_confirmation"
                                         name="password_confirmation"
                                         data-vv-as="confirmar contraseña"
-                                        v-validate="'required|min:8|max:32|confirmed:password'" 
+                                        v-validate="'required|min:8|max:32|confirmed:password'"
                                         class="form-control">
                                     <span class="text-danger">@{{ errors.first('password_change.password_confirmation') }}</span>
                                 </div>
@@ -158,11 +158,11 @@
                             </div>
                             <div class="card-content">
                                 <div v-bind:class="{'form-group': true, 'has-error': errors.has('admin_roles.roles_usuario_editar') }">
-                                    <v-select 
+                                    <v-select
                                         multiple
-                                        v-model="informacion.admin.roles.roles_usuario_editar" 
+                                        v-model="informacion.admin.roles.roles_usuario_editar"
                                         :options="informacion.admin.roles.roles_disponibles"
-                                        id="roles_usuario_editar" 
+                                        id="roles_usuario_editar"
                                         name="roles_usuario_editar"
                                         v-validate="'required'"
                                         data-vv-as="roles"
@@ -171,8 +171,8 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <button 
-                                        class="btn btn-fill btn-info btn-magnify" 
+                                    <button
+                                        class="btn btn-fill btn-info btn-magnify"
                                         v-bind:disabled="errors.any('admin_roles')"
                                         type="submit">
                                         <span class="btn-label">
@@ -196,9 +196,9 @@
                             </div>
                             <div class="card-content">
                                 <div v-bind:class="{'form-group': true, 'has-error': errors.has('admin_roles.roles_usuario_editar') }">
-                                    <select 
+                                    <select
                                         v-validate="'required'"
-                                        id="pais" 
+                                        id="pais"
                                         name="pais"
                                         data-vv-as="pais"
                                         v-model="informacion.pais"
@@ -212,8 +212,8 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <button 
-                                        class="btn btn-fill btn-info btn-magnify" 
+                                    <button
+                                        class="btn btn-fill btn-info btn-magnify"
                                         v-bind:disabled="errors.any('admin_roles')"
                                         type="submit">
                                         <span class="btn-label">
@@ -232,12 +232,12 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-  
+
         Vue.component('v-select', VueSelect.VueSelect);
         Vue.use(VeeValidate, {
             locale: 'es',
         });
-  
+
       var vm = new Vue({
         el: '#app',
         data: {
@@ -257,10 +257,10 @@
                     password: "",
                     password_confirmation: "",
                 },
-                pais: "{{ Auth::user()->country }}",
+                pais: "{{ Auth::user()->pais }}",
                 @role(['Administrador', 'Superuser'])
                     admin: {
-                        country: "{{ $usuario->country }}",
+                        country: "{{ $usuario->pais }}",
                         roles: {
                             roles_disponibles: [
                                 @foreach ($roles_usuario as $role)
@@ -480,7 +480,7 @@
             }
         }
       });
-  
+
     });
   </script>
 @endsection

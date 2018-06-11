@@ -6,7 +6,7 @@ $factory->define(App\UnidadMedida::class, function (Faker\Generator $faker) {
         'sigla' => $faker->currencyCode(),
         'tipo' => $faker->word(),
 
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

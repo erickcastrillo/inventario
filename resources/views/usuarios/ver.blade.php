@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="row">
                                         <strong class="col-md-5 text-left">Pais</strong>
-                                        <p class="col-md-7 text-left">{{ $usuario->country }}</p>
+                                        <p class="col-md-7 text-left">{{ $usuario->pais }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -49,7 +49,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            
+
                             <br>
                             <div class="card-footer">
                                 <a href="/Usuario/{{ Auth::user()->id }}/edit" class="btn btn-wd btn-default text-center">

@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'user_name' => 'erick.castrillo',
             'password' => bcrypt('ndrk1396'),
             'email' => 'erick.castrillo@gmail.com',
-            'country' => 'Costa Rica',
+            'pais' => 1,
             'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
             'estado' => 1,
             'creado_id' => 1,
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'user_name' => 'coco',
             'password' => bcrypt('coco123'),
             'email' => 'coco@gmail.com',
-            'country' => 'Costa Rica',
+            'pais' => 1,
             'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
             'estado' => 1,
             'creado_id' => 1,
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'user_name' => 'diego81db',
             'password' => bcrypt('admin'),
             'email' => 'diego81db@gmail.com',
-            'country' => 'Costa Rica',
+            'pais' => 1,
             'profile_pic' => 'https://randomuser.me/api/portraits/lego/' . $faker->numberBetween($min = 0, $max = 8)  . '.jpg',
             'estado' => 1,
             'creado_id' => 1,
@@ -59,6 +59,7 @@ class UserSeeder extends Seeder
 
         $erick = User::find(1);
         $diego = User::find(2);
+        $coco = User::find(3);
 
         $erick->attachRole($Superuser);
         $erick->attachRole($Administrador);
@@ -67,6 +68,10 @@ class UserSeeder extends Seeder
         $diego->attachRole($Superuser);
         $diego->attachRole($Administrador);
         $diego->attachRole($Supervisor);
+
+        $coco->attachRole($Superuser);
+        $coco->attachRole($Administrador);
+        $coco->attachRole($Supervisor);
 
         factory(App\User::class, 5)->create()->each(function($u) {
             $Administrador = Role::where('name', '=', 'Administrador')->first();

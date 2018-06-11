@@ -5,7 +5,7 @@ $factory->define(App\Almacen::class, function (Faker\Generator $faker) {
         'descripcion' => $faker->streetAddress(),
         'responsable_id' => $faker->numberBetween($min = 1, $max = 12),
         'tipo_almacen' => $faker->numberBetween($min = 1, $max = 2),
-        'pais' => $faker->country(),
+        'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,
         'creado_id' => $faker->numberBetween($min = 1, $max = 2),

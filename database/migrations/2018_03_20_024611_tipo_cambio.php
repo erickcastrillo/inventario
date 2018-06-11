@@ -20,7 +20,7 @@ class TipoCambio extends Migration
             $table->integer('moneda_id');
             $table->date('fecha');
             $table->float('cambio', 8, 3);
-            $table->string('pais', 100);
+            $table->integer('pais');
             
             // This 5 lines must appear on all migrations
             $table->boolean('estado');

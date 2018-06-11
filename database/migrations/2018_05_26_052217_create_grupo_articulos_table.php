@@ -18,6 +18,8 @@ class CreateGrupoArticulosTable extends Migration
 
             $table->string('descripcion', 500);
 
+            $table->integer('pais');
+            
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');
