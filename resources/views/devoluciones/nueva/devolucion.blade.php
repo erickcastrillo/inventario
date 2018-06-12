@@ -149,6 +149,7 @@
                                                     :id="'row_costo-' + index"
                                                     v-model="row.costo"
                                                     number
+                                                    disabled
                                                     v-validate="'required|numeric'"
                                                 >
                                             </div>
@@ -309,7 +310,7 @@
                         articulo: "",
                         cantidad: "",
                         unidadDeMedida: "",
-                        costo: "",
+                        costo: 0,
                         serie: "",
                         lote: ""
                     },
