@@ -116,7 +116,7 @@ class DevolucionController extends Controller
               'estado' => '¡Error!',
               'mensaje' => "La nueva desinstalación no se ha podido guardar",
               'tipo' => 'error'
-          ]. 201);
+          ], 201);
       }
     }
 

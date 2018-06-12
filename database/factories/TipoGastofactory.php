@@ -1,11 +1,9 @@
 <?php
-
-$factory->define(App\Enlace::class, function (Faker\Generator $faker) {
+$factory->define(App\TipoGasto::class, function (Faker\Generator $faker) {
     return [
         'nombre' => $faker->firstName(),
-        //'latitud' => $faker->latitude(),
-        //'longitud' => $faker->longitude(),
-        'proyecto_id' => $faker->numberBetween($min = 1, $max = 10),
+        'codigo' => $faker->ean13(),
+
         'pais' => $faker->numberBetween($min = 1, $max = 6),
 
         'estado' => true,

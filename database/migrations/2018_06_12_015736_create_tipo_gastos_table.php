@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EnlacesMigration extends Migration
+class CreateTipoGastosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class EnlacesMigration extends Migration
      */
     public function up()
     {
-        Schema::create('enlances', function (Blueprint $table) {
-            // Primary key
+        Schema::create('tipo_gastos', function (Blueprint $table) {
             $table->increments('id');
 
             // Table specific entries
             $table->string('nombre', 100);
-            //$table->string('latitud', 40);
-            //$table->string('longitud', 40);
+            $table->string('codigo', 10);
             $table->integer('pais');
-            $table->integer('proyecto_id');
 
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
@@ -39,6 +36,6 @@ class EnlacesMigration extends Migration
      */
     public function down()
     {
-        Schema::drop('enlances');
+        Schema::drop('tipo_gastos');
     }
 }

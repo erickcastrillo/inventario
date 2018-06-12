@@ -59,6 +59,11 @@ class User extends Model implements AuthenticatableContract,
       return Moneda::where('pais', '=', $this->country);
     }
 
+    public function get_pais_name()
+    {
+      return Pais::where('id', $this->pais);
+    }
+
     public function get_almacenes()
     {
         return Almacen::where('responsable_id', '=', $this->id);

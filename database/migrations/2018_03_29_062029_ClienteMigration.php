@@ -15,16 +15,16 @@ class ClienteMigration extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             // Primary key
             $table->increments('id');
-            
+
             // Table specific entries
             $table->string('nombre', 100);
-            $table->string('cedula', 20);
-            $table->string('nombre_contacto', 100);
-            $table->string('tel_contacto', 30);
-            $table->string('tel_empresa', 30);
-            $table->string('correo', 50);
+            // $table->string('cedula', 20);
+            // $table->string('nombre_contacto', 100);
+            // $table->string('tel_contacto', 30);
+            // $table->string('tel_empresa', 30);
+            // $table->string('correo', 50);
             $table->integer('pais');
-            
+
             // This 5 lines must appear on all migrations
             $table->boolean('estado');
             $table->integer('creado_id');

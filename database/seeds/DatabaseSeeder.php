@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GrupoArticuloSeeder::class);
         $this->call(ABCArticuloSeeder::class);
         $this->call(MinimoArticuloSeeder::class);
+        $this->call(TipoGastoSeeder::class);
 
         Model::reguard();
     }

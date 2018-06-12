@@ -86,10 +86,10 @@
                                             <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.moneda_id') }">
                                                 <label class="col-md-4 control-label">Moneda</label>
                                                 <div class="col-sm-8">
-                                                    <v-select  
-                                                        :value.sync="informacion.moneda_id" 
+                                                    <v-select
+                                                        :value.sync="informacion.moneda_id"
                                                         v-model="informacion.moneda_id"
-                                                        :options="monedas" 
+                                                        :options="monedas"
                                                         id="moneda_id"
                                                         name="moneda_id"
                                                         v-validate="'required'"
@@ -191,9 +191,9 @@
                                             <tr role="row" v-for="(row, index) in rows" :key="index">
                                                 <td>
                                                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
-                                                        <select                                                        
+                                                        <select
                                                             class="form-control"
-                                                            v-on:change="getUnidadesMedida(row.articulo)"
+                                                            v-on:change="getUnidadesMedida(row)"
                                                             v-model="row.articulo"
                                                             v-validate="'required'"
                                                             :name="'row_articulo-' + index"
@@ -208,7 +208,7 @@
                                                 <td>
                                                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
                                                         <div class="input-group" >
-                                                            <span class="input-group-addon">@{{ unidadDeMedida }}</span>
+                                                            <span class="input-group-addon">@{{ row.unidadDeMedida }}</span>
                                                             <input
                                                                 class="form-control"
                                                                 v-on:change="rowTotal(row)"
@@ -279,8 +279,8 @@
                                                                 type="number"
                                                                 :name="'row_subtotal-' + index"
                                                                 :id="'row_subtotal-' + index"
-                                                                readonly 
-                                                            >    
+                                                                readonly
+                                                            >
                                                         </div>
                                                     </div>
                                                 </td>
@@ -333,10 +333,10 @@
                                                 <div class="card-content">
                                                     <label class="col-sm-2 control-label">Notas</label>
                                                     <div class="col-sm-10">
-                                                        <textarea 
-                                                        v-model="informacion.notas" 
-                                                        name="notas" 
-                                                        id="notas" 
+                                                        <textarea
+                                                        v-model="informacion.notas"
+                                                        name="notas"
+                                                        id="notas"
                                                         class="form-control"
                                                         rows="3"></textarea>
                                                     </div>
@@ -382,11 +382,11 @@
 
             Vue.use(VeeValidate, {
                 locale: 'es',
-            });           
+            });
 
             var vm = new Vue({
                 el: '#app',
-                
+
                 data: {
                     date: null,
                     config: {
@@ -400,7 +400,6 @@
                         {label: "{{ $moneda->nombre }} - {{ $moneda->sigla }}", value: "{{ $moneda->id }}", id: "{{ $moneda->sigla }}"},
                         @endforeach
                     ],
-                    unidadDeMedida: "",
                     rows: [
                         //initial data
                         {
@@ -409,6 +408,7 @@
                             costo: "",
                             serie: "",
                             lote: "",
+                            unidadDeMedida: "",
                             subtotal: ""
                         },
 
@@ -428,21 +428,21 @@
                     }
                 },
                 methods: {
-                    getUnidadesMedida: function(id) {
-                        if(id) {
+                    getUnidadesMedida: function(row) {
+                        if(row) {
                             var _this = this;
                             var token = $('meta[name="csrf-token"]').attr('content');
 
                             $.ajax({
                                 context: this,
                                 type: "GET",
-                                url: "/Articulo/" + id + "/UnidadesMedida",
+                                url: "/Articulo/" + row.articulo + "/UnidadesMedida",
                                 dataType: 'json',
                                 data: {
                                 _token: token,
                                 },
                                 success: function(result) {
-                                    Vue.set(_this, 'unidadDeMedida', result);
+                                    Vue.set(row, 'unidadDeMedida', result);
                                 },
                                 error: function(xhr) {
                                     var errorMessage = '';
@@ -564,7 +564,7 @@
                                 }});
                             }
                         });
-                        
+
                         event.preventDefault();
                     } //
                 }

@@ -19,10 +19,10 @@
                       <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.cliente_id') }">
                         <label class="col-md-4 control-label">Cliente</label>
                         <div class="col-sm-8">
-                          <select 
-                            class="form-control" 
-                            name="cliente_id" 
-                            id="cliente_id" 
+                          <select
+                            class="form-control"
+                            name="cliente_id"
+                            id="cliente_id"
                             v-model="informacion.cliente_id"
                             v-validate="'required'"
                             >
@@ -35,15 +35,15 @@
                       <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.almacen_id') }">
                         <label class="col-md-4 control-label">Almac&eacute;n a Ingresar</label>
                         <div class="col-sm-8">
-                          <select 
-                            class="form-control" 
-                            name="almacen_id" 
-                            id="almacen_id" 
+                          <select
+                            class="form-control"
+                            name="almacen_id"
+                            id="almacen_id"
                             v-model="informacion.almacen_id"
                             v-validate="'required'"
                             >
-                              @foreach($almacenes as $almacenes)
-                                  <option value="{{ $almacenes->id }}">{{ $almacenes->descripcion }}</option>
+                              @foreach($almacenes as $almacen)
+                                  <option value="{{ $almacen->id }}">{{ $almacen->descripcion }}</option>
                               @endforeach
                           </select>
                         </div>
@@ -56,9 +56,9 @@
                         <label class="col-md-4 control-label">Moneda</label>
                         <div class="col-sm-8">
                             <v-select
-                                :value.sync="informacion.moneda_id" 
+                                :value.sync="informacion.moneda_id"
                                 v-model="informacion.moneda_id"
-                                :options="monedas" 
+                                :options="monedas"
                                 id="moneda_id"
                                 name="moneda_id"
                                 v-validate="'required'"
@@ -109,7 +109,7 @@
                                             <select
                                                 class="form-control"
                                                 v-model="row.articulo"
-                                                v-on:change="getUnidadesMedida(row.articulo)"
+                                                v-on:change="getUnidadesMedida(row)"
                                                 :name="'row_articulo-' + index"
                                                 :id="'row_articulo-' + index"
                                                 v-validate="'required'"
@@ -123,7 +123,7 @@
                                     <td>
                                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
                                             <div class="input-group" >
-                                                <span class="input-group-addon">@{{ unidadDeMedida }}</span>
+                                                <span class="input-group-addon">@{{ row.unidadDeMedida }}</span>
                                                 <input
                                                     type="number"
                                                     class="form-control"
@@ -134,7 +134,7 @@
                                                     number
                                                     v-validate="'required|numeric'"
                                                 >
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </td>
                                     <td>
@@ -186,7 +186,7 @@
                                                 v-model="row.subtotal"
                                                 :name="'row_subtotal-' + index"
                                                 :id="'row_subtotal-' + index"
-                                                readonly 
+                                                readonly
                                             />
                                         </div>
                                     </td>
@@ -286,7 +286,7 @@
 
         Vue.use(VeeValidate, {
             locale: 'es',
-        });  
+        });
 
         var vm = new Vue({
             el: '#app',
@@ -303,12 +303,12 @@
                     {label: "{{ $moneda->nombre }} - {{ $moneda->sigla }}", value: "{{ $moneda->id }}", id: "{{ $moneda->sigla }}"},
                     @endforeach
                 ],
-                unidadDeMedida: "",
                 rows: [
                     //initial data
                     {
                         articulo: "",
                         cantidad: "",
+                        unidadDeMedida: "",
                         costo: "",
                         serie: "",
                         lote: ""
@@ -325,21 +325,21 @@
                 }
             },
             methods: {
-                getUnidadesMedida: function(id) {
-                    if(id) {
+                getUnidadesMedida: function(row) {
+                    if(row) {
                         var _this = this;
                         var token = $('meta[name="csrf-token"]').attr('content');
 
                         $.ajax({
                             context: this,
                             type: "GET",
-                            url: "/Articulo/" + id + "/UnidadesMedida",
+                            url: "/Articulo/" + row.articulo + "/UnidadesMedida",
                             dataType: 'json',
                             data: {
                             _token: token,
                             },
                             success: function(result) {
-                                Vue.set(_this, 'unidadDeMedida', result);
+                                Vue.set(row, 'unidadDeMedida', result);
                                 //_this.productos = result;
                             },
                             error: function(xhr) {
