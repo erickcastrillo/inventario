@@ -22,8 +22,8 @@
                       <label class="col-md-4 control-label">Almac&eacute;n</label>
                       <div class="col-sm-8">
                         <select
-                          class="form-control" 
-                          name="almacen_id" 
+                          class="form-control"
+                          name="almacen_id"
                           id="almacen_id"
                           v-model="informacion.almacen_id"
                           v-validate="'required'"
@@ -37,10 +37,10 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.departamento_id') }">
                       <label class="col-md-4 control-label">Departamento</label>
                       <div class="col-sm-8">
-                        <select 
-                          class="form-control" 
-                          name="departamento_id" 
-                          id="departamento_id" 
+                        <select
+                          class="form-control"
+                          name="departamento_id"
+                          id="departamento_id"
                           v-model="informacion.departamento_id"
                           v-validate="'required'"
                           >
@@ -53,10 +53,10 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.supervisor_id') }">
                         <label class="col-md-4 control-label">Supervisor</label>
                         <div class="col-sm-8">
-                          <select 
-                            class="form-control" 
-                            name="supervisor_id" 
-                            id="supervisor_id" 
+                          <select
+                            class="form-control"
+                            name="supervisor_id"
+                            id="supervisor_id"
                             v-model="informacion.supervisor_id"
                             v-validate="'required'"
                           >
@@ -74,11 +74,11 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.fecha_retiro') }">
                       <label class="col-md-4 control-label">Fecha</label>
                       <div class="col-sm-8">
-                        <date-picker 
-                          :config="datepicker" 
-                          id="fecha_retiro" 
-                          class="form-control" 
-                          name="fecha_retiro" 
+                        <date-picker
+                          :config="datepicker"
+                          id="fecha_retiro"
+                          class="form-control"
+                          name="fecha_retiro"
                           v-model="informacion.fecha_retiro"
                           :value="moment().format('YYYY-MM-DD')"
                           v-validate="'required|date_format:YYYY-MM-DD'"
@@ -88,11 +88,11 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.hora_retiro') }">
                       <label class="col-md-4 control-label">Hora</label>
                       <div class="col-sm-8">
-                        <date-picker 
-                          :config="timepicker" 
-                          id="hora_retiro" 
-                          class="form-control" 
-                          name="hora_retiro" 
+                        <date-picker
+                          :config="timepicker"
+                          id="hora_retiro"
+                          class="form-control"
+                          name="hora_retiro"
                           :value="moment().format('h:mm A')"
                           v-model="informacion.hora_retiro"
                           v-validate="'required|date_format:h:mm A'"
@@ -102,11 +102,11 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.nombre_retira') }">
                       <label class="col-md-4 control-label">Nombre Completo</label>
                       <div class="col-sm-8">
-                        <input 
-                          type="text" 
-                          class="form-control" 
-                          name="nombre_retira" 
-                          id="nombre_retira" 
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="nombre_retira"
+                          id="nombre_retira"
                           v-model="informacion.nombre_retira"
                           v-validate="'required|alpha_spaces'">
                       </div>
@@ -114,11 +114,11 @@
                     <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.id_personal_retira') }">
                       <label class="col-md-4 control-label">No de Identificación</label>
                       <div class="col-sm-8">
-                        <input 
-                          type="text" 
-                          class="form-control" 
-                          name="id_personal_retira" 
-                          id="id_personal_retira" 
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="id_personal_retira"
+                          id="id_personal_retira"
                           placeholder="Ejemplo: 1-2345-6789"
                           v-model="informacion.id_personal_retira"
                           v-validate="'required|regex:^([0-9])-([0-9]{4})-([0-9]{4})$'"
@@ -148,10 +148,10 @@
                     <tr role="row" v-for="(row, index) in rows" :key="index">
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_articulo-' + index) }">
-                          <select 
-                            class="form-control" 
-                            v-model="row.articulo" 
-                            :name="'row_articulo-' + index" 
+                          <select
+                            class="form-control"
+                            v-model="row.articulo"
+                            :name="'row_articulo-' + index"
                             :id="'row_articulo-' + index"
                             v-validate="'required'"
                             >
@@ -164,13 +164,13 @@
                       <td>
                         <div v-bind:class="{'form-group': true, 'has-error': errors.has('postData.row_cantidad-' + index) }">
                           <input
-                            class="form-control" 
+                            class="form-control"
                             number="true"
                             type="number"
                             number
-                            :name="'row_cantidad-' + index" 
+                            :name="'row_cantidad-' + index"
                             :id="'row_cantidad-' + index"
-                            v-model="row.cantidad" 
+                            v-model="row.cantidad"
                             v-validate="'required|numeric'"
                             >
                         </div>
@@ -318,7 +318,7 @@
               $.ajax({
                 context: this,
                 type: "POST",
-                url: "/Traslado/",
+                url: "/Traslado/Create/Solicitud",
                 dataType: 'json',
                 data: {
                   _token: token,

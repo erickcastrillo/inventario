@@ -16,12 +16,14 @@ use App\Movimiento;
 use App\AlmacenDetalle;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TrasladoRequest;
+use App\Http\Requests\SolicitudTraslado;
 use App\Events\NotificationEvent;
 use Carbon\Carbon;
 use App\User;
 use App\Articulo;
 use App\SubCategoriaMovimiento;
 use App\Solicitud;
+use App\SolicitudDetalle;
 
 class TrasladoController extends Controller
 {
@@ -73,6 +75,7 @@ class TrasladoController extends Controller
         $traslado->estado = 0;
 
         $saved_traslado = $traslado->save();
+
         foreach ($request->input('rows') as $key => $val)
         {
           $p =  AlmacenDetalle::where('almacen_id', '=', $request->input('informacion.almacen_id_salida'))
@@ -85,7 +88,7 @@ class TrasladoController extends Controller
             $traslado_detalle->costo_unitario = $p;
             //$traslado_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
             $traslado_detalle->pais = Auth::user()->country;
-            
+
 
             // estado 0 means pending, 1 approved, 2 rejected
             $traslado_detalle->estado = 0;
@@ -116,7 +119,7 @@ class TrasladoController extends Controller
                 'estado' => '¡Error!',
                 'mensaje' => "El nuevo Traslado no se ha podido guardar",
                 'tipo' => 'error'
-            ]. 201);
+            ], 201);
 
         }
 
@@ -139,7 +142,7 @@ class TrasladoController extends Controller
             'detalles' => $traslado->detalles()->get(),
             'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
             'productos' => Articulo::where('estado' , '=', 1)->get(),
-        ]);   
+        ]);
     }
 
     /**
@@ -154,7 +157,7 @@ class TrasladoController extends Controller
         'departamentos' => Departamento::where('estado' , '=', 1)->get(),
         'movimientos' => SubCategoriaMovimiento::where('movimiento_id' , '=', 2)->where('estado' , '=', 1)->get(),
         'supervisores' => User::with(array('roles' => function($query) { $query->where('name', 'Supervisor'); })) ->get(),
-        'productos' => Articulo::where('estado' , '=', 1)->get(), 
+        'productos' => Articulo::where('estado' , '=', 1)->get(),
       ]);
     }
 
@@ -185,7 +188,7 @@ class TrasladoController extends Controller
         if($request->input('informacion.notas')){
             $traslado->notas = $traslado->notas += "\n" . $request->input('informacion.notas');
         }
-        
+
         $traslado->creado_id = Auth::user()->id;
         $traslado->editado_id = Auth::user()->id;
 
@@ -205,7 +208,7 @@ class TrasladoController extends Controller
 
             if ($request->input('rows.'.$key.'.estado') == 1)
             {
-                
+
             }
         }
 
@@ -231,7 +234,7 @@ class TrasladoController extends Controller
                 'estado' => '¡Error!',
                 'mensaje' => "El nuevo Traslado no se ha podido guardar",
                 'tipo' => 'error'
-            ]. 201);
+            ], 201);
 
         }
     }
@@ -247,7 +250,7 @@ class TrasladoController extends Controller
         //
     }
 
-    public function get_data($fecha_inicio, $fecha_final) 
+    public function get_data($fecha_inicio, $fecha_final)
     {
 
         $data = Traslado::whereBetween('created_at', [$fecha_inicio, $fecha_final])->orderBy("created_at", "des")->where('estado' , '=', 0)->get();
@@ -255,8 +258,74 @@ class TrasladoController extends Controller
 
     }
 
-    public function nueva_solicitud() 
+    public function nueva_solicitud(SolicitudTraslado $request)
     {
+
+      $solicitud = new Solicitud();
+
+      $solicitud->almacen_id = $request->input('informacion.almacen_id');
+      $solicitud->fecha = $request->input('informacion.fecha_retiro');
+      $solicitud->supervisor_id = $request->input('informacion.supervisor_id');
+      $solicitud->hora = $request->input('informacion.hora_retiro');
+      $solicitud->departamento_id = $request->input('informacion.departamento_id');
+      $solicitud->nombre_retira = $request->input('informacion.nombre_retira');
+      $solicitud->id_personal_retira = $request->input('informacion.id_personal_retira');
+      if($request->input('informacion.notas')){
+          $solicitud->notas = $request->input('informacion.notas');
+      }
+      $solicitud->pais = Auth::user()->pais;
+      $solicitud->creado_id = Auth::user()->id;
+      //$solicitud->editado_id = Auth::user()->id;
+
+      // estado 0 means pending, 1 approved, 2 rejected
+      $solicitud->estado = 0;
+
+      $saved_solicitud = $solicitud->save();
+      $saved_solicitud_detalle = true;
+
+      foreach ($request->input('rows') as $key => $val)
+      {
+
+          $solicitud_detalle = new SolicitudDetalle();
+          $solicitud_detalle->articulo_id = $request->input('rows.'.$key.'.articulo');
+          $solicitud_detalle->cantidad = $request->input('rows.'.$key.'.cantidad');
+          //$solicitud_detalle->moneda_id = Auth::user()->get_moneda()->first()->id;
+          $solicitud_detalle->pais = Auth::user()->pais;
+
+
+          // estado 0 means pending, 1 approved, 2 rejected
+          $solicitud_detalle->estado = 0;
+          $solicitud_detalle->creado_id = Auth::user()->id;
+
+          // Saves the data to db
+          $saved_solicitud_detalle = $saved_solicitud_detalle and $solicitud->detalles()->save($solicitud_detalle);
+      }
+
+      if($saved_solicitud and $saved_solicitud_detalle){
+
+          $notiticacion = new \stdClass();
+          $notiticacion->title = "Nueva solicitud de traslado";
+          $notiticacion->message = "El usuario " . Auth::user()->get_full_name() . " ha solicitado un nuevo traslado, por favor revisa los detalles aqui";
+          $notiticacion->type = 'info';
+          $notiticacion->url = '/'; // todo
+
+          Event::fire(new NotificationEvent($notiticacion));
+
+          return response()->json([
+              'estado' => '¡Exito!',
+              'mensaje' => "Traslado ha sido guardado exitosamente",
+              'tipo' => 'success'
+          ], 201);
+
+      } else {
+
+          return response()->json([
+              'estado' => '¡Error!',
+              'mensaje' => "El nuevo Traslado no se ha podido guardar",
+              'tipo' => 'error'
+          ], 201);
+
+      }
 
     }
 
