@@ -266,7 +266,6 @@
         informacion: {
           notas: "",
           almacen_id: "",
-          movimiento_id: "",
           motivo: "",
           departamento_id: "",
           fecha_retiro: moment().format('YYYY-MM-DD'),
